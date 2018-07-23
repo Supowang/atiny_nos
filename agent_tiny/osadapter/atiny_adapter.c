@@ -40,30 +40,20 @@
 #define ATINY_CNT_MAX_WAITTIME 0xFFFFFFFF
 #define LOG_BUF_SIZE (256)
 
-#if 0
+extern  uint64_t g_kerneltickscount;
 static uint64_t osKernelGetTickCount (void)
 {
     uint64_t ticks = 0;
 
-    UINTPTR uvIntSave;
-
-    if(OS_INT_ACTIVE)
     {
-        ticks = 0U;
-    }
-    else
-    {
-        uvIntSave = LOS_IntLock();
-        ticks = g_ullTickCount;
-        LOS_IntRestore(uvIntSave);
+        ticks = g_kerneltickscount;
     }
     return ticks;
 }
-#endif
 
 uint64_t atiny_gettime_ms(void)
 {
-    return 0;
+    return osKernelGetTickCount();
 }
 
 void* atiny_malloc(size_t size)

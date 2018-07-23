@@ -55,7 +55,8 @@ void atiny_usleep(unsigned long usec)
 
 int atiny_random(void* output, size_t len)
 {
-    return 0;//hal_rng_generate_buffer(output, len);
+    static long i = 0;
+    return i++;//hal_rng_generate_buffer(output, len);
 }
 
 void atiny_reboot(void)
