@@ -52,7 +52,7 @@
           <OutputName>nrf51822-sherlock</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o demo.bin ./Objects/nrf51822-sherlock.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -133,12 +133,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -187,7 +187,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -335,9 +335,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,LWM2M_BOOTSTRAP</Define>
+              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace</IncludePath>
+              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -470,6 +470,21 @@
               <FileName>sys_init.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\hw_init\sys_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>hw_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\hw_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>hw_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\hw_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>hw_mailbox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\hw_mailbox.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -645,6 +660,21 @@
               <FileName>er-coap-13.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lwm2m\core\er-coap-13\er-coap-13.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>network</GroupName>
+          <Files>
+            <File>
+              <FileName>esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\network\esp8266.c</FilePath>
+            </File>
+            <File>
+              <FileName>u2n_if.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\network\u2n_if.c</FilePath>
             </File>
           </Files>
         </Group>

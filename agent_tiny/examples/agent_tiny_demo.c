@@ -182,13 +182,6 @@ void agent_tiny_entry(void)
     iot_security_param->server_port = "5683";
     bs_security_param->server_port = "5683";
 
-    iot_security_param->psk_Id = NULL;
-    iot_security_param->psk = NULL;
-    iot_security_param->psk_len = 0;
-
-    bs_security_param->psk_Id = NULL;
-    bs_security_param->psk = NULL;
-    bs_security_param->psk_len = 0;
 #endif
 
     if(ATINY_OK != atiny_init(atiny_params, &g_phandle))

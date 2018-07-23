@@ -42,7 +42,12 @@
 #include <stdio.h>
 #include "stdlib.h"
 #include "string.h"
-
+#include "hw_uart.h"
+#include "hw_timer.h"
+#include "hw_mailbox.h"
+#include "nrf_delay.h"
+#include "mem_manager.h"
+#include "agent_tiny_demo.h"
 
 
 #ifdef __cplusplus

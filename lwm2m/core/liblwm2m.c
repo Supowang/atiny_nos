@@ -454,7 +454,7 @@ int lwm2m_reconnect(lwm2m_context_t * context)
 /*
  * add date:     2018-06-04
  * description:  in order to mark the server of the bootstrapServerList and the serverList. think the server's data are
- * 				 dirty, should be delete from the list, and will be new soon.
+ *                  dirty, should be delete from the list, and will be new soon.
  * return:       none
  * pay attention:
  *              the function in fact have been defined as prv_tagAllServer in another file. defined here again, in order to
@@ -664,7 +664,7 @@ next_step:
             contextP->state = STATE_BOOTSTRAP_REQUIRED;
         }
         goto next_step;
-        break;
+//        break;
 
     case STATE_BOOTSTRAP_REQUIRED:
 #ifdef LWM2M_BOOTSTRAP
@@ -689,7 +689,7 @@ next_step:
             contextP->state = STATE_INITIAL;
             contextP->regist_first_flag = true;
             goto next_step;
-            break;
+//            break;
 
         case STATE_BS_FAILED:
             return COAP_503_SERVICE_UNAVAILABLE;
@@ -734,11 +734,11 @@ next_step:
             // TODO avoid infinite loop by checking the bootstrap info is different
             //contextP->state = STATE_BOOTSTRAP_REQUIRED;
 
-        	//if regist fail, we may regist again or use other method to try  according the init param
+            //if regist fail, we may regist again or use other method to try  according the init param
             lwm2m_bootstrap_process_reg_failed(contextP);
 
-        	//contextP->state = STATE_REGISTER_REQUIRED;
-        	//lwm2m_notify_even(MODULE_LWM2M,STATE_REG_FAILED, NULL, 0);
+            //contextP->state = STATE_REGISTER_REQUIRED;
+            //lwm2m_notify_even(MODULE_LWM2M,STATE_REG_FAILED, NULL, 0);
             break;
 
         case STATE_REG_PENDING:

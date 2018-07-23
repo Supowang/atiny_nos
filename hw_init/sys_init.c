@@ -33,12 +33,16 @@
  *---------------------------------------------------------------------------*/
 
 #include "sys_init.h"
-#include "nrf_delay.h"
-
 
 void hw_init(void)
 {
-	
+    hw_timer_init();
+
+    nrf_mem_init();
+
+    hw_uart_init();
+
+//    hw_timer_start();
 }
 
 /**

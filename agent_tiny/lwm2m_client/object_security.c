@@ -588,7 +588,7 @@ lwm2m_object_t * get_security_object(uint16_t serverId,atiny_param_t* atiny_para
             break;
         default:
             return NULL;
-            break;
+//            break;
     }
 
    securityObj = (lwm2m_object_t *)lwm2m_malloc(sizeof(lwm2m_object_t));
@@ -635,11 +635,11 @@ lwm2m_object_t * get_security_object(uint16_t serverId,atiny_param_t* atiny_para
                 security_params_index = 1;
             }
         }
-
+#ifdef WITH_DTLS
         bsPskId = atiny_params->security_params[security_params_index].psk_Id;
         psk = atiny_params->security_params[security_params_index].psk;
         pskLen = atiny_params->security_params[security_params_index].psk_len;
-
+#endif
         if (psk != NULL)
         {
             (void)atiny_snprintf(serverUri, URI_MAX_LEN, "coaps://%s:%s",atiny_params->security_params[security_params_index].server_ip,

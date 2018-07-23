@@ -250,7 +250,6 @@ __STATIC_INLINE void tx_byte(void)
     nrf_uart_txd_set(NRF_UART0, txd);
 }
 
-#include "nrf_gpio.h"
 ret_code_t nrf_drv_uart_tx(uint8_t const * const p_data, uint8_t length)
 {
     ASSERT(m_cb.state == NRF_DRV_STATE_INITIALIZED);
