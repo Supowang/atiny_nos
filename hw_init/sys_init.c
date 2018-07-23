@@ -33,12 +33,16 @@
  *---------------------------------------------------------------------------*/
 
 #include "sys_init.h"
-#include "nrf_delay.h"
-
 
 void hw_init(void)
 {
-	
+    hw_timer_init();
+
+    nrf_mem_init();
+
+    hw_uart_init();
+
+//    hw_timer_start();
 }
 
 /**
@@ -51,7 +55,8 @@ void atiny_usleep(unsigned long usec)
 
 int atiny_random(void* output, size_t len)
 {
-    return 0;//hal_rng_generate_buffer(output, len);
+    static long i = 0;
+    return i++;//hal_rng_generate_buffer(output, len);
 }
 
 void atiny_reboot(void)

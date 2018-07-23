@@ -150,6 +150,7 @@ static void atiny_notify_stack_rpt_data_change(atiny_dl_list* node, void* contex
 int atiny_init_rpt(void)
 {
     atiny_list_init(&g_atiny_rpt_table);
+#ifndef AGENT_TINY_NOS
     g_mutex = atiny_mutex_create();
 
     if (NULL == g_mutex)
@@ -157,7 +158,7 @@ int atiny_init_rpt(void)
         ATINY_LOG(LOG_ERR, "atiny_mutex_create fail");
         return ATINY_RESOURCE_NOT_ENOUGH;;
     }
-
+#endif
     return ATINY_OK;
 }
 

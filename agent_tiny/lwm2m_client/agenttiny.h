@@ -170,10 +170,11 @@ typedef struct
     char* server_ip;
     char* server_port;
 
+#ifdef WITH_DTLS
     char* psk_Id;
     char* psk;
     unsigned short psk_len;
-
+#endif
 } atiny_security_param_t;
 
 

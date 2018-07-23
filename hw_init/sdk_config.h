@@ -38,7 +38,7 @@
  *          Maximum value : 255
  *          Dependencies  : None.
  */
-#define  MEMORY_MANAGER_SMALL_BLOCK_COUNT                  8
+#define  MEMORY_MANAGER_SMALL_BLOCK_COUNT                  16
 
 /**
  * @brief Size of each memory blocks identified as 'small' block.

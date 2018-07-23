@@ -70,7 +70,9 @@ typedef struct
     lwm2m_object_t*   obj_array[OBJ_MAX_NUM];
     int atiny_quit;
     int reconnect_flag;
+    #if 0
     void* quit_sem;
+  #endif
     int reboot_flag;
     uint8_t* recv_buffer;
 } handle_data_t;
@@ -193,6 +195,7 @@ int  atiny_init(atiny_param_t* atiny_params, void** phandle)
 
     memset((void*)&g_atiny_handle, 0, sizeof(handle_data_t));
 
+#ifndef AGENT_TINY_NOS
     g_atiny_handle.quit_sem = atiny_mutex_create();
     if (NULL == g_atiny_handle.quit_sem)
     {
@@ -200,6 +203,7 @@ int  atiny_init(atiny_param_t* atiny_params, void** phandle)
         return ATINY_RESOURCE_NOT_ENOUGH;
     }
     atiny_mutex_lock(g_atiny_handle.quit_sem);
+#endif
     g_atiny_handle.atiny_params = *atiny_params;
     *phandle = &g_atiny_handle;
 
@@ -279,6 +283,7 @@ int atiny_init_objects(atiny_param_t* atiny_params, const atiny_device_info_t* d
 
 
     result = atiny_init_rpt();
+
     if (result != ATINY_OK)
     {
         ATINY_LOG(LOG_FATAL, "atiny_init_rpt fail,ret=%d", result);
@@ -296,13 +301,14 @@ int atiny_init_objects(atiny_param_t* atiny_params, const atiny_device_info_t* d
         ATINY_LOG(LOG_FATAL, "lwm2m_init fail");
         return ATINY_MALLOC_FAILED;
     }
+        #ifndef AGENT_TINY_NOS
     lwm2m_context->observe_mutex = atiny_mutex_create();
     if (NULL == lwm2m_context->observe_mutex)
     {
         ATINY_LOG(LOG_FATAL, "atiny_mutex_create fail");
         return ATINY_RESOURCE_NOT_ENOUGH;
     }
-
+        #endif
     pdata->lwm2mH = lwm2m_context;
 
     handle->lwm2m_context = lwm2m_context;
@@ -448,7 +454,7 @@ void atiny_destroy(void* handle)
         }
         lwm2m_close(handle_data->lwm2m_context);
     }
-    atiny_mutex_unlock(handle_data->quit_sem);
+//    atiny_mutex_unlock(handle_data->quit_sem);
 }
 
 void atiny_event_handle(module_type_t type, int code, const char* arg, int arg_len)
@@ -577,6 +583,7 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         atiny_destroy(handle);
         return ret;
     }
+
 #ifdef CONFIG_FEATURE_FOTA
     (void)atiny_fota_manager_set_lwm2m_context(atiny_fota_manager_get_instance(), handle->lwm2m_context);
 #endif
@@ -616,8 +623,8 @@ void atiny_deinit(void* phandle)
 
     handle = (handle_data_t*)phandle;
     handle->atiny_quit = 1;
-    atiny_mutex_lock(handle->quit_sem);
-    atiny_mutex_destroy(handle->quit_sem);
+//    atiny_mutex_lock(handle->quit_sem);
+//    atiny_mutex_destroy(handle->quit_sem);
 }
 
 int atiny_data_report(void* phandle, data_report_t* report_data)

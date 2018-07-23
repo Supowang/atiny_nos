@@ -100,6 +100,7 @@ uint32_t app_uart_get(uint8_t * p_byte)
 
 uint32_t app_uart_put(uint8_t byte)
 {
+
     tx_buffer[0] = byte;
     ret_code_t ret =  nrf_drv_uart_tx(tx_buffer,1);
     if (NRF_ERROR_BUSY == ret)

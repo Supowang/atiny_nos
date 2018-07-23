@@ -30,9 +30,9 @@
  */
 typedef enum 
 { 
-	NRF_DRV_STATE_UNINITIALIZED, /**< Uninitialized. */
-	NRF_DRV_STATE_INITIALIZED, /**< Initialized but powered off. */
-	NRF_DRV_STATE_POWERED_ON
+    NRF_DRV_STATE_UNINITIALIZED, /**< Uninitialized. */
+    NRF_DRV_STATE_INITIALIZED, /**< Initialized but powered off. */
+    NRF_DRV_STATE_POWERED_ON
 } nrf_drv_state_t;
 
 /**

@@ -34,34 +34,26 @@
 
 #include "atiny_adapter.h"
 #include "mem_manager.h"
+#include "hw_uart.h"
+#include <stdarg.h>
 
 #define ATINY_CNT_MAX_WAITTIME 0xFFFFFFFF
 #define LOG_BUF_SIZE (256)
 
-#if 0
+extern  uint64_t g_kerneltickscount;
 static uint64_t osKernelGetTickCount (void)
 {
     uint64_t ticks = 0;
 
-    UINTPTR uvIntSave;
-
-    if(OS_INT_ACTIVE)
     {
-        ticks = 0U;
-    }
-    else
-    {
-        uvIntSave = LOS_IntLock();
-        ticks = g_ullTickCount;
-        LOS_IntRestore(uvIntSave);
+        ticks = g_kerneltickscount;
     }
     return ticks;
 }
-#endif
 
 uint64_t atiny_gettime_ms(void)
 {
-    return 0;
+    return osKernelGetTickCount();
 }
 
 void* atiny_malloc(size_t size)
@@ -77,20 +69,19 @@ void atiny_free(void* ptr)
 int atiny_snprintf(char* buf, unsigned int size, const char* format, ...)
 {
     int     ret;
-	#if 0
     va_list args;
 
     va_start(args, format);
     ret = vsnprintf(buf, size, format, args);
     va_end(args);
-#endif
+
     return ret;
 }
 
 int atiny_printf(const char* format, ...)
 {
     int ret;
-		#if 0
+#if 0
 
     char str_buf[LOG_BUF_SIZE] = {0};
     va_list list;
@@ -99,10 +90,9 @@ int atiny_printf(const char* format, ...)
     va_start(list, format);
     ret = vsnprintf(str_buf, LOG_BUF_SIZE, format, list);
     va_end(list);
-
+    
     printf("%s", str_buf);
 #endif
-
     return ret;
 }
 

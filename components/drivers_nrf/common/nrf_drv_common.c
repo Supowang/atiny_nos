@@ -22,10 +22,10 @@ void nrf_drv_common_irq_enable(IRQn_Type IRQn, uint8_t priority)
 {
 
 #ifdef SOFTDEVICE_PRESENT
-	ASSERT((priority == NRF_APP_PRIORITY_LOW) || (priority == NRF_APP_PRIORITY_HIGH));
+    ASSERT((priority == NRF_APP_PRIORITY_LOW) || (priority == NRF_APP_PRIORITY_HIGH));
 #endif
 
-	NVIC_SetPriority(IRQn, priority);
-	NVIC_ClearPendingIRQ(IRQn);
-	NVIC_EnableIRQ(IRQn);
+    NVIC_SetPriority(IRQn, priority);
+    NVIC_ClearPendingIRQ(IRQn);
+    NVIC_EnableIRQ(IRQn);
 }

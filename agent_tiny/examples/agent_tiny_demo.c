@@ -39,7 +39,7 @@
 //#define DEFAULT_SERVER_IPV4 "139.159.209.89"/*Huawei */
 //#define DEFAULT_SERVER_IPV4 "192.168.0.116"/*Huawei */
 //#define DEFAULT_SERVER_IPV4 "192.168.1.106"/*sjn */
-#define DEFAULT_SERVER_IPV4 "192.168.1.113" /*czr*/
+#define DEFAULT_SERVER_IPV4 "192.168.1.111" /*czr*/
 
 #define LWM2M_LIFE_TIME     50000
 
@@ -182,13 +182,6 @@ void agent_tiny_entry(void)
     iot_security_param->server_port = "5683";
     bs_security_param->server_port = "5683";
 
-    iot_security_param->psk_Id = NULL;
-    iot_security_param->psk = NULL;
-    iot_security_param->psk_len = 0;
-
-    bs_security_param->psk_Id = NULL;
-    bs_security_param->psk = NULL;
-    bs_security_param->psk_len = 0;
 #endif
 
     if(ATINY_OK != atiny_init(atiny_params, &g_phandle))

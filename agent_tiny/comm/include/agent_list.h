@@ -56,10 +56,10 @@ extern "C" {
 
  */
 
-typedef struct atiny_dl_list
+typedef struct _atiny_dl_list
 {
-    struct atiny_dl_list *prev;            /**< Current node's pointer to the previous node*/
-    struct atiny_dl_list *next;            /**< Current node's pointer to the next node*/
+    struct _atiny_dl_list *prev;            /**< Current node's pointer to the previous node*/
+    struct _atiny_dl_list *next;            /**< Current node's pointer to the next node*/
 
 } atiny_dl_list;
 
