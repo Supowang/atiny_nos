@@ -96,7 +96,7 @@ void hw_uart_init()
     APP_UART_INIT(&uart_params, uart_evt_hdl, APP_IRQ_PRIORITY_LOW, ret);
 }
 
-#define RESP_TIMEOUT 30000
+#define RESP_TIMEOUT 5000
 int32_t hw_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp)
 {
     uint32_t timeout = RESP_TIMEOUT / 5; // 30s

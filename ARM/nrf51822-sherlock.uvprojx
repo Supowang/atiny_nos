@@ -52,7 +52,7 @@
           <OutputName>nrf51822-sherlock</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>1</CreateHexFile>
+          <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
@@ -80,7 +80,7 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>1</RunUserProg1>
+            <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o demo.bin ./Objects/nrf51822-sherlock.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
@@ -335,9 +335,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS</Define>
+              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_SIM900A</Define>
               <Undefine></Undefine>
-              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
+              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;..\components\toolchain\cmsis\include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -675,6 +675,16 @@
               <FileName>u2n_if.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\hw_init\network\u2n_if.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_api_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\network\at_api_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>sim900a.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\hw_init\network\sim900a.c</FilePath>
             </File>
           </Files>
         </Group>
