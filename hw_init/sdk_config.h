@@ -38,7 +38,7 @@
  *          Maximum value : 255
  *          Dependencies  : None.
  */
-#define  MEMORY_MANAGER_SMALL_BLOCK_COUNT                  16
+#define  MEMORY_MANAGER_SMALL_BLOCK_COUNT                  32
 
 /**
  * @brief Size of each memory blocks identified as 'small' block.
@@ -60,7 +60,7 @@
  *          Maximum value : 255
  *          Dependencies  : None.
  */
-#define  MEMORY_MANAGER_MEDIUM_BLOCK_COUNT                 4
+#define  MEMORY_MANAGER_MEDIUM_BLOCK_COUNT                 16
 
 /**
  * @brief Size of each memory blocks identified as 'medium' block.
@@ -72,7 +72,7 @@
  *                          can be any value based on availability of RAM.
  *          Dependencies  : MEMORY_MANAGER_MEDIUM_BLOCK_COUNT is non-zero.
  */
-#define  MEMORY_MANAGER_MEDIUM_BLOCK_SIZE                  256
+#define  MEMORY_MANAGER_MEDIUM_BLOCK_SIZE                  200
 
 /**
  * @brief Maximum memory blocks identified as 'medium' blocks.
@@ -103,7 +103,7 @@
  *          Dependencies    : ENABLE_DEBUG_LOG_SUPPORT. If this flag is not defined, no
  *                            trace is observed even if this define is set to 1.
  */
-#define MEM_MANAGER_DISABLE_LOGS                           1
+#define MEM_MANAGER_DISABLE_LOGS                          0
 
 /**
  * @brief Disables API parameter checks in the module.

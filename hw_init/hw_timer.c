@@ -28,7 +28,7 @@ static void my_timer_handler(void * p_context)
 }
 static void my_timer2_handler(void * p_context)
 {
-    nrf_gpio_pin_toggle(19);
+
 }
 
 void hw_timer_init()

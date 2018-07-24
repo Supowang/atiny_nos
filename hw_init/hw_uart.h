@@ -30,8 +30,8 @@
 #define LED_OFF(idx)  do{ nrf_gpio_pin_clear(18 + idx);}while(0)
 #define LED_TOGGLE(idx)  do { nrf_gpio_pin_toggle(18 + idx);} while(0)
 
-#define UART_RECV_BUF_LEN    1024
-#define UART_EVENT_BUF_LEN    1024
+#define UART_RECV_BUF_LEN    512
+#define UART_EVENT_BUF_LEN    512
 
 typedef int (*callback)(uint8_t byte);
 
