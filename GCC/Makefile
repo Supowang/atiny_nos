@@ -27,10 +27,10 @@ CPU = cortex-m0
 MCU = -mcpu=$(CPU) -mthumb -mabi=aapcs
 
 #file 
-LD_SCRIPT = $(TOP_DIR)/components/toolchain/gcc/$(DEVICE)_xxaa.ld
+LD_SCRIPT = $(TOP_DIR)/components/toolchain/gcc/$(DEVICE)_xxac.ld
 
 #defines
-C_DEFS = -DLWM2M_LITTLE_ENDIAN -DLWM2M_CLIENT_MODE -DAGENT_TINY_NOS -DNRF51  -L$(TOP_DIR)/components/toolchain/gcc -T$(LD_SCRIPT)
+C_DEFS = -DWITH_AT_FRAMEWORK -DUSE_$(shell echo $(NETWORK)| tr a-z A-Z) -DLWM2M_LITTLE_ENDIAN -DLWM2M_CLIENT_MODE -DAGENT_TINY_NOS -D$(shell echo $(DEVICE) |tr a-z A-Z)  -L$(TOP_DIR)/components/toolchain/gcc -T$(LD_SCRIPT)
 
 ASM_SOURCE_s = $(TOP_DIR)/components/toolchain/gcc/gcc_startup_$(DEVICE).s
 
@@ -54,7 +54,7 @@ HW_SRC = $(TOP_DIR)/hw_init/hw_mailbox.c \
 			$(TOP_DIR)/hw_init/hw_timer.c \
 			$(TOP_DIR)/hw_init/hw_uart.c \
 			$(TOP_DIR)/hw_init/sys_init.c \
-			$(TOP_DIR)/hw_init/network/u2n_if.c \
+			$(TOP_DIR)/hw_init/network/at_api_interface.c \
 			$(TOP_DIR)/hw_init/network/$(NETWORK).c
 C_SOURCES += $(HW_SRC)
 

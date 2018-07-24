@@ -51,7 +51,7 @@
 #include "lwip/netdb.h"
 #include "lwip/errno.h"
 #else
-#include "u2n_if.h"
+#include "at_api_interface.h"
 #endif
 
 #define SOCKET_DEBUG
@@ -162,7 +162,7 @@ void* atiny_net_connect(const char* host, const char* port, int proto)
     {
         SOCKET_LOG("TCP connect to server(%s:%s) succeed", host, port);
     }
-#else
+#elif defined(WITH_AT_FRAMEWORK)
     ctx = atiny_malloc(sizeof(atiny_net_context));
     if (NULL == ctx)
     {
@@ -170,14 +170,15 @@ void* atiny_net_connect(const char* host, const char* port, int proto)
         return NULL;
     }    
 
-    ctx->fd = u2n_if_connect(host, port, proto);
+    ctx->fd = at_api_connect(host, port, proto);
     if (ctx->fd < 0)
     {
         SOCKET_LOG("unkown host(%s) or port(%s)", host, port);
         atiny_free(ctx);
         ctx = NULL;
     }
-//        hw_uart_send((uint8_t*)__func__, strlen(__func__));
+#else
+    
 #endif  
     return ctx;
 }
