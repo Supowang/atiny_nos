@@ -72,28 +72,9 @@ typedef enum
     AT_CMD_MAX
 }AT_CmdType;
 
-//#define AT_CMD_AT    		"AT"
-//#define AT_CMD_CPIN         "AT+CPIN?"//check sim card
-//#define AT_CMD_COPS         "AT+COPS?"//check register network
-//#define AT_CMD_CLOSE    	"AT+CIPCLOSE"
-//#define AT_CMD_SHUT    		"AT+CIPSHUT"
-//#define AT_CMD_ECHO_OFF 	"ATE0"
-//#define AT_CMD_ECHO_ON  	"ATE1"
-//#define AT_CMD_MUX 			"AT+CIPMUX"
-//#define AT_CMD_CLASS        "AT+CGCLASS"//set MS type
-//#define AT_CMD_PDP_CONT   	"AT+CGDCONT"//configure pdp context
-//#define AT_CMD_PDP_ATT    	"AT+CGATT"//pdp attach network
-//#define AT_CMD_PDP_ACT		"AT+CGACT"//active pdp context
-//#define AT_CMD_CSTT			"AT+CSTT"//start task
-//#define AT_CMD_CIICR		"AT+CIICR"//start gprs connect
-//#define AT_CMD_CIFSR		"AT+CIFSR"//get local ip
-//#define AT_CMD_CIPHEAD		"AT+CIPHEAD"
-//#define AT_CMD_CONN			"AT+CIPSTART"
-//#define AT_CMD_SEND			"AT+CIPSEND"
-
 /* Macros -------------------------------------------------------------------*/
 const AT_CMD sim900a_cmd[] = {
-        {"AT\r\n",      "OK"},
+        {"AT",          "OK"},
         {"AT+CPIN?",    "OK"}, //check sim card
         {"AT+COPS?",    "CHINA MOBILE"},
         {"AT+CIPCLOSE", "CLOSE OK"},
@@ -124,6 +105,13 @@ APP_MAILBOX_DEF(sim900a_mb, MAILBOX_Q_SIZE, MAILBOX_ITEM_SIZE);
 /* Public functions ---------------------------------------------------------*/
 
 int32_t at_send_cmd(uint8_t * buf, uint32_t len, uint8_t * resp)
+{
+    char cmd[64] = {0};
+    snprintf(cmd, 64, "%s\r\n", buf);
+    return hw_uart_send((uint8_t*)cmd, strlen(cmd), resp);
+}
+
+int32_t at_send_data(uint8_t *buf, uint32_t len, uint8_t *resp)
 {
     return hw_uart_send(buf, len, resp);
 }
@@ -221,7 +209,7 @@ int32_t sim900a_send(int32_t id , const uint8_t* buf, uint32_t len)
     snprintf(cmd, 64, "%s=%ld", sim900a_cmd[AT_CMD_SEND].cmd, len);
 
     ret = at_send_cmd((uint8_t*)cmd, strlen(cmd), (uint8_t *)">");
-    ret = at_send_cmd((uint8_t *)buf, len, (uint8_t*)sim900a_cmd[AT_CMD_SEND].resp);
+    ret = at_send_data((uint8_t *)buf, len, (uint8_t*)sim900a_cmd[AT_CMD_SEND].resp);
 
     return ret;
 }
@@ -231,17 +219,13 @@ void sim900a_check(void)
     //check module response
     while(AT_FAILED == sim900a_send_cmd(AT_CMD_AT))
     {
-        printf("\r\ncheck module response unnormal\r\n");
-        printf("\r\nplease check the module pin connection and the power switch\r\n");
         nrf_delay_ms(500);
     }
-    if(AT_FAILED != sim900a_send_cmd(AT_CMD_CPIN))
+    if(AT_OK == sim900a_send_cmd(AT_CMD_CPIN))
     {
-        printf("detected sim card\n");
     }
-    if(AT_FAILED != sim900a_send_cmd(AT_CMD_COPS))
+    if(AT_OK == sim900a_send_cmd(AT_CMD_COPS))
     {
-        printf("registerd to the network\n");
     }
 }
 
