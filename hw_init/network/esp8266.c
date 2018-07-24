@@ -110,7 +110,7 @@ int32_t esp8266_event_handler(uint8_t byte)
     return 0;
 }
 
-int esp8266_init()
+int32_t esp8266_init(void)
 {
     nrf_delay_ms(2000);
     net_event e = {
@@ -134,7 +134,7 @@ int esp8266_init()
     return 0;
 }
 
-int esp8266_connect(const char* host, const char* port, int proto)
+int32_t esp8266_connect(const char* host, const char* port, int proto)
 {
     char cmd[64] = {0};
 
@@ -173,7 +173,7 @@ int32_t esp8266_send(int32_t id , const uint8_t  *buf, uint32_t len)
 {
     char cmd[64] = {0};
 
-    snprintf(cmd, 64, "%s=%u\r\n", esp8266_cmd[CMD_SEND].cmd, len);
+    snprintf(cmd, 64, "%s=%lu\r\n", esp8266_cmd[CMD_SEND].cmd, len);
          
     hw_uart_send((uint8_t *)cmd, strlen(cmd), (uint8_t *)">");
          

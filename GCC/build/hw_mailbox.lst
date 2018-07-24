@@ -1,0 +1,133 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"hw_mailbox.c"
+  12              		.global	gp_mb
+  13              		.section	.bss.gp_mb,"aw",%nobits
+  14              		.align	2
+  17              	gp_mb:
+  18 0000 00000000 		.space	4
+  19              		.section	.text.hw_mailbox_init,"ax",%progbits
+  20              		.align	1
+  21              		.global	hw_mailbox_init
+  22              		.syntax unified
+  23              		.code	16
+  24              		.thumb_func
+  25              		.fpu softvfp
+  27              	hw_mailbox_init:
+  28              		@ args = 0, pretend = 0, frame = 8
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30 0000 80B5     		push	{r7, lr}
+  31 0002 82B0     		sub	sp, sp, #8
+  32 0004 00AF     		add	r7, sp, #0
+  33 0006 7860     		str	r0, [r7, #4]
+  34 0008 054B     		ldr	r3, .L2
+  35 000a 7A68     		ldr	r2, [r7, #4]
+  36 000c 1A60     		str	r2, [r3]
+  37 000e 7B68     		ldr	r3, [r7, #4]
+  38 0010 1800     		movs	r0, r3
+  39 0012 FFF7FEFF 		bl	app_mailbox_create
+  40 0016 C046     		nop
+  41 0018 BD46     		mov	sp, r7
+  42 001a 02B0     		add	sp, sp, #8
+  43              		@ sp needed
+  44 001c 80BD     		pop	{r7, pc}
+  45              	.L3:
+  46 001e C046     		.align	2
+  47              	.L2:
+  48 0020 00000000 		.word	gp_mb
+  50              		.section	.text.hw_mb_put,"ax",%progbits
+  51              		.align	1
+  52              		.global	hw_mb_put
+  53              		.syntax unified
+  54              		.code	16
+  55              		.thumb_func
+  56              		.fpu softvfp
+  58              	hw_mb_put:
+  59              		@ args = 0, pretend = 0, frame = 8
+  60              		@ frame_needed = 1, uses_anonymous_args = 0
+  61 0000 80B5     		push	{r7, lr}
+  62 0002 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s 			page 2
+
+
+  63 0004 00AF     		add	r7, sp, #0
+  64 0006 7860     		str	r0, [r7, #4]
+  65 0008 054B     		ldr	r3, .L6
+  66 000a 1B68     		ldr	r3, [r3]
+  67 000c 7A68     		ldr	r2, [r7, #4]
+  68 000e 1100     		movs	r1, r2
+  69 0010 1800     		movs	r0, r3
+  70 0012 FFF7FEFF 		bl	app_mailbox_put
+  71 0016 0300     		movs	r3, r0
+  72 0018 1800     		movs	r0, r3
+  73 001a BD46     		mov	sp, r7
+  74 001c 02B0     		add	sp, sp, #8
+  75              		@ sp needed
+  76 001e 80BD     		pop	{r7, pc}
+  77              	.L7:
+  78              		.align	2
+  79              	.L6:
+  80 0020 00000000 		.word	gp_mb
+  82              		.section	.text.hw_mb_get,"ax",%progbits
+  83              		.align	1
+  84              		.global	hw_mb_get
+  85              		.syntax unified
+  86              		.code	16
+  87              		.thumb_func
+  88              		.fpu softvfp
+  90              	hw_mb_get:
+  91              		@ args = 0, pretend = 0, frame = 8
+  92              		@ frame_needed = 1, uses_anonymous_args = 0
+  93 0000 80B5     		push	{r7, lr}
+  94 0002 82B0     		sub	sp, sp, #8
+  95 0004 00AF     		add	r7, sp, #0
+  96 0006 7860     		str	r0, [r7, #4]
+  97 0008 054B     		ldr	r3, .L10
+  98 000a 1B68     		ldr	r3, [r3]
+  99 000c 7A68     		ldr	r2, [r7, #4]
+ 100 000e 1100     		movs	r1, r2
+ 101 0010 1800     		movs	r0, r3
+ 102 0012 FFF7FEFF 		bl	app_mailbox_get
+ 103 0016 0300     		movs	r3, r0
+ 104 0018 1800     		movs	r0, r3
+ 105 001a BD46     		mov	sp, r7
+ 106 001c 02B0     		add	sp, sp, #8
+ 107              		@ sp needed
+ 108 001e 80BD     		pop	{r7, pc}
+ 109              	.L11:
+ 110              		.align	2
+ 111              	.L10:
+ 112 0020 00000000 		.word	gp_mb
+ 114              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 hw_mailbox.c
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:17     .bss.gp_mb:00000000 gp_mb
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:14     .bss.gp_mb:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:20     .text.hw_mailbox_init:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:27     .text.hw_mailbox_init:00000000 hw_mailbox_init
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:48     .text.hw_mailbox_init:00000020 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:51     .text.hw_mb_put:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:58     .text.hw_mb_put:00000000 hw_mb_put
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:80     .text.hw_mb_put:00000020 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:83     .text.hw_mb_get:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:90     .text.hw_mb_get:00000000 hw_mb_get
+C:\Users\SONG_J~1\AppData\Local\Temp\cclggAbu.s:112    .text.hw_mb_get:00000020 $d
+
+UNDEFINED SYMBOLS
+app_mailbox_create
+app_mailbox_put
+app_mailbox_get

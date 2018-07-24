@@ -1,0 +1,1942 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"transaction.c"
+  12              		.section	.rodata
+  13              		.align	2
+  14              	.LC1:
+  15 0000 5B25733A 		.ascii	"[%s:%d] transactionMessage->token_len is %d, len is"
+  15      25645D20 
+  15      7472616E 
+  15      73616374 
+  15      696F6E4D 
+  16 0033 2025640A 		.ascii	" %d\012\015\012\000"
+  16      0D0A00
+  17 003a 0000     		.align	2
+  18              	.LC3:
+  19 003c 5B25733A 		.ascii	"[%s:%d] %d\012\015\012\000"
+  19      25645D20 
+  19      25640A0D 
+  19      0A00
+  20 004a 0000     		.align	2
+  21              	.LC5:
+  22 004c 5B25733A 		.ascii	"[%s:%d] \012\012\015\012\000"
+  22      25645D20 
+  22      0A0A0D0A 
+  22      00
+  23 0059 000000   		.align	2
+  24              	.LC7:
+  25 005c 5B25733A 		.ascii	"[%s:%d] prv_checkFinished not finish!!!\012\015\012"
+  25      25645D20 
+  25      7072765F 
+  25      63686563 
+  25      6B46696E 
+  26 0086 00       		.ascii	"\000"
+  27              		.section	.text.prv_checkFinished,"ax",%progbits
+  28              		.align	1
+  29              		.syntax unified
+  30              		.code	16
+  31              		.thumb_func
+  32              		.fpu softvfp
+  34              	prv_checkFinished:
+  35              		@ args = 0, pretend = 0, frame = 24
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38 0002 88B0     		sub	sp, sp, #32
+  39 0004 02AF     		add	r7, sp, #8
+  40 0006 7860     		str	r0, [r7, #4]
+  41 0008 3960     		str	r1, [r7]
+  42 000a 7B68     		ldr	r3, [r7, #4]
+  43 000c 9B6A     		ldr	r3, [r3, #40]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 2
+
+
+  44 000e 3B61     		str	r3, [r7, #16]
+  45 0010 3B69     		ldr	r3, [r7, #16]
+  46 0012 9B79     		ldrb	r3, [r3, #6]
+  47 0014 042B     		cmp	r3, #4
+  48 0016 05D9     		bls	.L2
+  49 0018 7B68     		ldr	r3, [r7, #4]
+  50 001a 1B7B     		ldrb	r3, [r3, #12]
+  51 001c 5A1E     		subs	r2, r3, #1
+  52 001e 9341     		sbcs	r3, r3, r2
+  53 0020 DBB2     		uxtb	r3, r3
+  54 0022 6CE0     		b	.L10
+  55              	.L2:
+  56 0024 3B69     		ldr	r3, [r7, #16]
+  57 0026 1B7B     		ldrb	r3, [r3, #12]
+  58 0028 1A00     		movs	r2, r3
+  59 002a 0823     		movs	r3, #8
+  60 002c 1340     		ands	r3, r2
+  61 002e 05D1     		bne	.L4
+  62 0030 7B68     		ldr	r3, [r7, #4]
+  63 0032 1B7B     		ldrb	r3, [r3, #12]
+  64 0034 5A1E     		subs	r2, r3, #1
+  65 0036 9341     		sbcs	r3, r3, r2
+  66 0038 DBB2     		uxtb	r3, r3
+  67 003a 60E0     		b	.L10
+  68              	.L4:
+  69 003c 0823     		movs	r3, #8
+  70 003e FA18     		adds	r2, r7, r3
+  71 0040 3B68     		ldr	r3, [r7]
+  72 0042 1100     		movs	r1, r2
+  73 0044 1800     		movs	r0, r3
+  74 0046 FFF7FEFF 		bl	coap_get_header_token
+  75 004a 0300     		movs	r3, r0
+  76 004c FB60     		str	r3, [r7, #12]
+  77 004e 3B69     		ldr	r3, [r7, #16]
+  78 0050 4C22     		movs	r2, #76
+  79 0052 9B5C     		ldrb	r3, [r3, r2]
+  80 0054 1A00     		movs	r2, r3
+  81 0056 FB68     		ldr	r3, [r7, #12]
+  82 0058 9342     		cmp	r3, r2
+  83 005a 0AD1     		bne	.L5
+  84 005c 3B69     		ldr	r3, [r7, #16]
+  85 005e 4D33     		adds	r3, r3, #77
+  86 0060 B968     		ldr	r1, [r7, #8]
+  87 0062 FA68     		ldr	r2, [r7, #12]
+  88 0064 1800     		movs	r0, r3
+  89 0066 FFF7FEFF 		bl	memcmp
+  90 006a 031E     		subs	r3, r0, #0
+  91 006c 01D1     		bne	.L5
+  92 006e 0123     		movs	r3, #1
+  93 0070 45E0     		b	.L10
+  94              	.L5:
+  95 0072 3B69     		ldr	r3, [r7, #16]
+  96 0074 4C22     		movs	r2, #76
+  97 0076 9B5C     		ldrb	r3, [r3, r2]
+  98 0078 1A00     		movs	r2, r3
+  99 007a 2349     		ldr	r1, .L11
+ 100 007c 2348     		ldr	r0, .L11+4
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 3
+
+
+ 101 007e FB68     		ldr	r3, [r7, #12]
+ 102 0080 0093     		str	r3, [sp]
+ 103 0082 1300     		movs	r3, r2
+ 104 0084 B022     		movs	r2, #176
+ 105 0086 FFF7FEFF 		bl	atiny_printf
+ 106 008a 0023     		movs	r3, #0
+ 107 008c 7B61     		str	r3, [r7, #20]
+ 108 008e 0023     		movs	r3, #0
+ 109 0090 7B61     		str	r3, [r7, #20]
+ 110 0092 0DE0     		b	.L6
+ 111              	.L7:
+ 112 0094 3A69     		ldr	r2, [r7, #16]
+ 113 0096 4D21     		movs	r1, #77
+ 114 0098 7B69     		ldr	r3, [r7, #20]
+ 115 009a D318     		adds	r3, r2, r3
+ 116 009c 5B18     		adds	r3, r3, r1
+ 117 009e 1B78     		ldrb	r3, [r3]
+ 118 00a0 1949     		ldr	r1, .L11
+ 119 00a2 1B48     		ldr	r0, .L11+8
+ 120 00a4 B322     		movs	r2, #179
+ 121 00a6 FFF7FEFF 		bl	atiny_printf
+ 122 00aa 7B69     		ldr	r3, [r7, #20]
+ 123 00ac 0133     		adds	r3, r3, #1
+ 124 00ae 7B61     		str	r3, [r7, #20]
+ 125              	.L6:
+ 126 00b0 3B69     		ldr	r3, [r7, #16]
+ 127 00b2 4C22     		movs	r2, #76
+ 128 00b4 9B5C     		ldrb	r3, [r3, r2]
+ 129 00b6 1A00     		movs	r2, r3
+ 130 00b8 7B69     		ldr	r3, [r7, #20]
+ 131 00ba 9342     		cmp	r3, r2
+ 132 00bc EADB     		blt	.L7
+ 133 00be 1249     		ldr	r1, .L11
+ 134 00c0 144B     		ldr	r3, .L11+12
+ 135 00c2 B422     		movs	r2, #180
+ 136 00c4 1800     		movs	r0, r3
+ 137 00c6 FFF7FEFF 		bl	atiny_printf
+ 138 00ca 0023     		movs	r3, #0
+ 139 00cc 7B61     		str	r3, [r7, #20]
+ 140 00ce 0BE0     		b	.L8
+ 141              	.L9:
+ 142 00d0 BA68     		ldr	r2, [r7, #8]
+ 143 00d2 7B69     		ldr	r3, [r7, #20]
+ 144 00d4 D318     		adds	r3, r2, r3
+ 145 00d6 1B78     		ldrb	r3, [r3]
+ 146 00d8 0B49     		ldr	r1, .L11
+ 147 00da 0D48     		ldr	r0, .L11+8
+ 148 00dc B622     		movs	r2, #182
+ 149 00de FFF7FEFF 		bl	atiny_printf
+ 150 00e2 7B69     		ldr	r3, [r7, #20]
+ 151 00e4 0133     		adds	r3, r3, #1
+ 152 00e6 7B61     		str	r3, [r7, #20]
+ 153              	.L8:
+ 154 00e8 7A69     		ldr	r2, [r7, #20]
+ 155 00ea FB68     		ldr	r3, [r7, #12]
+ 156 00ec 9A42     		cmp	r2, r3
+ 157 00ee EFDB     		blt	.L9
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 4
+
+
+ 158 00f0 0549     		ldr	r1, .L11
+ 159 00f2 094B     		ldr	r3, .L11+16
+ 160 00f4 B722     		movs	r2, #183
+ 161 00f6 1800     		movs	r0, r3
+ 162 00f8 FFF7FEFF 		bl	atiny_printf
+ 163 00fc 0023     		movs	r3, #0
+ 164              	.L10:
+ 165 00fe 1800     		movs	r0, r3
+ 166 0100 BD46     		mov	sp, r7
+ 167 0102 06B0     		add	sp, sp, #24
+ 168              		@ sp needed
+ 169 0104 80BD     		pop	{r7, pc}
+ 170              	.L12:
+ 171 0106 C046     		.align	2
+ 172              	.L11:
+ 173 0108 00000000 		.word	__func__.7119
+ 174 010c 00000000 		.word	.LC1
+ 175 0110 3C000000 		.word	.LC3
+ 176 0114 4C000000 		.word	.LC5
+ 177 0118 5C000000 		.word	.LC7
+ 179              		.section	.rodata
+ 180 0087 00       		.align	2
+ 181              	.LC10:
+ 182 0088 5B25733A 		.ascii	"[%s:%d] method: %d, altPath: \"%s\", mID: %d, token"
+ 182      25645D20 
+ 182      6D657468 
+ 182      6F643A20 
+ 182      25642C20 
+ 183 00b9 5F6C656E 		.ascii	"_len: %d\015\012\000"
+ 183      3A202564 
+ 183      0D0A00
+ 184              		.align	2
+ 185              	.LC12:
+ 186 00c4 5B25733A 		.ascii	"[%s:%d] NULL\015\012\000"
+ 186      25645D20 
+ 186      4E554C4C 
+ 186      0D0A00
+ 187 00d3 00       		.align	2
+ 188              	.LC14:
+ 189 00d4 5B25733A 		.ascii	"[%s:%d] /%d\000"
+ 189      25645D20 
+ 189      2F256400 
+ 190              		.align	2
+ 191              	.LC16:
+ 192 00e0 2F256400 		.ascii	"/%d\000"
+ 193              		.align	2
+ 194              	.LC18:
+ 195 00e4 0D0A00   		.ascii	"\015\012\000"
+ 196 00e7 00       		.align	2
+ 197              	.LC20:
+ 198 00e8 5B25733A 		.ascii	"[%s:%d] send token is %d\012\015\012\000"
+ 198      25645D20 
+ 198      73656E64 
+ 198      20746F6B 
+ 198      656E2069 
+ 199              		.align	2
+ 200              	.LC22:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 5
+
+
+ 201 0104 5B25733A 		.ascii	"[%s:%d] Exiting on success\015\012\000"
+ 201      25645D20 
+ 201      45786974 
+ 201      696E6720 
+ 201      6F6E2073 
+ 202 0121 000000   		.align	2
+ 203              	.LC24:
+ 204 0124 5B25733A 		.ascii	"[%s:%d] Exiting on failure\015\012\000"
+ 204      25645D20 
+ 204      45786974 
+ 204      696E6720 
+ 204      6F6E2066 
+ 205              		.section	.text.transaction_new,"ax",%progbits
+ 206              		.align	1
+ 207              		.global	transaction_new
+ 208              		.syntax unified
+ 209              		.code	16
+ 210              		.thumb_func
+ 211              		.fpu softvfp
+ 213              	transaction_new:
+ 214              		@ args = 12, pretend = 0, frame = 96
+ 215              		@ frame_needed = 1, uses_anonymous_args = 0
+ 216 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 217 0002 9DB0     		sub	sp, sp, #116
+ 218 0004 04AF     		add	r7, sp, #16
+ 219 0006 7863     		str	r0, [r7, #52]
+ 220 0008 FA62     		str	r2, [r7, #44]
+ 221 000a BB62     		str	r3, [r7, #40]
+ 222 000c 0B20     		movs	r0, #11
+ 223 000e 2824     		movs	r4, #40
+ 224 0010 3B19     		adds	r3, r7, r4
+ 225 0012 1A18     		adds	r2, r3, r0
+ 226 0014 0B1C     		adds	r3, r1, #0
+ 227 0016 1370     		strb	r3, [r2]
+ 228 0018 3B19     		adds	r3, r7, r4
+ 229 001a 1B18     		adds	r3, r3, r0
+ 230 001c 1C78     		ldrb	r4, [r3]
+ 231 001e 5023     		movs	r3, #80
+ 232 0020 2822     		movs	r2, #40
+ 233 0022 9446     		mov	ip, r2
+ 234 0024 BC44     		add	ip, ip, r7
+ 235 0026 6344     		add	r3, r3, ip
+ 236 0028 1A88     		ldrh	r2, [r3]
+ 237 002a 5423     		movs	r3, #84
+ 238 002c 2821     		movs	r1, #40
+ 239 002e 8C46     		mov	ip, r1
+ 240 0030 BC44     		add	ip, ip, r7
+ 241 0032 6344     		add	r3, r3, ip
+ 242 0034 1B78     		ldrb	r3, [r3]
+ 243 0036 D749     		ldr	r1, .L40
+ 244 0038 D748     		ldr	r0, .L40+4
+ 245 003a 0293     		str	r3, [sp, #8]
+ 246 003c 0192     		str	r2, [sp, #4]
+ 247 003e FB6A     		ldr	r3, [r7, #44]
+ 248 0040 0093     		str	r3, [sp]
+ 249 0042 2300     		movs	r3, r4
+ 250 0044 C722     		movs	r2, #199
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 6
+
+
+ 251 0046 FFF7FEFF 		bl	atiny_printf
+ 252 004a BB6A     		ldr	r3, [r7, #40]
+ 253 004c 002B     		cmp	r3, #0
+ 254 004e 06D1     		bne	.L14
+ 255 0050 D049     		ldr	r1, .L40
+ 256 0052 D24B     		ldr	r3, .L40+8
+ 257 0054 C822     		movs	r2, #200
+ 258 0056 1800     		movs	r0, r3
+ 259 0058 FFF7FEFF 		bl	atiny_printf
+ 260 005c 26E0     		b	.L15
+ 261              	.L14:
+ 262 005e BB6A     		ldr	r3, [r7, #40]
+ 263 0060 5B88     		ldrh	r3, [r3, #2]
+ 264 0062 CC49     		ldr	r1, .L40
+ 265 0064 CE48     		ldr	r0, .L40+12
+ 266 0066 C822     		movs	r2, #200
+ 267 0068 FFF7FEFF 		bl	atiny_printf
+ 268 006c BB6A     		ldr	r3, [r7, #40]
+ 269 006e 1B78     		ldrb	r3, [r3]
+ 270 0070 1A00     		movs	r2, r3
+ 271 0072 0223     		movs	r3, #2
+ 272 0074 1340     		ands	r3, r2
+ 273 0076 07D0     		beq	.L16
+ 274 0078 BB6A     		ldr	r3, [r7, #40]
+ 275 007a 9B88     		ldrh	r3, [r3, #4]
+ 276 007c 1A00     		movs	r2, r3
+ 277 007e C94B     		ldr	r3, .L40+16
+ 278 0080 1100     		movs	r1, r2
+ 279 0082 1800     		movs	r0, r3
+ 280 0084 FFF7FEFF 		bl	atiny_printf
+ 281              	.L16:
+ 282 0088 BB6A     		ldr	r3, [r7, #40]
+ 283 008a 1B78     		ldrb	r3, [r3]
+ 284 008c 1A00     		movs	r2, r3
+ 285 008e 0123     		movs	r3, #1
+ 286 0090 1340     		ands	r3, r2
+ 287 0092 07D0     		beq	.L17
+ 288 0094 BB6A     		ldr	r3, [r7, #40]
+ 289 0096 DB88     		ldrh	r3, [r3, #6]
+ 290 0098 1A00     		movs	r2, r3
+ 291 009a C24B     		ldr	r3, .L40+16
+ 292 009c 1100     		movs	r1, r2
+ 293 009e 1800     		movs	r0, r3
+ 294 00a0 FFF7FEFF 		bl	atiny_printf
+ 295              	.L17:
+ 296 00a4 C04B     		ldr	r3, .L40+20
+ 297 00a6 1800     		movs	r0, r3
+ 298 00a8 FFF7FEFF 		bl	atiny_printf
+ 299              	.L15:
+ 300 00ac 7B6B     		ldr	r3, [r7, #52]
+ 301 00ae 002B     		cmp	r3, #0
+ 302 00b0 01D1     		bne	.L18
+ 303 00b2 0023     		movs	r3, #0
+ 304 00b4 8CE1     		b	.L19
+ 305              	.L18:
+ 306 00b6 4820     		movs	r0, #72
+ 307 00b8 FFF7FEFF 		bl	lwm2m_malloc
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 7
+
+
+ 308 00bc 0300     		movs	r3, r0
+ 309 00be BB65     		str	r3, [r7, #88]
+ 310 00c0 BB6D     		ldr	r3, [r7, #88]
+ 311 00c2 002B     		cmp	r3, #0
+ 312 00c4 01D1     		bne	.L20
+ 313 00c6 0023     		movs	r3, #0
+ 314 00c8 82E1     		b	.L19
+ 315              	.L20:
+ 316 00ca BB6D     		ldr	r3, [r7, #88]
+ 317 00cc 4822     		movs	r2, #72
+ 318 00ce 0021     		movs	r1, #0
+ 319 00d0 1800     		movs	r0, r3
+ 320 00d2 FFF7FEFF 		bl	memset
+ 321 00d6 8C20     		movs	r0, #140
+ 322 00d8 FFF7FEFF 		bl	lwm2m_malloc
+ 323 00dc 0200     		movs	r2, r0
+ 324 00de BB6D     		ldr	r3, [r7, #88]
+ 325 00e0 9A62     		str	r2, [r3, #40]
+ 326 00e2 BB6D     		ldr	r3, [r7, #88]
+ 327 00e4 9B6A     		ldr	r3, [r3, #40]
+ 328 00e6 002B     		cmp	r3, #0
+ 329 00e8 00D1     		bne	.LCB296
+ 330 00ea 4CE1     		b	.L36	@long jump
+ 331              	.LCB296:
+ 332 00ec BB6D     		ldr	r3, [r7, #88]
+ 333 00ee 986A     		ldr	r0, [r3, #40]
+ 334 00f0 5024     		movs	r4, #80
+ 335 00f2 2823     		movs	r3, #40
+ 336 00f4 FA18     		adds	r2, r7, r3
+ 337 00f6 1319     		adds	r3, r2, r4
+ 338 00f8 1988     		ldrh	r1, [r3]
+ 339 00fa 0B23     		movs	r3, #11
+ 340 00fc 2822     		movs	r2, #40
+ 341 00fe 9446     		mov	ip, r2
+ 342 0100 BC44     		add	ip, ip, r7
+ 343 0102 6344     		add	r3, r3, ip
+ 344 0104 1A78     		ldrb	r2, [r3]
+ 345 0106 0B00     		movs	r3, r1
+ 346 0108 0021     		movs	r1, #0
+ 347 010a FFF7FEFF 		bl	coap_init_message
+ 348 010e BA6D     		ldr	r2, [r7, #88]
+ 349 0110 7B6B     		ldr	r3, [r7, #52]
+ 350 0112 9360     		str	r3, [r2, #8]
+ 351 0114 BA6D     		ldr	r2, [r7, #88]
+ 352 0116 2823     		movs	r3, #40
+ 353 0118 FB18     		adds	r3, r7, r3
+ 354 011a 1B19     		adds	r3, r3, r4
+ 355 011c 1B88     		ldrh	r3, [r3]
+ 356 011e 9380     		strh	r3, [r2, #4]
+ 357 0120 FB6A     		ldr	r3, [r7, #44]
+ 358 0122 002B     		cmp	r3, #0
+ 359 0124 07D0     		beq	.L23
+ 360 0126 BB6D     		ldr	r3, [r7, #88]
+ 361 0128 9A6A     		ldr	r2, [r3, #40]
+ 362 012a FB6A     		ldr	r3, [r7, #44]
+ 363 012c 0133     		adds	r3, r3, #1
+ 364 012e 1900     		movs	r1, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 8
+
+
+ 365 0130 1000     		movs	r0, r2
+ 366 0132 FFF7FEFF 		bl	coap_set_header_uri_path_segment
+ 367              	.L23:
+ 368 0136 BB6A     		ldr	r3, [r7, #40]
+ 369 0138 002B     		cmp	r3, #0
+ 370 013a 00D1     		bne	.LCB340
+ 371 013c 84E0     		b	.L24	@long jump
+ 372              	.LCB340:
+ 373 013e BB6A     		ldr	r3, [r7, #40]
+ 374 0140 5B88     		ldrh	r3, [r3, #2]
+ 375 0142 3B61     		str	r3, [r7, #16]
+ 376 0144 0023     		movs	r3, #0
+ 377 0146 7B61     		str	r3, [r7, #20]
+ 378 0148 1823     		movs	r3, #24
+ 379 014a 2822     		movs	r2, #40
+ 380 014c BA18     		adds	r2, r7, r2
+ 381 014e D218     		adds	r2, r2, r3
+ 382 0150 0623     		movs	r3, #6
+ 383 0152 3869     		ldr	r0, [r7, #16]
+ 384 0154 7969     		ldr	r1, [r7, #20]
+ 385 0156 FFF7FEFF 		bl	utils_intToText
+ 386 015a 0300     		movs	r3, r0
+ 387 015c 7B65     		str	r3, [r7, #84]
+ 388 015e 7B6D     		ldr	r3, [r7, #84]
+ 389 0160 002B     		cmp	r3, #0
+ 390 0162 00D1     		bne	.LCB357
+ 391 0164 11E1     		b	.L37	@long jump
+ 392              	.LCB357:
+ 393 0166 1821     		movs	r1, #24
+ 394 0168 2820     		movs	r0, #40
+ 395 016a 3B18     		adds	r3, r7, r0
+ 396 016c 5A18     		adds	r2, r3, r1
+ 397 016e 7B6D     		ldr	r3, [r7, #84]
+ 398 0170 D318     		adds	r3, r2, r3
+ 399 0172 0022     		movs	r2, #0
+ 400 0174 1A70     		strb	r2, [r3]
+ 401 0176 BB6D     		ldr	r3, [r7, #88]
+ 402 0178 9B6A     		ldr	r3, [r3, #40]
+ 403 017a 3A18     		adds	r2, r7, r0
+ 404 017c 5218     		adds	r2, r2, r1
+ 405 017e 1100     		movs	r1, r2
+ 406 0180 1800     		movs	r0, r3
+ 407 0182 FFF7FEFF 		bl	coap_set_header_uri_path_segment
+ 408 0186 BB6A     		ldr	r3, [r7, #40]
+ 409 0188 1B78     		ldrb	r3, [r3]
+ 410 018a 1A00     		movs	r2, r3
+ 411 018c 0223     		movs	r3, #2
+ 412 018e 1340     		ands	r3, r2
+ 413 0190 24D0     		beq	.L27
+ 414 0192 BB6A     		ldr	r3, [r7, #40]
+ 415 0194 9B88     		ldrh	r3, [r3, #4]
+ 416 0196 BB60     		str	r3, [r7, #8]
+ 417 0198 0023     		movs	r3, #0
+ 418 019a FB60     		str	r3, [r7, #12]
+ 419 019c 1823     		movs	r3, #24
+ 420 019e 2822     		movs	r2, #40
+ 421 01a0 BA18     		adds	r2, r7, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 9
+
+
+ 422 01a2 D218     		adds	r2, r2, r3
+ 423 01a4 0623     		movs	r3, #6
+ 424 01a6 B868     		ldr	r0, [r7, #8]
+ 425 01a8 F968     		ldr	r1, [r7, #12]
+ 426 01aa FFF7FEFF 		bl	utils_intToText
+ 427 01ae 0300     		movs	r3, r0
+ 428 01b0 7B65     		str	r3, [r7, #84]
+ 429 01b2 7B6D     		ldr	r3, [r7, #84]
+ 430 01b4 002B     		cmp	r3, #0
+ 431 01b6 00D1     		bne	.LCB398
+ 432 01b8 E9E0     		b	.L38	@long jump
+ 433              	.LCB398:
+ 434 01ba 1821     		movs	r1, #24
+ 435 01bc 2820     		movs	r0, #40
+ 436 01be 3B18     		adds	r3, r7, r0
+ 437 01c0 5A18     		adds	r2, r3, r1
+ 438 01c2 7B6D     		ldr	r3, [r7, #84]
+ 439 01c4 D318     		adds	r3, r2, r3
+ 440 01c6 0022     		movs	r2, #0
+ 441 01c8 1A70     		strb	r2, [r3]
+ 442 01ca BB6D     		ldr	r3, [r7, #88]
+ 443 01cc 9B6A     		ldr	r3, [r3, #40]
+ 444 01ce 3A18     		adds	r2, r7, r0
+ 445 01d0 5218     		adds	r2, r2, r1
+ 446 01d2 1100     		movs	r1, r2
+ 447 01d4 1800     		movs	r0, r3
+ 448 01d6 FFF7FEFF 		bl	coap_set_header_uri_path_segment
+ 449 01da 0BE0     		b	.L29
+ 450              	.L27:
+ 451 01dc BB6A     		ldr	r3, [r7, #40]
+ 452 01de 1B78     		ldrb	r3, [r3]
+ 453 01e0 1A00     		movs	r2, r3
+ 454 01e2 0123     		movs	r3, #1
+ 455 01e4 1340     		ands	r3, r2
+ 456 01e6 05D0     		beq	.L29
+ 457 01e8 BB6D     		ldr	r3, [r7, #88]
+ 458 01ea 9B6A     		ldr	r3, [r3, #40]
+ 459 01ec 0021     		movs	r1, #0
+ 460 01ee 1800     		movs	r0, r3
+ 461 01f0 FFF7FEFF 		bl	coap_set_header_uri_path_segment
+ 462              	.L29:
+ 463 01f4 BB6A     		ldr	r3, [r7, #40]
+ 464 01f6 1B78     		ldrb	r3, [r3]
+ 465 01f8 1A00     		movs	r2, r3
+ 466 01fa 0123     		movs	r3, #1
+ 467 01fc 1340     		ands	r3, r2
+ 468 01fe 23D0     		beq	.L24
+ 469 0200 BB6A     		ldr	r3, [r7, #40]
+ 470 0202 DB88     		ldrh	r3, [r3, #6]
+ 471 0204 3B60     		str	r3, [r7]
+ 472 0206 0023     		movs	r3, #0
+ 473 0208 7B60     		str	r3, [r7, #4]
+ 474 020a 1823     		movs	r3, #24
+ 475 020c 2822     		movs	r2, #40
+ 476 020e BA18     		adds	r2, r7, r2
+ 477 0210 D218     		adds	r2, r2, r3
+ 478 0212 0623     		movs	r3, #6
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 10
+
+
+ 479 0214 3868     		ldr	r0, [r7]
+ 480 0216 7968     		ldr	r1, [r7, #4]
+ 481 0218 FFF7FEFF 		bl	utils_intToText
+ 482 021c 0300     		movs	r3, r0
+ 483 021e 7B65     		str	r3, [r7, #84]
+ 484 0220 7B6D     		ldr	r3, [r7, #84]
+ 485 0222 002B     		cmp	r3, #0
+ 486 0224 00D1     		bne	.LCB457
+ 487 0226 C5E0     		b	.L39	@long jump
+ 488              	.LCB457:
+ 489 0228 1821     		movs	r1, #24
+ 490 022a 2820     		movs	r0, #40
+ 491 022c 3B18     		adds	r3, r7, r0
+ 492 022e 5A18     		adds	r2, r3, r1
+ 493 0230 7B6D     		ldr	r3, [r7, #84]
+ 494 0232 D318     		adds	r3, r2, r3
+ 495 0234 0022     		movs	r2, #0
+ 496 0236 1A70     		strb	r2, [r3]
+ 497 0238 BB6D     		ldr	r3, [r7, #88]
+ 498 023a 9B6A     		ldr	r3, [r3, #40]
+ 499 023c 3A18     		adds	r2, r7, r0
+ 500 023e 5218     		adds	r2, r2, r1
+ 501 0240 1100     		movs	r1, r2
+ 502 0242 1800     		movs	r0, r3
+ 503 0244 FFF7FEFF 		bl	coap_set_header_uri_path_segment
+ 504              	.L24:
+ 505 0248 5423     		movs	r3, #84
+ 506 024a 2822     		movs	r2, #40
+ 507 024c 9446     		mov	ip, r2
+ 508 024e BC44     		add	ip, ip, r7
+ 509 0250 6344     		add	r3, r3, ip
+ 510 0252 1B78     		ldrb	r3, [r3]
+ 511 0254 002B     		cmp	r3, #0
+ 512 0256 00D1     		bne	.LCB484
+ 513 0258 8BE0     		b	.L32	@long jump
+ 514              	.LCB484:
+ 515 025a 8023     		movs	r3, #128
+ 516 025c FB18     		adds	r3, r7, r3
+ 517 025e 1B68     		ldr	r3, [r3]
+ 518 0260 002B     		cmp	r3, #0
+ 519 0262 0ED0     		beq	.L33
+ 520 0264 BB6D     		ldr	r3, [r7, #88]
+ 521 0266 986A     		ldr	r0, [r3, #40]
+ 522 0268 5423     		movs	r3, #84
+ 523 026a 2822     		movs	r2, #40
+ 524 026c 9446     		mov	ip, r2
+ 525 026e BC44     		add	ip, ip, r7
+ 526 0270 6344     		add	r3, r3, ip
+ 527 0272 1A78     		ldrb	r2, [r3]
+ 528 0274 8023     		movs	r3, #128
+ 529 0276 FB18     		adds	r3, r7, r3
+ 530 0278 1B68     		ldr	r3, [r3]
+ 531 027a 1900     		movs	r1, r3
+ 532 027c FFF7FEFF 		bl	coap_set_header_token
+ 533 0280 77E0     		b	.L32
+ 534              	.L33:
+ 535 0282 FFF7FEFF 		bl	lwm2m_gettime
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 11
+
+
+ 536 0286 0300     		movs	r3, r0
+ 537 0288 0C00     		movs	r4, r1
+ 538 028a BB64     		str	r3, [r7, #72]
+ 539 028c FC64     		str	r4, [r7, #76]
+ 540 028e 5020     		movs	r0, #80
+ 541 0290 2824     		movs	r4, #40
+ 542 0292 3B19     		adds	r3, r7, r4
+ 543 0294 1B18     		adds	r3, r3, r0
+ 544 0296 1B88     		ldrh	r3, [r3]
+ 545 0298 DAB2     		uxtb	r2, r3
+ 546 029a 1021     		movs	r1, #16
+ 547 029c 3B19     		adds	r3, r7, r4
+ 548 029e 5B18     		adds	r3, r3, r1
+ 549 02a0 1A70     		strb	r2, [r3]
+ 550 02a2 3B19     		adds	r3, r7, r4
+ 551 02a4 1B18     		adds	r3, r3, r0
+ 552 02a6 1B88     		ldrh	r3, [r3]
+ 553 02a8 1B0A     		lsrs	r3, r3, #8
+ 554 02aa 9BB2     		uxth	r3, r3
+ 555 02ac DAB2     		uxtb	r2, r3
+ 556 02ae 2000     		movs	r0, r4
+ 557 02b0 3B18     		adds	r3, r7, r0
+ 558 02b2 5B18     		adds	r3, r3, r1
+ 559 02b4 5A70     		strb	r2, [r3, #1]
+ 560 02b6 BB6C     		ldr	r3, [r7, #72]
+ 561 02b8 FC6C     		ldr	r4, [r7, #76]
+ 562 02ba DAB2     		uxtb	r2, r3
+ 563 02bc 3B18     		adds	r3, r7, r0
+ 564 02be 5B18     		adds	r3, r3, r1
+ 565 02c0 9A70     		strb	r2, [r3, #2]
+ 566 02c2 FB6C     		ldr	r3, [r7, #76]
+ 567 02c4 1B06     		lsls	r3, r3, #24
+ 568 02c6 BA6C     		ldr	r2, [r7, #72]
+ 569 02c8 120A     		lsrs	r2, r2, #8
+ 570 02ca 3A62     		str	r2, [r7, #32]
+ 571 02cc 3A6A     		ldr	r2, [r7, #32]
+ 572 02ce 1A43     		orrs	r2, r3
+ 573 02d0 3A62     		str	r2, [r7, #32]
+ 574 02d2 FB6C     		ldr	r3, [r7, #76]
+ 575 02d4 1B12     		asrs	r3, r3, #8
+ 576 02d6 7B62     		str	r3, [r7, #36]
+ 577 02d8 2023     		movs	r3, #32
+ 578 02da FB18     		adds	r3, r7, r3
+ 579 02dc 1A78     		ldrb	r2, [r3]
+ 580 02de 3B18     		adds	r3, r7, r0
+ 581 02e0 5B18     		adds	r3, r3, r1
+ 582 02e2 DA70     		strb	r2, [r3, #3]
+ 583 02e4 FB6C     		ldr	r3, [r7, #76]
+ 584 02e6 1B04     		lsls	r3, r3, #16
+ 585 02e8 BA6C     		ldr	r2, [r7, #72]
+ 586 02ea 120C     		lsrs	r2, r2, #16
+ 587 02ec BA61     		str	r2, [r7, #24]
+ 588 02ee BA69     		ldr	r2, [r7, #24]
+ 589 02f0 1A43     		orrs	r2, r3
+ 590 02f2 BA61     		str	r2, [r7, #24]
+ 591 02f4 FB6C     		ldr	r3, [r7, #76]
+ 592 02f6 1B14     		asrs	r3, r3, #16
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 12
+
+
+ 593 02f8 FB61     		str	r3, [r7, #28]
+ 594 02fa 3A7E     		ldrb	r2, [r7, #24]
+ 595 02fc 3B18     		adds	r3, r7, r0
+ 596 02fe 5B18     		adds	r3, r3, r1
+ 597 0300 1A71     		strb	r2, [r3, #4]
+ 598 0302 FB6C     		ldr	r3, [r7, #76]
+ 599 0304 1B02     		lsls	r3, r3, #8
+ 600 0306 BA6C     		ldr	r2, [r7, #72]
+ 601 0308 150E     		lsrs	r5, r2, #24
+ 602 030a 1D43     		orrs	r5, r3
+ 603 030c FB6C     		ldr	r3, [r7, #76]
+ 604 030e 1E16     		asrs	r6, r3, #24
+ 605 0310 EAB2     		uxtb	r2, r5
+ 606 0312 0400     		movs	r4, r0
+ 607 0314 3B18     		adds	r3, r7, r0
+ 608 0316 5B18     		adds	r3, r3, r1
+ 609 0318 5A71     		strb	r2, [r3, #5]
+ 610 031a BB6D     		ldr	r3, [r7, #88]
+ 611 031c 986A     		ldr	r0, [r3, #40]
+ 612 031e 5423     		movs	r3, #84
+ 613 0320 2822     		movs	r2, #40
+ 614 0322 9446     		mov	ip, r2
+ 615 0324 BC44     		add	ip, ip, r7
+ 616 0326 6344     		add	r3, r3, ip
+ 617 0328 1A78     		ldrb	r2, [r3]
+ 618 032a 3B19     		adds	r3, r7, r4
+ 619 032c 5B18     		adds	r3, r3, r1
+ 620 032e 1900     		movs	r1, r3
+ 621 0330 FFF7FEFF 		bl	coap_set_header_token
+ 622 0334 0023     		movs	r3, #0
+ 623 0336 FB65     		str	r3, [r7, #92]
+ 624 0338 12E0     		b	.L34
+ 625              	.L35:
+ 626 033a 1023     		movs	r3, #16
+ 627 033c 2822     		movs	r2, #40
+ 628 033e BA18     		adds	r2, r7, r2
+ 629 0340 D218     		adds	r2, r2, r3
+ 630 0342 FB6D     		ldr	r3, [r7, #92]
+ 631 0344 D318     		adds	r3, r2, r3
+ 632 0346 1B78     		ldrb	r3, [r3]
+ 633 0348 1C00     		movs	r4, r3
+ 634 034a 1623     		movs	r3, #22
+ 635 034c FF33     		adds	r3, r3, #255
+ 636 034e 1A00     		movs	r2, r3
+ 637 0350 1049     		ldr	r1, .L40
+ 638 0352 1648     		ldr	r0, .L40+24
+ 639 0354 2300     		movs	r3, r4
+ 640 0356 FFF7FEFF 		bl	atiny_printf
+ 641 035a FB6D     		ldr	r3, [r7, #92]
+ 642 035c 0133     		adds	r3, r3, #1
+ 643 035e FB65     		str	r3, [r7, #92]
+ 644              	.L34:
+ 645 0360 5423     		movs	r3, #84
+ 646 0362 2822     		movs	r2, #40
+ 647 0364 9446     		mov	ip, r2
+ 648 0366 BC44     		add	ip, ip, r7
+ 649 0368 6344     		add	r3, r3, ip
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 13
+
+
+ 650 036a 1B78     		ldrb	r3, [r3]
+ 651 036c FA6D     		ldr	r2, [r7, #92]
+ 652 036e 9A42     		cmp	r2, r3
+ 653 0370 E3DB     		blt	.L35
+ 654              	.L32:
+ 655 0372 1A23     		movs	r3, #26
+ 656 0374 FF33     		adds	r3, r3, #255
+ 657 0376 1A00     		movs	r2, r3
+ 658 0378 0649     		ldr	r1, .L40
+ 659 037a 0D4B     		ldr	r3, .L40+28
+ 660 037c 1800     		movs	r0, r3
+ 661 037e FFF7FEFF 		bl	atiny_printf
+ 662 0382 BB6D     		ldr	r3, [r7, #88]
+ 663 0384 24E0     		b	.L19
+ 664              	.L36:
+ 665 0386 C046     		nop
+ 666 0388 15E0     		b	.L22
+ 667              	.L37:
+ 668 038a C046     		nop
+ 669 038c 13E0     		b	.L22
+ 670              	.L38:
+ 671 038e C046     		nop
+ 672 0390 11E0     		b	.L22
+ 673              	.L41:
+ 674 0392 C046     		.align	2
+ 675              	.L40:
+ 676 0394 00000000 		.word	__func__.7138
+ 677 0398 88000000 		.word	.LC10
+ 678 039c C4000000 		.word	.LC12
+ 679 03a0 D4000000 		.word	.LC14
+ 680 03a4 E0000000 		.word	.LC16
+ 681 03a8 E4000000 		.word	.LC18
+ 682 03ac E8000000 		.word	.LC20
+ 683 03b0 04010000 		.word	.LC22
+ 684              	.L39:
+ 685 03b4 C046     		nop
+ 686              	.L22:
+ 687 03b6 1E23     		movs	r3, #30
+ 688 03b8 FF33     		adds	r3, r3, #255
+ 689 03ba 1A00     		movs	r2, r3
+ 690 03bc 0649     		ldr	r1, .L42
+ 691 03be 074B     		ldr	r3, .L42+4
+ 692 03c0 1800     		movs	r0, r3
+ 693 03c2 FFF7FEFF 		bl	atiny_printf
+ 694 03c6 BB6D     		ldr	r3, [r7, #88]
+ 695 03c8 1800     		movs	r0, r3
+ 696 03ca FFF7FEFF 		bl	lwm2m_free
+ 697 03ce 0023     		movs	r3, #0
+ 698              	.L19:
+ 699 03d0 1800     		movs	r0, r3
+ 700 03d2 BD46     		mov	sp, r7
+ 701 03d4 19B0     		add	sp, sp, #100
+ 702              		@ sp needed
+ 703 03d6 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 704              	.L43:
+ 705              		.align	2
+ 706              	.L42:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 14
+
+
+ 707 03d8 00000000 		.word	__func__.7138
+ 708 03dc 24010000 		.word	.LC24
+ 710              		.section	.rodata
+ 711 0141 000000   		.align	2
+ 712              	.LC27:
+ 713 0144 5B25733A 		.ascii	"[%s:%d] Entering\015\012\000"
+ 713      25645D20 
+ 713      456E7465 
+ 713      72696E67 
+ 713      0D0A00
+ 714              		.section	.text.transaction_free,"ax",%progbits
+ 715              		.align	1
+ 716              		.global	transaction_free
+ 717              		.syntax unified
+ 718              		.code	16
+ 719              		.thumb_func
+ 720              		.fpu softvfp
+ 722              	transaction_free:
+ 723              		@ args = 0, pretend = 0, frame = 8
+ 724              		@ frame_needed = 1, uses_anonymous_args = 0
+ 725 0000 80B5     		push	{r7, lr}
+ 726 0002 82B0     		sub	sp, sp, #8
+ 727 0004 00AF     		add	r7, sp, #0
+ 728 0006 7860     		str	r0, [r7, #4]
+ 729 0008 9223     		movs	r3, #146
+ 730 000a 5A00     		lsls	r2, r3, #1
+ 731 000c 1149     		ldr	r1, .L47
+ 732 000e 124B     		ldr	r3, .L47+4
+ 733 0010 1800     		movs	r0, r3
+ 734 0012 FFF7FEFF 		bl	atiny_printf
+ 735 0016 7B68     		ldr	r3, [r7, #4]
+ 736 0018 9B6A     		ldr	r3, [r3, #40]
+ 737 001a 002B     		cmp	r3, #0
+ 738 001c 09D0     		beq	.L45
+ 739 001e 7B68     		ldr	r3, [r7, #4]
+ 740 0020 9B6A     		ldr	r3, [r3, #40]
+ 741 0022 1800     		movs	r0, r3
+ 742 0024 FFF7FEFF 		bl	coap_free_header
+ 743 0028 7B68     		ldr	r3, [r7, #4]
+ 744 002a 9B6A     		ldr	r3, [r3, #40]
+ 745 002c 1800     		movs	r0, r3
+ 746 002e FFF7FEFF 		bl	lwm2m_free
+ 747              	.L45:
+ 748 0032 7B68     		ldr	r3, [r7, #4]
+ 749 0034 1B6B     		ldr	r3, [r3, #48]
+ 750 0036 002B     		cmp	r3, #0
+ 751 0038 04D0     		beq	.L46
+ 752 003a 7B68     		ldr	r3, [r7, #4]
+ 753 003c 1B6B     		ldr	r3, [r3, #48]
+ 754 003e 1800     		movs	r0, r3
+ 755 0040 FFF7FEFF 		bl	lwm2m_free
+ 756              	.L46:
+ 757 0044 7B68     		ldr	r3, [r7, #4]
+ 758 0046 1800     		movs	r0, r3
+ 759 0048 FFF7FEFF 		bl	lwm2m_free
+ 760 004c C046     		nop
+ 761 004e BD46     		mov	sp, r7
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 15
+
+
+ 762 0050 02B0     		add	sp, sp, #8
+ 763              		@ sp needed
+ 764 0052 80BD     		pop	{r7, pc}
+ 765              	.L48:
+ 766              		.align	2
+ 767              	.L47:
+ 768 0054 00000000 		.word	__func__.7150
+ 769 0058 44010000 		.word	.LC27
+ 771              		.section	.text.transaction_remove,"ax",%progbits
+ 772              		.align	1
+ 773              		.global	transaction_remove
+ 774              		.syntax unified
+ 775              		.code	16
+ 776              		.thumb_func
+ 777              		.fpu softvfp
+ 779              	transaction_remove:
+ 780              		@ args = 0, pretend = 0, frame = 8
+ 781              		@ frame_needed = 1, uses_anonymous_args = 0
+ 782 0000 80B5     		push	{r7, lr}
+ 783 0002 82B0     		sub	sp, sp, #8
+ 784 0004 00AF     		add	r7, sp, #0
+ 785 0006 7860     		str	r0, [r7, #4]
+ 786 0008 3960     		str	r1, [r7]
+ 787 000a 9923     		movs	r3, #153
+ 788 000c 5A00     		lsls	r2, r3, #1
+ 789 000e 0C49     		ldr	r1, .L50
+ 790 0010 0C4B     		ldr	r3, .L50+4
+ 791 0012 1800     		movs	r0, r3
+ 792 0014 FFF7FEFF 		bl	atiny_printf
+ 793 0018 7B68     		ldr	r3, [r7, #4]
+ 794 001a 986A     		ldr	r0, [r3, #40]
+ 795 001c 3B68     		ldr	r3, [r7]
+ 796 001e 9B88     		ldrh	r3, [r3, #4]
+ 797 0020 0022     		movs	r2, #0
+ 798 0022 1900     		movs	r1, r3
+ 799 0024 FFF7FEFF 		bl	lwm2m_list_remove
+ 800 0028 0200     		movs	r2, r0
+ 801 002a 7B68     		ldr	r3, [r7, #4]
+ 802 002c 9A62     		str	r2, [r3, #40]
+ 803 002e 3B68     		ldr	r3, [r7]
+ 804 0030 1800     		movs	r0, r3
+ 805 0032 FFF7FEFF 		bl	transaction_free
+ 806 0036 C046     		nop
+ 807 0038 BD46     		mov	sp, r7
+ 808 003a 02B0     		add	sp, sp, #8
+ 809              		@ sp needed
+ 810 003c 80BD     		pop	{r7, pc}
+ 811              	.L51:
+ 812 003e C046     		.align	2
+ 813              	.L50:
+ 814 0040 00000000 		.word	__func__.7155
+ 815 0044 44010000 		.word	.LC27
+ 817              		.section	.rodata
+ 818 0157 00       		.align	2
+ 819              	.LC32:
+ 820 0158 5B25733A 		.ascii	"[%s:%d] Entering,message->code: %d\015\012\000"
+ 820      25645D20 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 16
+
+
+ 820      456E7465 
+ 820      72696E67 
+ 820      2C6D6573 
+ 821 017d 000000   		.align	2
+ 822              	.LC34:
+ 823 0180 5B25733A 		.ascii	"[%s:%d] timeout in transaction_handleResponse\012\015"
+ 823      25645D20 
+ 823      74696D65 
+ 823      6F757420 
+ 823      696E2074 
+ 824 01af 0A00     		.ascii	"\012\000"
+ 825 01b1 000000   		.align	2
+ 826              	.LC36:
+ 827 01b4 5B25733A 		.ascii	"[%s:%d] only true25,fromSessionH is %p, transacP->p"
+ 827      25645D20 
+ 827      6F6E6C79 
+ 827      20747275 
+ 827      6532352C 
+ 828 01e7 65657248 		.ascii	"eerH is %p\012\015\012\000"
+ 828      20697320 
+ 828      25700A0D 
+ 828      0A00
+ 829 01f5 000000   		.align	2
+ 830              	.LC38:
+ 831 01f8 5B25733A 		.ascii	"[%s:%d] error25,fromSessionH is %p, transacP->peerH"
+ 831      25645D20 
+ 831      6572726F 
+ 831      7232352C 
+ 831      66726F6D 
+ 832 022b 20697320 		.ascii	" is %p\012\015\012\000"
+ 832      25700A0D 
+ 832      0A00
+ 833 0235 000000   		.align	2
+ 834              	.LC40:
+ 835 0238 5B25733A 		.ascii	"[%s:%d] error25,return false in transaction_handleR"
+ 835      25645D20 
+ 835      6572726F 
+ 835      7232352C 
+ 835      72657475 
+ 836 026b 6573706F 		.ascii	"esponse\012\015\012\000"
+ 836      6E73650A 
+ 836      0D0A00
+ 837              		.section	.text.transaction_handleResponse,"ax",%progbits
+ 838              		.align	1
+ 839              		.global	transaction_handleResponse
+ 840              		.syntax unified
+ 841              		.code	16
+ 842              		.thumb_func
+ 843              		.fpu softvfp
+ 845              	transaction_handleResponse:
+ 846              		@ args = 0, pretend = 0, frame = 32
+ 847              		@ frame_needed = 1, uses_anonymous_args = 0
+ 848 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 849 0002 8BB0     		sub	sp, sp, #44
+ 850 0004 02AF     		add	r7, sp, #8
+ 851 0006 F860     		str	r0, [r7, #12]
+ 852 0008 B960     		str	r1, [r7, #8]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 17
+
+
+ 853 000a 7A60     		str	r2, [r7, #4]
+ 854 000c 3B60     		str	r3, [r7]
+ 855 000e 1F23     		movs	r3, #31
+ 856 0010 FB18     		adds	r3, r7, r3
+ 857 0012 0022     		movs	r2, #0
+ 858 0014 1A70     		strb	r2, [r3]
+ 859 0016 1E23     		movs	r3, #30
+ 860 0018 FB18     		adds	r3, r7, r3
+ 861 001a 0022     		movs	r2, #0
+ 862 001c 1A70     		strb	r2, [r3]
+ 863 001e 7B68     		ldr	r3, [r7, #4]
+ 864 0020 9B79     		ldrb	r3, [r3, #6]
+ 865 0022 1C00     		movs	r4, r3
+ 866 0024 A023     		movs	r3, #160
+ 867 0026 5A00     		lsls	r2, r3, #1
+ 868 0028 7649     		ldr	r1, .L70
+ 869 002a 7748     		ldr	r0, .L70+4
+ 870 002c 2300     		movs	r3, r4
+ 871 002e FFF7FEFF 		bl	atiny_printf
+ 872 0032 FB68     		ldr	r3, [r7, #12]
+ 873 0034 9B6A     		ldr	r3, [r3, #40]
+ 874 0036 BB61     		str	r3, [r7, #24]
+ 875 0038 D4E0     		b	.L53
+ 876              	.L69:
+ 877 003a BB69     		ldr	r3, [r7, #24]
+ 878 003c 9968     		ldr	r1, [r3, #8]
+ 879 003e FB68     		ldr	r3, [r7, #12]
+ 880 0040 DA6A     		ldr	r2, [r3, #44]
+ 881 0042 BB68     		ldr	r3, [r7, #8]
+ 882 0044 1800     		movs	r0, r3
+ 883 0046 FFF7FEFF 		bl	lwm2m_session_is_equal
+ 884 004a 031E     		subs	r3, r0, #0
+ 885 004c 00D1     		bne	.LCB867
+ 886 004e BBE0     		b	.L54	@long jump
+ 887              	.LCB867:
+ 888 0050 BB69     		ldr	r3, [r7, #24]
+ 889 0052 1B7B     		ldrb	r3, [r3, #12]
+ 890 0054 002B     		cmp	r3, #0
+ 891 0056 1CD1     		bne	.L55
+ 892 0058 7B68     		ldr	r3, [r7, #4]
+ 893 005a 5B79     		ldrb	r3, [r3, #5]
+ 894 005c 022B     		cmp	r3, #2
+ 895 005e 03D0     		beq	.L56
+ 896 0060 7B68     		ldr	r3, [r7, #4]
+ 897 0062 5B79     		ldrb	r3, [r3, #5]
+ 898 0064 032B     		cmp	r3, #3
+ 899 0066 14D1     		bne	.L55
+ 900              	.L56:
+ 901 0068 BB69     		ldr	r3, [r7, #24]
+ 902 006a 9A88     		ldrh	r2, [r3, #4]
+ 903 006c 7B68     		ldr	r3, [r7, #4]
+ 904 006e 1B89     		ldrh	r3, [r3, #8]
+ 905 0070 9A42     		cmp	r2, r3
+ 906 0072 0ED1     		bne	.L55
+ 907 0074 1F23     		movs	r3, #31
+ 908 0076 FB18     		adds	r3, r7, r3
+ 909 0078 0122     		movs	r2, #1
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 18
+
+
+ 910 007a 1A70     		strb	r2, [r3]
+ 911 007c BB69     		ldr	r3, [r7, #24]
+ 912 007e 0122     		movs	r2, #1
+ 913 0080 1A73     		strb	r2, [r3, #12]
+ 914 0082 7B68     		ldr	r3, [r7, #4]
+ 915 0084 5A79     		ldrb	r2, [r3, #5]
+ 916 0086 1E23     		movs	r3, #30
+ 917 0088 FB18     		adds	r3, r7, r3
+ 918 008a 033A     		subs	r2, r2, #3
+ 919 008c 5142     		rsbs	r1, r2, #0
+ 920 008e 4A41     		adcs	r2, r2, r1
+ 921 0090 1A70     		strb	r2, [r3]
+ 922              	.L55:
+ 923 0092 1E23     		movs	r3, #30
+ 924 0094 FB18     		adds	r3, r7, r3
+ 925 0096 1B78     		ldrb	r3, [r3]
+ 926 0098 002B     		cmp	r3, #0
+ 927 009a 07D1     		bne	.L57
+ 928 009c 7A68     		ldr	r2, [r7, #4]
+ 929 009e BB69     		ldr	r3, [r7, #24]
+ 930 00a0 1100     		movs	r1, r2
+ 931 00a2 1800     		movs	r0, r3
+ 932 00a4 FFF7FEFF 		bl	prv_checkFinished
+ 933 00a8 031E     		subs	r3, r0, #0
+ 934 00aa 4CD0     		beq	.L58
+ 935              	.L57:
+ 936 00ac 1E23     		movs	r3, #30
+ 937 00ae FB18     		adds	r3, r7, r3
+ 938 00b0 1B78     		ldrb	r3, [r3]
+ 939 00b2 0122     		movs	r2, #1
+ 940 00b4 5340     		eors	r3, r2
+ 941 00b6 DBB2     		uxtb	r3, r3
+ 942 00b8 002B     		cmp	r3, #0
+ 943 00ba 32D0     		beq	.L59
+ 944 00bc 7B68     		ldr	r3, [r7, #4]
+ 945 00be 5B79     		ldrb	r3, [r3, #5]
+ 946 00c0 002B     		cmp	r3, #0
+ 947 00c2 0FD1     		bne	.L60
+ 948 00c4 3B68     		ldr	r3, [r7]
+ 949 00c6 002B     		cmp	r3, #0
+ 950 00c8 0CD0     		beq	.L60
+ 951 00ca 7B68     		ldr	r3, [r7, #4]
+ 952 00cc 1B89     		ldrh	r3, [r3, #8]
+ 953 00ce 3868     		ldr	r0, [r7]
+ 954 00d0 0022     		movs	r2, #0
+ 955 00d2 0221     		movs	r1, #2
+ 956 00d4 FFF7FEFF 		bl	coap_init_message
+ 957 00d8 BA68     		ldr	r2, [r7, #8]
+ 958 00da 3968     		ldr	r1, [r7]
+ 959 00dc FB68     		ldr	r3, [r7, #12]
+ 960 00de 1800     		movs	r0, r3
+ 961 00e0 FFF7FEFF 		bl	message_send
+ 962              	.L60:
+ 963 00e4 7B68     		ldr	r3, [r7, #4]
+ 964 00e6 9B79     		ldrb	r3, [r3, #6]
+ 965 00e8 812B     		cmp	r3, #129
+ 966 00ea 1AD1     		bne	.L59
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 19
+
+
+ 967 00ec BB69     		ldr	r3, [r7, #24]
+ 968 00ee 1B7E     		ldrb	r3, [r3, #24]
+ 969 00f0 032B     		cmp	r3, #3
+ 970 00f2 16D8     		bhi	.L59
+ 971 00f4 BB69     		ldr	r3, [r7, #24]
+ 972 00f6 0022     		movs	r2, #0
+ 973 00f8 1A73     		strb	r2, [r3, #12]
+ 974 00fa BB69     		ldr	r3, [r7, #24]
+ 975 00fc 5C6A     		ldr	r4, [r3, #36]
+ 976 00fe 1B6A     		ldr	r3, [r3, #32]
+ 977 0100 0421     		movs	r1, #4
+ 978 0102 0022     		movs	r2, #0
+ 979 0104 5B18     		adds	r3, r3, r1
+ 980 0106 5441     		adcs	r4, r4, r2
+ 981 0108 BA69     		ldr	r2, [r7, #24]
+ 982 010a 1362     		str	r3, [r2, #32]
+ 983 010c 5462     		str	r4, [r2, #36]
+ 984 010e 6623     		movs	r3, #102
+ 985 0110 FF33     		adds	r3, r3, #255
+ 986 0112 1A00     		movs	r2, r3
+ 987 0114 3B49     		ldr	r1, .L70
+ 988 0116 3D4B     		ldr	r3, .L70+8
+ 989 0118 1800     		movs	r0, r3
+ 990 011a FFF7FEFF 		bl	atiny_printf
+ 991 011e 0123     		movs	r3, #1
+ 992 0120 6CE0     		b	.L61
+ 993              	.L59:
+ 994 0122 BB69     		ldr	r3, [r7, #24]
+ 995 0124 1B6C     		ldr	r3, [r3, #64]
+ 996 0126 002B     		cmp	r3, #0
+ 997 0128 05D0     		beq	.L62
+ 998 012a BB69     		ldr	r3, [r7, #24]
+ 999 012c 1B6C     		ldr	r3, [r3, #64]
+ 1000 012e 7968     		ldr	r1, [r7, #4]
+ 1001 0130 BA69     		ldr	r2, [r7, #24]
+ 1002 0132 1000     		movs	r0, r2
+ 1003 0134 9847     		blx	r3
+ 1004              	.L62:
+ 1005 0136 BA69     		ldr	r2, [r7, #24]
+ 1006 0138 FB68     		ldr	r3, [r7, #12]
+ 1007 013a 1100     		movs	r1, r2
+ 1008 013c 1800     		movs	r0, r3
+ 1009 013e FFF7FEFF 		bl	transaction_remove
+ 1010 0142 0123     		movs	r3, #1
+ 1011 0144 5AE0     		b	.L61
+ 1012              	.L58:
+ 1013 0146 1F23     		movs	r3, #31
+ 1014 0148 FB18     		adds	r3, r7, r3
+ 1015 014a 1B78     		ldrb	r3, [r3]
+ 1016 014c 002B     		cmp	r3, #0
+ 1017 014e 46D0     		beq	.L63
+ 1018 0150 FFF7FEFF 		bl	lwm2m_gettime
+ 1019 0154 0300     		movs	r3, r0
+ 1020 0156 0C00     		movs	r4, r1
+ 1021 0158 3B61     		str	r3, [r7, #16]
+ 1022 015a 7C61     		str	r4, [r7, #20]
+ 1023 015c 3B69     		ldr	r3, [r7, #16]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 20
+
+
+ 1024 015e 7A69     		ldr	r2, [r7, #20]
+ 1025 0160 1343     		orrs	r3, r2
+ 1026 0162 04D0     		beq	.L64
+ 1027 0164 BA69     		ldr	r2, [r7, #24]
+ 1028 0166 3B69     		ldr	r3, [r7, #16]
+ 1029 0168 7C69     		ldr	r4, [r7, #20]
+ 1030 016a 1362     		str	r3, [r2, #32]
+ 1031 016c 5462     		str	r4, [r2, #36]
+ 1032              	.L64:
+ 1033 016e BB69     		ldr	r3, [r7, #24]
+ 1034 0170 5C69     		ldr	r4, [r3, #20]
+ 1035 0172 1B69     		ldr	r3, [r3, #16]
+ 1036 0174 1A00     		movs	r2, r3
+ 1037 0176 2243     		orrs	r2, r4
+ 1038 0178 0BD0     		beq	.L66
+ 1039 017a BB69     		ldr	r3, [r7, #24]
+ 1040 017c 196A     		ldr	r1, [r3, #32]
+ 1041 017e 5A6A     		ldr	r2, [r3, #36]
+ 1042 0180 BB69     		ldr	r3, [r7, #24]
+ 1043 0182 5C69     		ldr	r4, [r3, #20]
+ 1044 0184 1B69     		ldr	r3, [r3, #16]
+ 1045 0186 5B18     		adds	r3, r3, r1
+ 1046 0188 5441     		adcs	r4, r4, r2
+ 1047 018a BA69     		ldr	r2, [r7, #24]
+ 1048 018c 1362     		str	r3, [r2, #32]
+ 1049 018e 5462     		str	r4, [r2, #36]
+ 1050 0190 0DE0     		b	.L68
+ 1051              	.L66:
+ 1052 0192 BB69     		ldr	r3, [r7, #24]
+ 1053 0194 5C6A     		ldr	r4, [r3, #36]
+ 1054 0196 1B6A     		ldr	r3, [r3, #32]
+ 1055 0198 BA69     		ldr	r2, [r7, #24]
+ 1056 019a 127E     		ldrb	r2, [r2, #24]
+ 1057 019c 9200     		lsls	r2, r2, #2
+ 1058 019e 1500     		movs	r5, r2
+ 1059 01a0 D217     		asrs	r2, r2, #31
+ 1060 01a2 1600     		movs	r6, r2
+ 1061 01a4 5B19     		adds	r3, r3, r5
+ 1062 01a6 7441     		adcs	r4, r4, r6
+ 1063 01a8 BA69     		ldr	r2, [r7, #24]
+ 1064 01aa 1362     		str	r3, [r2, #32]
+ 1065 01ac 5462     		str	r4, [r2, #36]
+ 1066              	.L68:
+ 1067 01ae BB69     		ldr	r3, [r7, #24]
+ 1068 01b0 9B68     		ldr	r3, [r3, #8]
+ 1069 01b2 BC68     		ldr	r4, [r7, #8]
+ 1070 01b4 C022     		movs	r2, #192
+ 1071 01b6 5200     		lsls	r2, r2, #1
+ 1072 01b8 1249     		ldr	r1, .L70
+ 1073 01ba 1548     		ldr	r0, .L70+12
+ 1074 01bc 0093     		str	r3, [sp]
+ 1075 01be 2300     		movs	r3, r4
+ 1076 01c0 FFF7FEFF 		bl	atiny_printf
+ 1077 01c4 0123     		movs	r3, #1
+ 1078 01c6 19E0     		b	.L61
+ 1079              	.L54:
+ 1080 01c8 BB69     		ldr	r3, [r7, #24]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 21
+
+
+ 1081 01ca 9B68     		ldr	r3, [r3, #8]
+ 1082 01cc BC68     		ldr	r4, [r7, #8]
+ 1083 01ce C322     		movs	r2, #195
+ 1084 01d0 5200     		lsls	r2, r2, #1
+ 1085 01d2 0C49     		ldr	r1, .L70
+ 1086 01d4 0F48     		ldr	r0, .L70+16
+ 1087 01d6 0093     		str	r3, [sp]
+ 1088 01d8 2300     		movs	r3, r4
+ 1089 01da FFF7FEFF 		bl	atiny_printf
+ 1090              	.L63:
+ 1091 01de BB69     		ldr	r3, [r7, #24]
+ 1092 01e0 1B68     		ldr	r3, [r3]
+ 1093 01e2 BB61     		str	r3, [r7, #24]
+ 1094              	.L53:
+ 1095 01e4 BB69     		ldr	r3, [r7, #24]
+ 1096 01e6 002B     		cmp	r3, #0
+ 1097 01e8 00D0     		beq	.LCB1080
+ 1098 01ea 26E7     		b	.L69	@long jump
+ 1099              	.LCB1080:
+ 1100 01ec C523     		movs	r3, #197
+ 1101 01ee 5A00     		lsls	r2, r3, #1
+ 1102 01f0 0449     		ldr	r1, .L70
+ 1103 01f2 094B     		ldr	r3, .L70+20
+ 1104 01f4 1800     		movs	r0, r3
+ 1105 01f6 FFF7FEFF 		bl	atiny_printf
+ 1106 01fa 0023     		movs	r3, #0
+ 1107              	.L61:
+ 1108 01fc 1800     		movs	r0, r3
+ 1109 01fe BD46     		mov	sp, r7
+ 1110 0200 09B0     		add	sp, sp, #36
+ 1111              		@ sp needed
+ 1112 0202 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1113              	.L71:
+ 1114              		.align	2
+ 1115              	.L70:
+ 1116 0204 00000000 		.word	__func__.7165
+ 1117 0208 58010000 		.word	.LC32
+ 1118 020c 80010000 		.word	.LC34
+ 1119 0210 B4010000 		.word	.LC36
+ 1120 0214 F8010000 		.word	.LC38
+ 1121 0218 38020000 		.word	.LC40
+ 1123              		.section	.rodata
+ 1124 0276 0000     		.align	2
+ 1125              	.LC44:
+ 1126 0278 5B25733A 		.ascii	"[%s:%d] transaction_send: ver %u, type %u, tkl %u, "
+ 1126      25645D20 
+ 1126      7472616E 
+ 1126      73616374 
+ 1126      696F6E5F 
+ 1127 02ab 636F6465 		.ascii	"code %u.%.2u, mid %u, Content type: %d\015\012\000"
+ 1127      2025752E 
+ 1127      252E3275 
+ 1127      2C206D69 
+ 1127      64202575 
+ 1128              		.align	2
+ 1129              	.LC46:
+ 1130 02d4 5B25733A 		.ascii	"[%s:%d] time:%llu\015\012\000"
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 22
+
+
+ 1130      25645D20 
+ 1130      74696D65 
+ 1130      3A256C6C 
+ 1130      750D0A00 
+ 1131              		.align	2
+ 1132              	.LC48:
+ 1133 02e8 5B25733A 		.ascii	"[%s:%d] remove\015\012\000"
+ 1133      25645D20 
+ 1133      72656D6F 
+ 1133      76650D0A 
+ 1133      00
+ 1134 02f9 000000   		.align	2
+ 1135              	.LC51:
+ 1136 02fc 5B25733A 		.ascii	"[%s:%d] send %d bytes, retrans_counter:%d\015\012\000"
+ 1136      25645D20 
+ 1136      73656E64 
+ 1136      20256420 
+ 1136      62797465 
+ 1137              		.align	2
+ 1138              	.LC53:
+ 1139 0328 5B25733A 		.ascii	"[%s:%d] remove, ACK:%d, timeout: %d\015\012\000"
+ 1139      25645D20 
+ 1139      72656D6F 
+ 1139      76652C20 
+ 1139      41434B3A 
+ 1140              		.section	.text.transaction_send,"ax",%progbits
+ 1141              		.align	1
+ 1142              		.global	transaction_send
+ 1143              		.syntax unified
+ 1144              		.code	16
+ 1145              		.thumb_func
+ 1146              		.fpu softvfp
+ 1148              	transaction_send:
+ 1149              		@ args = 0, pretend = 0, frame = 48
+ 1150              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1151 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1152 0002 D646     		mov	lr, r10
+ 1153 0004 4F46     		mov	r7, r9
+ 1154 0006 4646     		mov	r6, r8
+ 1155 0008 C0B5     		push	{r6, r7, lr}
+ 1156 000a 92B0     		sub	sp, sp, #72
+ 1157 000c 06AF     		add	r7, sp, #24
+ 1158 000e F860     		str	r0, [r7, #12]
+ 1159 0010 B960     		str	r1, [r7, #8]
+ 1160 0012 2723     		movs	r3, #39
+ 1161 0014 0822     		movs	r2, #8
+ 1162 0016 9446     		mov	ip, r2
+ 1163 0018 BC44     		add	ip, ip, r7
+ 1164 001a 6344     		add	r3, r3, ip
+ 1165 001c 0022     		movs	r2, #0
+ 1166 001e 1A70     		strb	r2, [r3]
+ 1167 0020 BB68     		ldr	r3, [r7, #8]
+ 1168 0022 9B6A     		ldr	r3, [r3, #40]
+ 1169 0024 7B62     		str	r3, [r7, #36]
+ 1170 0026 9623     		movs	r3, #150
+ 1171 0028 FF33     		adds	r3, r3, #255
+ 1172 002a 1A00     		movs	r2, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 23
+
+
+ 1173 002c A549     		ldr	r1, .L87
+ 1174 002e A64B     		ldr	r3, .L87+4
+ 1175 0030 1800     		movs	r0, r3
+ 1176 0032 FFF7FEFF 		bl	atiny_printf
+ 1177 0036 7B6A     		ldr	r3, [r7, #36]
+ 1178 0038 1B79     		ldrb	r3, [r3, #4]
+ 1179 003a 1E00     		movs	r6, r3
+ 1180 003c 7B6A     		ldr	r3, [r7, #36]
+ 1181 003e 5B79     		ldrb	r3, [r3, #5]
+ 1182 0040 1C00     		movs	r4, r3
+ 1183 0042 7B6A     		ldr	r3, [r7, #36]
+ 1184 0044 4C22     		movs	r2, #76
+ 1185 0046 9B5C     		ldrb	r3, [r3, r2]
+ 1186 0048 9C46     		mov	ip, r3
+ 1187 004a 7B6A     		ldr	r3, [r7, #36]
+ 1188 004c 9B79     		ldrb	r3, [r3, #6]
+ 1189 004e 5B09     		lsrs	r3, r3, #5
+ 1190 0050 DBB2     		uxtb	r3, r3
+ 1191 0052 9846     		mov	r8, r3
+ 1192 0054 7B6A     		ldr	r3, [r7, #36]
+ 1193 0056 9B79     		ldrb	r3, [r3, #6]
+ 1194 0058 1A00     		movs	r2, r3
+ 1195 005a 1F23     		movs	r3, #31
+ 1196 005c 1340     		ands	r3, r2
+ 1197 005e 7A6A     		ldr	r2, [r7, #36]
+ 1198 0060 1289     		ldrh	r2, [r2, #8]
+ 1199 0062 9146     		mov	r9, r2
+ 1200 0064 7A6A     		ldr	r2, [r7, #36]
+ 1201 0066 128A     		ldrh	r2, [r2, #16]
+ 1202 0068 9246     		mov	r10, r2
+ 1203 006a CC22     		movs	r2, #204
+ 1204 006c 5200     		lsls	r2, r2, #1
+ 1205 006e 9549     		ldr	r1, .L87
+ 1206 0070 9648     		ldr	r0, .L87+8
+ 1207 0072 5546     		mov	r5, r10
+ 1208 0074 0595     		str	r5, [sp, #20]
+ 1209 0076 4D46     		mov	r5, r9
+ 1210 0078 0495     		str	r5, [sp, #16]
+ 1211 007a 0393     		str	r3, [sp, #12]
+ 1212 007c 4546     		mov	r5, r8
+ 1213 007e 0295     		str	r5, [sp, #8]
+ 1214 0080 6546     		mov	r5, ip
+ 1215 0082 0195     		str	r5, [sp, #4]
+ 1216 0084 0094     		str	r4, [sp]
+ 1217 0086 3300     		movs	r3, r6
+ 1218 0088 FFF7FEFF 		bl	atiny_printf
+ 1219 008c FFF7FEFF 		bl	atiny_gettime_ms
+ 1220 0090 0300     		movs	r3, r0
+ 1221 0092 0C00     		movs	r4, r1
+ 1222 0094 9A22     		movs	r2, #154
+ 1223 0096 FF32     		adds	r2, r2, #255
+ 1224 0098 8A49     		ldr	r1, .L87
+ 1225 009a 8D48     		ldr	r0, .L87+12
+ 1226 009c 0093     		str	r3, [sp]
+ 1227 009e 0194     		str	r4, [sp, #4]
+ 1228 00a0 FFF7FEFF 		bl	atiny_printf
+ 1229 00a4 BB68     		ldr	r3, [r7, #8]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 24
+
+
+ 1230 00a6 1B6B     		ldr	r3, [r3, #48]
+ 1231 00a8 002B     		cmp	r3, #0
+ 1232 00aa 5BD1     		bne	.L73
+ 1233 00ac 7B6A     		ldr	r3, [r7, #36]
+ 1234 00ae 1800     		movs	r0, r3
+ 1235 00b0 FFF7FEFF 		bl	coap_serialize_get_size
+ 1236 00b4 0300     		movs	r3, r0
+ 1237 00b6 9AB2     		uxth	r2, r3
+ 1238 00b8 BB68     		ldr	r3, [r7, #8]
+ 1239 00ba 9A85     		strh	r2, [r3, #44]
+ 1240 00bc BB68     		ldr	r3, [r7, #8]
+ 1241 00be 9B8D     		ldrh	r3, [r3, #44]
+ 1242 00c0 002B     		cmp	r3, #0
+ 1243 00c2 0ED1     		bne	.L74
+ 1244 00c4 BA68     		ldr	r2, [r7, #8]
+ 1245 00c6 FB68     		ldr	r3, [r7, #12]
+ 1246 00c8 1100     		movs	r1, r2
+ 1247 00ca 1800     		movs	r0, r3
+ 1248 00cc FFF7FEFF 		bl	transaction_remove
+ 1249 00d0 D023     		movs	r3, #208
+ 1250 00d2 5A00     		lsls	r2, r3, #1
+ 1251 00d4 7B49     		ldr	r1, .L87
+ 1252 00d6 7F4B     		ldr	r3, .L87+16
+ 1253 00d8 1800     		movs	r0, r3
+ 1254 00da FFF7FEFF 		bl	atiny_printf
+ 1255 00de A023     		movs	r3, #160
+ 1256 00e0 E8E0     		b	.L75
+ 1257              	.L74:
+ 1258 00e2 BB68     		ldr	r3, [r7, #8]
+ 1259 00e4 9B8D     		ldrh	r3, [r3, #44]
+ 1260 00e6 1800     		movs	r0, r3
+ 1261 00e8 FFF7FEFF 		bl	lwm2m_malloc
+ 1262 00ec 0200     		movs	r2, r0
+ 1263 00ee BB68     		ldr	r3, [r7, #8]
+ 1264 00f0 1A63     		str	r2, [r3, #48]
+ 1265 00f2 BB68     		ldr	r3, [r7, #8]
+ 1266 00f4 1B6B     		ldr	r3, [r3, #48]
+ 1267 00f6 002B     		cmp	r3, #0
+ 1268 00f8 0ED1     		bne	.L76
+ 1269 00fa BA68     		ldr	r2, [r7, #8]
+ 1270 00fc FB68     		ldr	r3, [r7, #12]
+ 1271 00fe 1100     		movs	r1, r2
+ 1272 0100 1800     		movs	r0, r3
+ 1273 0102 FFF7FEFF 		bl	transaction_remove
+ 1274 0106 D423     		movs	r3, #212
+ 1275 0108 5A00     		lsls	r2, r3, #1
+ 1276 010a 6E49     		ldr	r1, .L87
+ 1277 010c 714B     		ldr	r3, .L87+16
+ 1278 010e 1800     		movs	r0, r3
+ 1279 0110 FFF7FEFF 		bl	atiny_printf
+ 1280 0114 A023     		movs	r3, #160
+ 1281 0116 CDE0     		b	.L75
+ 1282              	.L76:
+ 1283 0118 BB68     		ldr	r3, [r7, #8]
+ 1284 011a 1A6B     		ldr	r2, [r3, #48]
+ 1285 011c 7B6A     		ldr	r3, [r7, #36]
+ 1286 011e 1100     		movs	r1, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 25
+
+
+ 1287 0120 1800     		movs	r0, r3
+ 1288 0122 FFF7FEFF 		bl	coap_serialize_message
+ 1289 0126 0300     		movs	r3, r0
+ 1290 0128 9AB2     		uxth	r2, r3
+ 1291 012a BB68     		ldr	r3, [r7, #8]
+ 1292 012c 9A85     		strh	r2, [r3, #44]
+ 1293 012e BB68     		ldr	r3, [r7, #8]
+ 1294 0130 9B8D     		ldrh	r3, [r3, #44]
+ 1295 0132 002B     		cmp	r3, #0
+ 1296 0134 16D1     		bne	.L73
+ 1297 0136 BB68     		ldr	r3, [r7, #8]
+ 1298 0138 1B6B     		ldr	r3, [r3, #48]
+ 1299 013a 1800     		movs	r0, r3
+ 1300 013c FFF7FEFF 		bl	lwm2m_free
+ 1301 0140 BB68     		ldr	r3, [r7, #8]
+ 1302 0142 0022     		movs	r2, #0
+ 1303 0144 1A63     		str	r2, [r3, #48]
+ 1304 0146 BA68     		ldr	r2, [r7, #8]
+ 1305 0148 FB68     		ldr	r3, [r7, #12]
+ 1306 014a 1100     		movs	r1, r2
+ 1307 014c 1800     		movs	r0, r3
+ 1308 014e FFF7FEFF 		bl	transaction_remove
+ 1309 0152 D923     		movs	r3, #217
+ 1310 0154 5A00     		lsls	r2, r3, #1
+ 1311 0156 5B49     		ldr	r1, .L87
+ 1312 0158 5E4B     		ldr	r3, .L87+16
+ 1313 015a 1800     		movs	r0, r3
+ 1314 015c FFF7FEFF 		bl	atiny_printf
+ 1315 0160 A023     		movs	r3, #160
+ 1316 0162 A7E0     		b	.L75
+ 1317              	.L73:
+ 1318 0164 BB68     		ldr	r3, [r7, #8]
+ 1319 0166 1B7B     		ldrb	r3, [r3, #12]
+ 1320 0168 002B     		cmp	r3, #0
+ 1321 016a 00D0     		beq	.LCB1295
+ 1322 016c 71E0     		b	.L77	@long jump
+ 1323              	.LCB1295:
+ 1324 016e 0023     		movs	r3, #0
+ 1325 0170 BB62     		str	r3, [r7, #40]
+ 1326 0172 BB68     		ldr	r3, [r7, #8]
+ 1327 0174 1B7E     		ldrb	r3, [r3, #24]
+ 1328 0176 002B     		cmp	r3, #0
+ 1329 0178 20D1     		bne	.L78
+ 1330 017a FFF7FEFF 		bl	lwm2m_gettime
+ 1331 017e 0300     		movs	r3, r0
+ 1332 0180 0C00     		movs	r4, r1
+ 1333 0182 BB61     		str	r3, [r7, #24]
+ 1334 0184 FC61     		str	r4, [r7, #28]
+ 1335 0186 BB69     		ldr	r3, [r7, #24]
+ 1336 0188 FA69     		ldr	r2, [r7, #28]
+ 1337 018a 1343     		orrs	r3, r2
+ 1338 018c 0ED0     		beq	.L79
+ 1339 018e BB69     		ldr	r3, [r7, #24]
+ 1340 0190 FC69     		ldr	r4, [r7, #28]
+ 1341 0192 0421     		movs	r1, #4
+ 1342 0194 0022     		movs	r2, #0
+ 1343 0196 5B18     		adds	r3, r3, r1
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 26
+
+
+ 1344 0198 5441     		adcs	r4, r4, r2
+ 1345 019a BA68     		ldr	r2, [r7, #8]
+ 1346 019c 1362     		str	r3, [r2, #32]
+ 1347 019e 5462     		str	r4, [r2, #36]
+ 1348 01a0 BB68     		ldr	r3, [r7, #8]
+ 1349 01a2 0122     		movs	r2, #1
+ 1350 01a4 1A76     		strb	r2, [r3, #24]
+ 1351 01a6 0023     		movs	r3, #0
+ 1352 01a8 BB62     		str	r3, [r7, #40]
+ 1353 01aa 0EE0     		b	.L82
+ 1354              	.L79:
+ 1355 01ac 2723     		movs	r3, #39
+ 1356 01ae 0822     		movs	r2, #8
+ 1357 01b0 9446     		mov	ip, r2
+ 1358 01b2 BC44     		add	ip, ip, r7
+ 1359 01b4 6344     		add	r3, r3, ip
+ 1360 01b6 0122     		movs	r2, #1
+ 1361 01b8 1A70     		strb	r2, [r3]
+ 1362 01ba 06E0     		b	.L82
+ 1363              	.L78:
+ 1364 01bc BB68     		ldr	r3, [r7, #8]
+ 1365 01be 1B7E     		ldrb	r3, [r3, #24]
+ 1366 01c0 013B     		subs	r3, r3, #1
+ 1367 01c2 0422     		movs	r2, #4
+ 1368 01c4 9A40     		lsls	r2, r2, r3
+ 1369 01c6 1300     		movs	r3, r2
+ 1370 01c8 BB62     		str	r3, [r7, #40]
+ 1371              	.L82:
+ 1372 01ca BB68     		ldr	r3, [r7, #8]
+ 1373 01cc 1B7E     		ldrb	r3, [r3, #24]
+ 1374 01ce 052B     		cmp	r3, #5
+ 1375 01d0 38D8     		bhi	.L83
+ 1376 01d2 BB68     		ldr	r3, [r7, #8]
+ 1377 01d4 9868     		ldr	r0, [r3, #8]
+ 1378 01d6 BB68     		ldr	r3, [r7, #8]
+ 1379 01d8 196B     		ldr	r1, [r3, #48]
+ 1380 01da BB68     		ldr	r3, [r7, #8]
+ 1381 01dc 9B8D     		ldrh	r3, [r3, #44]
+ 1382 01de 1A00     		movs	r2, r3
+ 1383 01e0 FB68     		ldr	r3, [r7, #12]
+ 1384 01e2 DB6A     		ldr	r3, [r3, #44]
+ 1385 01e4 FFF7FEFF 		bl	lwm2m_buffer_send
+ 1386 01e8 0300     		movs	r3, r0
+ 1387 01ea 7B61     		str	r3, [r7, #20]
+ 1388 01ec 3A4B     		ldr	r3, .L87+20
+ 1389 01ee 1B68     		ldr	r3, [r3]
+ 1390 01f0 D868     		ldr	r0, [r3, #12]
+ 1391 01f2 BB68     		ldr	r3, [r7, #8]
+ 1392 01f4 196B     		ldr	r1, [r3, #48]
+ 1393 01f6 BB68     		ldr	r3, [r7, #8]
+ 1394 01f8 9B8D     		ldrh	r3, [r3, #44]
+ 1395 01fa 1A00     		movs	r2, r3
+ 1396 01fc 0023     		movs	r3, #0
+ 1397 01fe FFF7FEFF 		bl	output_buffer
+ 1398 0202 BB68     		ldr	r3, [r7, #8]
+ 1399 0204 5C6A     		ldr	r4, [r3, #36]
+ 1400 0206 1B6A     		ldr	r3, [r3, #32]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 27
+
+
+ 1401 0208 BA6A     		ldr	r2, [r7, #40]
+ 1402 020a 3A60     		str	r2, [r7]
+ 1403 020c 0022     		movs	r2, #0
+ 1404 020e 7A60     		str	r2, [r7, #4]
+ 1405 0210 3968     		ldr	r1, [r7]
+ 1406 0212 7A68     		ldr	r2, [r7, #4]
+ 1407 0214 5B18     		adds	r3, r3, r1
+ 1408 0216 5441     		adcs	r4, r4, r2
+ 1409 0218 BA68     		ldr	r2, [r7, #8]
+ 1410 021a 1362     		str	r3, [r2, #32]
+ 1411 021c 5462     		str	r4, [r2, #36]
+ 1412 021e BB68     		ldr	r3, [r7, #8]
+ 1413 0220 1B7E     		ldrb	r3, [r3, #24]
+ 1414 0222 0133     		adds	r3, r3, #1
+ 1415 0224 DAB2     		uxtb	r2, r3
+ 1416 0226 BB68     		ldr	r3, [r7, #8]
+ 1417 0228 1A76     		strb	r2, [r3, #24]
+ 1418 022a BB68     		ldr	r3, [r7, #8]
+ 1419 022c 1B7E     		ldrb	r3, [r3, #24]
+ 1420 022e 1D00     		movs	r5, r3
+ 1421 0230 7C69     		ldr	r4, [r7, #20]
+ 1422 0232 EA23     		movs	r3, #234
+ 1423 0234 5A00     		lsls	r2, r3, #1
+ 1424 0236 2349     		ldr	r1, .L87
+ 1425 0238 2848     		ldr	r0, .L87+24
+ 1426 023a 0095     		str	r5, [sp]
+ 1427 023c 2300     		movs	r3, r4
+ 1428 023e FFF7FEFF 		bl	atiny_printf
+ 1429 0242 06E0     		b	.L77
+ 1430              	.L83:
+ 1431 0244 2723     		movs	r3, #39
+ 1432 0246 0822     		movs	r2, #8
+ 1433 0248 9446     		mov	ip, r2
+ 1434 024a BC44     		add	ip, ip, r7
+ 1435 024c 6344     		add	r3, r3, ip
+ 1436 024e 0122     		movs	r2, #1
+ 1437 0250 1A70     		strb	r2, [r3]
+ 1438              	.L77:
+ 1439 0252 BB68     		ldr	r3, [r7, #8]
+ 1440 0254 1B7B     		ldrb	r3, [r3, #12]
+ 1441 0256 002B     		cmp	r3, #0
+ 1442 0258 07D1     		bne	.L84
+ 1443 025a 2723     		movs	r3, #39
+ 1444 025c 0822     		movs	r2, #8
+ 1445 025e 9446     		mov	ip, r2
+ 1446 0260 BC44     		add	ip, ip, r7
+ 1447 0262 6344     		add	r3, r3, ip
+ 1448 0264 1B78     		ldrb	r3, [r3]
+ 1449 0266 002B     		cmp	r3, #0
+ 1450 0268 23D0     		beq	.L85
+ 1451              	.L84:
+ 1452 026a BB68     		ldr	r3, [r7, #8]
+ 1453 026c 1B6C     		ldr	r3, [r3, #64]
+ 1454 026e 002B     		cmp	r3, #0
+ 1455 0270 05D0     		beq	.L86
+ 1456 0272 BB68     		ldr	r3, [r7, #8]
+ 1457 0274 1B6C     		ldr	r3, [r3, #64]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 28
+
+
+ 1458 0276 BA68     		ldr	r2, [r7, #8]
+ 1459 0278 0021     		movs	r1, #0
+ 1460 027a 1000     		movs	r0, r2
+ 1461 027c 9847     		blx	r3
+ 1462              	.L86:
+ 1463 027e BA68     		ldr	r2, [r7, #8]
+ 1464 0280 FB68     		ldr	r3, [r7, #12]
+ 1465 0282 1100     		movs	r1, r2
+ 1466 0284 1800     		movs	r0, r3
+ 1467 0286 FFF7FEFF 		bl	transaction_remove
+ 1468 028a BB68     		ldr	r3, [r7, #8]
+ 1469 028c 1B7B     		ldrb	r3, [r3, #12]
+ 1470 028e 1C00     		movs	r4, r3
+ 1471 0290 2723     		movs	r3, #39
+ 1472 0292 0822     		movs	r2, #8
+ 1473 0294 9446     		mov	ip, r2
+ 1474 0296 BC44     		add	ip, ip, r7
+ 1475 0298 6344     		add	r3, r3, ip
+ 1476 029a 1B78     		ldrb	r3, [r3]
+ 1477 029c F222     		movs	r2, #242
+ 1478 029e 5200     		lsls	r2, r2, #1
+ 1479 02a0 0849     		ldr	r1, .L87
+ 1480 02a2 0F48     		ldr	r0, .L87+28
+ 1481 02a4 0093     		str	r3, [sp]
+ 1482 02a6 2300     		movs	r3, r4
+ 1483 02a8 FFF7FEFF 		bl	atiny_printf
+ 1484 02ac 0123     		movs	r3, #1
+ 1485 02ae 5B42     		rsbs	r3, r3, #0
+ 1486 02b0 00E0     		b	.L75
+ 1487              	.L85:
+ 1488 02b2 0023     		movs	r3, #0
+ 1489              	.L75:
+ 1490 02b4 1800     		movs	r0, r3
+ 1491 02b6 BD46     		mov	sp, r7
+ 1492 02b8 0CB0     		add	sp, sp, #48
+ 1493              		@ sp needed
+ 1494 02ba 1CBC     		pop	{r2, r3, r4}
+ 1495 02bc 9046     		mov	r8, r2
+ 1496 02be 9946     		mov	r9, r3
+ 1497 02c0 A246     		mov	r10, r4
+ 1498 02c2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1499              	.L88:
+ 1500              		.align	2
+ 1501              	.L87:
+ 1502 02c4 00000000 		.word	__func__.7177
+ 1503 02c8 44010000 		.word	.LC27
+ 1504 02cc 78020000 		.word	.LC44
+ 1505 02d0 D4020000 		.word	.LC46
+ 1506 02d4 E8020000 		.word	.LC48
+ 1507 02d8 00000000 		.word	_impure_ptr
+ 1508 02dc FC020000 		.word	.LC51
+ 1509 02e0 28030000 		.word	.LC53
+ 1511              		.section	.text.transaction_step,"ax",%progbits
+ 1512              		.align	1
+ 1513              		.global	transaction_step
+ 1514              		.syntax unified
+ 1515              		.code	16
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 29
+
+
+ 1516              		.thumb_func
+ 1517              		.fpu softvfp
+ 1519              	transaction_step:
+ 1520              		@ args = 4, pretend = 0, frame = 40
+ 1521              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1522 0000 90B5     		push	{r4, r7, lr}
+ 1523 0002 8BB0     		sub	sp, sp, #44
+ 1524 0004 00AF     		add	r7, sp, #0
+ 1525 0006 F860     		str	r0, [r7, #12]
+ 1526 0008 3A60     		str	r2, [r7]
+ 1527 000a 7B60     		str	r3, [r7, #4]
+ 1528 000c F223     		movs	r3, #242
+ 1529 000e FF33     		adds	r3, r3, #255
+ 1530 0010 1A00     		movs	r2, r3
+ 1531 0012 3049     		ldr	r1, .L104
+ 1532 0014 304B     		ldr	r3, .L104+4
+ 1533 0016 1800     		movs	r0, r3
+ 1534 0018 FFF7FEFF 		bl	atiny_printf
+ 1535 001c FB68     		ldr	r3, [r7, #12]
+ 1536 001e 9B6A     		ldr	r3, [r3, #40]
+ 1537 0020 7B62     		str	r3, [r7, #36]
+ 1538 0022 50E0     		b	.L90
+ 1539              	.L100:
+ 1540 0024 7B6A     		ldr	r3, [r7, #36]
+ 1541 0026 1B68     		ldr	r3, [r3]
+ 1542 0028 7B61     		str	r3, [r7, #20]
+ 1543 002a 0023     		movs	r3, #0
+ 1544 002c 3B62     		str	r3, [r7, #32]
+ 1545 002e 7B6A     		ldr	r3, [r7, #36]
+ 1546 0030 5C6A     		ldr	r4, [r3, #36]
+ 1547 0032 1B6A     		ldr	r3, [r3, #32]
+ 1548 0034 7A68     		ldr	r2, [r7, #4]
+ 1549 0036 A242     		cmp	r2, r4
+ 1550 0038 0DDB     		blt	.L91
+ 1551 003a 7A68     		ldr	r2, [r7, #4]
+ 1552 003c A242     		cmp	r2, r4
+ 1553 003e 02D1     		bne	.L101
+ 1554 0040 3A68     		ldr	r2, [r7]
+ 1555 0042 9A42     		cmp	r2, r3
+ 1556 0044 07D3     		bcc	.L91
+ 1557              	.L101:
+ 1558 0046 7A6A     		ldr	r2, [r7, #36]
+ 1559 0048 FB68     		ldr	r3, [r7, #12]
+ 1560 004a 1100     		movs	r1, r2
+ 1561 004c 1800     		movs	r0, r3
+ 1562 004e FFF7FEFF 		bl	transaction_send
+ 1563 0052 0300     		movs	r3, r0
+ 1564 0054 3B62     		str	r3, [r7, #32]
+ 1565              	.L91:
+ 1566 0056 3B6A     		ldr	r3, [r7, #32]
+ 1567 0058 002B     		cmp	r3, #0
+ 1568 005a 2DD1     		bne	.L93
+ 1569 005c 7B6A     		ldr	r3, [r7, #36]
+ 1570 005e 5C6A     		ldr	r4, [r3, #36]
+ 1571 0060 1B6A     		ldr	r3, [r3, #32]
+ 1572 0062 7A68     		ldr	r2, [r7, #4]
+ 1573 0064 A242     		cmp	r2, r4
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 30
+
+
+ 1574 0066 05DB     		blt	.L102
+ 1575 0068 7A68     		ldr	r2, [r7, #4]
+ 1576 006a A242     		cmp	r2, r4
+ 1577 006c 0ED1     		bne	.L94
+ 1578 006e 3A68     		ldr	r2, [r7]
+ 1579 0070 9A42     		cmp	r2, r3
+ 1580 0072 0BD2     		bcs	.L94
+ 1581              	.L102:
+ 1582 0074 7B6A     		ldr	r3, [r7, #36]
+ 1583 0076 196A     		ldr	r1, [r3, #32]
+ 1584 0078 5A6A     		ldr	r2, [r3, #36]
+ 1585 007a 3B68     		ldr	r3, [r7]
+ 1586 007c 7C68     		ldr	r4, [r7, #4]
+ 1587 007e C91A     		subs	r1, r1, r3
+ 1588 0080 A241     		sbcs	r2, r2, r4
+ 1589 0082 0B00     		movs	r3, r1
+ 1590 0084 1400     		movs	r4, r2
+ 1591 0086 BB61     		str	r3, [r7, #24]
+ 1592 0088 FC61     		str	r4, [r7, #28]
+ 1593 008a 03E0     		b	.L96
+ 1594              	.L94:
+ 1595 008c 0123     		movs	r3, #1
+ 1596 008e 0024     		movs	r4, #0
+ 1597 0090 BB61     		str	r3, [r7, #24]
+ 1598 0092 FC61     		str	r4, [r7, #28]
+ 1599              	.L96:
+ 1600 0094 BB6B     		ldr	r3, [r7, #56]
+ 1601 0096 5C68     		ldr	r4, [r3, #4]
+ 1602 0098 1B68     		ldr	r3, [r3]
+ 1603 009a FA69     		ldr	r2, [r7, #28]
+ 1604 009c A242     		cmp	r2, r4
+ 1605 009e 05DB     		blt	.L103
+ 1606 00a0 FA69     		ldr	r2, [r7, #28]
+ 1607 00a2 A242     		cmp	r2, r4
+ 1608 00a4 0DD1     		bne	.L99
+ 1609 00a6 BA69     		ldr	r2, [r7, #24]
+ 1610 00a8 9A42     		cmp	r2, r3
+ 1611 00aa 0AD2     		bcs	.L99
+ 1612              	.L103:
+ 1613 00ac BA6B     		ldr	r2, [r7, #56]
+ 1614 00ae BB69     		ldr	r3, [r7, #24]
+ 1615 00b0 FC69     		ldr	r4, [r7, #28]
+ 1616 00b2 1360     		str	r3, [r2]
+ 1617 00b4 5460     		str	r4, [r2, #4]
+ 1618 00b6 04E0     		b	.L99
+ 1619              	.L93:
+ 1620 00b8 BA6B     		ldr	r2, [r7, #56]
+ 1621 00ba 0123     		movs	r3, #1
+ 1622 00bc 0024     		movs	r4, #0
+ 1623 00be 1360     		str	r3, [r2]
+ 1624 00c0 5460     		str	r4, [r2, #4]
+ 1625              	.L99:
+ 1626 00c2 7B69     		ldr	r3, [r7, #20]
+ 1627 00c4 7B62     		str	r3, [r7, #36]
+ 1628              	.L90:
+ 1629 00c6 7B6A     		ldr	r3, [r7, #36]
+ 1630 00c8 002B     		cmp	r3, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 31
+
+
+ 1631 00ca ABD1     		bne	.L100
+ 1632 00cc C046     		nop
+ 1633 00ce BD46     		mov	sp, r7
+ 1634 00d0 0BB0     		add	sp, sp, #44
+ 1635              		@ sp needed
+ 1636 00d2 90BD     		pop	{r4, r7, pc}
+ 1637              	.L105:
+ 1638              		.align	2
+ 1639              	.L104:
+ 1640 00d4 00000000 		.word	__func__.7186
+ 1641 00d8 44010000 		.word	.LC27
+ 1643              		.section	.rodata.__func__.7119,"a",%progbits
+ 1644              		.align	2
+ 1647              	__func__.7119:
+ 1648 0000 7072765F 		.ascii	"prv_checkFinished\000"
+ 1648      63686563 
+ 1648      6B46696E 
+ 1648      69736865 
+ 1648      6400
+ 1649              		.section	.rodata.__func__.7138,"a",%progbits
+ 1650              		.align	2
+ 1653              	__func__.7138:
+ 1654 0000 7472616E 		.ascii	"transaction_new\000"
+ 1654      73616374 
+ 1654      696F6E5F 
+ 1654      6E657700 
+ 1655              		.section	.rodata.__func__.7150,"a",%progbits
+ 1656              		.align	2
+ 1659              	__func__.7150:
+ 1660 0000 7472616E 		.ascii	"transaction_free\000"
+ 1660      73616374 
+ 1660      696F6E5F 
+ 1660      66726565 
+ 1660      00
+ 1661              		.section	.rodata.__func__.7155,"a",%progbits
+ 1662              		.align	2
+ 1665              	__func__.7155:
+ 1666 0000 7472616E 		.ascii	"transaction_remove\000"
+ 1666      73616374 
+ 1666      696F6E5F 
+ 1666      72656D6F 
+ 1666      766500
+ 1667              		.section	.rodata.__func__.7165,"a",%progbits
+ 1668              		.align	2
+ 1671              	__func__.7165:
+ 1672 0000 7472616E 		.ascii	"transaction_handleResponse\000"
+ 1672      73616374 
+ 1672      696F6E5F 
+ 1672      68616E64 
+ 1672      6C655265 
+ 1673              		.section	.rodata.__func__.7177,"a",%progbits
+ 1674              		.align	2
+ 1677              	__func__.7177:
+ 1678 0000 7472616E 		.ascii	"transaction_send\000"
+ 1678      73616374 
+ 1678      696F6E5F 
+ 1678      73656E64 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 32
+
+
+ 1678      00
+ 1679              		.section	.rodata.__func__.7186,"a",%progbits
+ 1680              		.align	2
+ 1683              	__func__.7186:
+ 1684 0000 7472616E 		.ascii	"transaction_step\000"
+ 1684      73616374 
+ 1684      696F6E5F 
+ 1684      73746570 
+ 1684      00
+ 1685              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 transaction.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:13     .rodata:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:28     .text.prv_checkFinished:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:34     .text.prv_checkFinished:00000000 prv_checkFinished
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:173    .text.prv_checkFinished:00000108 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1647   .rodata.__func__.7119:00000000 __func__.7119
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:206    .text.transaction_new:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:213    .text.transaction_new:00000000 transaction_new
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:676    .text.transaction_new:00000394 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1653   .rodata.__func__.7138:00000000 __func__.7138
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:685    .text.transaction_new:000003b4 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:707    .text.transaction_new:000003d8 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:715    .text.transaction_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:722    .text.transaction_free:00000000 transaction_free
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:768    .text.transaction_free:00000054 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1659   .rodata.__func__.7150:00000000 __func__.7150
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:772    .text.transaction_remove:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:779    .text.transaction_remove:00000000 transaction_remove
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:814    .text.transaction_remove:00000040 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1665   .rodata.__func__.7155:00000000 __func__.7155
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:838    .text.transaction_handleResponse:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:845    .text.transaction_handleResponse:00000000 transaction_handleResponse
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1116   .text.transaction_handleResponse:00000204 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1671   .rodata.__func__.7165:00000000 __func__.7165
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1141   .text.transaction_send:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1148   .text.transaction_send:00000000 transaction_send
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1502   .text.transaction_send:000002c4 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1677   .rodata.__func__.7177:00000000 __func__.7177
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1512   .text.transaction_step:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1519   .text.transaction_step:00000000 transaction_step
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1640   .text.transaction_step:000000d4 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1683   .rodata.__func__.7186:00000000 __func__.7186
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1644   .rodata.__func__.7119:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1650   .rodata.__func__.7138:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1656   .rodata.__func__.7150:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1662   .rodata.__func__.7155:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1668   .rodata.__func__.7165:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1674   .rodata.__func__.7177:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s:1680   .rodata.__func__.7186:00000000 $d
+
+UNDEFINED SYMBOLS
+coap_get_header_token
+memcmp
+atiny_printf
+lwm2m_malloc
+memset
+coap_init_message
+coap_set_header_uri_path_segment
+utils_intToText
+coap_set_header_token
+lwm2m_gettime
+lwm2m_free
+coap_free_header
+lwm2m_list_remove
+lwm2m_session_is_equal
+message_send
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccbhIeR2.s 			page 34
+
+
+atiny_gettime_ms
+coap_serialize_get_size
+coap_serialize_message
+lwm2m_buffer_send
+output_buffer
+_impure_ptr

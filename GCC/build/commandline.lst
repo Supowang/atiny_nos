@@ -1,0 +1,2648 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"commandline.c"
+  12              		.section	.text.prv_find_command,"ax",%progbits
+  13              		.align	1
+  14              		.syntax unified
+  15              		.code	16
+  16              		.thumb_func
+  17              		.fpu softvfp
+  19              	prv_find_command:
+  20              		@ args = 0, pretend = 0, frame = 24
+  21              		@ frame_needed = 1, uses_anonymous_args = 0
+  22 0000 80B5     		push	{r7, lr}
+  23 0002 86B0     		sub	sp, sp, #24
+  24 0004 00AF     		add	r7, sp, #0
+  25 0006 F860     		str	r0, [r7, #12]
+  26 0008 B960     		str	r1, [r7, #8]
+  27 000a 7A60     		str	r2, [r7, #4]
+  28 000c 7B68     		ldr	r3, [r7, #4]
+  29 000e 002B     		cmp	r3, #0
+  30 0010 01D1     		bne	.L2
+  31 0012 0023     		movs	r3, #0
+  32 0014 45E0     		b	.L3
+  33              	.L2:
+  34 0016 0023     		movs	r3, #0
+  35 0018 7B61     		str	r3, [r7, #20]
+  36 001a 02E0     		b	.L4
+  37              	.L6:
+  38 001c 7B69     		ldr	r3, [r7, #20]
+  39 001e 0133     		adds	r3, r3, #1
+  40 0020 7B61     		str	r3, [r7, #20]
+  41              	.L4:
+  42 0022 7A69     		ldr	r2, [r7, #20]
+  43 0024 1300     		movs	r3, r2
+  44 0026 9B00     		lsls	r3, r3, #2
+  45 0028 9B18     		adds	r3, r3, r2
+  46 002a 9B00     		lsls	r3, r3, #2
+  47 002c 1A00     		movs	r2, r3
+  48 002e FB68     		ldr	r3, [r7, #12]
+  49 0030 9B18     		adds	r3, r3, r2
+  50 0032 1B68     		ldr	r3, [r3]
+  51 0034 002B     		cmp	r3, #0
+  52 0036 1FD0     		beq	.L5
+  53 0038 7A69     		ldr	r2, [r7, #20]
+  54 003a 1300     		movs	r3, r2
+  55 003c 9B00     		lsls	r3, r3, #2
+  56 003e 9B18     		adds	r3, r3, r2
+  57 0040 9B00     		lsls	r3, r3, #2
+  58 0042 1A00     		movs	r2, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 2
+
+
+  59 0044 FB68     		ldr	r3, [r7, #12]
+  60 0046 9B18     		adds	r3, r3, r2
+  61 0048 1B68     		ldr	r3, [r3]
+  62 004a 1800     		movs	r0, r3
+  63 004c FFF7FEFF 		bl	strlen
+  64 0050 0200     		movs	r2, r0
+  65 0052 7B68     		ldr	r3, [r7, #4]
+  66 0054 9342     		cmp	r3, r2
+  67 0056 E1D1     		bne	.L6
+  68 0058 7A69     		ldr	r2, [r7, #20]
+  69 005a 1300     		movs	r3, r2
+  70 005c 9B00     		lsls	r3, r3, #2
+  71 005e 9B18     		adds	r3, r3, r2
+  72 0060 9B00     		lsls	r3, r3, #2
+  73 0062 1A00     		movs	r2, r3
+  74 0064 FB68     		ldr	r3, [r7, #12]
+  75 0066 9B18     		adds	r3, r3, r2
+  76 0068 1968     		ldr	r1, [r3]
+  77 006a 7A68     		ldr	r2, [r7, #4]
+  78 006c BB68     		ldr	r3, [r7, #8]
+  79 006e 1800     		movs	r0, r3
+  80 0070 FFF7FEFF 		bl	strncmp
+  81 0074 031E     		subs	r3, r0, #0
+  82 0076 D1D1     		bne	.L6
+  83              	.L5:
+  84 0078 7A69     		ldr	r2, [r7, #20]
+  85 007a 1300     		movs	r3, r2
+  86 007c 9B00     		lsls	r3, r3, #2
+  87 007e 9B18     		adds	r3, r3, r2
+  88 0080 9B00     		lsls	r3, r3, #2
+  89 0082 1A00     		movs	r2, r3
+  90 0084 FB68     		ldr	r3, [r7, #12]
+  91 0086 9B18     		adds	r3, r3, r2
+  92 0088 1B68     		ldr	r3, [r3]
+  93 008a 002B     		cmp	r3, #0
+  94 008c 01D1     		bne	.L7
+  95 008e 0023     		movs	r3, #0
+  96 0090 07E0     		b	.L3
+  97              	.L7:
+  98 0092 7A69     		ldr	r2, [r7, #20]
+  99 0094 1300     		movs	r3, r2
+ 100 0096 9B00     		lsls	r3, r3, #2
+ 101 0098 9B18     		adds	r3, r3, r2
+ 102 009a 9B00     		lsls	r3, r3, #2
+ 103 009c 1A00     		movs	r2, r3
+ 104 009e FB68     		ldr	r3, [r7, #12]
+ 105 00a0 9B18     		adds	r3, r3, r2
+ 106              	.L3:
+ 107 00a2 1800     		movs	r0, r3
+ 108 00a4 BD46     		mov	sp, r7
+ 109 00a6 06B0     		add	sp, sp, #24
+ 110              		@ sp needed
+ 111 00a8 80BD     		pop	{r7, pc}
+ 113              		.section	.rodata
+ 114              		.align	2
+ 115              	.LC1:
+ 116 0000 68656C70 		.ascii	"help\011Type 'help [COMMAND]' for more details on a"
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 3
+
+
+ 116      09547970 
+ 116      65202768 
+ 116      656C7020 
+ 116      5B434F4D 
+ 117 0030 20636F6D 		.ascii	" command.\015\012\000"
+ 117      6D616E64 
+ 117      2E0D0A00 
+ 118              		.align	2
+ 119              	.LC3:
+ 120 003c 25730925 		.ascii	"%s\011%s\015\012\000"
+ 120      730D0A00 
+ 121              		.align	2
+ 122              	.LC5:
+ 123 0044 25730D0A 		.ascii	"%s\015\012\000"
+ 123      00
+ 124              		.section	.text.prv_displayHelp,"ax",%progbits
+ 125              		.align	1
+ 126              		.syntax unified
+ 127              		.code	16
+ 128              		.thumb_func
+ 129              		.fpu softvfp
+ 131              	prv_displayHelp:
+ 132              		@ args = 0, pretend = 0, frame = 24
+ 133              		@ frame_needed = 1, uses_anonymous_args = 0
+ 134 0000 90B5     		push	{r4, r7, lr}
+ 135 0002 87B0     		sub	sp, sp, #28
+ 136 0004 00AF     		add	r7, sp, #0
+ 137 0006 7860     		str	r0, [r7, #4]
+ 138 0008 3960     		str	r1, [r7]
+ 139 000a 0023     		movs	r3, #0
+ 140 000c 7B61     		str	r3, [r7, #20]
+ 141 000e 02E0     		b	.L9
+ 142              	.L11:
+ 143 0010 7B69     		ldr	r3, [r7, #20]
+ 144 0012 0133     		adds	r3, r3, #1
+ 145 0014 7B61     		str	r3, [r7, #20]
+ 146              	.L9:
+ 147 0016 7B69     		ldr	r3, [r7, #20]
+ 148 0018 3A68     		ldr	r2, [r7]
+ 149 001a D318     		adds	r3, r2, r3
+ 150 001c 1B78     		ldrb	r3, [r3]
+ 151 001e 002B     		cmp	r3, #0
+ 152 0020 0DD0     		beq	.L10
+ 153 0022 FFF7FEFF 		bl	__locale_ctype_ptr
+ 154 0026 0100     		movs	r1, r0
+ 155 0028 7B69     		ldr	r3, [r7, #20]
+ 156 002a 3A68     		ldr	r2, [r7]
+ 157 002c D318     		adds	r3, r2, r3
+ 158 002e 1B78     		ldrb	r3, [r3]
+ 159 0030 0133     		adds	r3, r3, #1
+ 160 0032 CB18     		adds	r3, r1, r3
+ 161 0034 1B78     		ldrb	r3, [r3]
+ 162 0036 1A00     		movs	r2, r3
+ 163 0038 0823     		movs	r3, #8
+ 164 003a 1340     		ands	r3, r2
+ 165 003c E8D0     		beq	.L11
+ 166              	.L10:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 4
+
+
+ 167 003e 7A69     		ldr	r2, [r7, #20]
+ 168 0040 3968     		ldr	r1, [r7]
+ 169 0042 7B68     		ldr	r3, [r7, #4]
+ 170 0044 1800     		movs	r0, r3
+ 171 0046 FFF7FEFF 		bl	prv_find_command
+ 172 004a 0300     		movs	r3, r0
+ 173 004c FB60     		str	r3, [r7, #12]
+ 174 004e FB68     		ldr	r3, [r7, #12]
+ 175 0050 002B     		cmp	r3, #0
+ 176 0052 32D1     		bne	.L12
+ 177 0054 234B     		ldr	r3, .L19
+ 178 0056 1B68     		ldr	r3, [r3]
+ 179 0058 9B68     		ldr	r3, [r3, #8]
+ 180 005a 2348     		ldr	r0, .L19+4
+ 181 005c 3B22     		movs	r2, #59
+ 182 005e 0121     		movs	r1, #1
+ 183 0060 FFF7FEFF 		bl	fwrite
+ 184 0064 0023     		movs	r3, #0
+ 185 0066 3B61     		str	r3, [r7, #16]
+ 186 0068 1BE0     		b	.L13
+ 187              	.L14:
+ 188 006a 1E4B     		ldr	r3, .L19
+ 189 006c 1B68     		ldr	r3, [r3]
+ 190 006e 9868     		ldr	r0, [r3, #8]
+ 191 0070 3A69     		ldr	r2, [r7, #16]
+ 192 0072 1300     		movs	r3, r2
+ 193 0074 9B00     		lsls	r3, r3, #2
+ 194 0076 9B18     		adds	r3, r3, r2
+ 195 0078 9B00     		lsls	r3, r3, #2
+ 196 007a 1A00     		movs	r2, r3
+ 197 007c 7B68     		ldr	r3, [r7, #4]
+ 198 007e 9B18     		adds	r3, r3, r2
+ 199 0080 1C68     		ldr	r4, [r3]
+ 200 0082 3A69     		ldr	r2, [r7, #16]
+ 201 0084 1300     		movs	r3, r2
+ 202 0086 9B00     		lsls	r3, r3, #2
+ 203 0088 9B18     		adds	r3, r3, r2
+ 204 008a 9B00     		lsls	r3, r3, #2
+ 205 008c 1A00     		movs	r2, r3
+ 206 008e 7B68     		ldr	r3, [r7, #4]
+ 207 0090 9B18     		adds	r3, r3, r2
+ 208 0092 5B68     		ldr	r3, [r3, #4]
+ 209 0094 1549     		ldr	r1, .L19+8
+ 210 0096 2200     		movs	r2, r4
+ 211 0098 FFF7FEFF 		bl	fprintf
+ 212 009c 3B69     		ldr	r3, [r7, #16]
+ 213 009e 0133     		adds	r3, r3, #1
+ 214 00a0 3B61     		str	r3, [r7, #16]
+ 215              	.L13:
+ 216 00a2 3A69     		ldr	r2, [r7, #16]
+ 217 00a4 1300     		movs	r3, r2
+ 218 00a6 9B00     		lsls	r3, r3, #2
+ 219 00a8 9B18     		adds	r3, r3, r2
+ 220 00aa 9B00     		lsls	r3, r3, #2
+ 221 00ac 1A00     		movs	r2, r3
+ 222 00ae 7B68     		ldr	r3, [r7, #4]
+ 223 00b0 9B18     		adds	r3, r3, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 5
+
+
+ 224 00b2 1B68     		ldr	r3, [r3]
+ 225 00b4 002B     		cmp	r3, #0
+ 226 00b6 D8D1     		bne	.L14
+ 227 00b8 0FE0     		b	.L18
+ 228              	.L12:
+ 229 00ba 0A4B     		ldr	r3, .L19
+ 230 00bc 1B68     		ldr	r3, [r3]
+ 231 00be 9868     		ldr	r0, [r3, #8]
+ 232 00c0 FB68     		ldr	r3, [r7, #12]
+ 233 00c2 9B68     		ldr	r3, [r3, #8]
+ 234 00c4 002B     		cmp	r3, #0
+ 235 00c6 02D0     		beq	.L16
+ 236 00c8 FB68     		ldr	r3, [r7, #12]
+ 237 00ca 9B68     		ldr	r3, [r3, #8]
+ 238 00cc 01E0     		b	.L17
+ 239              	.L16:
+ 240 00ce FB68     		ldr	r3, [r7, #12]
+ 241 00d0 5B68     		ldr	r3, [r3, #4]
+ 242              	.L17:
+ 243 00d2 0749     		ldr	r1, .L19+12
+ 244 00d4 1A00     		movs	r2, r3
+ 245 00d6 FFF7FEFF 		bl	fprintf
+ 246              	.L18:
+ 247 00da C046     		nop
+ 248 00dc BD46     		mov	sp, r7
+ 249 00de 07B0     		add	sp, sp, #28
+ 250              		@ sp needed
+ 251 00e0 90BD     		pop	{r4, r7, pc}
+ 252              	.L20:
+ 253 00e2 C046     		.align	2
+ 254              	.L19:
+ 255 00e4 00000000 		.word	_impure_ptr
+ 256 00e8 00000000 		.word	.LC1
+ 257 00ec 3C000000 		.word	.LC3
+ 258 00f0 44000000 		.word	.LC5
+ 260              		.section	.rodata
+ 261 0049 000000   		.align	2
+ 262              	.LC7:
+ 263 004c 68656C70 		.ascii	"help\000"
+ 263      00
+ 264 0051 000000   		.align	2
+ 265              	.LC10:
+ 266 0054 556E6B6E 		.ascii	"Unknown command. Type 'help' for help.\015\012\000"
+ 266      6F776E20 
+ 266      636F6D6D 
+ 266      616E642E 
+ 266      20547970 
+ 267              		.section	.text.handle_command,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	handle_command
+ 270              		.syntax unified
+ 271              		.code	16
+ 272              		.thumb_func
+ 273              		.fpu softvfp
+ 275              	handle_command:
+ 276              		@ args = 0, pretend = 0, frame = 16
+ 277              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 6
+
+
+ 278 0000 80B5     		push	{r7, lr}
+ 279 0002 84B0     		sub	sp, sp, #16
+ 280 0004 00AF     		add	r7, sp, #0
+ 281 0006 7860     		str	r0, [r7, #4]
+ 282 0008 3960     		str	r1, [r7]
+ 283 000a 0023     		movs	r3, #0
+ 284 000c FB60     		str	r3, [r7, #12]
+ 285 000e 02E0     		b	.L22
+ 286              	.L24:
+ 287 0010 FB68     		ldr	r3, [r7, #12]
+ 288 0012 0133     		adds	r3, r3, #1
+ 289 0014 FB60     		str	r3, [r7, #12]
+ 290              	.L22:
+ 291 0016 FB68     		ldr	r3, [r7, #12]
+ 292 0018 3A68     		ldr	r2, [r7]
+ 293 001a D318     		adds	r3, r2, r3
+ 294 001c 1B78     		ldrb	r3, [r3]
+ 295 001e 002B     		cmp	r3, #0
+ 296 0020 0DD0     		beq	.L23
+ 297 0022 FFF7FEFF 		bl	__locale_ctype_ptr
+ 298 0026 0100     		movs	r1, r0
+ 299 0028 FB68     		ldr	r3, [r7, #12]
+ 300 002a 3A68     		ldr	r2, [r7]
+ 301 002c D318     		adds	r3, r2, r3
+ 302 002e 1B78     		ldrb	r3, [r3]
+ 303 0030 0133     		adds	r3, r3, #1
+ 304 0032 CB18     		adds	r3, r1, r3
+ 305 0034 1B78     		ldrb	r3, [r3]
+ 306 0036 1A00     		movs	r2, r3
+ 307 0038 0823     		movs	r3, #8
+ 308 003a 1340     		ands	r3, r2
+ 309 003c E8D0     		beq	.L24
+ 310              	.L23:
+ 311 003e FA68     		ldr	r2, [r7, #12]
+ 312 0040 3968     		ldr	r1, [r7]
+ 313 0042 7B68     		ldr	r3, [r7, #4]
+ 314 0044 1800     		movs	r0, r3
+ 315 0046 FFF7FEFF 		bl	prv_find_command
+ 316 004a 0300     		movs	r3, r0
+ 317 004c BB60     		str	r3, [r7, #8]
+ 318 004e BB68     		ldr	r3, [r7, #8]
+ 319 0050 002B     		cmp	r3, #0
+ 320 0052 21D0     		beq	.L25
+ 321 0054 02E0     		b	.L26
+ 322              	.L28:
+ 323 0056 FB68     		ldr	r3, [r7, #12]
+ 324 0058 0133     		adds	r3, r3, #1
+ 325 005a FB60     		str	r3, [r7, #12]
+ 326              	.L26:
+ 327 005c FB68     		ldr	r3, [r7, #12]
+ 328 005e 3A68     		ldr	r2, [r7]
+ 329 0060 D318     		adds	r3, r2, r3
+ 330 0062 1B78     		ldrb	r3, [r3]
+ 331 0064 002B     		cmp	r3, #0
+ 332 0066 0DD0     		beq	.L27
+ 333 0068 FFF7FEFF 		bl	__locale_ctype_ptr
+ 334 006c 0100     		movs	r1, r0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 7
+
+
+ 335 006e FB68     		ldr	r3, [r7, #12]
+ 336 0070 3A68     		ldr	r2, [r7]
+ 337 0072 D318     		adds	r3, r2, r3
+ 338 0074 1B78     		ldrb	r3, [r3]
+ 339 0076 0133     		adds	r3, r3, #1
+ 340 0078 CB18     		adds	r3, r1, r3
+ 341 007a 1B78     		ldrb	r3, [r3]
+ 342 007c 1A00     		movs	r2, r3
+ 343 007e 0823     		movs	r3, #8
+ 344 0080 1340     		ands	r3, r2
+ 345 0082 E8D1     		bne	.L28
+ 346              	.L27:
+ 347 0084 BB68     		ldr	r3, [r7, #8]
+ 348 0086 DA68     		ldr	r2, [r3, #12]
+ 349 0088 FB68     		ldr	r3, [r7, #12]
+ 350 008a 3968     		ldr	r1, [r7]
+ 351 008c C818     		adds	r0, r1, r3
+ 352 008e BB68     		ldr	r3, [r7, #8]
+ 353 0090 1B69     		ldr	r3, [r3, #16]
+ 354 0092 1900     		movs	r1, r3
+ 355 0094 9047     		blx	r2
+ 356 0096 30E0     		b	.L34
+ 357              	.L25:
+ 358 0098 FA68     		ldr	r2, [r7, #12]
+ 359 009a 1A49     		ldr	r1, .L35
+ 360 009c 3B68     		ldr	r3, [r7]
+ 361 009e 1800     		movs	r0, r3
+ 362 00a0 FFF7FEFF 		bl	strncmp
+ 363 00a4 031E     		subs	r3, r0, #0
+ 364 00a6 20D1     		bne	.L30
+ 365 00a8 02E0     		b	.L31
+ 366              	.L33:
+ 367 00aa FB68     		ldr	r3, [r7, #12]
+ 368 00ac 0133     		adds	r3, r3, #1
+ 369 00ae FB60     		str	r3, [r7, #12]
+ 370              	.L31:
+ 371 00b0 FB68     		ldr	r3, [r7, #12]
+ 372 00b2 3A68     		ldr	r2, [r7]
+ 373 00b4 D318     		adds	r3, r2, r3
+ 374 00b6 1B78     		ldrb	r3, [r3]
+ 375 00b8 002B     		cmp	r3, #0
+ 376 00ba 0DD0     		beq	.L32
+ 377 00bc FFF7FEFF 		bl	__locale_ctype_ptr
+ 378 00c0 0100     		movs	r1, r0
+ 379 00c2 FB68     		ldr	r3, [r7, #12]
+ 380 00c4 3A68     		ldr	r2, [r7]
+ 381 00c6 D318     		adds	r3, r2, r3
+ 382 00c8 1B78     		ldrb	r3, [r3]
+ 383 00ca 0133     		adds	r3, r3, #1
+ 384 00cc CB18     		adds	r3, r1, r3
+ 385 00ce 1B78     		ldrb	r3, [r3]
+ 386 00d0 1A00     		movs	r2, r3
+ 387 00d2 0823     		movs	r3, #8
+ 388 00d4 1340     		ands	r3, r2
+ 389 00d6 E8D1     		bne	.L33
+ 390              	.L32:
+ 391 00d8 FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 8
+
+
+ 392 00da 3A68     		ldr	r2, [r7]
+ 393 00dc D218     		adds	r2, r2, r3
+ 394 00de 7B68     		ldr	r3, [r7, #4]
+ 395 00e0 1100     		movs	r1, r2
+ 396 00e2 1800     		movs	r0, r3
+ 397 00e4 FFF7FEFF 		bl	prv_displayHelp
+ 398 00e8 07E0     		b	.L34
+ 399              	.L30:
+ 400 00ea 074B     		ldr	r3, .L35+4
+ 401 00ec 1B68     		ldr	r3, [r3]
+ 402 00ee 9B68     		ldr	r3, [r3, #8]
+ 403 00f0 0648     		ldr	r0, .L35+8
+ 404 00f2 2822     		movs	r2, #40
+ 405 00f4 0121     		movs	r1, #1
+ 406 00f6 FFF7FEFF 		bl	fwrite
+ 407              	.L34:
+ 408 00fa C046     		nop
+ 409 00fc BD46     		mov	sp, r7
+ 410 00fe 04B0     		add	sp, sp, #16
+ 411              		@ sp needed
+ 412 0100 80BD     		pop	{r7, pc}
+ 413              	.L36:
+ 414 0102 C046     		.align	2
+ 415              	.L35:
+ 416 0104 4C000000 		.word	.LC7
+ 417 0108 00000000 		.word	_impure_ptr
+ 418 010c 54000000 		.word	.LC10
+ 420              		.section	.text.prv_end_of_space,"ax",%progbits
+ 421              		.align	1
+ 422              		.syntax unified
+ 423              		.code	16
+ 424              		.thumb_func
+ 425              		.fpu softvfp
+ 427              	prv_end_of_space:
+ 428              		@ args = 0, pretend = 0, frame = 8
+ 429              		@ frame_needed = 1, uses_anonymous_args = 0
+ 430 0000 80B5     		push	{r7, lr}
+ 431 0002 82B0     		sub	sp, sp, #8
+ 432 0004 00AF     		add	r7, sp, #0
+ 433 0006 7860     		str	r0, [r7, #4]
+ 434 0008 02E0     		b	.L38
+ 435              	.L39:
+ 436 000a 7B68     		ldr	r3, [r7, #4]
+ 437 000c 0133     		adds	r3, r3, #1
+ 438 000e 7B60     		str	r3, [r7, #4]
+ 439              	.L38:
+ 440 0010 FFF7FEFF 		bl	__locale_ctype_ptr
+ 441 0014 0200     		movs	r2, r0
+ 442 0016 7B68     		ldr	r3, [r7, #4]
+ 443 0018 1B78     		ldrb	r3, [r3]
+ 444 001a 0133     		adds	r3, r3, #1
+ 445 001c D318     		adds	r3, r2, r3
+ 446 001e 1B78     		ldrb	r3, [r3]
+ 447 0020 1A00     		movs	r2, r3
+ 448 0022 0823     		movs	r3, #8
+ 449 0024 1340     		ands	r3, r2
+ 450 0026 F0D1     		bne	.L39
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 9
+
+
+ 451 0028 7B68     		ldr	r3, [r7, #4]
+ 452 002a 1800     		movs	r0, r3
+ 453 002c BD46     		mov	sp, r7
+ 454 002e 02B0     		add	sp, sp, #8
+ 455              		@ sp needed
+ 456 0030 80BD     		pop	{r7, pc}
+ 458              		.section	.text.get_end_of_arg,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	get_end_of_arg
+ 461              		.syntax unified
+ 462              		.code	16
+ 463              		.thumb_func
+ 464              		.fpu softvfp
+ 466              	get_end_of_arg:
+ 467              		@ args = 0, pretend = 0, frame = 8
+ 468              		@ frame_needed = 1, uses_anonymous_args = 0
+ 469 0000 80B5     		push	{r7, lr}
+ 470 0002 82B0     		sub	sp, sp, #8
+ 471 0004 00AF     		add	r7, sp, #0
+ 472 0006 7860     		str	r0, [r7, #4]
+ 473 0008 02E0     		b	.L42
+ 474              	.L44:
+ 475 000a 7B68     		ldr	r3, [r7, #4]
+ 476 000c 0133     		adds	r3, r3, #1
+ 477 000e 7B60     		str	r3, [r7, #4]
+ 478              	.L42:
+ 479 0010 7B68     		ldr	r3, [r7, #4]
+ 480 0012 1B78     		ldrb	r3, [r3]
+ 481 0014 002B     		cmp	r3, #0
+ 482 0016 0BD0     		beq	.L43
+ 483 0018 FFF7FEFF 		bl	__locale_ctype_ptr
+ 484 001c 0200     		movs	r2, r0
+ 485 001e 7B68     		ldr	r3, [r7, #4]
+ 486 0020 1B78     		ldrb	r3, [r3]
+ 487 0022 0133     		adds	r3, r3, #1
+ 488 0024 D318     		adds	r3, r2, r3
+ 489 0026 1B78     		ldrb	r3, [r3]
+ 490 0028 1A00     		movs	r2, r3
+ 491 002a 0823     		movs	r3, #8
+ 492 002c 1340     		ands	r3, r2
+ 493 002e ECD0     		beq	.L44
+ 494              	.L43:
+ 495 0030 7B68     		ldr	r3, [r7, #4]
+ 496 0032 1800     		movs	r0, r3
+ 497 0034 BD46     		mov	sp, r7
+ 498 0036 02B0     		add	sp, sp, #8
+ 499              		@ sp needed
+ 500 0038 80BD     		pop	{r7, pc}
+ 502              		.section	.text.get_next_arg,"ax",%progbits
+ 503              		.align	1
+ 504              		.global	get_next_arg
+ 505              		.syntax unified
+ 506              		.code	16
+ 507              		.thumb_func
+ 508              		.fpu softvfp
+ 510              	get_next_arg:
+ 511              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 10
+
+
+ 512              		@ frame_needed = 1, uses_anonymous_args = 0
+ 513 0000 80B5     		push	{r7, lr}
+ 514 0002 82B0     		sub	sp, sp, #8
+ 515 0004 00AF     		add	r7, sp, #0
+ 516 0006 7860     		str	r0, [r7, #4]
+ 517 0008 3960     		str	r1, [r7]
+ 518 000a 7B68     		ldr	r3, [r7, #4]
+ 519 000c 1800     		movs	r0, r3
+ 520 000e FFF7FEFF 		bl	get_end_of_arg
+ 521 0012 0300     		movs	r3, r0
+ 522 0014 7B60     		str	r3, [r7, #4]
+ 523 0016 7B68     		ldr	r3, [r7, #4]
+ 524 0018 1800     		movs	r0, r3
+ 525 001a FFF7FEFF 		bl	prv_end_of_space
+ 526 001e 0300     		movs	r3, r0
+ 527 0020 7B60     		str	r3, [r7, #4]
+ 528 0022 3B68     		ldr	r3, [r7]
+ 529 0024 002B     		cmp	r3, #0
+ 530 0026 06D0     		beq	.L47
+ 531 0028 7B68     		ldr	r3, [r7, #4]
+ 532 002a 1800     		movs	r0, r3
+ 533 002c FFF7FEFF 		bl	get_end_of_arg
+ 534 0030 0200     		movs	r2, r0
+ 535 0032 3B68     		ldr	r3, [r7]
+ 536 0034 1A60     		str	r2, [r3]
+ 537              	.L47:
+ 538 0036 7B68     		ldr	r3, [r7, #4]
+ 539 0038 1800     		movs	r0, r3
+ 540 003a BD46     		mov	sp, r7
+ 541 003c 02B0     		add	sp, sp, #8
+ 542              		@ sp needed
+ 543 003e 80BD     		pop	{r7, pc}
+ 545              		.section	.text.check_end_of_args,"ax",%progbits
+ 546              		.align	1
+ 547              		.global	check_end_of_args
+ 548              		.syntax unified
+ 549              		.code	16
+ 550              		.thumb_func
+ 551              		.fpu softvfp
+ 553              	check_end_of_args:
+ 554              		@ args = 0, pretend = 0, frame = 8
+ 555              		@ frame_needed = 1, uses_anonymous_args = 0
+ 556 0000 80B5     		push	{r7, lr}
+ 557 0002 82B0     		sub	sp, sp, #8
+ 558 0004 00AF     		add	r7, sp, #0
+ 559 0006 7860     		str	r0, [r7, #4]
+ 560 0008 7B68     		ldr	r3, [r7, #4]
+ 561 000a 1800     		movs	r0, r3
+ 562 000c FFF7FEFF 		bl	prv_end_of_space
+ 563 0010 0300     		movs	r3, r0
+ 564 0012 7B60     		str	r3, [r7, #4]
+ 565 0014 7B68     		ldr	r3, [r7, #4]
+ 566 0016 1B78     		ldrb	r3, [r3]
+ 567 0018 5A42     		rsbs	r2, r3, #0
+ 568 001a 5341     		adcs	r3, r3, r2
+ 569 001c DBB2     		uxtb	r3, r3
+ 570 001e 1800     		movs	r0, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 11
+
+
+ 571 0020 BD46     		mov	sp, r7
+ 572 0022 02B0     		add	sp, sp, #8
+ 573              		@ sp needed
+ 574 0024 80BD     		pop	{r7, pc}
+ 576              		.section	.rodata
+ 577 007d 000000   		.align	2
+ 578              	.LC12:
+ 579 0080 20202020 		.ascii	"    \000"
+ 579      00
+ 580              		.section	.text.print_indent,"ax",%progbits
+ 581              		.align	1
+ 582              		.syntax unified
+ 583              		.code	16
+ 584              		.thumb_func
+ 585              		.fpu softvfp
+ 587              	print_indent:
+ 588              		@ args = 0, pretend = 0, frame = 16
+ 589              		@ frame_needed = 1, uses_anonymous_args = 0
+ 590 0000 80B5     		push	{r7, lr}
+ 591 0002 84B0     		sub	sp, sp, #16
+ 592 0004 00AF     		add	r7, sp, #0
+ 593 0006 7860     		str	r0, [r7, #4]
+ 594 0008 3960     		str	r1, [r7]
+ 595 000a 0023     		movs	r3, #0
+ 596 000c FB60     		str	r3, [r7, #12]
+ 597 000e 08E0     		b	.L52
+ 598              	.L53:
+ 599 0010 7B68     		ldr	r3, [r7, #4]
+ 600 0012 0848     		ldr	r0, .L54
+ 601 0014 0422     		movs	r2, #4
+ 602 0016 0121     		movs	r1, #1
+ 603 0018 FFF7FEFF 		bl	fwrite
+ 604 001c FB68     		ldr	r3, [r7, #12]
+ 605 001e 0133     		adds	r3, r3, #1
+ 606 0020 FB60     		str	r3, [r7, #12]
+ 607              	.L52:
+ 608 0022 FA68     		ldr	r2, [r7, #12]
+ 609 0024 3B68     		ldr	r3, [r7]
+ 610 0026 9A42     		cmp	r2, r3
+ 611 0028 F2DB     		blt	.L53
+ 612 002a C046     		nop
+ 613 002c BD46     		mov	sp, r7
+ 614 002e 04B0     		add	sp, sp, #16
+ 615              		@ sp needed
+ 616 0030 80BD     		pop	{r7, pc}
+ 617              	.L55:
+ 618 0032 C046     		.align	2
+ 619              	.L54:
+ 620 0034 80000000 		.word	.LC12
+ 622              		.section	.text.output_buffer,"ax",%progbits
+ 623              		.align	1
+ 624              		.global	output_buffer
+ 625              		.syntax unified
+ 626              		.code	16
+ 627              		.thumb_func
+ 628              		.fpu softvfp
+ 630              	output_buffer:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 12
+
+
+ 631              		@ args = 0, pretend = 0, frame = 16
+ 632              		@ frame_needed = 1, uses_anonymous_args = 0
+ 633 0000 80B5     		push	{r7, lr}
+ 634 0002 84B0     		sub	sp, sp, #16
+ 635 0004 00AF     		add	r7, sp, #0
+ 636 0006 F860     		str	r0, [r7, #12]
+ 637 0008 B960     		str	r1, [r7, #8]
+ 638 000a 7A60     		str	r2, [r7, #4]
+ 639 000c 3B60     		str	r3, [r7]
+ 640 000e C046     		nop
+ 641 0010 BD46     		mov	sp, r7
+ 642 0012 04B0     		add	sp, sp, #16
+ 643              		@ sp needed
+ 644 0014 80BD     		pop	{r7, pc}
+ 646              		.section	.rodata
+ 647 0085 000000   		.align	2
+ 648              	.LC14:
+ 649 0088 7B0D0A00 		.ascii	"{\015\012\000"
+ 650              		.align	2
+ 651              	.LC16:
+ 652 008c 49443A20 		.ascii	"ID: %d\000"
+ 652      256400
+ 653 0093 00       		.align	2
+ 654              	.LC18:
+ 655 0094 20747970 		.ascii	" type: \000"
+ 655      653A2000 
+ 656              		.align	2
+ 657              	.LC20:
+ 658 009c 4F626A65 		.ascii	"Object Instance\000"
+ 658      63742049 
+ 658      6E737461 
+ 658      6E636500 
+ 659              		.align	2
+ 660              	.LC22:
+ 661 00ac 4D756C74 		.ascii	"Multiple Instances\000"
+ 661      69706C65 
+ 661      20496E73 
+ 661      74616E63 
+ 661      657300
+ 662 00bf 00       		.align	2
+ 663              	.LC24:
+ 664 00c0 5265736F 		.ascii	"Resource Value\000"
+ 664      75726365 
+ 664      2056616C 
+ 664      756500
+ 665 00cf 00       		.align	2
+ 666              	.LC26:
+ 667 00d0 756E6B6E 		.ascii	"unknown (%d)\000"
+ 667      6F776E20 
+ 667      28256429 
+ 667      00
+ 668 00dd 000000   		.align	2
+ 669              	.LC28:
+ 670 00e0 7B0A00   		.ascii	"{\012\000"
+ 671 00e3 00       		.align	2
+ 672              	.LC30:
+ 673 00e4 64617461 		.ascii	"data (%d bytes):\015\012\000"
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 13
+
+
+ 673      20282564 
+ 673      20627974 
+ 673      6573293A 
+ 673      0D0A00
+ 674 00f7 00       		.align	2
+ 675              	.LC32:
+ 676 00f8 256C6C64 		.ascii	"%lld\000"
+ 676      00
+ 677 00fd 000000   		.align	2
+ 678              	.LC34:
+ 679 0100 64617461 		.ascii	"data as Integer: %lld\015\012\000"
+ 679      20617320 
+ 679      496E7465 
+ 679      6765723A 
+ 679      20256C6C 
+ 680              		.align	2
+ 681              	.LC36:
+ 682 0118 256C6700 		.ascii	"%lg\000"
+ 683              		.align	2
+ 684              	.LC38:
+ 685 011c 64617461 		.ascii	"data as Float: %.16g\015\012\000"
+ 685      20617320 
+ 685      466C6F61 
+ 685      743A2025 
+ 685      2E313667 
+ 686 0133 00       		.align	2
+ 687              	.LC40:
+ 688 0134 7D0D0A00 		.ascii	"}\015\012\000"
+ 689              		.section	.text.output_tlv,"ax",%progbits
+ 690              		.align	1
+ 691              		.global	output_tlv
+ 692              		.syntax unified
+ 693              		.code	16
+ 694              		.thumb_func
+ 695              		.fpu softvfp
+ 697              	output_tlv:
+ 698              		@ args = 0, pretend = 0, frame = 56
+ 699              		@ frame_needed = 1, uses_anonymous_args = 0
+ 700 0000 90B5     		push	{r4, r7, lr}
+ 701 0002 91B0     		sub	sp, sp, #68
+ 702 0004 02AF     		add	r7, sp, #8
+ 703 0006 F860     		str	r0, [r7, #12]
+ 704 0008 B960     		str	r1, [r7, #8]
+ 705 000a 7A60     		str	r2, [r7, #4]
+ 706 000c 3B60     		str	r3, [r7]
+ 707 000e 0023     		movs	r3, #0
+ 708 0010 7B63     		str	r3, [r7, #52]
+ 709 0012 FEE0     		b	.L58
+ 710              	.L69:
+ 711 0014 3A68     		ldr	r2, [r7]
+ 712 0016 FB68     		ldr	r3, [r7, #12]
+ 713 0018 1100     		movs	r1, r2
+ 714 001a 1800     		movs	r0, r3
+ 715 001c FFF7FEFF 		bl	print_indent
+ 716 0020 FB68     		ldr	r3, [r7, #12]
+ 717 0022 8A48     		ldr	r0, .L71
+ 718 0024 0322     		movs	r2, #3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 14
+
+
+ 719 0026 0121     		movs	r1, #1
+ 720 0028 FFF7FEFF 		bl	fwrite
+ 721 002c 3B68     		ldr	r3, [r7]
+ 722 002e 5A1C     		adds	r2, r3, #1
+ 723 0030 FB68     		ldr	r3, [r7, #12]
+ 724 0032 1100     		movs	r1, r2
+ 725 0034 1800     		movs	r0, r3
+ 726 0036 FFF7FEFF 		bl	print_indent
+ 727 003a 2C23     		movs	r3, #44
+ 728 003c FB18     		adds	r3, r7, r3
+ 729 003e 1B88     		ldrh	r3, [r3]
+ 730 0040 1A00     		movs	r2, r3
+ 731 0042 8349     		ldr	r1, .L71+4
+ 732 0044 FB68     		ldr	r3, [r7, #12]
+ 733 0046 1800     		movs	r0, r3
+ 734 0048 FFF7FEFF 		bl	fprintf
+ 735 004c FB68     		ldr	r3, [r7, #12]
+ 736 004e 8148     		ldr	r0, .L71+8
+ 737 0050 0722     		movs	r2, #7
+ 738 0052 0121     		movs	r1, #1
+ 739 0054 FFF7FEFF 		bl	fwrite
+ 740 0058 2E23     		movs	r3, #46
+ 741 005a FB18     		adds	r3, r7, r3
+ 742 005c 1B78     		ldrb	r3, [r3]
+ 743 005e 032B     		cmp	r3, #3
+ 744 0060 0AD0     		beq	.L60
+ 745 0062 052B     		cmp	r3, #5
+ 746 0064 0FD0     		beq	.L61
+ 747 0066 022B     		cmp	r3, #2
+ 748 0068 14D1     		bne	.L70
+ 749 006a FB68     		ldr	r3, [r7, #12]
+ 750 006c 7A48     		ldr	r0, .L71+12
+ 751 006e 0F22     		movs	r2, #15
+ 752 0070 0121     		movs	r1, #1
+ 753 0072 FFF7FEFF 		bl	fwrite
+ 754 0076 17E0     		b	.L63
+ 755              	.L60:
+ 756 0078 FB68     		ldr	r3, [r7, #12]
+ 757 007a 7848     		ldr	r0, .L71+16
+ 758 007c 1222     		movs	r2, #18
+ 759 007e 0121     		movs	r1, #1
+ 760 0080 FFF7FEFF 		bl	fwrite
+ 761 0084 10E0     		b	.L63
+ 762              	.L61:
+ 763 0086 FB68     		ldr	r3, [r7, #12]
+ 764 0088 7548     		ldr	r0, .L71+20
+ 765 008a 0E22     		movs	r2, #14
+ 766 008c 0121     		movs	r1, #1
+ 767 008e FFF7FEFF 		bl	fwrite
+ 768 0092 09E0     		b	.L63
+ 769              	.L70:
+ 770 0094 2E23     		movs	r3, #46
+ 771 0096 FB18     		adds	r3, r7, r3
+ 772 0098 1B78     		ldrb	r3, [r3]
+ 773 009a 1A00     		movs	r2, r3
+ 774 009c 714B     		ldr	r3, .L71+24
+ 775 009e 1100     		movs	r1, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 15
+
+
+ 776 00a0 1800     		movs	r0, r3
+ 777 00a2 FFF7FEFF 		bl	printf
+ 778 00a6 C046     		nop
+ 779              	.L63:
+ 780 00a8 FB68     		ldr	r3, [r7, #12]
+ 781 00aa 1900     		movs	r1, r3
+ 782 00ac 0A20     		movs	r0, #10
+ 783 00ae FFF7FEFF 		bl	fputc
+ 784 00b2 3B68     		ldr	r3, [r7]
+ 785 00b4 5A1C     		adds	r2, r3, #1
+ 786 00b6 FB68     		ldr	r3, [r7, #12]
+ 787 00b8 1100     		movs	r1, r2
+ 788 00ba 1800     		movs	r0, r3
+ 789 00bc FFF7FEFF 		bl	print_indent
+ 790 00c0 FB68     		ldr	r3, [r7, #12]
+ 791 00c2 6948     		ldr	r0, .L71+28
+ 792 00c4 0222     		movs	r2, #2
+ 793 00c6 0121     		movs	r1, #1
+ 794 00c8 FFF7FEFF 		bl	fwrite
+ 795 00cc 2E23     		movs	r3, #46
+ 796 00ce FB18     		adds	r3, r7, r3
+ 797 00d0 1B78     		ldrb	r3, [r3]
+ 798 00d2 022B     		cmp	r3, #2
+ 799 00d4 04D0     		beq	.L64
+ 800 00d6 2E23     		movs	r3, #46
+ 801 00d8 FB18     		adds	r3, r7, r3
+ 802 00da 1B78     		ldrb	r3, [r3]
+ 803 00dc 032B     		cmp	r3, #3
+ 804 00de 0BD1     		bne	.L65
+ 805              	.L64:
+ 806 00e0 7A6B     		ldr	r2, [r7, #52]
+ 807 00e2 BB6A     		ldr	r3, [r7, #40]
+ 808 00e4 D318     		adds	r3, r2, r3
+ 809 00e6 BA68     		ldr	r2, [r7, #8]
+ 810 00e8 D118     		adds	r1, r2, r3
+ 811 00ea 7A6A     		ldr	r2, [r7, #36]
+ 812 00ec 3B68     		ldr	r3, [r7]
+ 813 00ee 0133     		adds	r3, r3, #1
+ 814 00f0 F868     		ldr	r0, [r7, #12]
+ 815 00f2 FFF7FEFF 		bl	output_tlv
+ 816 00f6 6FE0     		b	.L66
+ 817              	.L65:
+ 818 00f8 3B68     		ldr	r3, [r7]
+ 819 00fa 9A1C     		adds	r2, r3, #2
+ 820 00fc FB68     		ldr	r3, [r7, #12]
+ 821 00fe 1100     		movs	r1, r2
+ 822 0100 1800     		movs	r0, r3
+ 823 0102 FFF7FEFF 		bl	print_indent
+ 824 0106 7A6A     		ldr	r2, [r7, #36]
+ 825 0108 5849     		ldr	r1, .L71+32
+ 826 010a FB68     		ldr	r3, [r7, #12]
+ 827 010c 1800     		movs	r0, r3
+ 828 010e FFF7FEFF 		bl	fprintf
+ 829 0112 7A6B     		ldr	r2, [r7, #52]
+ 830 0114 BB6A     		ldr	r3, [r7, #40]
+ 831 0116 D318     		adds	r3, r2, r3
+ 832 0118 BA68     		ldr	r2, [r7, #8]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 16
+
+
+ 833 011a D118     		adds	r1, r2, r3
+ 834 011c 7B6A     		ldr	r3, [r7, #36]
+ 835 011e 1A00     		movs	r2, r3
+ 836 0120 3B68     		ldr	r3, [r7]
+ 837 0122 0233     		adds	r3, r3, #2
+ 838 0124 F868     		ldr	r0, [r7, #12]
+ 839 0126 FFF7FEFF 		bl	output_buffer
+ 840 012a 7A6B     		ldr	r2, [r7, #52]
+ 841 012c BB6A     		ldr	r3, [r7, #40]
+ 842 012e D218     		adds	r2, r2, r3
+ 843 0130 7B6A     		ldr	r3, [r7, #36]
+ 844 0132 D318     		adds	r3, r2, r3
+ 845 0134 BA68     		ldr	r2, [r7, #8]
+ 846 0136 D218     		adds	r2, r2, r3
+ 847 0138 2F23     		movs	r3, #47
+ 848 013a FB18     		adds	r3, r7, r3
+ 849 013c 1278     		ldrb	r2, [r2]
+ 850 013e 1A70     		strb	r2, [r3]
+ 851 0140 7A6B     		ldr	r2, [r7, #52]
+ 852 0142 BB6A     		ldr	r3, [r7, #40]
+ 853 0144 D218     		adds	r2, r2, r3
+ 854 0146 7B6A     		ldr	r3, [r7, #36]
+ 855 0148 D318     		adds	r3, r2, r3
+ 856 014a BA68     		ldr	r2, [r7, #8]
+ 857 014c D318     		adds	r3, r2, r3
+ 858 014e 0022     		movs	r2, #0
+ 859 0150 1A70     		strb	r2, [r3]
+ 860 0152 7A6B     		ldr	r2, [r7, #52]
+ 861 0154 BB6A     		ldr	r3, [r7, #40]
+ 862 0156 D318     		adds	r3, r2, r3
+ 863 0158 BA68     		ldr	r2, [r7, #8]
+ 864 015a D318     		adds	r3, r2, r3
+ 865 015c 1822     		movs	r2, #24
+ 866 015e BA18     		adds	r2, r7, r2
+ 867 0160 4349     		ldr	r1, .L71+36
+ 868 0162 1800     		movs	r0, r3
+ 869 0164 FFF7FEFF 		bl	sscanf
+ 870 0168 031E     		subs	r3, r0, #0
+ 871 016a 0EDD     		ble	.L67
+ 872 016c 3B68     		ldr	r3, [r7]
+ 873 016e 9A1C     		adds	r2, r3, #2
+ 874 0170 FB68     		ldr	r3, [r7, #12]
+ 875 0172 1100     		movs	r1, r2
+ 876 0174 1800     		movs	r0, r3
+ 877 0176 FFF7FEFF 		bl	print_indent
+ 878 017a BB69     		ldr	r3, [r7, #24]
+ 879 017c FC69     		ldr	r4, [r7, #28]
+ 880 017e 3D49     		ldr	r1, .L71+40
+ 881 0180 F868     		ldr	r0, [r7, #12]
+ 882 0182 1A00     		movs	r2, r3
+ 883 0184 2300     		movs	r3, r4
+ 884 0186 FFF7FEFF 		bl	fprintf
+ 885              	.L67:
+ 886 018a 7A6B     		ldr	r2, [r7, #52]
+ 887 018c BB6A     		ldr	r3, [r7, #40]
+ 888 018e D318     		adds	r3, r2, r3
+ 889 0190 BA68     		ldr	r2, [r7, #8]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 17
+
+
+ 890 0192 D318     		adds	r3, r2, r3
+ 891 0194 1022     		movs	r2, #16
+ 892 0196 BA18     		adds	r2, r7, r2
+ 893 0198 3749     		ldr	r1, .L71+44
+ 894 019a 1800     		movs	r0, r3
+ 895 019c FFF7FEFF 		bl	sscanf
+ 896 01a0 031E     		subs	r3, r0, #0
+ 897 01a2 0EDD     		ble	.L68
+ 898 01a4 3B68     		ldr	r3, [r7]
+ 899 01a6 9A1C     		adds	r2, r3, #2
+ 900 01a8 FB68     		ldr	r3, [r7, #12]
+ 901 01aa 1100     		movs	r1, r2
+ 902 01ac 1800     		movs	r0, r3
+ 903 01ae FFF7FEFF 		bl	print_indent
+ 904 01b2 3B69     		ldr	r3, [r7, #16]
+ 905 01b4 7C69     		ldr	r4, [r7, #20]
+ 906 01b6 3149     		ldr	r1, .L71+48
+ 907 01b8 F868     		ldr	r0, [r7, #12]
+ 908 01ba 1A00     		movs	r2, r3
+ 909 01bc 2300     		movs	r3, r4
+ 910 01be FFF7FEFF 		bl	fprintf
+ 911              	.L68:
+ 912 01c2 7A6B     		ldr	r2, [r7, #52]
+ 913 01c4 BB6A     		ldr	r3, [r7, #40]
+ 914 01c6 D218     		adds	r2, r2, r3
+ 915 01c8 7B6A     		ldr	r3, [r7, #36]
+ 916 01ca D318     		adds	r3, r2, r3
+ 917 01cc BA68     		ldr	r2, [r7, #8]
+ 918 01ce D318     		adds	r3, r2, r3
+ 919 01d0 2F22     		movs	r2, #47
+ 920 01d2 BA18     		adds	r2, r7, r2
+ 921 01d4 1278     		ldrb	r2, [r2]
+ 922 01d6 1A70     		strb	r2, [r3]
+ 923              	.L66:
+ 924 01d8 3B68     		ldr	r3, [r7]
+ 925 01da 5A1C     		adds	r2, r3, #1
+ 926 01dc FB68     		ldr	r3, [r7, #12]
+ 927 01de 1100     		movs	r1, r2
+ 928 01e0 1800     		movs	r0, r3
+ 929 01e2 FFF7FEFF 		bl	print_indent
+ 930 01e6 FB68     		ldr	r3, [r7, #12]
+ 931 01e8 2548     		ldr	r0, .L71+52
+ 932 01ea 0322     		movs	r2, #3
+ 933 01ec 0121     		movs	r1, #1
+ 934 01ee FFF7FEFF 		bl	fwrite
+ 935 01f2 7A6B     		ldr	r2, [r7, #52]
+ 936 01f4 3B6B     		ldr	r3, [r7, #48]
+ 937 01f6 D318     		adds	r3, r2, r3
+ 938 01f8 7B63     		str	r3, [r7, #52]
+ 939 01fa 3A68     		ldr	r2, [r7]
+ 940 01fc FB68     		ldr	r3, [r7, #12]
+ 941 01fe 1100     		movs	r1, r2
+ 942 0200 1800     		movs	r0, r3
+ 943 0202 FFF7FEFF 		bl	print_indent
+ 944 0206 FB68     		ldr	r3, [r7, #12]
+ 945 0208 1D48     		ldr	r0, .L71+52
+ 946 020a 0322     		movs	r2, #3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 18
+
+
+ 947 020c 0121     		movs	r1, #1
+ 948 020e FFF7FEFF 		bl	fwrite
+ 949              	.L58:
+ 950 0212 7B6B     		ldr	r3, [r7, #52]
+ 951 0214 BA68     		ldr	r2, [r7, #8]
+ 952 0216 D018     		adds	r0, r2, r3
+ 953 0218 7B6B     		ldr	r3, [r7, #52]
+ 954 021a 7A68     		ldr	r2, [r7, #4]
+ 955 021c D11A     		subs	r1, r2, r3
+ 956 021e 2C23     		movs	r3, #44
+ 957 0220 FC18     		adds	r4, r7, r3
+ 958 0222 2E23     		movs	r3, #46
+ 959 0224 FA18     		adds	r2, r7, r3
+ 960 0226 2423     		movs	r3, #36
+ 961 0228 FB18     		adds	r3, r7, r3
+ 962 022a 0193     		str	r3, [sp, #4]
+ 963 022c 2823     		movs	r3, #40
+ 964 022e FB18     		adds	r3, r7, r3
+ 965 0230 0093     		str	r3, [sp]
+ 966 0232 2300     		movs	r3, r4
+ 967 0234 FFF7FEFF 		bl	lwm2m_decode_TLV
+ 968 0238 0300     		movs	r3, r0
+ 969 023a 3B63     		str	r3, [r7, #48]
+ 970 023c 3B6B     		ldr	r3, [r7, #48]
+ 971 023e 002B     		cmp	r3, #0
+ 972 0240 00D0     		beq	.LCB944
+ 973 0242 E7E6     		b	.L69	@long jump
+ 974              	.LCB944:
+ 975 0244 C046     		nop
+ 976 0246 BD46     		mov	sp, r7
+ 977 0248 0FB0     		add	sp, sp, #60
+ 978              		@ sp needed
+ 979 024a 90BD     		pop	{r4, r7, pc}
+ 980              	.L72:
+ 981              		.align	2
+ 982              	.L71:
+ 983 024c 88000000 		.word	.LC14
+ 984 0250 8C000000 		.word	.LC16
+ 985 0254 94000000 		.word	.LC18
+ 986 0258 9C000000 		.word	.LC20
+ 987 025c AC000000 		.word	.LC22
+ 988 0260 C0000000 		.word	.LC24
+ 989 0264 D0000000 		.word	.LC26
+ 990 0268 E0000000 		.word	.LC28
+ 991 026c E4000000 		.word	.LC30
+ 992 0270 F8000000 		.word	.LC32
+ 993 0274 00010000 		.word	.LC34
+ 994 0278 18010000 		.word	.LC36
+ 995 027c 1C010000 		.word	.LC38
+ 996 0280 34010000 		.word	.LC40
+ 998              		.section	.rodata
+ 999              		.align	2
+ 1000              	.LC42:
+ 1001 0138 25642062 		.ascii	"%d bytes received of type \000"
+ 1001      79746573 
+ 1001      20726563 
+ 1001      65697665 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 19
+
+
+ 1001      64206F66 
+ 1002 0153 00       		.align	2
+ 1003              	.LC44:
+ 1004 0154 74657874 		.ascii	"text/plain:\015\012\000"
+ 1004      2F706C61 
+ 1004      696E3A0D 
+ 1004      0A00
+ 1005 0162 0000     		.align	2
+ 1006              	.LC46:
+ 1007 0164 6170706C 		.ascii	"application/octet-stream:\015\012\000"
+ 1007      69636174 
+ 1007      696F6E2F 
+ 1007      6F637465 
+ 1007      742D7374 
+ 1008              		.align	2
+ 1009              	.LC48:
+ 1010 0180 6170706C 		.ascii	"application/vnd.oma.lwm2m+tlv:\015\012\000"
+ 1010      69636174 
+ 1010      696F6E2F 
+ 1010      766E642E 
+ 1010      6F6D612E 
+ 1011 01a1 000000   		.align	2
+ 1012              	.LC50:
+ 1013 01a4 6170706C 		.ascii	"application/vnd.oma.lwm2m+json:\015\012\000"
+ 1013      69636174 
+ 1013      696F6E2F 
+ 1013      766E642E 
+ 1013      6F6D612E 
+ 1014 01c6 0000     		.align	2
+ 1015              	.LC52:
+ 1016 01c8 6170706C 		.ascii	"application/link-format:\015\012\000"
+ 1016      69636174 
+ 1016      696F6E2F 
+ 1016      6C696E6B 
+ 1016      2D666F72 
+ 1017 01e3 00       		.align	2
+ 1018              	.LC54:
+ 1019 01e4 556E6B6E 		.ascii	"Unknown (%d):\015\012\000"
+ 1019      6F776E20 
+ 1019      28256429 
+ 1019      3A0D0A00 
+ 1020              		.section	.text.output_data,"ax",%progbits
+ 1021              		.align	1
+ 1022              		.global	output_data
+ 1023              		.syntax unified
+ 1024              		.code	16
+ 1025              		.thumb_func
+ 1026              		.fpu softvfp
+ 1028              	output_data:
+ 1029              		@ args = 4, pretend = 0, frame = 24
+ 1030              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1031 0000 90B5     		push	{r4, r7, lr}
+ 1032 0002 87B0     		sub	sp, sp, #28
+ 1033 0004 00AF     		add	r7, sp, #0
+ 1034 0006 F860     		str	r0, [r7, #12]
+ 1035 0008 7A60     		str	r2, [r7, #4]
+ 1036 000a 3B60     		str	r3, [r7]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 20
+
+
+ 1037 000c 0A24     		movs	r4, #10
+ 1038 000e 3B19     		adds	r3, r7, r4
+ 1039 0010 0A1C     		adds	r2, r1, #0
+ 1040 0012 1A80     		strh	r2, [r3]
+ 1041 0014 BA6A     		ldr	r2, [r7, #40]
+ 1042 0016 FB68     		ldr	r3, [r7, #12]
+ 1043 0018 1100     		movs	r1, r2
+ 1044 001a 1800     		movs	r0, r3
+ 1045 001c FFF7FEFF 		bl	print_indent
+ 1046 0020 3A68     		ldr	r2, [r7]
+ 1047 0022 4E49     		ldr	r1, .L86
+ 1048 0024 FB68     		ldr	r3, [r7, #12]
+ 1049 0026 1800     		movs	r0, r3
+ 1050 0028 FFF7FEFF 		bl	fprintf
+ 1051 002c 3B19     		adds	r3, r7, r4
+ 1052 002e 1B88     		ldrh	r3, [r3]
+ 1053 0030 2A2B     		cmp	r3, #42
+ 1054 0032 19D0     		beq	.L75
+ 1055 0034 04DC     		bgt	.L76
+ 1056 0036 002B     		cmp	r3, #0
+ 1057 0038 09D0     		beq	.L77
+ 1058 003a 282B     		cmp	r3, #40
+ 1059 003c 54D0     		beq	.L78
+ 1060 003e 79E0     		b	.L74
+ 1061              	.L76:
+ 1062 0040 474A     		ldr	r2, .L86+4
+ 1063 0042 9342     		cmp	r3, r2
+ 1064 0044 1DD0     		beq	.L79
+ 1065 0046 474A     		ldr	r2, .L86+8
+ 1066 0048 9342     		cmp	r3, r2
+ 1067 004a 27D0     		beq	.L80
+ 1068 004c 72E0     		b	.L74
+ 1069              	.L77:
+ 1070 004e FB68     		ldr	r3, [r7, #12]
+ 1071 0050 4548     		ldr	r0, .L86+12
+ 1072 0052 0D22     		movs	r2, #13
+ 1073 0054 0121     		movs	r1, #1
+ 1074 0056 FFF7FEFF 		bl	fwrite
+ 1075 005a BB6A     		ldr	r3, [r7, #40]
+ 1076 005c 3A68     		ldr	r2, [r7]
+ 1077 005e 7968     		ldr	r1, [r7, #4]
+ 1078 0060 F868     		ldr	r0, [r7, #12]
+ 1079 0062 FFF7FEFF 		bl	output_buffer
+ 1080 0066 74E0     		b	.L81
+ 1081              	.L75:
+ 1082 0068 FB68     		ldr	r3, [r7, #12]
+ 1083 006a 4048     		ldr	r0, .L86+16
+ 1084 006c 1B22     		movs	r2, #27
+ 1085 006e 0121     		movs	r1, #1
+ 1086 0070 FFF7FEFF 		bl	fwrite
+ 1087 0074 BB6A     		ldr	r3, [r7, #40]
+ 1088 0076 3A68     		ldr	r2, [r7]
+ 1089 0078 7968     		ldr	r1, [r7, #4]
+ 1090 007a F868     		ldr	r0, [r7, #12]
+ 1091 007c FFF7FEFF 		bl	output_buffer
+ 1092 0080 67E0     		b	.L81
+ 1093              	.L79:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 21
+
+
+ 1094 0082 FB68     		ldr	r3, [r7, #12]
+ 1095 0084 3A48     		ldr	r0, .L86+20
+ 1096 0086 2022     		movs	r2, #32
+ 1097 0088 0121     		movs	r1, #1
+ 1098 008a FFF7FEFF 		bl	fwrite
+ 1099 008e 3A68     		ldr	r2, [r7]
+ 1100 0090 BB6A     		ldr	r3, [r7, #40]
+ 1101 0092 7968     		ldr	r1, [r7, #4]
+ 1102 0094 F868     		ldr	r0, [r7, #12]
+ 1103 0096 FFF7FEFF 		bl	output_tlv
+ 1104 009a 5AE0     		b	.L81
+ 1105              	.L80:
+ 1106 009c FB68     		ldr	r3, [r7, #12]
+ 1107 009e 3548     		ldr	r0, .L86+24
+ 1108 00a0 2122     		movs	r2, #33
+ 1109 00a2 0121     		movs	r1, #1
+ 1110 00a4 FFF7FEFF 		bl	fwrite
+ 1111 00a8 BA6A     		ldr	r2, [r7, #40]
+ 1112 00aa FB68     		ldr	r3, [r7, #12]
+ 1113 00ac 1100     		movs	r1, r2
+ 1114 00ae 1800     		movs	r0, r3
+ 1115 00b0 FFF7FEFF 		bl	print_indent
+ 1116 00b4 0023     		movs	r3, #0
+ 1117 00b6 7B61     		str	r3, [r7, #20]
+ 1118 00b8 0CE0     		b	.L82
+ 1119              	.L83:
+ 1120 00ba 7B69     		ldr	r3, [r7, #20]
+ 1121 00bc 7A68     		ldr	r2, [r7, #4]
+ 1122 00be D318     		adds	r3, r2, r3
+ 1123 00c0 1B78     		ldrb	r3, [r3]
+ 1124 00c2 1A00     		movs	r2, r3
+ 1125 00c4 FB68     		ldr	r3, [r7, #12]
+ 1126 00c6 1900     		movs	r1, r3
+ 1127 00c8 1000     		movs	r0, r2
+ 1128 00ca FFF7FEFF 		bl	fputc
+ 1129 00ce 7B69     		ldr	r3, [r7, #20]
+ 1130 00d0 0133     		adds	r3, r3, #1
+ 1131 00d2 7B61     		str	r3, [r7, #20]
+ 1132              	.L82:
+ 1133 00d4 7A69     		ldr	r2, [r7, #20]
+ 1134 00d6 3B68     		ldr	r3, [r7]
+ 1135 00d8 9A42     		cmp	r2, r3
+ 1136 00da EEDB     		blt	.L83
+ 1137 00dc FB68     		ldr	r3, [r7, #12]
+ 1138 00de 1900     		movs	r1, r3
+ 1139 00e0 0A20     		movs	r0, #10
+ 1140 00e2 FFF7FEFF 		bl	fputc
+ 1141 00e6 34E0     		b	.L81
+ 1142              	.L78:
+ 1143 00e8 FB68     		ldr	r3, [r7, #12]
+ 1144 00ea 2348     		ldr	r0, .L86+28
+ 1145 00ec 1A22     		movs	r2, #26
+ 1146 00ee 0121     		movs	r1, #1
+ 1147 00f0 FFF7FEFF 		bl	fwrite
+ 1148 00f4 BA6A     		ldr	r2, [r7, #40]
+ 1149 00f6 FB68     		ldr	r3, [r7, #12]
+ 1150 00f8 1100     		movs	r1, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 22
+
+
+ 1151 00fa 1800     		movs	r0, r3
+ 1152 00fc FFF7FEFF 		bl	print_indent
+ 1153 0100 0023     		movs	r3, #0
+ 1154 0102 7B61     		str	r3, [r7, #20]
+ 1155 0104 0CE0     		b	.L84
+ 1156              	.L85:
+ 1157 0106 7B69     		ldr	r3, [r7, #20]
+ 1158 0108 7A68     		ldr	r2, [r7, #4]
+ 1159 010a D318     		adds	r3, r2, r3
+ 1160 010c 1B78     		ldrb	r3, [r3]
+ 1161 010e 1A00     		movs	r2, r3
+ 1162 0110 FB68     		ldr	r3, [r7, #12]
+ 1163 0112 1900     		movs	r1, r3
+ 1164 0114 1000     		movs	r0, r2
+ 1165 0116 FFF7FEFF 		bl	fputc
+ 1166 011a 7B69     		ldr	r3, [r7, #20]
+ 1167 011c 0133     		adds	r3, r3, #1
+ 1168 011e 7B61     		str	r3, [r7, #20]
+ 1169              	.L84:
+ 1170 0120 7A69     		ldr	r2, [r7, #20]
+ 1171 0122 3B68     		ldr	r3, [r7]
+ 1172 0124 9A42     		cmp	r2, r3
+ 1173 0126 EEDB     		blt	.L85
+ 1174 0128 FB68     		ldr	r3, [r7, #12]
+ 1175 012a 1900     		movs	r1, r3
+ 1176 012c 0A20     		movs	r0, #10
+ 1177 012e FFF7FEFF 		bl	fputc
+ 1178 0132 0EE0     		b	.L81
+ 1179              	.L74:
+ 1180 0134 0A23     		movs	r3, #10
+ 1181 0136 FB18     		adds	r3, r7, r3
+ 1182 0138 1A88     		ldrh	r2, [r3]
+ 1183 013a 1049     		ldr	r1, .L86+32
+ 1184 013c FB68     		ldr	r3, [r7, #12]
+ 1185 013e 1800     		movs	r0, r3
+ 1186 0140 FFF7FEFF 		bl	fprintf
+ 1187 0144 BB6A     		ldr	r3, [r7, #40]
+ 1188 0146 3A68     		ldr	r2, [r7]
+ 1189 0148 7968     		ldr	r1, [r7, #4]
+ 1190 014a F868     		ldr	r0, [r7, #12]
+ 1191 014c FFF7FEFF 		bl	output_buffer
+ 1192 0150 C046     		nop
+ 1193              	.L81:
+ 1194 0152 C046     		nop
+ 1195 0154 BD46     		mov	sp, r7
+ 1196 0156 07B0     		add	sp, sp, #28
+ 1197              		@ sp needed
+ 1198 0158 90BD     		pop	{r4, r7, pc}
+ 1199              	.L87:
+ 1200 015a C046     		.align	2
+ 1201              	.L86:
+ 1202 015c 38010000 		.word	.LC42
+ 1203 0160 162D0000 		.word	11542
+ 1204 0164 172D0000 		.word	11543
+ 1205 0168 54010000 		.word	.LC44
+ 1206 016c 64010000 		.word	.LC46
+ 1207 0170 80010000 		.word	.LC48
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 23
+
+
+ 1208 0174 A4010000 		.word	.LC50
+ 1209 0178 C8010000 		.word	.LC52
+ 1210 017c E4010000 		.word	.LC54
+ 1212              		.section	.rodata
+ 1213              		.align	2
+ 1214              	.LC57:
+ 1215 01f4 69643A20 		.ascii	"id: %d\015\012\000"
+ 1215      25640D0A 
+ 1215      00
+ 1216 01fd 000000   		.align	2
+ 1217              	.LC59:
+ 1218 0200 74797065 		.ascii	"type: \000"
+ 1218      3A2000
+ 1219 0207 00       		.align	2
+ 1220              	.LC62:
+ 1221 0208 4C574D32 		.ascii	"LWM2M_TYPE_OBJECT\015\012\000"
+ 1221      4D5F5459 
+ 1221      50455F4F 
+ 1221      424A4543 
+ 1221      540D0A00 
+ 1222              		.align	2
+ 1223              	.LC64:
+ 1224 021c 4C574D32 		.ascii	"LWM2M_TYPE_OBJECT_INSTANCE\015\012\000"
+ 1224      4D5F5459 
+ 1224      50455F4F 
+ 1224      424A4543 
+ 1224      545F494E 
+ 1225 0239 000000   		.align	2
+ 1226              	.LC66:
+ 1227 023c 4C574D32 		.ascii	"LWM2M_TYPE_MULTIPLE_RESOURCE\015\012\000"
+ 1227      4D5F5459 
+ 1227      50455F4D 
+ 1227      554C5449 
+ 1227      504C455F 
+ 1228 025b 00       		.align	2
+ 1229              	.LC68:
+ 1230 025c 4C574D32 		.ascii	"LWM2M_TYPE_UNDEFINED\015\012\000"
+ 1230      4D5F5459 
+ 1230      50455F55 
+ 1230      4E444546 
+ 1230      494E4544 
+ 1231 0273 00       		.align	2
+ 1232              	.LC70:
+ 1233 0274 4C574D32 		.ascii	"LWM2M_TYPE_STRING\015\012\000"
+ 1233      4D5F5459 
+ 1233      50455F53 
+ 1233      5452494E 
+ 1233      470D0A00 
+ 1234              		.align	2
+ 1235              	.LC72:
+ 1236 0288 22252E2A 		.ascii	"\"%.*s\"\015\012\000"
+ 1236      73220D0A 
+ 1236      00
+ 1237 0291 000000   		.align	2
+ 1238              	.LC74:
+ 1239 0294 4C574D32 		.ascii	"LWM2M_TYPE_OPAQUE\015\012\000"
+ 1239      4D5F5459 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 24
+
+
+ 1239      50455F4F 
+ 1239      50415155 
+ 1239      450D0A00 
+ 1240              		.align	2
+ 1241              	.LC76:
+ 1242 02a8 4C574D32 		.ascii	"LWM2M_TYPE_INTEGER: \000"
+ 1242      4D5F5459 
+ 1242      50455F49 
+ 1242      4E544547 
+ 1242      45523A20 
+ 1243 02bd 000000   		.align	2
+ 1244              	.LC79:
+ 1245 02c0 0D0A00   		.ascii	"\015\012\000"
+ 1246 02c3 00       		.align	2
+ 1247              	.LC81:
+ 1248 02c4 4C574D32 		.ascii	"LWM2M_TYPE_FLOAT: \000"
+ 1248      4D5F5459 
+ 1248      50455F46 
+ 1248      4C4F4154 
+ 1248      3A2000
+ 1249 02d7 00       		.align	2
+ 1250              	.LC83:
+ 1251 02d8 4C574D32 		.ascii	"LWM2M_TYPE_BOOLEAN: \000"
+ 1251      4D5F5459 
+ 1251      50455F42 
+ 1251      4F4F4C45 
+ 1251      414E3A20 
+ 1252 02ed 000000   		.align	2
+ 1253              	.LC85:
+ 1254 02f0 74727565 		.ascii	"true\000"
+ 1254      00
+ 1255 02f5 000000   		.align	2
+ 1256              	.LC87:
+ 1257 02f8 66616C73 		.ascii	"false\000"
+ 1257      6500
+ 1258 02fe 0000     		.align	2
+ 1259              	.LC89:
+ 1260 0300 4C574D32 		.ascii	"LWM2M_TYPE_OBJECT_LINK\015\012\000"
+ 1260      4D5F5459 
+ 1260      50455F4F 
+ 1260      424A4543 
+ 1260      545F4C49 
+ 1261 0319 000000   		.align	2
+ 1262              	.LC91:
+ 1263 031c 756E6B6E 		.ascii	"unknown (%d)\015\012\000"
+ 1263      6F776E20 
+ 1263      28256429 
+ 1263      0D0A00
+ 1264              		.section	.text.dump_tlv,"ax",%progbits
+ 1265              		.align	1
+ 1266              		.global	dump_tlv
+ 1267              		.syntax unified
+ 1268              		.code	16
+ 1269              		.thumb_func
+ 1270              		.fpu softvfp
+ 1272              	dump_tlv:
+ 1273              		@ args = 0, pretend = 0, frame = 24
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 25
+
+
+ 1274              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1275 0000 90B5     		push	{r4, r7, lr}
+ 1276 0002 87B0     		sub	sp, sp, #28
+ 1277 0004 00AF     		add	r7, sp, #0
+ 1278 0006 F860     		str	r0, [r7, #12]
+ 1279 0008 B960     		str	r1, [r7, #8]
+ 1280 000a 7A60     		str	r2, [r7, #4]
+ 1281 000c 3B60     		str	r3, [r7]
+ 1282 000e 0023     		movs	r3, #0
+ 1283 0010 7B61     		str	r3, [r7, #20]
+ 1284 0012 36E1     		b	.L89
+ 1285              	.L105:
+ 1286 0014 3A68     		ldr	r2, [r7]
+ 1287 0016 FB68     		ldr	r3, [r7, #12]
+ 1288 0018 1100     		movs	r1, r2
+ 1289 001a 1800     		movs	r0, r3
+ 1290 001c FFF7FEFF 		bl	print_indent
+ 1291 0020 FB68     		ldr	r3, [r7, #12]
+ 1292 0022 9C48     		ldr	r0, .L106
+ 1293 0024 0322     		movs	r2, #3
+ 1294 0026 0121     		movs	r1, #1
+ 1295 0028 FFF7FEFF 		bl	fwrite
+ 1296 002c 3B68     		ldr	r3, [r7]
+ 1297 002e 5A1C     		adds	r2, r3, #1
+ 1298 0030 FB68     		ldr	r3, [r7, #12]
+ 1299 0032 1100     		movs	r1, r2
+ 1300 0034 1800     		movs	r0, r3
+ 1301 0036 FFF7FEFF 		bl	print_indent
+ 1302 003a 7B69     		ldr	r3, [r7, #20]
+ 1303 003c 1B01     		lsls	r3, r3, #4
+ 1304 003e 7A68     		ldr	r2, [r7, #4]
+ 1305 0040 D318     		adds	r3, r2, r3
+ 1306 0042 5B88     		ldrh	r3, [r3, #2]
+ 1307 0044 1A00     		movs	r2, r3
+ 1308 0046 9449     		ldr	r1, .L106+4
+ 1309 0048 FB68     		ldr	r3, [r7, #12]
+ 1310 004a 1800     		movs	r0, r3
+ 1311 004c FFF7FEFF 		bl	fprintf
+ 1312 0050 3B68     		ldr	r3, [r7]
+ 1313 0052 5A1C     		adds	r2, r3, #1
+ 1314 0054 FB68     		ldr	r3, [r7, #12]
+ 1315 0056 1100     		movs	r1, r2
+ 1316 0058 1800     		movs	r0, r3
+ 1317 005a FFF7FEFF 		bl	print_indent
+ 1318 005e FB68     		ldr	r3, [r7, #12]
+ 1319 0060 8E48     		ldr	r0, .L106+8
+ 1320 0062 0622     		movs	r2, #6
+ 1321 0064 0121     		movs	r1, #1
+ 1322 0066 FFF7FEFF 		bl	fwrite
+ 1323 006a 7B69     		ldr	r3, [r7, #20]
+ 1324 006c 1B01     		lsls	r3, r3, #4
+ 1325 006e 7A68     		ldr	r2, [r7, #4]
+ 1326 0070 D318     		adds	r3, r2, r3
+ 1327 0072 1B78     		ldrb	r3, [r3]
+ 1328 0074 092B     		cmp	r3, #9
+ 1329 0076 00D9     		bls	.LCB1250
+ 1330 0078 E8E0     		b	.L90	@long jump
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 26
+
+
+ 1331              	.LCB1250:
+ 1332 007a 9A00     		lsls	r2, r3, #2
+ 1333 007c 884B     		ldr	r3, .L106+12
+ 1334 007e D318     		adds	r3, r2, r3
+ 1335 0080 1B68     		ldr	r3, [r3]
+ 1336 0082 9F46     		mov	pc, r3
+ 1337              		.section	.rodata.dump_tlv,"a",%progbits
+ 1338              		.align	2
+ 1339              	.L92:
+ 1340 0000 0E010000 		.word	.L91
+ 1341 0004 84000000 		.word	.L93
+ 1342 0008 B2000000 		.word	.L94
+ 1343 000c E0000000 		.word	.L95
+ 1344 0010 1C010000 		.word	.L96
+ 1345 0014 58010000 		.word	.L97
+ 1346 0018 86010000 		.word	.L98
+ 1347 001c C6010000 		.word	.L99
+ 1348 0020 06020000 		.word	.L100
+ 1349 0024 3E020000 		.word	.L101
+ 1350              		.section	.text.dump_tlv
+ 1351              	.L93:
+ 1352 0084 FB68     		ldr	r3, [r7, #12]
+ 1353 0086 8748     		ldr	r0, .L106+16
+ 1354 0088 1322     		movs	r2, #19
+ 1355 008a 0121     		movs	r1, #1
+ 1356 008c FFF7FEFF 		bl	fwrite
+ 1357 0090 7B69     		ldr	r3, [r7, #20]
+ 1358 0092 1B01     		lsls	r3, r3, #4
+ 1359 0094 7A68     		ldr	r2, [r7, #4]
+ 1360 0096 D318     		adds	r3, r2, r3
+ 1361 0098 9B68     		ldr	r3, [r3, #8]
+ 1362 009a 1900     		movs	r1, r3
+ 1363 009c 7B69     		ldr	r3, [r7, #20]
+ 1364 009e 1B01     		lsls	r3, r3, #4
+ 1365 00a0 7A68     		ldr	r2, [r7, #4]
+ 1366 00a2 D318     		adds	r3, r2, r3
+ 1367 00a4 DA68     		ldr	r2, [r3, #12]
+ 1368 00a6 3B68     		ldr	r3, [r7]
+ 1369 00a8 0133     		adds	r3, r3, #1
+ 1370 00aa F868     		ldr	r0, [r7, #12]
+ 1371 00ac FFF7FEFF 		bl	dump_tlv
+ 1372 00b0 D8E0     		b	.L102
+ 1373              	.L94:
+ 1374 00b2 FB68     		ldr	r3, [r7, #12]
+ 1375 00b4 7C48     		ldr	r0, .L106+20
+ 1376 00b6 1C22     		movs	r2, #28
+ 1377 00b8 0121     		movs	r1, #1
+ 1378 00ba FFF7FEFF 		bl	fwrite
+ 1379 00be 7B69     		ldr	r3, [r7, #20]
+ 1380 00c0 1B01     		lsls	r3, r3, #4
+ 1381 00c2 7A68     		ldr	r2, [r7, #4]
+ 1382 00c4 D318     		adds	r3, r2, r3
+ 1383 00c6 9B68     		ldr	r3, [r3, #8]
+ 1384 00c8 1900     		movs	r1, r3
+ 1385 00ca 7B69     		ldr	r3, [r7, #20]
+ 1386 00cc 1B01     		lsls	r3, r3, #4
+ 1387 00ce 7A68     		ldr	r2, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 27
+
+
+ 1388 00d0 D318     		adds	r3, r2, r3
+ 1389 00d2 DA68     		ldr	r2, [r3, #12]
+ 1390 00d4 3B68     		ldr	r3, [r7]
+ 1391 00d6 0133     		adds	r3, r3, #1
+ 1392 00d8 F868     		ldr	r0, [r7, #12]
+ 1393 00da FFF7FEFF 		bl	dump_tlv
+ 1394 00de C1E0     		b	.L102
+ 1395              	.L95:
+ 1396 00e0 FB68     		ldr	r3, [r7, #12]
+ 1397 00e2 7248     		ldr	r0, .L106+24
+ 1398 00e4 1E22     		movs	r2, #30
+ 1399 00e6 0121     		movs	r1, #1
+ 1400 00e8 FFF7FEFF 		bl	fwrite
+ 1401 00ec 7B69     		ldr	r3, [r7, #20]
+ 1402 00ee 1B01     		lsls	r3, r3, #4
+ 1403 00f0 7A68     		ldr	r2, [r7, #4]
+ 1404 00f2 D318     		adds	r3, r2, r3
+ 1405 00f4 9B68     		ldr	r3, [r3, #8]
+ 1406 00f6 1900     		movs	r1, r3
+ 1407 00f8 7B69     		ldr	r3, [r7, #20]
+ 1408 00fa 1B01     		lsls	r3, r3, #4
+ 1409 00fc 7A68     		ldr	r2, [r7, #4]
+ 1410 00fe D318     		adds	r3, r2, r3
+ 1411 0100 DA68     		ldr	r2, [r3, #12]
+ 1412 0102 3B68     		ldr	r3, [r7]
+ 1413 0104 0133     		adds	r3, r3, #1
+ 1414 0106 F868     		ldr	r0, [r7, #12]
+ 1415 0108 FFF7FEFF 		bl	dump_tlv
+ 1416 010c AAE0     		b	.L102
+ 1417              	.L91:
+ 1418 010e FB68     		ldr	r3, [r7, #12]
+ 1419 0110 6748     		ldr	r0, .L106+28
+ 1420 0112 1622     		movs	r2, #22
+ 1421 0114 0121     		movs	r1, #1
+ 1422 0116 FFF7FEFF 		bl	fwrite
+ 1423 011a A3E0     		b	.L102
+ 1424              	.L96:
+ 1425 011c FB68     		ldr	r3, [r7, #12]
+ 1426 011e 6548     		ldr	r0, .L106+32
+ 1427 0120 1322     		movs	r2, #19
+ 1428 0122 0121     		movs	r1, #1
+ 1429 0124 FFF7FEFF 		bl	fwrite
+ 1430 0128 3B68     		ldr	r3, [r7]
+ 1431 012a 5A1C     		adds	r2, r3, #1
+ 1432 012c FB68     		ldr	r3, [r7, #12]
+ 1433 012e 1100     		movs	r1, r2
+ 1434 0130 1800     		movs	r0, r3
+ 1435 0132 FFF7FEFF 		bl	print_indent
+ 1436 0136 7B69     		ldr	r3, [r7, #20]
+ 1437 0138 1B01     		lsls	r3, r3, #4
+ 1438 013a 7A68     		ldr	r2, [r7, #4]
+ 1439 013c D318     		adds	r3, r2, r3
+ 1440 013e 9B68     		ldr	r3, [r3, #8]
+ 1441 0140 1C00     		movs	r4, r3
+ 1442 0142 7B69     		ldr	r3, [r7, #20]
+ 1443 0144 1B01     		lsls	r3, r3, #4
+ 1444 0146 7A68     		ldr	r2, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 28
+
+
+ 1445 0148 D318     		adds	r3, r2, r3
+ 1446 014a DB68     		ldr	r3, [r3, #12]
+ 1447 014c 5A49     		ldr	r1, .L106+36
+ 1448 014e F868     		ldr	r0, [r7, #12]
+ 1449 0150 2200     		movs	r2, r4
+ 1450 0152 FFF7FEFF 		bl	fprintf
+ 1451 0156 85E0     		b	.L102
+ 1452              	.L97:
+ 1453 0158 FB68     		ldr	r3, [r7, #12]
+ 1454 015a 5848     		ldr	r0, .L106+40
+ 1455 015c 1322     		movs	r2, #19
+ 1456 015e 0121     		movs	r1, #1
+ 1457 0160 FFF7FEFF 		bl	fwrite
+ 1458 0164 7B69     		ldr	r3, [r7, #20]
+ 1459 0166 1B01     		lsls	r3, r3, #4
+ 1460 0168 7A68     		ldr	r2, [r7, #4]
+ 1461 016a D318     		adds	r3, r2, r3
+ 1462 016c D968     		ldr	r1, [r3, #12]
+ 1463 016e 7B69     		ldr	r3, [r7, #20]
+ 1464 0170 1B01     		lsls	r3, r3, #4
+ 1465 0172 7A68     		ldr	r2, [r7, #4]
+ 1466 0174 D318     		adds	r3, r2, r3
+ 1467 0176 9B68     		ldr	r3, [r3, #8]
+ 1468 0178 1A00     		movs	r2, r3
+ 1469 017a 3B68     		ldr	r3, [r7]
+ 1470 017c 0133     		adds	r3, r3, #1
+ 1471 017e F868     		ldr	r0, [r7, #12]
+ 1472 0180 FFF7FEFF 		bl	output_buffer
+ 1473 0184 6EE0     		b	.L102
+ 1474              	.L98:
+ 1475 0186 FB68     		ldr	r3, [r7, #12]
+ 1476 0188 4D48     		ldr	r0, .L106+44
+ 1477 018a 1422     		movs	r2, #20
+ 1478 018c 0121     		movs	r1, #1
+ 1479 018e FFF7FEFF 		bl	fwrite
+ 1480 0192 3B68     		ldr	r3, [r7]
+ 1481 0194 5A1C     		adds	r2, r3, #1
+ 1482 0196 FB68     		ldr	r3, [r7, #12]
+ 1483 0198 1100     		movs	r1, r2
+ 1484 019a 1800     		movs	r0, r3
+ 1485 019c FFF7FEFF 		bl	print_indent
+ 1486 01a0 7B69     		ldr	r3, [r7, #20]
+ 1487 01a2 1B01     		lsls	r3, r3, #4
+ 1488 01a4 7A68     		ldr	r2, [r7, #4]
+ 1489 01a6 D318     		adds	r3, r2, r3
+ 1490 01a8 DC68     		ldr	r4, [r3, #12]
+ 1491 01aa 9B68     		ldr	r3, [r3, #8]
+ 1492 01ac 4549     		ldr	r1, .L106+48
+ 1493 01ae F868     		ldr	r0, [r7, #12]
+ 1494 01b0 1A00     		movs	r2, r3
+ 1495 01b2 2300     		movs	r3, r4
+ 1496 01b4 FFF7FEFF 		bl	fprintf
+ 1497 01b8 FB68     		ldr	r3, [r7, #12]
+ 1498 01ba 4348     		ldr	r0, .L106+52
+ 1499 01bc 0222     		movs	r2, #2
+ 1500 01be 0121     		movs	r1, #1
+ 1501 01c0 FFF7FEFF 		bl	fwrite
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 29
+
+
+ 1502 01c4 4EE0     		b	.L102
+ 1503              	.L99:
+ 1504 01c6 FB68     		ldr	r3, [r7, #12]
+ 1505 01c8 4048     		ldr	r0, .L106+56
+ 1506 01ca 1222     		movs	r2, #18
+ 1507 01cc 0121     		movs	r1, #1
+ 1508 01ce FFF7FEFF 		bl	fwrite
+ 1509 01d2 3B68     		ldr	r3, [r7]
+ 1510 01d4 5A1C     		adds	r2, r3, #1
+ 1511 01d6 FB68     		ldr	r3, [r7, #12]
+ 1512 01d8 1100     		movs	r1, r2
+ 1513 01da 1800     		movs	r0, r3
+ 1514 01dc FFF7FEFF 		bl	print_indent
+ 1515 01e0 7B69     		ldr	r3, [r7, #20]
+ 1516 01e2 1B01     		lsls	r3, r3, #4
+ 1517 01e4 7A68     		ldr	r2, [r7, #4]
+ 1518 01e6 D318     		adds	r3, r2, r3
+ 1519 01e8 DC68     		ldr	r4, [r3, #12]
+ 1520 01ea 9B68     		ldr	r3, [r3, #8]
+ 1521 01ec 3549     		ldr	r1, .L106+48
+ 1522 01ee F868     		ldr	r0, [r7, #12]
+ 1523 01f0 1A00     		movs	r2, r3
+ 1524 01f2 2300     		movs	r3, r4
+ 1525 01f4 FFF7FEFF 		bl	fprintf
+ 1526 01f8 FB68     		ldr	r3, [r7, #12]
+ 1527 01fa 3348     		ldr	r0, .L106+52
+ 1528 01fc 0222     		movs	r2, #2
+ 1529 01fe 0121     		movs	r1, #1
+ 1530 0200 FFF7FEFF 		bl	fwrite
+ 1531 0204 2EE0     		b	.L102
+ 1532              	.L100:
+ 1533 0206 FB68     		ldr	r3, [r7, #12]
+ 1534 0208 3148     		ldr	r0, .L106+60
+ 1535 020a 1422     		movs	r2, #20
+ 1536 020c 0121     		movs	r1, #1
+ 1537 020e FFF7FEFF 		bl	fwrite
+ 1538 0212 7B69     		ldr	r3, [r7, #20]
+ 1539 0214 1B01     		lsls	r3, r3, #4
+ 1540 0216 7A68     		ldr	r2, [r7, #4]
+ 1541 0218 D318     		adds	r3, r2, r3
+ 1542 021a 1B7A     		ldrb	r3, [r3, #8]
+ 1543 021c 002B     		cmp	r3, #0
+ 1544 021e 01D0     		beq	.L103
+ 1545 0220 2C4B     		ldr	r3, .L106+64
+ 1546 0222 00E0     		b	.L104
+ 1547              	.L103:
+ 1548 0224 2C4B     		ldr	r3, .L106+68
+ 1549              	.L104:
+ 1550 0226 FA68     		ldr	r2, [r7, #12]
+ 1551 0228 1100     		movs	r1, r2
+ 1552 022a 1800     		movs	r0, r3
+ 1553 022c FFF7FEFF 		bl	fputs
+ 1554 0230 FB68     		ldr	r3, [r7, #12]
+ 1555 0232 2548     		ldr	r0, .L106+52
+ 1556 0234 0222     		movs	r2, #2
+ 1557 0236 0121     		movs	r1, #1
+ 1558 0238 FFF7FEFF 		bl	fwrite
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 30
+
+
+ 1559 023c 12E0     		b	.L102
+ 1560              	.L101:
+ 1561 023e FB68     		ldr	r3, [r7, #12]
+ 1562 0240 2648     		ldr	r0, .L106+72
+ 1563 0242 1822     		movs	r2, #24
+ 1564 0244 0121     		movs	r1, #1
+ 1565 0246 FFF7FEFF 		bl	fwrite
+ 1566 024a 0BE0     		b	.L102
+ 1567              	.L90:
+ 1568 024c 7B69     		ldr	r3, [r7, #20]
+ 1569 024e 1B01     		lsls	r3, r3, #4
+ 1570 0250 7A68     		ldr	r2, [r7, #4]
+ 1571 0252 D318     		adds	r3, r2, r3
+ 1572 0254 1B78     		ldrb	r3, [r3]
+ 1573 0256 1A00     		movs	r2, r3
+ 1574 0258 2149     		ldr	r1, .L106+76
+ 1575 025a FB68     		ldr	r3, [r7, #12]
+ 1576 025c 1800     		movs	r0, r3
+ 1577 025e FFF7FEFF 		bl	fprintf
+ 1578 0262 C046     		nop
+ 1579              	.L102:
+ 1580 0264 3A68     		ldr	r2, [r7]
+ 1581 0266 FB68     		ldr	r3, [r7, #12]
+ 1582 0268 1100     		movs	r1, r2
+ 1583 026a 1800     		movs	r0, r3
+ 1584 026c FFF7FEFF 		bl	print_indent
+ 1585 0270 FB68     		ldr	r3, [r7, #12]
+ 1586 0272 1C48     		ldr	r0, .L106+80
+ 1587 0274 0322     		movs	r2, #3
+ 1588 0276 0121     		movs	r1, #1
+ 1589 0278 FFF7FEFF 		bl	fwrite
+ 1590 027c 7B69     		ldr	r3, [r7, #20]
+ 1591 027e 0133     		adds	r3, r3, #1
+ 1592 0280 7B61     		str	r3, [r7, #20]
+ 1593              	.L89:
+ 1594 0282 7A69     		ldr	r2, [r7, #20]
+ 1595 0284 BB68     		ldr	r3, [r7, #8]
+ 1596 0286 9A42     		cmp	r2, r3
+ 1597 0288 00DA     		bge	.LCB1530
+ 1598 028a C3E6     		b	.L105	@long jump
+ 1599              	.LCB1530:
+ 1600 028c C046     		nop
+ 1601 028e BD46     		mov	sp, r7
+ 1602 0290 07B0     		add	sp, sp, #28
+ 1603              		@ sp needed
+ 1604 0292 90BD     		pop	{r4, r7, pc}
+ 1605              	.L107:
+ 1606              		.align	2
+ 1607              	.L106:
+ 1608 0294 88000000 		.word	.LC14
+ 1609 0298 F4010000 		.word	.LC57
+ 1610 029c 00020000 		.word	.LC59
+ 1611 02a0 00000000 		.word	.L92
+ 1612 02a4 08020000 		.word	.LC62
+ 1613 02a8 1C020000 		.word	.LC64
+ 1614 02ac 3C020000 		.word	.LC66
+ 1615 02b0 5C020000 		.word	.LC68
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 31
+
+
+ 1616 02b4 74020000 		.word	.LC70
+ 1617 02b8 88020000 		.word	.LC72
+ 1618 02bc 94020000 		.word	.LC74
+ 1619 02c0 A8020000 		.word	.LC76
+ 1620 02c4 F8000000 		.word	.LC32
+ 1621 02c8 C0020000 		.word	.LC79
+ 1622 02cc C4020000 		.word	.LC81
+ 1623 02d0 D8020000 		.word	.LC83
+ 1624 02d4 F0020000 		.word	.LC85
+ 1625 02d8 F8020000 		.word	.LC87
+ 1626 02dc 00030000 		.word	.LC89
+ 1627 02e0 1C030000 		.word	.LC91
+ 1628 02e4 34010000 		.word	.LC40
+ 1630              		.section	.rodata
+ 1631 032b 00       		.align	2
+ 1632              	.LC94:
+ 1633 032c 434F4150 		.ascii	"COAP_NO_ERROR\000"
+ 1633      5F4E4F5F 
+ 1633      4552524F 
+ 1633      5200
+ 1634 033a 0000     		.align	2
+ 1635              	.LC96:
+ 1636 033c 434F4150 		.ascii	"COAP_IGNORE\000"
+ 1636      5F49474E 
+ 1636      4F524500 
+ 1637              		.align	2
+ 1638              	.LC98:
+ 1639 0348 434F4150 		.ascii	"COAP_201_CREATED\000"
+ 1639      5F323031 
+ 1639      5F435245 
+ 1639      41544544 
+ 1639      00
+ 1640 0359 000000   		.align	2
+ 1641              	.LC100:
+ 1642 035c 434F4150 		.ascii	"COAP_202_DELETED\000"
+ 1642      5F323032 
+ 1642      5F44454C 
+ 1642      45544544 
+ 1642      00
+ 1643 036d 000000   		.align	2
+ 1644              	.LC102:
+ 1645 0370 434F4150 		.ascii	"COAP_204_CHANGED\000"
+ 1645      5F323034 
+ 1645      5F434841 
+ 1645      4E474544 
+ 1645      00
+ 1646 0381 000000   		.align	2
+ 1647              	.LC104:
+ 1648 0384 434F4150 		.ascii	"COAP_205_CONTENT\000"
+ 1648      5F323035 
+ 1648      5F434F4E 
+ 1648      54454E54 
+ 1648      00
+ 1649 0395 000000   		.align	2
+ 1650              	.LC106:
+ 1651 0398 434F4150 		.ascii	"COAP_400_BAD_REQUEST\000"
+ 1651      5F343030 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 32
+
+
+ 1651      5F424144 
+ 1651      5F524551 
+ 1651      55455354 
+ 1652 03ad 000000   		.align	2
+ 1653              	.LC108:
+ 1654 03b0 434F4150 		.ascii	"COAP_401_UNAUTHORIZED\000"
+ 1654      5F343031 
+ 1654      5F554E41 
+ 1654      5554484F 
+ 1654      52495A45 
+ 1655 03c6 0000     		.align	2
+ 1656              	.LC110:
+ 1657 03c8 434F4150 		.ascii	"COAP_404_NOT_FOUND\000"
+ 1657      5F343034 
+ 1657      5F4E4F54 
+ 1657      5F464F55 
+ 1657      4E4400
+ 1658 03db 00       		.align	2
+ 1659              	.LC112:
+ 1660 03dc 434F4150 		.ascii	"COAP_405_METHOD_NOT_ALLOWED\000"
+ 1660      5F343035 
+ 1660      5F4D4554 
+ 1660      484F445F 
+ 1660      4E4F545F 
+ 1661              		.align	2
+ 1662              	.LC114:
+ 1663 03f8 434F4150 		.ascii	"COAP_406_NOT_ACCEPTABLE\000"
+ 1663      5F343036 
+ 1663      5F4E4F54 
+ 1663      5F414343 
+ 1663      45505441 
+ 1664              		.align	2
+ 1665              	.LC116:
+ 1666 0410 434F4150 		.ascii	"COAP_500_INTERNAL_SERVER_ERROR\000"
+ 1666      5F353030 
+ 1666      5F494E54 
+ 1666      45524E41 
+ 1666      4C5F5345 
+ 1667 042f 00       		.align	2
+ 1668              	.LC118:
+ 1669 0430 434F4150 		.ascii	"COAP_501_NOT_IMPLEMENTED\000"
+ 1669      5F353031 
+ 1669      5F4E4F54 
+ 1669      5F494D50 
+ 1669      4C454D45 
+ 1670 0449 000000   		.align	2
+ 1671              	.LC120:
+ 1672 044c 434F4150 		.ascii	"COAP_503_SERVICE_UNAVAILABLE\000"
+ 1672      5F353033 
+ 1672      5F534552 
+ 1672      56494345 
+ 1672      5F554E41 
+ 1673 0469 000000   		.align	2
+ 1674              	.LC122:
+ 1675 046c 00       		.ascii	"\000"
+ 1676              		.section	.text.prv_status_to_string,"ax",%progbits
+ 1677              		.align	1
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 33
+
+
+ 1678              		.syntax unified
+ 1679              		.code	16
+ 1680              		.thumb_func
+ 1681              		.fpu softvfp
+ 1683              	prv_status_to_string:
+ 1684              		@ args = 0, pretend = 0, frame = 8
+ 1685              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1686 0000 80B5     		push	{r7, lr}
+ 1687 0002 82B0     		sub	sp, sp, #8
+ 1688 0004 00AF     		add	r7, sp, #0
+ 1689 0006 7860     		str	r0, [r7, #4]
+ 1690 0008 7B68     		ldr	r3, [r7, #4]
+ 1691 000a 802B     		cmp	r3, #128
+ 1692 000c 2BD0     		beq	.L110
+ 1693 000e 0EDC     		bgt	.L111
+ 1694 0010 412B     		cmp	r3, #65
+ 1695 0012 20D0     		beq	.L112
+ 1696 0014 04DC     		bgt	.L113
+ 1697 0016 002B     		cmp	r3, #0
+ 1698 0018 19D0     		beq	.L114
+ 1699 001a 012B     		cmp	r3, #1
+ 1700 001c 19D0     		beq	.L115
+ 1701 001e 32E0     		b	.L109
+ 1702              	.L113:
+ 1703 0020 442B     		cmp	r3, #68
+ 1704 0022 1CD0     		beq	.L116
+ 1705 0024 452B     		cmp	r3, #69
+ 1706 0026 1CD0     		beq	.L117
+ 1707 0028 422B     		cmp	r3, #66
+ 1708 002a 16D0     		beq	.L118
+ 1709 002c 2BE0     		b	.L109
+ 1710              	.L111:
+ 1711 002e 862B     		cmp	r3, #134
+ 1712 0030 21D0     		beq	.L119
+ 1713 0032 05DC     		bgt	.L120
+ 1714 0034 842B     		cmp	r3, #132
+ 1715 0036 1AD0     		beq	.L121
+ 1716 0038 1BDC     		bgt	.L122
+ 1717 003a 812B     		cmp	r3, #129
+ 1718 003c 15D0     		beq	.L123
+ 1719 003e 22E0     		b	.L109
+ 1720              	.L120:
+ 1721 0040 A12B     		cmp	r3, #161
+ 1722 0042 1CD0     		beq	.L124
+ 1723 0044 A32B     		cmp	r3, #163
+ 1724 0046 1CD0     		beq	.L125
+ 1725 0048 A02B     		cmp	r3, #160
+ 1726 004a 16D0     		beq	.L126
+ 1727 004c 1BE0     		b	.L109
+ 1728              	.L114:
+ 1729 004e 104B     		ldr	r3, .L128
+ 1730 0050 1AE0     		b	.L127
+ 1731              	.L115:
+ 1732 0052 104B     		ldr	r3, .L128+4
+ 1733 0054 18E0     		b	.L127
+ 1734              	.L112:
+ 1735 0056 104B     		ldr	r3, .L128+8
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 34
+
+
+ 1736 0058 16E0     		b	.L127
+ 1737              	.L118:
+ 1738 005a 104B     		ldr	r3, .L128+12
+ 1739 005c 14E0     		b	.L127
+ 1740              	.L116:
+ 1741 005e 104B     		ldr	r3, .L128+16
+ 1742 0060 12E0     		b	.L127
+ 1743              	.L117:
+ 1744 0062 104B     		ldr	r3, .L128+20
+ 1745 0064 10E0     		b	.L127
+ 1746              	.L110:
+ 1747 0066 104B     		ldr	r3, .L128+24
+ 1748 0068 0EE0     		b	.L127
+ 1749              	.L123:
+ 1750 006a 104B     		ldr	r3, .L128+28
+ 1751 006c 0CE0     		b	.L127
+ 1752              	.L121:
+ 1753 006e 104B     		ldr	r3, .L128+32
+ 1754 0070 0AE0     		b	.L127
+ 1755              	.L122:
+ 1756 0072 104B     		ldr	r3, .L128+36
+ 1757 0074 08E0     		b	.L127
+ 1758              	.L119:
+ 1759 0076 104B     		ldr	r3, .L128+40
+ 1760 0078 06E0     		b	.L127
+ 1761              	.L126:
+ 1762 007a 104B     		ldr	r3, .L128+44
+ 1763 007c 04E0     		b	.L127
+ 1764              	.L124:
+ 1765 007e 104B     		ldr	r3, .L128+48
+ 1766 0080 02E0     		b	.L127
+ 1767              	.L125:
+ 1768 0082 104B     		ldr	r3, .L128+52
+ 1769 0084 00E0     		b	.L127
+ 1770              	.L109:
+ 1771 0086 104B     		ldr	r3, .L128+56
+ 1772              	.L127:
+ 1773 0088 1800     		movs	r0, r3
+ 1774 008a BD46     		mov	sp, r7
+ 1775 008c 02B0     		add	sp, sp, #8
+ 1776              		@ sp needed
+ 1777 008e 80BD     		pop	{r7, pc}
+ 1778              	.L129:
+ 1779              		.align	2
+ 1780              	.L128:
+ 1781 0090 2C030000 		.word	.LC94
+ 1782 0094 3C030000 		.word	.LC96
+ 1783 0098 48030000 		.word	.LC98
+ 1784 009c 5C030000 		.word	.LC100
+ 1785 00a0 70030000 		.word	.LC102
+ 1786 00a4 84030000 		.word	.LC104
+ 1787 00a8 98030000 		.word	.LC106
+ 1788 00ac B0030000 		.word	.LC108
+ 1789 00b0 C8030000 		.word	.LC110
+ 1790 00b4 DC030000 		.word	.LC112
+ 1791 00b8 F8030000 		.word	.LC114
+ 1792 00bc 10040000 		.word	.LC116
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 35
+
+
+ 1793 00c0 30040000 		.word	.LC118
+ 1794 00c4 4C040000 		.word	.LC120
+ 1795 00c8 6C040000 		.word	.LC122
+ 1797              		.section	.rodata
+ 1798 046d 000000   		.align	2
+ 1799              	.LC124:
+ 1800 0470 25642E25 		.ascii	"%d.%02d (%s)\000"
+ 1800      30326420 
+ 1800      28257329 
+ 1800      00
+ 1801              		.section	.text.print_status,"ax",%progbits
+ 1802              		.align	1
+ 1803              		.global	print_status
+ 1804              		.syntax unified
+ 1805              		.code	16
+ 1806              		.thumb_func
+ 1807              		.fpu softvfp
+ 1809              	print_status:
+ 1810              		@ args = 0, pretend = 0, frame = 8
+ 1811              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1812 0000 B0B5     		push	{r4, r5, r7, lr}
+ 1813 0002 84B0     		sub	sp, sp, #16
+ 1814 0004 02AF     		add	r7, sp, #8
+ 1815 0006 7860     		str	r0, [r7, #4]
+ 1816 0008 0A00     		movs	r2, r1
+ 1817 000a FB1C     		adds	r3, r7, #3
+ 1818 000c 1A70     		strb	r2, [r3]
+ 1819 000e FB1C     		adds	r3, r7, #3
+ 1820 0010 1B78     		ldrb	r3, [r3]
+ 1821 0012 5B09     		lsrs	r3, r3, #5
+ 1822 0014 DBB2     		uxtb	r3, r3
+ 1823 0016 1D00     		movs	r5, r3
+ 1824 0018 FB1C     		adds	r3, r7, #3
+ 1825 001a 1B78     		ldrb	r3, [r3]
+ 1826 001c 1F22     		movs	r2, #31
+ 1827 001e 1340     		ands	r3, r2
+ 1828 0020 1C00     		movs	r4, r3
+ 1829 0022 FB1C     		adds	r3, r7, #3
+ 1830 0024 1B78     		ldrb	r3, [r3]
+ 1831 0026 1800     		movs	r0, r3
+ 1832 0028 FFF7FEFF 		bl	prv_status_to_string
+ 1833 002c 0300     		movs	r3, r0
+ 1834 002e 0549     		ldr	r1, .L131
+ 1835 0030 7868     		ldr	r0, [r7, #4]
+ 1836 0032 0093     		str	r3, [sp]
+ 1837 0034 2300     		movs	r3, r4
+ 1838 0036 2A00     		movs	r2, r5
+ 1839 0038 FFF7FEFF 		bl	fprintf
+ 1840 003c C046     		nop
+ 1841 003e BD46     		mov	sp, r7
+ 1842 0040 02B0     		add	sp, sp, #8
+ 1843              		@ sp needed
+ 1844 0042 B0BD     		pop	{r4, r5, r7, pc}
+ 1845              	.L132:
+ 1846              		.align	2
+ 1847              	.L131:
+ 1848 0044 70040000 		.word	.LC124
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 36
+
+
+ 1850              		.section	.text.prv_b64Revert,"ax",%progbits
+ 1851              		.align	1
+ 1852              		.syntax unified
+ 1853              		.code	16
+ 1854              		.thumb_func
+ 1855              		.fpu softvfp
+ 1857              	prv_b64Revert:
+ 1858              		@ args = 0, pretend = 0, frame = 8
+ 1859              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1860 0000 80B5     		push	{r7, lr}
+ 1861 0002 82B0     		sub	sp, sp, #8
+ 1862 0004 00AF     		add	r7, sp, #0
+ 1863 0006 0200     		movs	r2, r0
+ 1864 0008 FB1D     		adds	r3, r7, #7
+ 1865 000a 1A70     		strb	r2, [r3]
+ 1866 000c FB1D     		adds	r3, r7, #7
+ 1867 000e 1B78     		ldrb	r3, [r3]
+ 1868 0010 402B     		cmp	r3, #64
+ 1869 0012 08D9     		bls	.L134
+ 1870 0014 FB1D     		adds	r3, r7, #7
+ 1871 0016 1B78     		ldrb	r3, [r3]
+ 1872 0018 5A2B     		cmp	r3, #90
+ 1873 001a 04D8     		bhi	.L134
+ 1874 001c FB1D     		adds	r3, r7, #7
+ 1875 001e 1B78     		ldrb	r3, [r3]
+ 1876 0020 413B     		subs	r3, r3, #65
+ 1877 0022 DBB2     		uxtb	r3, r3
+ 1878 0024 25E0     		b	.L135
+ 1879              	.L134:
+ 1880 0026 FB1D     		adds	r3, r7, #7
+ 1881 0028 1B78     		ldrb	r3, [r3]
+ 1882 002a 602B     		cmp	r3, #96
+ 1883 002c 08D9     		bls	.L136
+ 1884 002e FB1D     		adds	r3, r7, #7
+ 1885 0030 1B78     		ldrb	r3, [r3]
+ 1886 0032 7A2B     		cmp	r3, #122
+ 1887 0034 04D8     		bhi	.L136
+ 1888 0036 FB1D     		adds	r3, r7, #7
+ 1889 0038 1B78     		ldrb	r3, [r3]
+ 1890 003a 473B     		subs	r3, r3, #71
+ 1891 003c DBB2     		uxtb	r3, r3
+ 1892 003e 18E0     		b	.L135
+ 1893              	.L136:
+ 1894 0040 FB1D     		adds	r3, r7, #7
+ 1895 0042 1B78     		ldrb	r3, [r3]
+ 1896 0044 2F2B     		cmp	r3, #47
+ 1897 0046 08D9     		bls	.L137
+ 1898 0048 FB1D     		adds	r3, r7, #7
+ 1899 004a 1B78     		ldrb	r3, [r3]
+ 1900 004c 392B     		cmp	r3, #57
+ 1901 004e 04D8     		bhi	.L137
+ 1902 0050 FB1D     		adds	r3, r7, #7
+ 1903 0052 1B78     		ldrb	r3, [r3]
+ 1904 0054 0433     		adds	r3, r3, #4
+ 1905 0056 DBB2     		uxtb	r3, r3
+ 1906 0058 0BE0     		b	.L135
+ 1907              	.L137:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 37
+
+
+ 1908 005a FB1D     		adds	r3, r7, #7
+ 1909 005c 1B78     		ldrb	r3, [r3]
+ 1910 005e 2B2B     		cmp	r3, #43
+ 1911 0060 02D0     		beq	.L139
+ 1912 0062 2F2B     		cmp	r3, #47
+ 1913 0064 02D0     		beq	.L140
+ 1914 0066 03E0     		b	.L141
+ 1915              	.L139:
+ 1916 0068 3E23     		movs	r3, #62
+ 1917 006a 02E0     		b	.L135
+ 1918              	.L140:
+ 1919 006c 3F23     		movs	r3, #63
+ 1920 006e 00E0     		b	.L135
+ 1921              	.L141:
+ 1922 0070 0023     		movs	r3, #0
+ 1923              	.L135:
+ 1924 0072 1800     		movs	r0, r3
+ 1925 0074 BD46     		mov	sp, r7
+ 1926 0076 02B0     		add	sp, sp, #8
+ 1927              		@ sp needed
+ 1928 0078 80BD     		pop	{r7, pc}
+ 1930              		.section	.text.prv_decodeBlock,"ax",%progbits
+ 1931              		.align	1
+ 1932              		.syntax unified
+ 1933              		.code	16
+ 1934              		.thumb_func
+ 1935              		.fpu softvfp
+ 1937              	prv_decodeBlock:
+ 1938              		@ args = 0, pretend = 0, frame = 16
+ 1939              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1940 0000 80B5     		push	{r7, lr}
+ 1941 0002 84B0     		sub	sp, sp, #16
+ 1942 0004 00AF     		add	r7, sp, #0
+ 1943 0006 7860     		str	r0, [r7, #4]
+ 1944 0008 3960     		str	r1, [r7]
+ 1945 000a 3B68     		ldr	r3, [r7]
+ 1946 000c 0322     		movs	r2, #3
+ 1947 000e 0021     		movs	r1, #0
+ 1948 0010 1800     		movs	r0, r3
+ 1949 0012 FFF7FEFF 		bl	memset
+ 1950 0016 0023     		movs	r3, #0
+ 1951 0018 FB60     		str	r3, [r7, #12]
+ 1952 001a 11E0     		b	.L143
+ 1953              	.L144:
+ 1954 001c FB68     		ldr	r3, [r7, #12]
+ 1955 001e 7A68     		ldr	r2, [r7, #4]
+ 1956 0020 D318     		adds	r3, r2, r3
+ 1957 0022 1B78     		ldrb	r3, [r3]
+ 1958 0024 1800     		movs	r0, r3
+ 1959 0026 FFF7FEFF 		bl	prv_b64Revert
+ 1960 002a 0300     		movs	r3, r0
+ 1961 002c 1900     		movs	r1, r3
+ 1962 002e 0823     		movs	r3, #8
+ 1963 0030 FA18     		adds	r2, r7, r3
+ 1964 0032 FB68     		ldr	r3, [r7, #12]
+ 1965 0034 D318     		adds	r3, r2, r3
+ 1966 0036 0A1C     		adds	r2, r1, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 38
+
+
+ 1967 0038 1A70     		strb	r2, [r3]
+ 1968 003a FB68     		ldr	r3, [r7, #12]
+ 1969 003c 0133     		adds	r3, r3, #1
+ 1970 003e FB60     		str	r3, [r7, #12]
+ 1971              	.L143:
+ 1972 0040 FB68     		ldr	r3, [r7, #12]
+ 1973 0042 032B     		cmp	r3, #3
+ 1974 0044 EADD     		ble	.L144
+ 1975 0046 0821     		movs	r1, #8
+ 1976 0048 7B18     		adds	r3, r7, r1
+ 1977 004a 1B78     		ldrb	r3, [r3]
+ 1978 004c 9B00     		lsls	r3, r3, #2
+ 1979 004e 5AB2     		sxtb	r2, r3
+ 1980 0050 7B18     		adds	r3, r7, r1
+ 1981 0052 5B78     		ldrb	r3, [r3, #1]
+ 1982 0054 1B09     		lsrs	r3, r3, #4
+ 1983 0056 DBB2     		uxtb	r3, r3
+ 1984 0058 5BB2     		sxtb	r3, r3
+ 1985 005a 1343     		orrs	r3, r2
+ 1986 005c 5BB2     		sxtb	r3, r3
+ 1987 005e DAB2     		uxtb	r2, r3
+ 1988 0060 3B68     		ldr	r3, [r7]
+ 1989 0062 1A70     		strb	r2, [r3]
+ 1990 0064 7B18     		adds	r3, r7, r1
+ 1991 0066 5B78     		ldrb	r3, [r3, #1]
+ 1992 0068 1B01     		lsls	r3, r3, #4
+ 1993 006a 5AB2     		sxtb	r2, r3
+ 1994 006c 7B18     		adds	r3, r7, r1
+ 1995 006e 9B78     		ldrb	r3, [r3, #2]
+ 1996 0070 9B08     		lsrs	r3, r3, #2
+ 1997 0072 DBB2     		uxtb	r3, r3
+ 1998 0074 5BB2     		sxtb	r3, r3
+ 1999 0076 1343     		orrs	r3, r2
+ 2000 0078 5AB2     		sxtb	r2, r3
+ 2001 007a 3B68     		ldr	r3, [r7]
+ 2002 007c 0133     		adds	r3, r3, #1
+ 2003 007e D2B2     		uxtb	r2, r2
+ 2004 0080 1A70     		strb	r2, [r3]
+ 2005 0082 7B18     		adds	r3, r7, r1
+ 2006 0084 9B78     		ldrb	r3, [r3, #2]
+ 2007 0086 9B01     		lsls	r3, r3, #6
+ 2008 0088 5AB2     		sxtb	r2, r3
+ 2009 008a 7B18     		adds	r3, r7, r1
+ 2010 008c DB78     		ldrb	r3, [r3, #3]
+ 2011 008e 5BB2     		sxtb	r3, r3
+ 2012 0090 1343     		orrs	r3, r2
+ 2013 0092 5AB2     		sxtb	r2, r3
+ 2014 0094 3B68     		ldr	r3, [r7]
+ 2015 0096 0233     		adds	r3, r3, #2
+ 2016 0098 D2B2     		uxtb	r2, r2
+ 2017 009a 1A70     		strb	r2, [r3]
+ 2018 009c C046     		nop
+ 2019 009e BD46     		mov	sp, r7
+ 2020 00a0 04B0     		add	sp, sp, #16
+ 2021              		@ sp needed
+ 2022 00a2 80BD     		pop	{r7, pc}
+ 2024              		.section	.text.base64_decode,"ax",%progbits
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 39
+
+
+ 2025              		.align	1
+ 2026              		.global	base64_decode
+ 2027              		.syntax unified
+ 2028              		.code	16
+ 2029              		.thumb_func
+ 2030              		.fpu softvfp
+ 2032              	base64_decode:
+ 2033              		@ args = 0, pretend = 0, frame = 40
+ 2034              		@ frame_needed = 1, uses_anonymous_args = 0
+ 2035 0000 90B5     		push	{r4, r7, lr}
+ 2036 0002 8BB0     		sub	sp, sp, #44
+ 2037 0004 00AF     		add	r7, sp, #0
+ 2038 0006 F860     		str	r0, [r7, #12]
+ 2039 0008 B960     		str	r1, [r7, #8]
+ 2040 000a 7A60     		str	r2, [r7, #4]
+ 2041 000c BB68     		ldr	r3, [r7, #8]
+ 2042 000e 0322     		movs	r2, #3
+ 2043 0010 1340     		ands	r3, r2
+ 2044 0012 01D0     		beq	.L146
+ 2045 0014 0023     		movs	r3, #0
+ 2046 0016 F6E0     		b	.L147
+ 2047              	.L146:
+ 2048 0018 BB68     		ldr	r3, [r7, #8]
+ 2049 001a 9A08     		lsrs	r2, r3, #2
+ 2050 001c 1300     		movs	r3, r2
+ 2051 001e 5B00     		lsls	r3, r3, #1
+ 2052 0020 9B18     		adds	r3, r3, r2
+ 2053 0022 FB61     		str	r3, [r7, #28]
+ 2054 0024 FB69     		ldr	r3, [r7, #28]
+ 2055 0026 1800     		movs	r0, r3
+ 2056 0028 FFF7FEFF 		bl	lwm2m_malloc
+ 2057 002c 0200     		movs	r2, r0
+ 2058 002e 7B68     		ldr	r3, [r7, #4]
+ 2059 0030 1A60     		str	r2, [r3]
+ 2060 0032 7B68     		ldr	r3, [r7, #4]
+ 2061 0034 1B68     		ldr	r3, [r3]
+ 2062 0036 002B     		cmp	r3, #0
+ 2063 0038 01D1     		bne	.L148
+ 2064 003a 0023     		movs	r3, #0
+ 2065 003c E3E0     		b	.L147
+ 2066              	.L148:
+ 2067 003e 7B68     		ldr	r3, [r7, #4]
+ 2068 0040 1B68     		ldr	r3, [r3]
+ 2069 0042 FA69     		ldr	r2, [r7, #28]
+ 2070 0044 0021     		movs	r1, #0
+ 2071 0046 1800     		movs	r0, r3
+ 2072 0048 FFF7FEFF 		bl	memset
+ 2073 004c 02E0     		b	.L149
+ 2074              	.L150:
+ 2075 004e BB68     		ldr	r3, [r7, #8]
+ 2076 0050 013B     		subs	r3, r3, #1
+ 2077 0052 BB60     		str	r3, [r7, #8]
+ 2078              	.L149:
+ 2079 0054 BB68     		ldr	r3, [r7, #8]
+ 2080 0056 013B     		subs	r3, r3, #1
+ 2081 0058 FA68     		ldr	r2, [r7, #12]
+ 2082 005a D318     		adds	r3, r2, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 40
+
+
+ 2083 005c 1B78     		ldrb	r3, [r3]
+ 2084 005e 3D2B     		cmp	r3, #61
+ 2085 0060 F5D0     		beq	.L150
+ 2086 0062 0023     		movs	r3, #0
+ 2087 0064 7B62     		str	r3, [r7, #36]
+ 2088 0066 0023     		movs	r3, #0
+ 2089 0068 3B62     		str	r3, [r7, #32]
+ 2090 006a 0FE0     		b	.L151
+ 2091              	.L152:
+ 2092 006c FA68     		ldr	r2, [r7, #12]
+ 2093 006e 7B6A     		ldr	r3, [r7, #36]
+ 2094 0070 D018     		adds	r0, r2, r3
+ 2095 0072 7B68     		ldr	r3, [r7, #4]
+ 2096 0074 1A68     		ldr	r2, [r3]
+ 2097 0076 3B6A     		ldr	r3, [r7, #32]
+ 2098 0078 D318     		adds	r3, r2, r3
+ 2099 007a 1900     		movs	r1, r3
+ 2100 007c FFF7FEFF 		bl	prv_decodeBlock
+ 2101 0080 7B6A     		ldr	r3, [r7, #36]
+ 2102 0082 0433     		adds	r3, r3, #4
+ 2103 0084 7B62     		str	r3, [r7, #36]
+ 2104 0086 3B6A     		ldr	r3, [r7, #32]
+ 2105 0088 0333     		adds	r3, r3, #3
+ 2106 008a 3B62     		str	r3, [r7, #32]
+ 2107              	.L151:
+ 2108 008c 7A6A     		ldr	r2, [r7, #36]
+ 2109 008e BB68     		ldr	r3, [r7, #8]
+ 2110 0090 9A42     		cmp	r2, r3
+ 2111 0092 EBD3     		bcc	.L152
+ 2112 0094 7A6A     		ldr	r2, [r7, #36]
+ 2113 0096 BB68     		ldr	r3, [r7, #8]
+ 2114 0098 D31A     		subs	r3, r2, r3
+ 2115 009a 022B     		cmp	r3, #2
+ 2116 009c 05D0     		beq	.L154
+ 2117 009e 032B     		cmp	r3, #3
+ 2118 00a0 43D0     		beq	.L155
+ 2119 00a2 002B     		cmp	r3, #0
+ 2120 00a4 00D1     		bne	.LCB2075
+ 2121 00a6 ACE0     		b	.L159	@long jump
+ 2122              	.LCB2075:
+ 2123 00a8 A0E0     		b	.L158
+ 2124              	.L154:
+ 2125 00aa BB68     		ldr	r3, [r7, #8]
+ 2126 00ac 023B     		subs	r3, r3, #2
+ 2127 00ae FA68     		ldr	r2, [r7, #12]
+ 2128 00b0 D318     		adds	r3, r2, r3
+ 2129 00b2 1B78     		ldrb	r3, [r3]
+ 2130 00b4 1800     		movs	r0, r3
+ 2131 00b6 FFF7FEFF 		bl	prv_b64Revert
+ 2132 00ba 0300     		movs	r3, r0
+ 2133 00bc 1A00     		movs	r2, r3
+ 2134 00be 1824     		movs	r4, #24
+ 2135 00c0 3B19     		adds	r3, r7, r4
+ 2136 00c2 1A70     		strb	r2, [r3]
+ 2137 00c4 BB68     		ldr	r3, [r7, #8]
+ 2138 00c6 013B     		subs	r3, r3, #1
+ 2139 00c8 FA68     		ldr	r2, [r7, #12]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 41
+
+
+ 2140 00ca D318     		adds	r3, r2, r3
+ 2141 00cc 1B78     		ldrb	r3, [r3]
+ 2142 00ce 1800     		movs	r0, r3
+ 2143 00d0 FFF7FEFF 		bl	prv_b64Revert
+ 2144 00d4 0300     		movs	r3, r0
+ 2145 00d6 1A00     		movs	r2, r3
+ 2146 00d8 2000     		movs	r0, r4
+ 2147 00da 3B18     		adds	r3, r7, r0
+ 2148 00dc 5A70     		strb	r2, [r3, #1]
+ 2149 00de 3B18     		adds	r3, r7, r0
+ 2150 00e0 1B78     		ldrb	r3, [r3]
+ 2151 00e2 9B00     		lsls	r3, r3, #2
+ 2152 00e4 5AB2     		sxtb	r2, r3
+ 2153 00e6 3B18     		adds	r3, r7, r0
+ 2154 00e8 5B78     		ldrb	r3, [r3, #1]
+ 2155 00ea 1B09     		lsrs	r3, r3, #4
+ 2156 00ec DBB2     		uxtb	r3, r3
+ 2157 00ee 5BB2     		sxtb	r3, r3
+ 2158 00f0 1343     		orrs	r3, r2
+ 2159 00f2 59B2     		sxtb	r1, r3
+ 2160 00f4 3B6A     		ldr	r3, [r7, #32]
+ 2161 00f6 464A     		ldr	r2, .L160
+ 2162 00f8 9446     		mov	ip, r2
+ 2163 00fa 6344     		add	r3, r3, ip
+ 2164 00fc 9B00     		lsls	r3, r3, #2
+ 2165 00fe 7A68     		ldr	r2, [r7, #4]
+ 2166 0100 D318     		adds	r3, r2, r3
+ 2167 0102 1B68     		ldr	r3, [r3]
+ 2168 0104 CAB2     		uxtb	r2, r1
+ 2169 0106 1A70     		strb	r2, [r3]
+ 2170 0108 3B18     		adds	r3, r7, r0
+ 2171 010a 5A78     		ldrb	r2, [r3, #1]
+ 2172 010c 3B6A     		ldr	r3, [r7, #32]
+ 2173 010e 4149     		ldr	r1, .L160+4
+ 2174 0110 8C46     		mov	ip, r1
+ 2175 0112 6344     		add	r3, r3, ip
+ 2176 0114 9B00     		lsls	r3, r3, #2
+ 2177 0116 7968     		ldr	r1, [r7, #4]
+ 2178 0118 CB18     		adds	r3, r1, r3
+ 2179 011a 1B68     		ldr	r3, [r3]
+ 2180 011c 1201     		lsls	r2, r2, #4
+ 2181 011e D2B2     		uxtb	r2, r2
+ 2182 0120 1A70     		strb	r2, [r3]
+ 2183 0122 FB69     		ldr	r3, [r7, #28]
+ 2184 0124 023B     		subs	r3, r3, #2
+ 2185 0126 FB61     		str	r3, [r7, #28]
+ 2186 0128 6CE0     		b	.L157
+ 2187              	.L155:
+ 2188 012a BB68     		ldr	r3, [r7, #8]
+ 2189 012c 033B     		subs	r3, r3, #3
+ 2190 012e FA68     		ldr	r2, [r7, #12]
+ 2191 0130 D318     		adds	r3, r2, r3
+ 2192 0132 1B78     		ldrb	r3, [r3]
+ 2193 0134 1800     		movs	r0, r3
+ 2194 0136 FFF7FEFF 		bl	prv_b64Revert
+ 2195 013a 0300     		movs	r3, r0
+ 2196 013c 1A00     		movs	r2, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 42
+
+
+ 2197 013e 1424     		movs	r4, #20
+ 2198 0140 3B19     		adds	r3, r7, r4
+ 2199 0142 1A70     		strb	r2, [r3]
+ 2200 0144 BB68     		ldr	r3, [r7, #8]
+ 2201 0146 023B     		subs	r3, r3, #2
+ 2202 0148 FA68     		ldr	r2, [r7, #12]
+ 2203 014a D318     		adds	r3, r2, r3
+ 2204 014c 1B78     		ldrb	r3, [r3]
+ 2205 014e 1800     		movs	r0, r3
+ 2206 0150 FFF7FEFF 		bl	prv_b64Revert
+ 2207 0154 0300     		movs	r3, r0
+ 2208 0156 1A00     		movs	r2, r3
+ 2209 0158 3B19     		adds	r3, r7, r4
+ 2210 015a 5A70     		strb	r2, [r3, #1]
+ 2211 015c BB68     		ldr	r3, [r7, #8]
+ 2212 015e 013B     		subs	r3, r3, #1
+ 2213 0160 FA68     		ldr	r2, [r7, #12]
+ 2214 0162 D318     		adds	r3, r2, r3
+ 2215 0164 1B78     		ldrb	r3, [r3]
+ 2216 0166 1800     		movs	r0, r3
+ 2217 0168 FFF7FEFF 		bl	prv_b64Revert
+ 2218 016c 0300     		movs	r3, r0
+ 2219 016e 1A00     		movs	r2, r3
+ 2220 0170 2000     		movs	r0, r4
+ 2221 0172 3B18     		adds	r3, r7, r0
+ 2222 0174 9A70     		strb	r2, [r3, #2]
+ 2223 0176 3B18     		adds	r3, r7, r0
+ 2224 0178 1B78     		ldrb	r3, [r3]
+ 2225 017a 9B00     		lsls	r3, r3, #2
+ 2226 017c 5AB2     		sxtb	r2, r3
+ 2227 017e 3B18     		adds	r3, r7, r0
+ 2228 0180 5B78     		ldrb	r3, [r3, #1]
+ 2229 0182 1B09     		lsrs	r3, r3, #4
+ 2230 0184 DBB2     		uxtb	r3, r3
+ 2231 0186 5BB2     		sxtb	r3, r3
+ 2232 0188 1343     		orrs	r3, r2
+ 2233 018a 59B2     		sxtb	r1, r3
+ 2234 018c 3B6A     		ldr	r3, [r7, #32]
+ 2235 018e 204A     		ldr	r2, .L160
+ 2236 0190 9446     		mov	ip, r2
+ 2237 0192 6344     		add	r3, r3, ip
+ 2238 0194 9B00     		lsls	r3, r3, #2
+ 2239 0196 7A68     		ldr	r2, [r7, #4]
+ 2240 0198 D318     		adds	r3, r2, r3
+ 2241 019a 1B68     		ldr	r3, [r3]
+ 2242 019c CAB2     		uxtb	r2, r1
+ 2243 019e 1A70     		strb	r2, [r3]
+ 2244 01a0 3B18     		adds	r3, r7, r0
+ 2245 01a2 5B78     		ldrb	r3, [r3, #1]
+ 2246 01a4 1B01     		lsls	r3, r3, #4
+ 2247 01a6 5AB2     		sxtb	r2, r3
+ 2248 01a8 3B18     		adds	r3, r7, r0
+ 2249 01aa 9B78     		ldrb	r3, [r3, #2]
+ 2250 01ac 9B08     		lsrs	r3, r3, #2
+ 2251 01ae DBB2     		uxtb	r3, r3
+ 2252 01b0 5BB2     		sxtb	r3, r3
+ 2253 01b2 1343     		orrs	r3, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 43
+
+
+ 2254 01b4 59B2     		sxtb	r1, r3
+ 2255 01b6 3B6A     		ldr	r3, [r7, #32]
+ 2256 01b8 164A     		ldr	r2, .L160+4
+ 2257 01ba 9446     		mov	ip, r2
+ 2258 01bc 6344     		add	r3, r3, ip
+ 2259 01be 9B00     		lsls	r3, r3, #2
+ 2260 01c0 7A68     		ldr	r2, [r7, #4]
+ 2261 01c2 D318     		adds	r3, r2, r3
+ 2262 01c4 1B68     		ldr	r3, [r3]
+ 2263 01c6 CAB2     		uxtb	r2, r1
+ 2264 01c8 1A70     		strb	r2, [r3]
+ 2265 01ca 3B18     		adds	r3, r7, r0
+ 2266 01cc 9A78     		ldrb	r2, [r3, #2]
+ 2267 01ce 3B6A     		ldr	r3, [r7, #32]
+ 2268 01d0 1149     		ldr	r1, .L160+8
+ 2269 01d2 8C46     		mov	ip, r1
+ 2270 01d4 6344     		add	r3, r3, ip
+ 2271 01d6 9B00     		lsls	r3, r3, #2
+ 2272 01d8 7968     		ldr	r1, [r7, #4]
+ 2273 01da CB18     		adds	r3, r1, r3
+ 2274 01dc 1B68     		ldr	r3, [r3]
+ 2275 01de 9201     		lsls	r2, r2, #6
+ 2276 01e0 D2B2     		uxtb	r2, r2
+ 2277 01e2 1A70     		strb	r2, [r3]
+ 2278 01e4 FB69     		ldr	r3, [r7, #28]
+ 2279 01e6 013B     		subs	r3, r3, #1
+ 2280 01e8 FB61     		str	r3, [r7, #28]
+ 2281 01ea 0BE0     		b	.L157
+ 2282              	.L158:
+ 2283 01ec 7B68     		ldr	r3, [r7, #4]
+ 2284 01ee 1B68     		ldr	r3, [r3]
+ 2285 01f0 1800     		movs	r0, r3
+ 2286 01f2 FFF7FEFF 		bl	lwm2m_free
+ 2287 01f6 7B68     		ldr	r3, [r7, #4]
+ 2288 01f8 0022     		movs	r2, #0
+ 2289 01fa 1A60     		str	r2, [r3]
+ 2290 01fc 0023     		movs	r3, #0
+ 2291 01fe FB61     		str	r3, [r7, #28]
+ 2292 0200 00E0     		b	.L157
+ 2293              	.L159:
+ 2294 0202 C046     		nop
+ 2295              	.L157:
+ 2296 0204 FB69     		ldr	r3, [r7, #28]
+ 2297              	.L147:
+ 2298 0206 1800     		movs	r0, r3
+ 2299 0208 BD46     		mov	sp, r7
+ 2300 020a 0BB0     		add	sp, sp, #44
+ 2301              		@ sp needed
+ 2302 020c 90BD     		pop	{r4, r7, pc}
+ 2303              	.L161:
+ 2304 020e C046     		.align	2
+ 2305              	.L160:
+ 2306 0210 FDFFFF3F 		.word	1073741821
+ 2307 0214 FEFFFF3F 		.word	1073741822
+ 2308 0218 FFFFFF3F 		.word	1073741823
+ 2310              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 44
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 commandline.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:13     .text.prv_find_command:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:19     .text.prv_find_command:00000000 prv_find_command
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:114    .rodata:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:125    .text.prv_displayHelp:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:131    .text.prv_displayHelp:00000000 prv_displayHelp
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:255    .text.prv_displayHelp:000000e4 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:268    .text.handle_command:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:275    .text.handle_command:00000000 handle_command
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:416    .text.handle_command:00000104 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:421    .text.prv_end_of_space:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:427    .text.prv_end_of_space:00000000 prv_end_of_space
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:459    .text.get_end_of_arg:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:466    .text.get_end_of_arg:00000000 get_end_of_arg
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:503    .text.get_next_arg:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:510    .text.get_next_arg:00000000 get_next_arg
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:546    .text.check_end_of_args:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:553    .text.check_end_of_args:00000000 check_end_of_args
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:581    .text.print_indent:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:587    .text.print_indent:00000000 print_indent
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:620    .text.print_indent:00000034 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:623    .text.output_buffer:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:630    .text.output_buffer:00000000 output_buffer
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:690    .text.output_tlv:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:697    .text.output_tlv:00000000 output_tlv
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:983    .text.output_tlv:0000024c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1021   .text.output_data:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1028   .text.output_data:00000000 output_data
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1202   .text.output_data:0000015c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1265   .text.dump_tlv:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1272   .text.dump_tlv:00000000 dump_tlv
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1338   .rodata.dump_tlv:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1608   .text.dump_tlv:00000294 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1677   .text.prv_status_to_string:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1683   .text.prv_status_to_string:00000000 prv_status_to_string
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1781   .text.prv_status_to_string:00000090 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1802   .text.print_status:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1809   .text.print_status:00000000 print_status
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1848   .text.print_status:00000044 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1851   .text.prv_b64Revert:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1857   .text.prv_b64Revert:00000000 prv_b64Revert
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1931   .text.prv_decodeBlock:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:1937   .text.prv_decodeBlock:00000000 prv_decodeBlock
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:2025   .text.base64_decode:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:2032   .text.base64_decode:00000000 base64_decode
+C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s:2306   .text.base64_decode:00000210 $d
+
+UNDEFINED SYMBOLS
+strlen
+strncmp
+__locale_ctype_ptr
+fwrite
+fprintf
+_impure_ptr
+printf
+fputc
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccVndqc0.s 			page 45
+
+
+sscanf
+lwm2m_decode_TLV
+fputs
+memset
+lwm2m_malloc
+lwm2m_free

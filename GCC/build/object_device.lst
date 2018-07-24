@@ -1,0 +1,1744 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"object_device.c"
+  12              		.section	.text.prv_check_time_offset,"ax",%progbits
+  13              		.align	1
+  14              		.syntax unified
+  15              		.code	16
+  16              		.thumb_func
+  17              		.fpu softvfp
+  19              	prv_check_time_offset:
+  20              		@ args = 0, pretend = 0, frame = 16
+  21              		@ frame_needed = 1, uses_anonymous_args = 0
+  22 0000 80B5     		push	{r7, lr}
+  23 0002 84B0     		sub	sp, sp, #16
+  24 0004 00AF     		add	r7, sp, #0
+  25 0006 7860     		str	r0, [r7, #4]
+  26 0008 3960     		str	r1, [r7]
+  27 000a 3B68     		ldr	r3, [r7]
+  28 000c 032B     		cmp	r3, #3
+  29 000e 07D0     		beq	.L2
+  30 0010 3B68     		ldr	r3, [r7]
+  31 0012 052B     		cmp	r3, #5
+  32 0014 04D0     		beq	.L2
+  33 0016 3B68     		ldr	r3, [r7]
+  34 0018 062B     		cmp	r3, #6
+  35 001a 01D0     		beq	.L2
+  36 001c 0023     		movs	r3, #0
+  37 001e 65E0     		b	.L3
+  38              	.L2:
+  39 0020 7B68     		ldr	r3, [r7, #4]
+  40 0022 1B78     		ldrb	r3, [r3]
+  41 0024 2D2B     		cmp	r3, #45
+  42 0026 05D0     		beq	.L4
+  43 0028 7B68     		ldr	r3, [r7, #4]
+  44 002a 1B78     		ldrb	r3, [r3]
+  45 002c 2B2B     		cmp	r3, #43
+  46 002e 01D0     		beq	.L4
+  47 0030 0023     		movs	r3, #0
+  48 0032 5BE0     		b	.L3
+  49              	.L4:
+  50 0034 7B68     		ldr	r3, [r7, #4]
+  51 0036 0133     		adds	r3, r3, #1
+  52 0038 1B78     		ldrb	r3, [r3]
+  53 003a 302B     		cmp	r3, #48
+  54 003c 02D0     		beq	.L6
+  55 003e 312B     		cmp	r3, #49
+  56 0040 0CD0     		beq	.L7
+  57 0042 17E0     		b	.L23
+  58              	.L6:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 2
+
+
+  59 0044 7B68     		ldr	r3, [r7, #4]
+  60 0046 0233     		adds	r3, r3, #2
+  61 0048 1B78     		ldrb	r3, [r3]
+  62 004a 2F2B     		cmp	r3, #47
+  63 004c 04D9     		bls	.L8
+  64 004e 7B68     		ldr	r3, [r7, #4]
+  65 0050 0233     		adds	r3, r3, #2
+  66 0052 1B78     		ldrb	r3, [r3]
+  67 0054 392B     		cmp	r3, #57
+  68 0056 0FD9     		bls	.L25
+  69              	.L8:
+  70 0058 0023     		movs	r3, #0
+  71 005a 47E0     		b	.L3
+  72              	.L7:
+  73 005c 7B68     		ldr	r3, [r7, #4]
+  74 005e 0233     		adds	r3, r3, #2
+  75 0060 1B78     		ldrb	r3, [r3]
+  76 0062 2F2B     		cmp	r3, #47
+  77 0064 04D9     		bls	.L11
+  78 0066 7B68     		ldr	r3, [r7, #4]
+  79 0068 0233     		adds	r3, r3, #2
+  80 006a 1B78     		ldrb	r3, [r3]
+  81 006c 322B     		cmp	r3, #50
+  82 006e 05D9     		bls	.L26
+  83              	.L11:
+  84 0070 0023     		movs	r3, #0
+  85 0072 3BE0     		b	.L3
+  86              	.L23:
+  87 0074 0023     		movs	r3, #0
+  88 0076 39E0     		b	.L3
+  89              	.L25:
+  90 0078 C046     		nop
+  91 007a 00E0     		b	.L10
+  92              	.L26:
+  93 007c C046     		nop
+  94              	.L10:
+  95 007e 3B68     		ldr	r3, [r7]
+  96 0080 052B     		cmp	r3, #5
+  97 0082 05D0     		beq	.L14
+  98 0084 062B     		cmp	r3, #6
+  99 0086 06D0     		beq	.L15
+ 100 0088 032B     		cmp	r3, #3
+ 101 008a 0ED1     		bne	.L24
+ 102 008c 0123     		movs	r3, #1
+ 103 008e 2DE0     		b	.L3
+ 104              	.L14:
+ 105 0090 0323     		movs	r3, #3
+ 106 0092 FB60     		str	r3, [r7, #12]
+ 107 0094 0BE0     		b	.L17
+ 108              	.L15:
+ 109 0096 7B68     		ldr	r3, [r7, #4]
+ 110 0098 0333     		adds	r3, r3, #3
+ 111 009a 1B78     		ldrb	r3, [r3]
+ 112 009c 3A2B     		cmp	r3, #58
+ 113 009e 01D0     		beq	.L18
+ 114 00a0 0023     		movs	r3, #0
+ 115 00a2 23E0     		b	.L3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 3
+
+
+ 116              	.L18:
+ 117 00a4 0423     		movs	r3, #4
+ 118 00a6 FB60     		str	r3, [r7, #12]
+ 119 00a8 01E0     		b	.L17
+ 120              	.L24:
+ 121 00aa 0023     		movs	r3, #0
+ 122 00ac 1EE0     		b	.L3
+ 123              	.L17:
+ 124 00ae FB68     		ldr	r3, [r7, #12]
+ 125 00b0 7A68     		ldr	r2, [r7, #4]
+ 126 00b2 D318     		adds	r3, r2, r3
+ 127 00b4 1B78     		ldrb	r3, [r3]
+ 128 00b6 2F2B     		cmp	r3, #47
+ 129 00b8 05D9     		bls	.L19
+ 130 00ba FB68     		ldr	r3, [r7, #12]
+ 131 00bc 7A68     		ldr	r2, [r7, #4]
+ 132 00be D318     		adds	r3, r2, r3
+ 133 00c0 1B78     		ldrb	r3, [r3]
+ 134 00c2 352B     		cmp	r3, #53
+ 135 00c4 01D9     		bls	.L20
+ 136              	.L19:
+ 137 00c6 0023     		movs	r3, #0
+ 138 00c8 10E0     		b	.L3
+ 139              	.L20:
+ 140 00ca FB68     		ldr	r3, [r7, #12]
+ 141 00cc 0133     		adds	r3, r3, #1
+ 142 00ce 7A68     		ldr	r2, [r7, #4]
+ 143 00d0 D318     		adds	r3, r2, r3
+ 144 00d2 1B78     		ldrb	r3, [r3]
+ 145 00d4 2F2B     		cmp	r3, #47
+ 146 00d6 06D9     		bls	.L21
+ 147 00d8 FB68     		ldr	r3, [r7, #12]
+ 148 00da 0133     		adds	r3, r3, #1
+ 149 00dc 7A68     		ldr	r2, [r7, #4]
+ 150 00de D318     		adds	r3, r2, r3
+ 151 00e0 1B78     		ldrb	r3, [r3]
+ 152 00e2 392B     		cmp	r3, #57
+ 153 00e4 01D9     		bls	.L22
+ 154              	.L21:
+ 155 00e6 0023     		movs	r3, #0
+ 156 00e8 00E0     		b	.L3
+ 157              	.L22:
+ 158 00ea 0123     		movs	r3, #1
+ 159              	.L3:
+ 160 00ec 1800     		movs	r0, r3
+ 161 00ee BD46     		mov	sp, r7
+ 162 00f0 04B0     		add	sp, sp, #16
+ 163              		@ sp needed
+ 164 00f2 80BD     		pop	{r7, pc}
+ 166              		.section	.text.prv_set_value,"ax",%progbits
+ 167              		.align	1
+ 168              		.syntax unified
+ 169              		.code	16
+ 170              		.thumb_func
+ 171              		.fpu softvfp
+ 173              	prv_set_value:
+ 174              		@ args = 0, pretend = 0, frame = 192
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 4
+
+
+ 175              		@ frame_needed = 1, uses_anonymous_args = 0
+ 176 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 177 0002 B1B0     		sub	sp, sp, #196
+ 178 0004 00AF     		add	r7, sp, #0
+ 179 0006 F862     		str	r0, [r7, #44]
+ 180 0008 4C23     		movs	r3, #76
+ 181 000a 2822     		movs	r2, #40
+ 182 000c 9446     		mov	ip, r2
+ 183 000e BC44     		add	ip, ip, r7
+ 184 0010 6344     		add	r3, r3, ip
+ 185 0012 1800     		movs	r0, r3
+ 186 0014 4123     		movs	r3, #65
+ 187 0016 1A00     		movs	r2, r3
+ 188 0018 0021     		movs	r1, #0
+ 189 001a FFF7FEFF 		bl	memset
+ 190 001e FB6A     		ldr	r3, [r7, #44]
+ 191 0020 5B88     		ldrh	r3, [r3, #2]
+ 192 0022 102B     		cmp	r3, #16
+ 193 0024 00D9     		bls	.LCB205
+ 194 0026 A9E2     		b	.L28	@long jump
+ 195              	.LCB205:
+ 196 0028 9A00     		lsls	r2, r3, #2
+ 197 002a E44B     		ldr	r3, .L67
+ 198 002c D318     		adds	r3, r2, r3
+ 199 002e 1B68     		ldr	r3, [r3]
+ 200 0030 9F46     		mov	pc, r3
+ 201              		.section	.rodata.prv_set_value,"a",%progbits
+ 202              		.align	2
+ 203              	.L30:
+ 204 0000 32000000 		.word	.L29
+ 205 0004 78000000 		.word	.L31
+ 206 0008 BE000000 		.word	.L32
+ 207 000c 04010000 		.word	.L33
+ 208 0010 4A010000 		.word	.L34
+ 209 0014 4E010000 		.word	.L35
+ 210 0018 52010000 		.word	.L36
+ 211 001c F2010000 		.word	.L37
+ 212 0020 92020000 		.word	.L38
+ 213 0024 32030000 		.word	.L39
+ 214 0028 78030000 		.word	.L40
+ 215 002c C4030000 		.word	.L41
+ 216 0030 66040000 		.word	.L42
+ 217 0034 6A040000 		.word	.L43
+ 218 0038 AA040000 		.word	.L44
+ 219 003c F0040000 		.word	.L45
+ 220 0040 36050000 		.word	.L46
+ 221              		.section	.text.prv_set_value
+ 222              	.L29:
+ 223 0032 4C23     		movs	r3, #76
+ 224 0034 2822     		movs	r2, #40
+ 225 0036 9446     		mov	ip, r2
+ 226 0038 BC44     		add	ip, ip, r7
+ 227 003a 6344     		add	r3, r3, ip
+ 228 003c 4022     		movs	r2, #64
+ 229 003e 1900     		movs	r1, r3
+ 230 0040 0020     		movs	r0, #0
+ 231 0042 FFF7FEFF 		bl	atiny_cmd_ioctl
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 5
+
+
+ 232 0046 0300     		movs	r3, r0
+ 233 0048 9422     		movs	r2, #148
+ 234 004a 2820     		movs	r0, #40
+ 235 004c 3918     		adds	r1, r7, r0
+ 236 004e 8918     		adds	r1, r1, r2
+ 237 0050 0B60     		str	r3, [r1]
+ 238 0052 3B18     		adds	r3, r7, r0
+ 239 0054 9B18     		adds	r3, r3, r2
+ 240 0056 1B68     		ldr	r3, [r3]
+ 241 0058 002B     		cmp	r3, #0
+ 242 005a 0BD1     		bne	.L47
+ 243 005c FA6A     		ldr	r2, [r7, #44]
+ 244 005e 4C23     		movs	r3, #76
+ 245 0060 2821     		movs	r1, #40
+ 246 0062 8C46     		mov	ip, r1
+ 247 0064 BC44     		add	ip, ip, r7
+ 248 0066 6344     		add	r3, r3, ip
+ 249 0068 1100     		movs	r1, r2
+ 250 006a 1800     		movs	r0, r3
+ 251 006c FFF7FEFF 		bl	lwm2m_data_encode_string
+ 252 0070 4523     		movs	r3, #69
+ 253 0072 84E2     		b	.L66
+ 254              	.L47:
+ 255 0074 8023     		movs	r3, #128
+ 256 0076 82E2     		b	.L66
+ 257              	.L31:
+ 258 0078 4C23     		movs	r3, #76
+ 259 007a 2822     		movs	r2, #40
+ 260 007c 9446     		mov	ip, r2
+ 261 007e BC44     		add	ip, ip, r7
+ 262 0080 6344     		add	r3, r3, ip
+ 263 0082 4022     		movs	r2, #64
+ 264 0084 1900     		movs	r1, r3
+ 265 0086 0120     		movs	r0, #1
+ 266 0088 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 267 008c 0300     		movs	r3, r0
+ 268 008e 9422     		movs	r2, #148
+ 269 0090 2820     		movs	r0, #40
+ 270 0092 3918     		adds	r1, r7, r0
+ 271 0094 8918     		adds	r1, r1, r2
+ 272 0096 0B60     		str	r3, [r1]
+ 273 0098 3B18     		adds	r3, r7, r0
+ 274 009a 9B18     		adds	r3, r3, r2
+ 275 009c 1B68     		ldr	r3, [r3]
+ 276 009e 002B     		cmp	r3, #0
+ 277 00a0 0BD1     		bne	.L49
+ 278 00a2 FA6A     		ldr	r2, [r7, #44]
+ 279 00a4 4C23     		movs	r3, #76
+ 280 00a6 2821     		movs	r1, #40
+ 281 00a8 8C46     		mov	ip, r1
+ 282 00aa BC44     		add	ip, ip, r7
+ 283 00ac 6344     		add	r3, r3, ip
+ 284 00ae 1100     		movs	r1, r2
+ 285 00b0 1800     		movs	r0, r3
+ 286 00b2 FFF7FEFF 		bl	lwm2m_data_encode_string
+ 287 00b6 4523     		movs	r3, #69
+ 288 00b8 61E2     		b	.L66
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 6
+
+
+ 289              	.L49:
+ 290 00ba 8023     		movs	r3, #128
+ 291 00bc 5FE2     		b	.L66
+ 292              	.L32:
+ 293 00be 4C23     		movs	r3, #76
+ 294 00c0 2822     		movs	r2, #40
+ 295 00c2 9446     		mov	ip, r2
+ 296 00c4 BC44     		add	ip, ip, r7
+ 297 00c6 6344     		add	r3, r3, ip
+ 298 00c8 4022     		movs	r2, #64
+ 299 00ca 1900     		movs	r1, r3
+ 300 00cc 0220     		movs	r0, #2
+ 301 00ce FFF7FEFF 		bl	atiny_cmd_ioctl
+ 302 00d2 0300     		movs	r3, r0
+ 303 00d4 9422     		movs	r2, #148
+ 304 00d6 2820     		movs	r0, #40
+ 305 00d8 3918     		adds	r1, r7, r0
+ 306 00da 8918     		adds	r1, r1, r2
+ 307 00dc 0B60     		str	r3, [r1]
+ 308 00de 3B18     		adds	r3, r7, r0
+ 309 00e0 9B18     		adds	r3, r3, r2
+ 310 00e2 1B68     		ldr	r3, [r3]
+ 311 00e4 002B     		cmp	r3, #0
+ 312 00e6 0BD1     		bne	.L50
+ 313 00e8 FA6A     		ldr	r2, [r7, #44]
+ 314 00ea 4C23     		movs	r3, #76
+ 315 00ec 2821     		movs	r1, #40
+ 316 00ee 8C46     		mov	ip, r1
+ 317 00f0 BC44     		add	ip, ip, r7
+ 318 00f2 6344     		add	r3, r3, ip
+ 319 00f4 1100     		movs	r1, r2
+ 320 00f6 1800     		movs	r0, r3
+ 321 00f8 FFF7FEFF 		bl	lwm2m_data_encode_string
+ 322 00fc 4523     		movs	r3, #69
+ 323 00fe 3EE2     		b	.L66
+ 324              	.L50:
+ 325 0100 8023     		movs	r3, #128
+ 326 0102 3CE2     		b	.L66
+ 327              	.L33:
+ 328 0104 4C23     		movs	r3, #76
+ 329 0106 2822     		movs	r2, #40
+ 330 0108 9446     		mov	ip, r2
+ 331 010a BC44     		add	ip, ip, r7
+ 332 010c 6344     		add	r3, r3, ip
+ 333 010e 4022     		movs	r2, #64
+ 334 0110 1900     		movs	r1, r3
+ 335 0112 0320     		movs	r0, #3
+ 336 0114 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 337 0118 0300     		movs	r3, r0
+ 338 011a 9422     		movs	r2, #148
+ 339 011c 2820     		movs	r0, #40
+ 340 011e 3918     		adds	r1, r7, r0
+ 341 0120 8918     		adds	r1, r1, r2
+ 342 0122 0B60     		str	r3, [r1]
+ 343 0124 3B18     		adds	r3, r7, r0
+ 344 0126 9B18     		adds	r3, r3, r2
+ 345 0128 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 7
+
+
+ 346 012a 002B     		cmp	r3, #0
+ 347 012c 0BD1     		bne	.L51
+ 348 012e FA6A     		ldr	r2, [r7, #44]
+ 349 0130 4C23     		movs	r3, #76
+ 350 0132 2821     		movs	r1, #40
+ 351 0134 8C46     		mov	ip, r1
+ 352 0136 BC44     		add	ip, ip, r7
+ 353 0138 6344     		add	r3, r3, ip
+ 354 013a 1100     		movs	r1, r2
+ 355 013c 1800     		movs	r0, r3
+ 356 013e FFF7FEFF 		bl	lwm2m_data_encode_string
+ 357 0142 4523     		movs	r3, #69
+ 358 0144 1BE2     		b	.L66
+ 359              	.L51:
+ 360 0146 8023     		movs	r3, #128
+ 361 0148 19E2     		b	.L66
+ 362              	.L34:
+ 363 014a 8523     		movs	r3, #133
+ 364 014c 17E2     		b	.L66
+ 365              	.L35:
+ 366 014e 8523     		movs	r3, #133
+ 367 0150 15E2     		b	.L66
+ 368              	.L36:
+ 369 0152 0120     		movs	r0, #1
+ 370 0154 FFF7FEFF 		bl	lwm2m_data_new
+ 371 0158 0300     		movs	r3, r0
+ 372 015a 9022     		movs	r2, #144
+ 373 015c 2820     		movs	r0, #40
+ 374 015e 3918     		adds	r1, r7, r0
+ 375 0160 8918     		adds	r1, r1, r2
+ 376 0162 0B60     		str	r3, [r1]
+ 377 0164 3B18     		adds	r3, r7, r0
+ 378 0166 9B18     		adds	r3, r3, r2
+ 379 0168 1B68     		ldr	r3, [r3]
+ 380 016a 002B     		cmp	r3, #0
+ 381 016c 01D1     		bne	.L52
+ 382 016e A023     		movs	r3, #160
+ 383 0170 05E2     		b	.L66
+ 384              	.L52:
+ 385 0172 9023     		movs	r3, #144
+ 386 0174 2822     		movs	r2, #40
+ 387 0176 9446     		mov	ip, r2
+ 388 0178 BC44     		add	ip, ip, r7
+ 389 017a 6344     		add	r3, r3, ip
+ 390 017c 1B68     		ldr	r3, [r3]
+ 391 017e 0022     		movs	r2, #0
+ 392 0180 5A80     		strh	r2, [r3, #2]
+ 393 0182 1823     		movs	r3, #24
+ 394 0184 2822     		movs	r2, #40
+ 395 0186 9446     		mov	ip, r2
+ 396 0188 BC44     		add	ip, ip, r7
+ 397 018a 6344     		add	r3, r3, ip
+ 398 018c 0422     		movs	r2, #4
+ 399 018e 1900     		movs	r1, r3
+ 400 0190 0620     		movs	r0, #6
+ 401 0192 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 402 0196 0300     		movs	r3, r0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 8
+
+
+ 403 0198 9422     		movs	r2, #148
+ 404 019a 2820     		movs	r0, #40
+ 405 019c 3918     		adds	r1, r7, r0
+ 406 019e 8918     		adds	r1, r1, r2
+ 407 01a0 0B60     		str	r3, [r1]
+ 408 01a2 3B18     		adds	r3, r7, r0
+ 409 01a4 9B18     		adds	r3, r3, r2
+ 410 01a6 1B68     		ldr	r3, [r3]
+ 411 01a8 002B     		cmp	r3, #0
+ 412 01aa 17D1     		bne	.L53
+ 413 01ac 3B6C     		ldr	r3, [r7, #64]
+ 414 01ae 3B62     		str	r3, [r7, #32]
+ 415 01b0 DB17     		asrs	r3, r3, #31
+ 416 01b2 7B62     		str	r3, [r7, #36]
+ 417 01b4 9024     		movs	r4, #144
+ 418 01b6 2825     		movs	r5, #40
+ 419 01b8 7B19     		adds	r3, r7, r5
+ 420 01ba 1B19     		adds	r3, r3, r4
+ 421 01bc 1B68     		ldr	r3, [r3]
+ 422 01be 1A00     		movs	r2, r3
+ 423 01c0 386A     		ldr	r0, [r7, #32]
+ 424 01c2 796A     		ldr	r1, [r7, #36]
+ 425 01c4 FFF7FEFF 		bl	lwm2m_data_encode_int
+ 426 01c8 FA6A     		ldr	r2, [r7, #44]
+ 427 01ca 7B19     		adds	r3, r7, r5
+ 428 01cc 1B19     		adds	r3, r3, r4
+ 429 01ce 1B68     		ldr	r3, [r3]
+ 430 01d0 0121     		movs	r1, #1
+ 431 01d2 1800     		movs	r0, r3
+ 432 01d4 FFF7FEFF 		bl	lwm2m_data_encode_instances
+ 433 01d8 4523     		movs	r3, #69
+ 434 01da D0E1     		b	.L66
+ 435              	.L53:
+ 436 01dc 9023     		movs	r3, #144
+ 437 01de 2822     		movs	r2, #40
+ 438 01e0 9446     		mov	ip, r2
+ 439 01e2 BC44     		add	ip, ip, r7
+ 440 01e4 6344     		add	r3, r3, ip
+ 441 01e6 1B68     		ldr	r3, [r3]
+ 442 01e8 1800     		movs	r0, r3
+ 443 01ea FFF7FEFF 		bl	lwm2m_free
+ 444 01ee 8023     		movs	r3, #128
+ 445 01f0 C5E1     		b	.L66
+ 446              	.L37:
+ 447 01f2 0120     		movs	r0, #1
+ 448 01f4 FFF7FEFF 		bl	lwm2m_data_new
+ 449 01f8 0300     		movs	r3, r0
+ 450 01fa 9022     		movs	r2, #144
+ 451 01fc 2820     		movs	r0, #40
+ 452 01fe 3918     		adds	r1, r7, r0
+ 453 0200 8918     		adds	r1, r1, r2
+ 454 0202 0B60     		str	r3, [r1]
+ 455 0204 3B18     		adds	r3, r7, r0
+ 456 0206 9B18     		adds	r3, r3, r2
+ 457 0208 1B68     		ldr	r3, [r3]
+ 458 020a 002B     		cmp	r3, #0
+ 459 020c 01D1     		bne	.L54
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 9
+
+
+ 460 020e A023     		movs	r3, #160
+ 461 0210 B5E1     		b	.L66
+ 462              	.L54:
+ 463 0212 9023     		movs	r3, #144
+ 464 0214 2822     		movs	r2, #40
+ 465 0216 9446     		mov	ip, r2
+ 466 0218 BC44     		add	ip, ip, r7
+ 467 021a 6344     		add	r3, r3, ip
+ 468 021c 1B68     		ldr	r3, [r3]
+ 469 021e 0022     		movs	r2, #0
+ 470 0220 5A80     		strh	r2, [r3, #2]
+ 471 0222 1423     		movs	r3, #20
+ 472 0224 2822     		movs	r2, #40
+ 473 0226 9446     		mov	ip, r2
+ 474 0228 BC44     		add	ip, ip, r7
+ 475 022a 6344     		add	r3, r3, ip
+ 476 022c 0422     		movs	r2, #4
+ 477 022e 1900     		movs	r1, r3
+ 478 0230 0720     		movs	r0, #7
+ 479 0232 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 480 0236 0300     		movs	r3, r0
+ 481 0238 9422     		movs	r2, #148
+ 482 023a 2820     		movs	r0, #40
+ 483 023c 3918     		adds	r1, r7, r0
+ 484 023e 8918     		adds	r1, r1, r2
+ 485 0240 0B60     		str	r3, [r1]
+ 486 0242 3B18     		adds	r3, r7, r0
+ 487 0244 9B18     		adds	r3, r3, r2
+ 488 0246 1B68     		ldr	r3, [r3]
+ 489 0248 002B     		cmp	r3, #0
+ 490 024a 17D1     		bne	.L55
+ 491 024c FB6B     		ldr	r3, [r7, #60]
+ 492 024e BB61     		str	r3, [r7, #24]
+ 493 0250 DB17     		asrs	r3, r3, #31
+ 494 0252 FB61     		str	r3, [r7, #28]
+ 495 0254 9024     		movs	r4, #144
+ 496 0256 2825     		movs	r5, #40
+ 497 0258 7B19     		adds	r3, r7, r5
+ 498 025a 1B19     		adds	r3, r3, r4
+ 499 025c 1B68     		ldr	r3, [r3]
+ 500 025e 1A00     		movs	r2, r3
+ 501 0260 B869     		ldr	r0, [r7, #24]
+ 502 0262 F969     		ldr	r1, [r7, #28]
+ 503 0264 FFF7FEFF 		bl	lwm2m_data_encode_int
+ 504 0268 FA6A     		ldr	r2, [r7, #44]
+ 505 026a 7B19     		adds	r3, r7, r5
+ 506 026c 1B19     		adds	r3, r3, r4
+ 507 026e 1B68     		ldr	r3, [r3]
+ 508 0270 0121     		movs	r1, #1
+ 509 0272 1800     		movs	r0, r3
+ 510 0274 FFF7FEFF 		bl	lwm2m_data_encode_instances
+ 511 0278 4523     		movs	r3, #69
+ 512 027a 80E1     		b	.L66
+ 513              	.L55:
+ 514 027c 9023     		movs	r3, #144
+ 515 027e 2822     		movs	r2, #40
+ 516 0280 9446     		mov	ip, r2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 10
+
+
+ 517 0282 BC44     		add	ip, ip, r7
+ 518 0284 6344     		add	r3, r3, ip
+ 519 0286 1B68     		ldr	r3, [r3]
+ 520 0288 1800     		movs	r0, r3
+ 521 028a FFF7FEFF 		bl	lwm2m_free
+ 522 028e 8023     		movs	r3, #128
+ 523 0290 75E1     		b	.L66
+ 524              	.L38:
+ 525 0292 0120     		movs	r0, #1
+ 526 0294 FFF7FEFF 		bl	lwm2m_data_new
+ 527 0298 0300     		movs	r3, r0
+ 528 029a 9022     		movs	r2, #144
+ 529 029c 2820     		movs	r0, #40
+ 530 029e 3918     		adds	r1, r7, r0
+ 531 02a0 8918     		adds	r1, r1, r2
+ 532 02a2 0B60     		str	r3, [r1]
+ 533 02a4 3B18     		adds	r3, r7, r0
+ 534 02a6 9B18     		adds	r3, r3, r2
+ 535 02a8 1B68     		ldr	r3, [r3]
+ 536 02aa 002B     		cmp	r3, #0
+ 537 02ac 01D1     		bne	.L56
+ 538 02ae A023     		movs	r3, #160
+ 539 02b0 65E1     		b	.L66
+ 540              	.L56:
+ 541 02b2 9023     		movs	r3, #144
+ 542 02b4 2822     		movs	r2, #40
+ 543 02b6 9446     		mov	ip, r2
+ 544 02b8 BC44     		add	ip, ip, r7
+ 545 02ba 6344     		add	r3, r3, ip
+ 546 02bc 1B68     		ldr	r3, [r3]
+ 547 02be 0022     		movs	r2, #0
+ 548 02c0 5A80     		strh	r2, [r3, #2]
+ 549 02c2 1823     		movs	r3, #24
+ 550 02c4 2822     		movs	r2, #40
+ 551 02c6 9446     		mov	ip, r2
+ 552 02c8 BC44     		add	ip, ip, r7
+ 553 02ca 6344     		add	r3, r3, ip
+ 554 02cc 0422     		movs	r2, #4
+ 555 02ce 1900     		movs	r1, r3
+ 556 02d0 0820     		movs	r0, #8
+ 557 02d2 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 558 02d6 0300     		movs	r3, r0
+ 559 02d8 9422     		movs	r2, #148
+ 560 02da 2820     		movs	r0, #40
+ 561 02dc 3918     		adds	r1, r7, r0
+ 562 02de 8918     		adds	r1, r1, r2
+ 563 02e0 0B60     		str	r3, [r1]
+ 564 02e2 3B18     		adds	r3, r7, r0
+ 565 02e4 9B18     		adds	r3, r3, r2
+ 566 02e6 1B68     		ldr	r3, [r3]
+ 567 02e8 002B     		cmp	r3, #0
+ 568 02ea 17D1     		bne	.L57
+ 569 02ec 3B6C     		ldr	r3, [r7, #64]
+ 570 02ee 3B61     		str	r3, [r7, #16]
+ 571 02f0 DB17     		asrs	r3, r3, #31
+ 572 02f2 7B61     		str	r3, [r7, #20]
+ 573 02f4 9024     		movs	r4, #144
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 11
+
+
+ 574 02f6 2825     		movs	r5, #40
+ 575 02f8 7B19     		adds	r3, r7, r5
+ 576 02fa 1B19     		adds	r3, r3, r4
+ 577 02fc 1B68     		ldr	r3, [r3]
+ 578 02fe 1A00     		movs	r2, r3
+ 579 0300 3869     		ldr	r0, [r7, #16]
+ 580 0302 7969     		ldr	r1, [r7, #20]
+ 581 0304 FFF7FEFF 		bl	lwm2m_data_encode_int
+ 582 0308 FA6A     		ldr	r2, [r7, #44]
+ 583 030a 7B19     		adds	r3, r7, r5
+ 584 030c 1B19     		adds	r3, r3, r4
+ 585 030e 1B68     		ldr	r3, [r3]
+ 586 0310 0121     		movs	r1, #1
+ 587 0312 1800     		movs	r0, r3
+ 588 0314 FFF7FEFF 		bl	lwm2m_data_encode_instances
+ 589 0318 4523     		movs	r3, #69
+ 590 031a 30E1     		b	.L66
+ 591              	.L57:
+ 592 031c 9023     		movs	r3, #144
+ 593 031e 2822     		movs	r2, #40
+ 594 0320 9446     		mov	ip, r2
+ 595 0322 BC44     		add	ip, ip, r7
+ 596 0324 6344     		add	r3, r3, ip
+ 597 0326 1B68     		ldr	r3, [r3]
+ 598 0328 1800     		movs	r0, r3
+ 599 032a FFF7FEFF 		bl	lwm2m_free
+ 600 032e 8023     		movs	r3, #128
+ 601 0330 25E1     		b	.L66
+ 602              	.L39:
+ 603 0332 1023     		movs	r3, #16
+ 604 0334 2822     		movs	r2, #40
+ 605 0336 9446     		mov	ip, r2
+ 606 0338 BC44     		add	ip, ip, r7
+ 607 033a 6344     		add	r3, r3, ip
+ 608 033c 0422     		movs	r2, #4
+ 609 033e 1900     		movs	r1, r3
+ 610 0340 0920     		movs	r0, #9
+ 611 0342 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 612 0346 0300     		movs	r3, r0
+ 613 0348 9422     		movs	r2, #148
+ 614 034a 2820     		movs	r0, #40
+ 615 034c 3918     		adds	r1, r7, r0
+ 616 034e 8918     		adds	r1, r1, r2
+ 617 0350 0B60     		str	r3, [r1]
+ 618 0352 3B18     		adds	r3, r7, r0
+ 619 0354 9B18     		adds	r3, r3, r2
+ 620 0356 1B68     		ldr	r3, [r3]
+ 621 0358 002B     		cmp	r3, #0
+ 622 035a 0BD1     		bne	.L58
+ 623 035c BB6B     		ldr	r3, [r7, #56]
+ 624 035e BB60     		str	r3, [r7, #8]
+ 625 0360 DB17     		asrs	r3, r3, #31
+ 626 0362 FB60     		str	r3, [r7, #12]
+ 627 0364 FB6A     		ldr	r3, [r7, #44]
+ 628 0366 1A00     		movs	r2, r3
+ 629 0368 B868     		ldr	r0, [r7, #8]
+ 630 036a F968     		ldr	r1, [r7, #12]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 12
+
+
+ 631 036c FFF7FEFF 		bl	lwm2m_data_encode_int
+ 632 0370 4523     		movs	r3, #69
+ 633 0372 04E1     		b	.L66
+ 634              	.L58:
+ 635 0374 8023     		movs	r3, #128
+ 636 0376 02E1     		b	.L66
+ 637              	.L40:
+ 638 0378 0C23     		movs	r3, #12
+ 639 037a 2822     		movs	r2, #40
+ 640 037c 9446     		mov	ip, r2
+ 641 037e BC44     		add	ip, ip, r7
+ 642 0380 6344     		add	r3, r3, ip
+ 643 0382 0422     		movs	r2, #4
+ 644 0384 1900     		movs	r1, r3
+ 645 0386 0A20     		movs	r0, #10
+ 646 0388 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 647 038c 0300     		movs	r3, r0
+ 648 038e 9422     		movs	r2, #148
+ 649 0390 2820     		movs	r0, #40
+ 650 0392 3918     		adds	r1, r7, r0
+ 651 0394 8918     		adds	r1, r1, r2
+ 652 0396 0B60     		str	r3, [r1]
+ 653 0398 3B18     		adds	r3, r7, r0
+ 654 039a 9B18     		adds	r3, r3, r2
+ 655 039c 1B68     		ldr	r3, [r3]
+ 656 039e 002B     		cmp	r3, #0
+ 657 03a0 0ED1     		bne	.L59
+ 658 03a2 7B6B     		ldr	r3, [r7, #52]
+ 659 03a4 3B60     		str	r3, [r7]
+ 660 03a6 DB17     		asrs	r3, r3, #31
+ 661 03a8 7B60     		str	r3, [r7, #4]
+ 662 03aa FB6A     		ldr	r3, [r7, #44]
+ 663 03ac 1A00     		movs	r2, r3
+ 664 03ae 3868     		ldr	r0, [r7]
+ 665 03b0 7968     		ldr	r1, [r7, #4]
+ 666 03b2 FFF7FEFF 		bl	lwm2m_data_encode_int
+ 667 03b6 4523     		movs	r3, #69
+ 668 03b8 E1E0     		b	.L66
+ 669              	.L68:
+ 670 03ba C046     		.align	2
+ 671              	.L67:
+ 672 03bc 00000000 		.word	.L30
+ 673              	.L59:
+ 674 03c0 8023     		movs	r3, #128
+ 675 03c2 DCE0     		b	.L66
+ 676              	.L41:
+ 677 03c4 0120     		movs	r0, #1
+ 678 03c6 FFF7FEFF 		bl	lwm2m_data_new
+ 679 03ca 0300     		movs	r3, r0
+ 680 03cc 9022     		movs	r2, #144
+ 681 03ce 2820     		movs	r0, #40
+ 682 03d0 3918     		adds	r1, r7, r0
+ 683 03d2 8918     		adds	r1, r1, r2
+ 684 03d4 0B60     		str	r3, [r1]
+ 685 03d6 3B18     		adds	r3, r7, r0
+ 686 03d8 9B18     		adds	r3, r3, r2
+ 687 03da 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 13
+
+
+ 688 03dc 002B     		cmp	r3, #0
+ 689 03de 01D1     		bne	.L60
+ 690 03e0 A023     		movs	r3, #160
+ 691 03e2 CCE0     		b	.L66
+ 692              	.L60:
+ 693 03e4 9023     		movs	r3, #144
+ 694 03e6 2822     		movs	r2, #40
+ 695 03e8 9446     		mov	ip, r2
+ 696 03ea BC44     		add	ip, ip, r7
+ 697 03ec 6344     		add	r3, r3, ip
+ 698 03ee 1B68     		ldr	r3, [r3]
+ 699 03f0 0022     		movs	r2, #0
+ 700 03f2 5A80     		strh	r2, [r3, #2]
+ 701 03f4 0823     		movs	r3, #8
+ 702 03f6 2822     		movs	r2, #40
+ 703 03f8 9446     		mov	ip, r2
+ 704 03fa BC44     		add	ip, ip, r7
+ 705 03fc 6344     		add	r3, r3, ip
+ 706 03fe 0422     		movs	r2, #4
+ 707 0400 1900     		movs	r1, r3
+ 708 0402 0B20     		movs	r0, #11
+ 709 0404 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 710 0408 0300     		movs	r3, r0
+ 711 040a 9422     		movs	r2, #148
+ 712 040c 2820     		movs	r0, #40
+ 713 040e 3918     		adds	r1, r7, r0
+ 714 0410 8918     		adds	r1, r1, r2
+ 715 0412 0B60     		str	r3, [r1]
+ 716 0414 3B18     		adds	r3, r7, r0
+ 717 0416 9B18     		adds	r3, r3, r2
+ 718 0418 1B68     		ldr	r3, [r3]
+ 719 041a 002B     		cmp	r3, #0
+ 720 041c 18D1     		bne	.L61
+ 721 041e 3B6B     		ldr	r3, [r7, #48]
+ 722 0420 1C00     		movs	r4, r3
+ 723 0422 DB17     		asrs	r3, r3, #31
+ 724 0424 1D00     		movs	r5, r3
+ 725 0426 9026     		movs	r6, #144
+ 726 0428 2823     		movs	r3, #40
+ 727 042a FA18     		adds	r2, r7, r3
+ 728 042c 9319     		adds	r3, r2, r6
+ 729 042e 1B68     		ldr	r3, [r3]
+ 730 0430 1A00     		movs	r2, r3
+ 731 0432 2000     		movs	r0, r4
+ 732 0434 2900     		movs	r1, r5
+ 733 0436 FFF7FEFF 		bl	lwm2m_data_encode_int
+ 734 043a FA6A     		ldr	r2, [r7, #44]
+ 735 043c 2823     		movs	r3, #40
+ 736 043e FB18     		adds	r3, r7, r3
+ 737 0440 9B19     		adds	r3, r3, r6
+ 738 0442 1B68     		ldr	r3, [r3]
+ 739 0444 0121     		movs	r1, #1
+ 740 0446 1800     		movs	r0, r3
+ 741 0448 FFF7FEFF 		bl	lwm2m_data_encode_instances
+ 742 044c 4523     		movs	r3, #69
+ 743 044e 96E0     		b	.L66
+ 744              	.L61:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 14
+
+
+ 745 0450 9023     		movs	r3, #144
+ 746 0452 2822     		movs	r2, #40
+ 747 0454 9446     		mov	ip, r2
+ 748 0456 BC44     		add	ip, ip, r7
+ 749 0458 6344     		add	r3, r3, ip
+ 750 045a 1B68     		ldr	r3, [r3]
+ 751 045c 1800     		movs	r0, r3
+ 752 045e FFF7FEFF 		bl	lwm2m_free
+ 753 0462 8023     		movs	r3, #128
+ 754 0464 8BE0     		b	.L66
+ 755              	.L42:
+ 756 0466 8523     		movs	r3, #133
+ 757 0468 89E0     		b	.L66
+ 758              	.L43:
+ 759 046a 4023     		movs	r3, #64
+ 760 046c 2822     		movs	r2, #40
+ 761 046e 9446     		mov	ip, r2
+ 762 0470 BC44     		add	ip, ip, r7
+ 763 0472 6344     		add	r3, r3, ip
+ 764 0474 0822     		movs	r2, #8
+ 765 0476 1900     		movs	r1, r3
+ 766 0478 0D20     		movs	r0, #13
+ 767 047a FFF7FEFF 		bl	atiny_cmd_ioctl
+ 768 047e 0300     		movs	r3, r0
+ 769 0480 9422     		movs	r2, #148
+ 770 0482 2820     		movs	r0, #40
+ 771 0484 3918     		adds	r1, r7, r0
+ 772 0486 8918     		adds	r1, r1, r2
+ 773 0488 0B60     		str	r3, [r1]
+ 774 048a 3B18     		adds	r3, r7, r0
+ 775 048c 9B18     		adds	r3, r3, r2
+ 776 048e 1B68     		ldr	r3, [r3]
+ 777 0490 002B     		cmp	r3, #0
+ 778 0492 08D1     		bne	.L62
+ 779 0494 BB6E     		ldr	r3, [r7, #104]
+ 780 0496 FC6E     		ldr	r4, [r7, #108]
+ 781 0498 FA6A     		ldr	r2, [r7, #44]
+ 782 049a 1800     		movs	r0, r3
+ 783 049c 2100     		movs	r1, r4
+ 784 049e FFF7FEFF 		bl	lwm2m_data_encode_int
+ 785 04a2 4523     		movs	r3, #69
+ 786 04a4 6BE0     		b	.L66
+ 787              	.L62:
+ 788 04a6 8023     		movs	r3, #128
+ 789 04a8 69E0     		b	.L66
+ 790              	.L44:
+ 791 04aa 3823     		movs	r3, #56
+ 792 04ac 2822     		movs	r2, #40
+ 793 04ae 9446     		mov	ip, r2
+ 794 04b0 BC44     		add	ip, ip, r7
+ 795 04b2 6344     		add	r3, r3, ip
+ 796 04b4 0722     		movs	r2, #7
+ 797 04b6 1900     		movs	r1, r3
+ 798 04b8 0F20     		movs	r0, #15
+ 799 04ba FFF7FEFF 		bl	atiny_cmd_ioctl
+ 800 04be 0300     		movs	r3, r0
+ 801 04c0 9422     		movs	r2, #148
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 15
+
+
+ 802 04c2 2820     		movs	r0, #40
+ 803 04c4 3918     		adds	r1, r7, r0
+ 804 04c6 8918     		adds	r1, r1, r2
+ 805 04c8 0B60     		str	r3, [r1]
+ 806 04ca 3B18     		adds	r3, r7, r0
+ 807 04cc 9B18     		adds	r3, r3, r2
+ 808 04ce 1B68     		ldr	r3, [r3]
+ 809 04d0 002B     		cmp	r3, #0
+ 810 04d2 0BD1     		bne	.L63
+ 811 04d4 FA6A     		ldr	r2, [r7, #44]
+ 812 04d6 3823     		movs	r3, #56
+ 813 04d8 2821     		movs	r1, #40
+ 814 04da 8C46     		mov	ip, r1
+ 815 04dc BC44     		add	ip, ip, r7
+ 816 04de 6344     		add	r3, r3, ip
+ 817 04e0 1100     		movs	r1, r2
+ 818 04e2 1800     		movs	r0, r3
+ 819 04e4 FFF7FEFF 		bl	lwm2m_data_encode_string
+ 820 04e8 4523     		movs	r3, #69
+ 821 04ea 48E0     		b	.L66
+ 822              	.L63:
+ 823 04ec 8023     		movs	r3, #128
+ 824 04ee 46E0     		b	.L66
+ 825              	.L45:
+ 826 04f0 1C23     		movs	r3, #28
+ 827 04f2 2822     		movs	r2, #40
+ 828 04f4 9446     		mov	ip, r2
+ 829 04f6 BC44     		add	ip, ip, r7
+ 830 04f8 6344     		add	r3, r3, ip
+ 831 04fa 1922     		movs	r2, #25
+ 832 04fc 1900     		movs	r1, r3
+ 833 04fe 1120     		movs	r0, #17
+ 834 0500 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 835 0504 0300     		movs	r3, r0
+ 836 0506 9422     		movs	r2, #148
+ 837 0508 2820     		movs	r0, #40
+ 838 050a 3918     		adds	r1, r7, r0
+ 839 050c 8918     		adds	r1, r1, r2
+ 840 050e 0B60     		str	r3, [r1]
+ 841 0510 3B18     		adds	r3, r7, r0
+ 842 0512 9B18     		adds	r3, r3, r2
+ 843 0514 1B68     		ldr	r3, [r3]
+ 844 0516 002B     		cmp	r3, #0
+ 845 0518 0BD1     		bne	.L64
+ 846 051a FA6A     		ldr	r2, [r7, #44]
+ 847 051c 1C23     		movs	r3, #28
+ 848 051e 2821     		movs	r1, #40
+ 849 0520 8C46     		mov	ip, r1
+ 850 0522 BC44     		add	ip, ip, r7
+ 851 0524 6344     		add	r3, r3, ip
+ 852 0526 1100     		movs	r1, r2
+ 853 0528 1800     		movs	r0, r3
+ 854 052a FFF7FEFF 		bl	lwm2m_data_encode_string
+ 855 052e 4523     		movs	r3, #69
+ 856 0530 25E0     		b	.L66
+ 857              	.L64:
+ 858 0532 8023     		movs	r3, #128
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 16
+
+
+ 859 0534 23E0     		b	.L66
+ 860              	.L46:
+ 861 0536 4C23     		movs	r3, #76
+ 862 0538 2822     		movs	r2, #40
+ 863 053a 9446     		mov	ip, r2
+ 864 053c BC44     		add	ip, ip, r7
+ 865 053e 6344     		add	r3, r3, ip
+ 866 0540 4022     		movs	r2, #64
+ 867 0542 1900     		movs	r1, r3
+ 868 0544 1320     		movs	r0, #19
+ 869 0546 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 870 054a 0300     		movs	r3, r0
+ 871 054c 9422     		movs	r2, #148
+ 872 054e 2820     		movs	r0, #40
+ 873 0550 3918     		adds	r1, r7, r0
+ 874 0552 8918     		adds	r1, r1, r2
+ 875 0554 0B60     		str	r3, [r1]
+ 876 0556 3B18     		adds	r3, r7, r0
+ 877 0558 9B18     		adds	r3, r3, r2
+ 878 055a 1B68     		ldr	r3, [r3]
+ 879 055c 002B     		cmp	r3, #0
+ 880 055e 0BD1     		bne	.L65
+ 881 0560 FA6A     		ldr	r2, [r7, #44]
+ 882 0562 4C23     		movs	r3, #76
+ 883 0564 2821     		movs	r1, #40
+ 884 0566 8C46     		mov	ip, r1
+ 885 0568 BC44     		add	ip, ip, r7
+ 886 056a 6344     		add	r3, r3, ip
+ 887 056c 1100     		movs	r1, r2
+ 888 056e 1800     		movs	r0, r3
+ 889 0570 FFF7FEFF 		bl	lwm2m_data_encode_string
+ 890 0574 4523     		movs	r3, #69
+ 891 0576 02E0     		b	.L66
+ 892              	.L65:
+ 893 0578 8023     		movs	r3, #128
+ 894 057a 00E0     		b	.L66
+ 895              	.L28:
+ 896 057c 8423     		movs	r3, #132
+ 897              	.L66:
+ 898 057e 1800     		movs	r0, r3
+ 899 0580 BD46     		mov	sp, r7
+ 900 0582 31B0     		add	sp, sp, #196
+ 901              		@ sp needed
+ 902 0584 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 904 0586 C046     		.section	.rodata
+ 905              		.align	2
+ 906              	.LC0:
+ 907 0000 0000     		.short	0
+ 908 0002 0100     		.short	1
+ 909 0004 0200     		.short	2
+ 910 0006 0300     		.short	3
+ 911 0008 0600     		.short	6
+ 912 000a 0700     		.short	7
+ 913 000c 0800     		.short	8
+ 914 000e 0900     		.short	9
+ 915 0010 0A00     		.short	10
+ 916 0012 0B00     		.short	11
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 17
+
+
+ 917 0014 0D00     		.short	13
+ 918 0016 0E00     		.short	14
+ 919 0018 0F00     		.short	15
+ 920 001a 1000     		.short	16
+ 921              		.section	.text.prv_device_read,"ax",%progbits
+ 922              		.align	1
+ 923              		.syntax unified
+ 924              		.code	16
+ 925              		.thumb_func
+ 926              		.fpu softvfp
+ 928              	prv_device_read:
+ 929              		@ args = 4, pretend = 0, frame = 56
+ 930              		@ frame_needed = 1, uses_anonymous_args = 0
+ 931 0000 90B5     		push	{r4, r7, lr}
+ 932 0002 8FB0     		sub	sp, sp, #60
+ 933 0004 00AF     		add	r7, sp, #0
+ 934 0006 B960     		str	r1, [r7, #8]
+ 935 0008 7A60     		str	r2, [r7, #4]
+ 936 000a 3B60     		str	r3, [r7]
+ 937 000c 0E21     		movs	r1, #14
+ 938 000e 7B18     		adds	r3, r7, r1
+ 939 0010 021C     		adds	r2, r0, #0
+ 940 0012 1A80     		strh	r2, [r3]
+ 941 0014 7B18     		adds	r3, r7, r1
+ 942 0016 1B88     		ldrh	r3, [r3]
+ 943 0018 002B     		cmp	r3, #0
+ 944 001a 01D0     		beq	.L70
+ 945 001c 8423     		movs	r3, #132
+ 946 001e 51E0     		b	.L71
+ 947              	.L70:
+ 948 0020 BB68     		ldr	r3, [r7, #8]
+ 949 0022 1B68     		ldr	r3, [r3]
+ 950 0024 002B     		cmp	r3, #0
+ 951 0026 2FD1     		bne	.L72
+ 952 0028 1023     		movs	r3, #16
+ 953 002a FB18     		adds	r3, r7, r3
+ 954 002c 274A     		ldr	r2, .L78
+ 955 002e 13CA     		ldmia	r2!, {r0, r1, r4}
+ 956 0030 13C3     		stmia	r3!, {r0, r1, r4}
+ 957 0032 13CA     		ldmia	r2!, {r0, r1, r4}
+ 958 0034 13C3     		stmia	r3!, {r0, r1, r4}
+ 959 0036 1268     		ldr	r2, [r2]
+ 960 0038 1A60     		str	r2, [r3]
+ 961 003a 0E23     		movs	r3, #14
+ 962 003c 3B63     		str	r3, [r7, #48]
+ 963 003e 3B6B     		ldr	r3, [r7, #48]
+ 964 0040 1800     		movs	r0, r3
+ 965 0042 FFF7FEFF 		bl	lwm2m_data_new
+ 966 0046 0200     		movs	r2, r0
+ 967 0048 7B68     		ldr	r3, [r7, #4]
+ 968 004a 1A60     		str	r2, [r3]
+ 969 004c 7B68     		ldr	r3, [r7, #4]
+ 970 004e 1B68     		ldr	r3, [r3]
+ 971 0050 002B     		cmp	r3, #0
+ 972 0052 01D1     		bne	.L73
+ 973 0054 A023     		movs	r3, #160
+ 974 0056 35E0     		b	.L71
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 18
+
+
+ 975              	.L73:
+ 976 0058 BB68     		ldr	r3, [r7, #8]
+ 977 005a 3A6B     		ldr	r2, [r7, #48]
+ 978 005c 1A60     		str	r2, [r3]
+ 979 005e 0023     		movs	r3, #0
+ 980 0060 7B63     		str	r3, [r7, #52]
+ 981 0062 0DE0     		b	.L74
+ 982              	.L75:
+ 983 0064 7B68     		ldr	r3, [r7, #4]
+ 984 0066 1A68     		ldr	r2, [r3]
+ 985 0068 7B6B     		ldr	r3, [r7, #52]
+ 986 006a 1B01     		lsls	r3, r3, #4
+ 987 006c D318     		adds	r3, r2, r3
+ 988 006e 1022     		movs	r2, #16
+ 989 0070 BA18     		adds	r2, r7, r2
+ 990 0072 796B     		ldr	r1, [r7, #52]
+ 991 0074 4900     		lsls	r1, r1, #1
+ 992 0076 8A5A     		ldrh	r2, [r1, r2]
+ 993 0078 5A80     		strh	r2, [r3, #2]
+ 994 007a 7B6B     		ldr	r3, [r7, #52]
+ 995 007c 0133     		adds	r3, r3, #1
+ 996 007e 7B63     		str	r3, [r7, #52]
+ 997              	.L74:
+ 998 0080 7A6B     		ldr	r2, [r7, #52]
+ 999 0082 3B6B     		ldr	r3, [r7, #48]
+ 1000 0084 9A42     		cmp	r2, r3
+ 1001 0086 EDDB     		blt	.L75
+ 1002              	.L72:
+ 1003 0088 0023     		movs	r3, #0
+ 1004 008a 7B63     		str	r3, [r7, #52]
+ 1005              	.L77:
+ 1006 008c 7B68     		ldr	r3, [r7, #4]
+ 1007 008e 1A68     		ldr	r2, [r3]
+ 1008 0090 7B6B     		ldr	r3, [r7, #52]
+ 1009 0092 1B01     		lsls	r3, r3, #4
+ 1010 0094 D318     		adds	r3, r2, r3
+ 1011 0096 2F22     		movs	r2, #47
+ 1012 0098 BC18     		adds	r4, r7, r2
+ 1013 009a 1800     		movs	r0, r3
+ 1014 009c FFF7FEFF 		bl	prv_set_value
+ 1015 00a0 0300     		movs	r3, r0
+ 1016 00a2 2370     		strb	r3, [r4]
+ 1017 00a4 7B6B     		ldr	r3, [r7, #52]
+ 1018 00a6 0133     		adds	r3, r3, #1
+ 1019 00a8 7B63     		str	r3, [r7, #52]
+ 1020 00aa BB68     		ldr	r3, [r7, #8]
+ 1021 00ac 1B68     		ldr	r3, [r3]
+ 1022 00ae 7A6B     		ldr	r2, [r7, #52]
+ 1023 00b0 9A42     		cmp	r2, r3
+ 1024 00b2 04DA     		bge	.L76
+ 1025 00b4 2F23     		movs	r3, #47
+ 1026 00b6 FB18     		adds	r3, r7, r3
+ 1027 00b8 1B78     		ldrb	r3, [r3]
+ 1028 00ba 452B     		cmp	r3, #69
+ 1029 00bc E6D0     		beq	.L77
+ 1030              	.L76:
+ 1031 00be 2F23     		movs	r3, #47
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 19
+
+
+ 1032 00c0 FB18     		adds	r3, r7, r3
+ 1033 00c2 1B78     		ldrb	r3, [r3]
+ 1034              	.L71:
+ 1035 00c4 1800     		movs	r0, r3
+ 1036 00c6 BD46     		mov	sp, r7
+ 1037 00c8 0FB0     		add	sp, sp, #60
+ 1038              		@ sp needed
+ 1039 00ca 90BD     		pop	{r4, r7, pc}
+ 1040              	.L79:
+ 1041              		.align	2
+ 1042              	.L78:
+ 1043 00cc 00000000 		.word	.LC0
+ 1045              		.section	.rodata
+ 1046              		.align	2
+ 1047              	.LC1:
+ 1048 001c 0000     		.short	0
+ 1049 001e 0100     		.short	1
+ 1050 0020 0200     		.short	2
+ 1051 0022 0300     		.short	3
+ 1052 0024 0400     		.short	4
+ 1053 0026 0500     		.short	5
+ 1054 0028 0600     		.short	6
+ 1055 002a 0700     		.short	7
+ 1056 002c 0800     		.short	8
+ 1057 002e 0900     		.short	9
+ 1058 0030 0A00     		.short	10
+ 1059 0032 0B00     		.short	11
+ 1060 0034 0C00     		.short	12
+ 1061 0036 0D00     		.short	13
+ 1062 0038 0E00     		.short	14
+ 1063 003a 0F00     		.short	15
+ 1064 003c 1000     		.short	16
+ 1065              		.section	.text.prv_device_discover,"ax",%progbits
+ 1066              		.align	1
+ 1067              		.syntax unified
+ 1068              		.code	16
+ 1069              		.thumb_func
+ 1070              		.fpu softvfp
+ 1072              	prv_device_discover:
+ 1073              		@ args = 0, pretend = 0, frame = 64
+ 1074              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1075 0000 90B5     		push	{r4, r7, lr}
+ 1076 0002 91B0     		sub	sp, sp, #68
+ 1077 0004 00AF     		add	r7, sp, #0
+ 1078 0006 B960     		str	r1, [r7, #8]
+ 1079 0008 7A60     		str	r2, [r7, #4]
+ 1080 000a 3B60     		str	r3, [r7]
+ 1081 000c 0E21     		movs	r1, #14
+ 1082 000e 7B18     		adds	r3, r7, r1
+ 1083 0010 021C     		adds	r2, r0, #0
+ 1084 0012 1A80     		strh	r2, [r3]
+ 1085 0014 7B18     		adds	r3, r7, r1
+ 1086 0016 1B88     		ldrh	r3, [r3]
+ 1087 0018 002B     		cmp	r3, #0
+ 1088 001a 01D0     		beq	.L81
+ 1089 001c 8423     		movs	r3, #132
+ 1090 001e 5CE0     		b	.L82
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 20
+
+
+ 1091              	.L81:
+ 1092 0020 3F23     		movs	r3, #63
+ 1093 0022 FB18     		adds	r3, r7, r3
+ 1094 0024 4522     		movs	r2, #69
+ 1095 0026 1A70     		strb	r2, [r3]
+ 1096 0028 BB68     		ldr	r3, [r7, #8]
+ 1097 002a 1B68     		ldr	r3, [r3]
+ 1098 002c 002B     		cmp	r3, #0
+ 1099 002e 32D1     		bne	.L83
+ 1100 0030 1023     		movs	r3, #16
+ 1101 0032 FB18     		adds	r3, r7, r3
+ 1102 0034 2B4A     		ldr	r2, .L94
+ 1103 0036 13CA     		ldmia	r2!, {r0, r1, r4}
+ 1104 0038 13C3     		stmia	r3!, {r0, r1, r4}
+ 1105 003a 13CA     		ldmia	r2!, {r0, r1, r4}
+ 1106 003c 13C3     		stmia	r3!, {r0, r1, r4}
+ 1107 003e 03CA     		ldmia	r2!, {r0, r1}
+ 1108 0040 03C3     		stmia	r3!, {r0, r1}
+ 1109 0042 1288     		ldrh	r2, [r2]
+ 1110 0044 1A80     		strh	r2, [r3]
+ 1111 0046 1123     		movs	r3, #17
+ 1112 0048 7B63     		str	r3, [r7, #52]
+ 1113 004a 7B6B     		ldr	r3, [r7, #52]
+ 1114 004c 1800     		movs	r0, r3
+ 1115 004e FFF7FEFF 		bl	lwm2m_data_new
+ 1116 0052 0200     		movs	r2, r0
+ 1117 0054 7B68     		ldr	r3, [r7, #4]
+ 1118 0056 1A60     		str	r2, [r3]
+ 1119 0058 7B68     		ldr	r3, [r7, #4]
+ 1120 005a 1B68     		ldr	r3, [r3]
+ 1121 005c 002B     		cmp	r3, #0
+ 1122 005e 01D1     		bne	.L84
+ 1123 0060 A023     		movs	r3, #160
+ 1124 0062 3AE0     		b	.L82
+ 1125              	.L84:
+ 1126 0064 BB68     		ldr	r3, [r7, #8]
+ 1127 0066 7A6B     		ldr	r2, [r7, #52]
+ 1128 0068 1A60     		str	r2, [r3]
+ 1129 006a 0023     		movs	r3, #0
+ 1130 006c BB63     		str	r3, [r7, #56]
+ 1131 006e 0DE0     		b	.L85
+ 1132              	.L86:
+ 1133 0070 7B68     		ldr	r3, [r7, #4]
+ 1134 0072 1A68     		ldr	r2, [r3]
+ 1135 0074 BB6B     		ldr	r3, [r7, #56]
+ 1136 0076 1B01     		lsls	r3, r3, #4
+ 1137 0078 D318     		adds	r3, r2, r3
+ 1138 007a 1022     		movs	r2, #16
+ 1139 007c BA18     		adds	r2, r7, r2
+ 1140 007e B96B     		ldr	r1, [r7, #56]
+ 1141 0080 4900     		lsls	r1, r1, #1
+ 1142 0082 8A5A     		ldrh	r2, [r1, r2]
+ 1143 0084 5A80     		strh	r2, [r3, #2]
+ 1144 0086 BB6B     		ldr	r3, [r7, #56]
+ 1145 0088 0133     		adds	r3, r3, #1
+ 1146 008a BB63     		str	r3, [r7, #56]
+ 1147              	.L85:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 21
+
+
+ 1148 008c BA6B     		ldr	r2, [r7, #56]
+ 1149 008e 7B6B     		ldr	r3, [r7, #52]
+ 1150 0090 9A42     		cmp	r2, r3
+ 1151 0092 EDDB     		blt	.L86
+ 1152 0094 1EE0     		b	.L87
+ 1153              	.L83:
+ 1154 0096 0023     		movs	r3, #0
+ 1155 0098 BB63     		str	r3, [r7, #56]
+ 1156 009a 11E0     		b	.L88
+ 1157              	.L92:
+ 1158 009c 7B68     		ldr	r3, [r7, #4]
+ 1159 009e 1A68     		ldr	r2, [r3]
+ 1160 00a0 BB6B     		ldr	r3, [r7, #56]
+ 1161 00a2 1B01     		lsls	r3, r3, #4
+ 1162 00a4 D318     		adds	r3, r2, r3
+ 1163 00a6 5B88     		ldrh	r3, [r3, #2]
+ 1164 00a8 0033     		adds	r3, r3, #0
+ 1165 00aa 102B     		cmp	r3, #16
+ 1166 00ac 04D9     		bls	.L93
+ 1167 00ae 3F23     		movs	r3, #63
+ 1168 00b0 FB18     		adds	r3, r7, r3
+ 1169 00b2 8422     		movs	r2, #132
+ 1170 00b4 1A70     		strb	r2, [r3]
+ 1171 00b6 00E0     		b	.L91
+ 1172              	.L93:
+ 1173 00b8 C046     		nop
+ 1174              	.L91:
+ 1175 00ba BB6B     		ldr	r3, [r7, #56]
+ 1176 00bc 0133     		adds	r3, r3, #1
+ 1177 00be BB63     		str	r3, [r7, #56]
+ 1178              	.L88:
+ 1179 00c0 BB68     		ldr	r3, [r7, #8]
+ 1180 00c2 1B68     		ldr	r3, [r3]
+ 1181 00c4 BA6B     		ldr	r2, [r7, #56]
+ 1182 00c6 9A42     		cmp	r2, r3
+ 1183 00c8 04DA     		bge	.L87
+ 1184 00ca 3F23     		movs	r3, #63
+ 1185 00cc FB18     		adds	r3, r7, r3
+ 1186 00ce 1B78     		ldrb	r3, [r3]
+ 1187 00d0 452B     		cmp	r3, #69
+ 1188 00d2 E3D0     		beq	.L92
+ 1189              	.L87:
+ 1190 00d4 3F23     		movs	r3, #63
+ 1191 00d6 FB18     		adds	r3, r7, r3
+ 1192 00d8 1B78     		ldrb	r3, [r3]
+ 1193              	.L82:
+ 1194 00da 1800     		movs	r0, r3
+ 1195 00dc BD46     		mov	sp, r7
+ 1196 00de 11B0     		add	sp, sp, #68
+ 1197              		@ sp needed
+ 1198 00e0 90BD     		pop	{r4, r7, pc}
+ 1199              	.L95:
+ 1200 00e2 C046     		.align	2
+ 1201              	.L94:
+ 1202 00e4 1C000000 		.word	.LC1
+ 1204              		.section	.text.prv_device_write,"ax",%progbits
+ 1205              		.align	1
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 22
+
+
+ 1206              		.syntax unified
+ 1207              		.code	16
+ 1208              		.thumb_func
+ 1209              		.fpu softvfp
+ 1211              	prv_device_write:
+ 1212              		@ args = 0, pretend = 0, frame = 32
+ 1213              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1214 0000 80B5     		push	{r7, lr}
+ 1215 0002 88B0     		sub	sp, sp, #32
+ 1216 0004 00AF     		add	r7, sp, #0
+ 1217 0006 B960     		str	r1, [r7, #8]
+ 1218 0008 7A60     		str	r2, [r7, #4]
+ 1219 000a 3B60     		str	r3, [r7]
+ 1220 000c 0E21     		movs	r1, #14
+ 1221 000e 7B18     		adds	r3, r7, r1
+ 1222 0010 021C     		adds	r2, r0, #0
+ 1223 0012 1A80     		strh	r2, [r3]
+ 1224 0014 7B18     		adds	r3, r7, r1
+ 1225 0016 1B88     		ldrh	r3, [r3]
+ 1226 0018 002B     		cmp	r3, #0
+ 1227 001a 01D0     		beq	.L97
+ 1228 001c 8423     		movs	r3, #132
+ 1229 001e 8EE0     		b	.L111
+ 1230              	.L97:
+ 1231 0020 0023     		movs	r3, #0
+ 1232 0022 FB61     		str	r3, [r7, #28]
+ 1233              	.L110:
+ 1234 0024 FB69     		ldr	r3, [r7, #28]
+ 1235 0026 1B01     		lsls	r3, r3, #4
+ 1236 0028 7A68     		ldr	r2, [r7, #4]
+ 1237 002a D318     		adds	r3, r2, r3
+ 1238 002c 5B88     		ldrh	r3, [r3, #2]
+ 1239 002e 0E2B     		cmp	r3, #14
+ 1240 0030 28D0     		beq	.L100
+ 1241 0032 0F2B     		cmp	r3, #15
+ 1242 0034 55D0     		beq	.L101
+ 1243 0036 0D2B     		cmp	r3, #13
+ 1244 0038 6DD1     		bne	.L112
+ 1245 003a FB69     		ldr	r3, [r7, #28]
+ 1246 003c 1B01     		lsls	r3, r3, #4
+ 1247 003e 7A68     		ldr	r2, [r7, #4]
+ 1248 0040 D318     		adds	r3, r2, r3
+ 1249 0042 1022     		movs	r2, #16
+ 1250 0044 BA18     		adds	r2, r7, r2
+ 1251 0046 1100     		movs	r1, r2
+ 1252 0048 1800     		movs	r0, r3
+ 1253 004a FFF7FEFF 		bl	lwm2m_data_decode_int
+ 1254 004e 0300     		movs	r3, r0
+ 1255 0050 012B     		cmp	r3, #1
+ 1256 0052 12D1     		bne	.L103
+ 1257 0054 1023     		movs	r3, #16
+ 1258 0056 FB18     		adds	r3, r7, r3
+ 1259 0058 0822     		movs	r2, #8
+ 1260 005a 1900     		movs	r1, r3
+ 1261 005c 0E20     		movs	r0, #14
+ 1262 005e FFF7FEFF 		bl	atiny_cmd_ioctl
+ 1263 0062 0200     		movs	r2, r0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 23
+
+
+ 1264 0064 1B21     		movs	r1, #27
+ 1265 0066 7B18     		adds	r3, r7, r1
+ 1266 0068 1A70     		strb	r2, [r3]
+ 1267 006a 7B18     		adds	r3, r7, r1
+ 1268 006c 1B78     		ldrb	r3, [r3]
+ 1269 006e 002B     		cmp	r3, #0
+ 1270 0070 01D1     		bne	.L104
+ 1271 0072 4423     		movs	r3, #68
+ 1272 0074 63E0     		b	.L111
+ 1273              	.L104:
+ 1274 0076 8023     		movs	r3, #128
+ 1275 0078 61E0     		b	.L111
+ 1276              	.L103:
+ 1277 007a 1B23     		movs	r3, #27
+ 1278 007c FB18     		adds	r3, r7, r3
+ 1279 007e 8022     		movs	r2, #128
+ 1280 0080 1A70     		strb	r2, [r3]
+ 1281 0082 4CE0     		b	.L105
+ 1282              	.L100:
+ 1283 0084 FB69     		ldr	r3, [r7, #28]
+ 1284 0086 1B01     		lsls	r3, r3, #4
+ 1285 0088 7A68     		ldr	r2, [r7, #4]
+ 1286 008a D318     		adds	r3, r2, r3
+ 1287 008c D868     		ldr	r0, [r3, #12]
+ 1288 008e FB69     		ldr	r3, [r7, #28]
+ 1289 0090 1B01     		lsls	r3, r3, #4
+ 1290 0092 7A68     		ldr	r2, [r7, #4]
+ 1291 0094 D318     		adds	r3, r2, r3
+ 1292 0096 9B68     		ldr	r3, [r3, #8]
+ 1293 0098 1900     		movs	r1, r3
+ 1294 009a FFF7FEFF 		bl	prv_check_time_offset
+ 1295 009e 0300     		movs	r3, r0
+ 1296 00a0 012B     		cmp	r3, #1
+ 1297 00a2 19D1     		bne	.L106
+ 1298 00a4 FB69     		ldr	r3, [r7, #28]
+ 1299 00a6 1B01     		lsls	r3, r3, #4
+ 1300 00a8 7A68     		ldr	r2, [r7, #4]
+ 1301 00aa D318     		adds	r3, r2, r3
+ 1302 00ac D968     		ldr	r1, [r3, #12]
+ 1303 00ae FB69     		ldr	r3, [r7, #28]
+ 1304 00b0 1B01     		lsls	r3, r3, #4
+ 1305 00b2 7A68     		ldr	r2, [r7, #4]
+ 1306 00b4 D318     		adds	r3, r2, r3
+ 1307 00b6 9B68     		ldr	r3, [r3, #8]
+ 1308 00b8 1A00     		movs	r2, r3
+ 1309 00ba 1020     		movs	r0, #16
+ 1310 00bc FFF7FEFF 		bl	atiny_cmd_ioctl
+ 1311 00c0 0200     		movs	r2, r0
+ 1312 00c2 1B21     		movs	r1, #27
+ 1313 00c4 7B18     		adds	r3, r7, r1
+ 1314 00c6 1A70     		strb	r2, [r3]
+ 1315 00c8 7B18     		adds	r3, r7, r1
+ 1316 00ca 1B78     		ldrb	r3, [r3]
+ 1317 00cc 002B     		cmp	r3, #0
+ 1318 00ce 01D1     		bne	.L107
+ 1319 00d0 4423     		movs	r3, #68
+ 1320 00d2 34E0     		b	.L111
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 24
+
+
+ 1321              	.L107:
+ 1322 00d4 8023     		movs	r3, #128
+ 1323 00d6 32E0     		b	.L111
+ 1324              	.L106:
+ 1325 00d8 1B23     		movs	r3, #27
+ 1326 00da FB18     		adds	r3, r7, r3
+ 1327 00dc 8022     		movs	r2, #128
+ 1328 00de 1A70     		strb	r2, [r3]
+ 1329 00e0 1DE0     		b	.L105
+ 1330              	.L101:
+ 1331 00e2 FB69     		ldr	r3, [r7, #28]
+ 1332 00e4 1B01     		lsls	r3, r3, #4
+ 1333 00e6 7A68     		ldr	r2, [r7, #4]
+ 1334 00e8 D318     		adds	r3, r2, r3
+ 1335 00ea D968     		ldr	r1, [r3, #12]
+ 1336 00ec FB69     		ldr	r3, [r7, #28]
+ 1337 00ee 1B01     		lsls	r3, r3, #4
+ 1338 00f0 7A68     		ldr	r2, [r7, #4]
+ 1339 00f2 D318     		adds	r3, r2, r3
+ 1340 00f4 9B68     		ldr	r3, [r3, #8]
+ 1341 00f6 1A00     		movs	r2, r3
+ 1342 00f8 1220     		movs	r0, #18
+ 1343 00fa FFF7FEFF 		bl	atiny_cmd_ioctl
+ 1344 00fe 0200     		movs	r2, r0
+ 1345 0100 1B21     		movs	r1, #27
+ 1346 0102 7B18     		adds	r3, r7, r1
+ 1347 0104 1A70     		strb	r2, [r3]
+ 1348 0106 7B18     		adds	r3, r7, r1
+ 1349 0108 1B78     		ldrb	r3, [r3]
+ 1350 010a 002B     		cmp	r3, #0
+ 1351 010c 01D1     		bne	.L108
+ 1352 010e 4423     		movs	r3, #68
+ 1353 0110 15E0     		b	.L111
+ 1354              	.L108:
+ 1355 0112 8023     		movs	r3, #128
+ 1356 0114 13E0     		b	.L111
+ 1357              	.L112:
+ 1358 0116 1B23     		movs	r3, #27
+ 1359 0118 FB18     		adds	r3, r7, r3
+ 1360 011a 8522     		movs	r2, #133
+ 1361 011c 1A70     		strb	r2, [r3]
+ 1362              	.L105:
+ 1363 011e FB69     		ldr	r3, [r7, #28]
+ 1364 0120 0133     		adds	r3, r3, #1
+ 1365 0122 FB61     		str	r3, [r7, #28]
+ 1366 0124 FA69     		ldr	r2, [r7, #28]
+ 1367 0126 BB68     		ldr	r3, [r7, #8]
+ 1368 0128 9A42     		cmp	r2, r3
+ 1369 012a 05DA     		bge	.L109
+ 1370 012c 1B23     		movs	r3, #27
+ 1371 012e FB18     		adds	r3, r7, r3
+ 1372 0130 1B78     		ldrb	r3, [r3]
+ 1373 0132 442B     		cmp	r3, #68
+ 1374 0134 00D1     		bne	.LCB1496
+ 1375 0136 75E7     		b	.L110	@long jump
+ 1376              	.LCB1496:
+ 1377              	.L109:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 25
+
+
+ 1378 0138 1B23     		movs	r3, #27
+ 1379 013a FB18     		adds	r3, r7, r3
+ 1380 013c 1B78     		ldrb	r3, [r3]
+ 1381              	.L111:
+ 1382 013e 1800     		movs	r0, r3
+ 1383 0140 BD46     		mov	sp, r7
+ 1384 0142 08B0     		add	sp, sp, #32
+ 1385              		@ sp needed
+ 1386 0144 80BD     		pop	{r7, pc}
+ 1388              		.section	.text.prv_device_execute,"ax",%progbits
+ 1389              		.align	1
+ 1390              		.syntax unified
+ 1391              		.code	16
+ 1392              		.thumb_func
+ 1393              		.fpu softvfp
+ 1395              	prv_device_execute:
+ 1396              		@ args = 4, pretend = 0, frame = 24
+ 1397              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1398 0000 90B5     		push	{r4, r7, lr}
+ 1399 0002 87B0     		sub	sp, sp, #28
+ 1400 0004 00AF     		add	r7, sp, #0
+ 1401 0006 BA60     		str	r2, [r7, #8]
+ 1402 0008 7B60     		str	r3, [r7, #4]
+ 1403 000a 0E24     		movs	r4, #14
+ 1404 000c 3B19     		adds	r3, r7, r4
+ 1405 000e 021C     		adds	r2, r0, #0
+ 1406 0010 1A80     		strh	r2, [r3]
+ 1407 0012 0C23     		movs	r3, #12
+ 1408 0014 FB18     		adds	r3, r7, r3
+ 1409 0016 0A1C     		adds	r2, r1, #0
+ 1410 0018 1A80     		strh	r2, [r3]
+ 1411 001a 3B19     		adds	r3, r7, r4
+ 1412 001c 1B88     		ldrh	r3, [r3]
+ 1413 001e 002B     		cmp	r3, #0
+ 1414 0020 01D0     		beq	.L114
+ 1415 0022 8423     		movs	r3, #132
+ 1416 0024 2FE0     		b	.L115
+ 1417              	.L114:
+ 1418 0026 7B68     		ldr	r3, [r7, #4]
+ 1419 0028 002B     		cmp	r3, #0
+ 1420 002a 01D0     		beq	.L116
+ 1421 002c 8023     		movs	r3, #128
+ 1422 002e 2AE0     		b	.L115
+ 1423              	.L116:
+ 1424 0030 0C23     		movs	r3, #12
+ 1425 0032 FB18     		adds	r3, r7, r3
+ 1426 0034 1B88     		ldrh	r3, [r3]
+ 1427 0036 052B     		cmp	r3, #5
+ 1428 0038 08D0     		beq	.L118
+ 1429 003a 0C2B     		cmp	r3, #12
+ 1430 003c 14D0     		beq	.L119
+ 1431 003e 042B     		cmp	r3, #4
+ 1432 0040 20D1     		bne	.L123
+ 1433 0042 134B     		ldr	r3, .L124
+ 1434 0044 0122     		movs	r2, #1
+ 1435 0046 1A60     		str	r2, [r3]
+ 1436 0048 4423     		movs	r3, #68
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 26
+
+
+ 1437 004a 1CE0     		b	.L115
+ 1438              	.L118:
+ 1439 004c 0022     		movs	r2, #0
+ 1440 004e 0021     		movs	r1, #0
+ 1441 0050 0520     		movs	r0, #5
+ 1442 0052 FFF7FEFF 		bl	atiny_cmd_ioctl
+ 1443 0056 0300     		movs	r3, r0
+ 1444 0058 7B61     		str	r3, [r7, #20]
+ 1445 005a 7B69     		ldr	r3, [r7, #20]
+ 1446 005c 002B     		cmp	r3, #0
+ 1447 005e 01D1     		bne	.L121
+ 1448 0060 4423     		movs	r3, #68
+ 1449 0062 10E0     		b	.L115
+ 1450              	.L121:
+ 1451 0064 A323     		movs	r3, #163
+ 1452 0066 0EE0     		b	.L115
+ 1453              	.L119:
+ 1454 0068 0022     		movs	r2, #0
+ 1455 006a 0021     		movs	r1, #0
+ 1456 006c 0C20     		movs	r0, #12
+ 1457 006e FFF7FEFF 		bl	atiny_cmd_ioctl
+ 1458 0072 0300     		movs	r3, r0
+ 1459 0074 7B61     		str	r3, [r7, #20]
+ 1460 0076 7B69     		ldr	r3, [r7, #20]
+ 1461 0078 002B     		cmp	r3, #0
+ 1462 007a 01D1     		bne	.L122
+ 1463 007c 4423     		movs	r3, #68
+ 1464 007e 02E0     		b	.L115
+ 1465              	.L122:
+ 1466 0080 A323     		movs	r3, #163
+ 1467 0082 00E0     		b	.L115
+ 1468              	.L123:
+ 1469 0084 8523     		movs	r3, #133
+ 1470              	.L115:
+ 1471 0086 1800     		movs	r0, r3
+ 1472 0088 BD46     		mov	sp, r7
+ 1473 008a 07B0     		add	sp, sp, #28
+ 1474              		@ sp needed
+ 1475 008c 90BD     		pop	{r4, r7, pc}
+ 1476              	.L125:
+ 1477 008e C046     		.align	2
+ 1478              	.L124:
+ 1479 0090 00000000 		.word	g_reboot
+ 1481              		.section	.text.display_device_object,"ax",%progbits
+ 1482              		.align	1
+ 1483              		.global	display_device_object
+ 1484              		.syntax unified
+ 1485              		.code	16
+ 1486              		.thumb_func
+ 1487              		.fpu softvfp
+ 1489              	display_device_object:
+ 1490              		@ args = 0, pretend = 0, frame = 8
+ 1491              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1492 0000 80B5     		push	{r7, lr}
+ 1493 0002 82B0     		sub	sp, sp, #8
+ 1494 0004 00AF     		add	r7, sp, #0
+ 1495 0006 7860     		str	r0, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 27
+
+
+ 1496 0008 C046     		nop
+ 1497 000a BD46     		mov	sp, r7
+ 1498 000c 02B0     		add	sp, sp, #8
+ 1499              		@ sp needed
+ 1500 000e 80BD     		pop	{r7, pc}
+ 1502              		.section	.text.get_object_device,"ax",%progbits
+ 1503              		.align	1
+ 1504              		.global	get_object_device
+ 1505              		.syntax unified
+ 1506              		.code	16
+ 1507              		.thumb_func
+ 1508              		.fpu softvfp
+ 1510              	get_object_device:
+ 1511              		@ args = 0, pretend = 0, frame = 16
+ 1512              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1513 0000 80B5     		push	{r7, lr}
+ 1514 0002 84B0     		sub	sp, sp, #16
+ 1515 0004 00AF     		add	r7, sp, #0
+ 1516 0006 7860     		str	r0, [r7, #4]
+ 1517 0008 3960     		str	r1, [r7]
+ 1518 000a 2C20     		movs	r0, #44
+ 1519 000c FFF7FEFF 		bl	lwm2m_malloc
+ 1520 0010 0300     		movs	r3, r0
+ 1521 0012 FB60     		str	r3, [r7, #12]
+ 1522 0014 FB68     		ldr	r3, [r7, #12]
+ 1523 0016 002B     		cmp	r3, #0
+ 1524 0018 2CD0     		beq	.L128
+ 1525 001a FB68     		ldr	r3, [r7, #12]
+ 1526 001c 2C22     		movs	r2, #44
+ 1527 001e 0021     		movs	r1, #0
+ 1528 0020 1800     		movs	r0, r3
+ 1529 0022 FFF7FEFF 		bl	memset
+ 1530 0026 FB68     		ldr	r3, [r7, #12]
+ 1531 0028 0322     		movs	r2, #3
+ 1532 002a 9A80     		strh	r2, [r3, #4]
+ 1533 002c 0820     		movs	r0, #8
+ 1534 002e FFF7FEFF 		bl	lwm2m_malloc
+ 1535 0032 0200     		movs	r2, r0
+ 1536 0034 FB68     		ldr	r3, [r7, #12]
+ 1537 0036 9A60     		str	r2, [r3, #8]
+ 1538 0038 FB68     		ldr	r3, [r7, #12]
+ 1539 003a 9B68     		ldr	r3, [r3, #8]
+ 1540 003c 002B     		cmp	r3, #0
+ 1541 003e 13D0     		beq	.L129
+ 1542 0040 FB68     		ldr	r3, [r7, #12]
+ 1543 0042 9B68     		ldr	r3, [r3, #8]
+ 1544 0044 0822     		movs	r2, #8
+ 1545 0046 0021     		movs	r1, #0
+ 1546 0048 1800     		movs	r0, r3
+ 1547 004a FFF7FEFF 		bl	memset
+ 1548 004e FB68     		ldr	r3, [r7, #12]
+ 1549 0050 0B4A     		ldr	r2, .L132
+ 1550 0052 DA60     		str	r2, [r3, #12]
+ 1551 0054 FB68     		ldr	r3, [r7, #12]
+ 1552 0056 0B4A     		ldr	r2, .L132+4
+ 1553 0058 5A62     		str	r2, [r3, #36]
+ 1554 005a FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 28
+
+
+ 1555 005c 0A4A     		ldr	r2, .L132+8
+ 1556 005e 1A61     		str	r2, [r3, #16]
+ 1557 0060 FB68     		ldr	r3, [r7, #12]
+ 1558 0062 0A4A     		ldr	r2, .L132+12
+ 1559 0064 5A61     		str	r2, [r3, #20]
+ 1560 0066 05E0     		b	.L128
+ 1561              	.L129:
+ 1562 0068 FB68     		ldr	r3, [r7, #12]
+ 1563 006a 1800     		movs	r0, r3
+ 1564 006c FFF7FEFF 		bl	lwm2m_free
+ 1565 0070 0023     		movs	r3, #0
+ 1566 0072 00E0     		b	.L131
+ 1567              	.L128:
+ 1568 0074 FB68     		ldr	r3, [r7, #12]
+ 1569              	.L131:
+ 1570 0076 1800     		movs	r0, r3
+ 1571 0078 BD46     		mov	sp, r7
+ 1572 007a 04B0     		add	sp, sp, #16
+ 1573              		@ sp needed
+ 1574 007c 80BD     		pop	{r7, pc}
+ 1575              	.L133:
+ 1576 007e C046     		.align	2
+ 1577              	.L132:
+ 1578 0080 00000000 		.word	prv_device_read
+ 1579 0084 00000000 		.word	prv_device_discover
+ 1580 0088 00000000 		.word	prv_device_write
+ 1581 008c 00000000 		.word	prv_device_execute
+ 1583              		.section	.text.free_object_device,"ax",%progbits
+ 1584              		.align	1
+ 1585              		.global	free_object_device
+ 1586              		.syntax unified
+ 1587              		.code	16
+ 1588              		.thumb_func
+ 1589              		.fpu softvfp
+ 1591              	free_object_device:
+ 1592              		@ args = 0, pretend = 0, frame = 8
+ 1593              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1594 0000 80B5     		push	{r7, lr}
+ 1595 0002 82B0     		sub	sp, sp, #8
+ 1596 0004 00AF     		add	r7, sp, #0
+ 1597 0006 7860     		str	r0, [r7, #4]
+ 1598 0008 7B68     		ldr	r3, [r7, #4]
+ 1599 000a 9B6A     		ldr	r3, [r3, #40]
+ 1600 000c 002B     		cmp	r3, #0
+ 1601 000e 07D0     		beq	.L135
+ 1602 0010 7B68     		ldr	r3, [r7, #4]
+ 1603 0012 9B6A     		ldr	r3, [r3, #40]
+ 1604 0014 1800     		movs	r0, r3
+ 1605 0016 FFF7FEFF 		bl	lwm2m_free
+ 1606 001a 7B68     		ldr	r3, [r7, #4]
+ 1607 001c 0022     		movs	r2, #0
+ 1608 001e 9A62     		str	r2, [r3, #40]
+ 1609              	.L135:
+ 1610 0020 7B68     		ldr	r3, [r7, #4]
+ 1611 0022 9B68     		ldr	r3, [r3, #8]
+ 1612 0024 002B     		cmp	r3, #0
+ 1613 0026 07D0     		beq	.L136
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 29
+
+
+ 1614 0028 7B68     		ldr	r3, [r7, #4]
+ 1615 002a 9B68     		ldr	r3, [r3, #8]
+ 1616 002c 1800     		movs	r0, r3
+ 1617 002e FFF7FEFF 		bl	lwm2m_list_free
+ 1618 0032 7B68     		ldr	r3, [r7, #4]
+ 1619 0034 0022     		movs	r2, #0
+ 1620 0036 9A60     		str	r2, [r3, #8]
+ 1621              	.L136:
+ 1622 0038 7B68     		ldr	r3, [r7, #4]
+ 1623 003a 1800     		movs	r0, r3
+ 1624 003c FFF7FEFF 		bl	lwm2m_free
+ 1625 0040 C046     		nop
+ 1626 0042 BD46     		mov	sp, r7
+ 1627 0044 02B0     		add	sp, sp, #8
+ 1628              		@ sp needed
+ 1629 0046 80BD     		pop	{r7, pc}
+ 1631              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s 			page 30
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 object_device.c
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:13     .text.prv_check_time_offset:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:19     .text.prv_check_time_offset:00000000 prv_check_time_offset
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:167    .text.prv_set_value:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:173    .text.prv_set_value:00000000 prv_set_value
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:202    .rodata.prv_set_value:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:672    .text.prv_set_value:000003bc $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:674    .text.prv_set_value:000003c0 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:905    .rodata:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:922    .text.prv_device_read:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:928    .text.prv_device_read:00000000 prv_device_read
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1043   .text.prv_device_read:000000cc $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1066   .text.prv_device_discover:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1072   .text.prv_device_discover:00000000 prv_device_discover
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1202   .text.prv_device_discover:000000e4 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1205   .text.prv_device_write:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1211   .text.prv_device_write:00000000 prv_device_write
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1389   .text.prv_device_execute:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1395   .text.prv_device_execute:00000000 prv_device_execute
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1479   .text.prv_device_execute:00000090 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1482   .text.display_device_object:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1489   .text.display_device_object:00000000 display_device_object
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1503   .text.get_object_device:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1510   .text.get_object_device:00000000 get_object_device
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1578   .text.get_object_device:00000080 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1584   .text.free_object_device:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cceZLs5P.s:1591   .text.free_object_device:00000000 free_object_device
+
+UNDEFINED SYMBOLS
+memset
+atiny_cmd_ioctl
+lwm2m_data_encode_string
+lwm2m_data_new
+lwm2m_data_encode_int
+lwm2m_data_encode_instances
+lwm2m_free
+lwm2m_data_decode_int
+g_reboot
+lwm2m_malloc
+lwm2m_list_free

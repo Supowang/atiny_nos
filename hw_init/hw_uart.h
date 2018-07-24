@@ -33,7 +33,7 @@
 #define UART_RECV_BUF_LEN    512
 #define UART_EVENT_BUF_LEN    512
 
-typedef int (*callback)(uint8_t byte);
+typedef int32_t (*callback)(uint8_t byte);
 
 typedef struct _net_event {
     char * perfix;
@@ -42,7 +42,7 @@ typedef struct _net_event {
 }net_event;
     
 
-void hw_uart_init(void);
+int32_t hw_uart_init(void);
 int32_t hw_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp);
 void net_event_register(net_event * e);
 #endif /* __HW_UART_H__ */

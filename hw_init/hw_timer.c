@@ -10,6 +10,9 @@ APP_TIMER_DEF( my_timer);
 APP_TIMER_DEF( my_timer2);
 
 uint64_t g_kerneltickscount = 0;
+
+void app_data_report(void);
+
 // Function starting the internal LFCLK oscillator.
 // This is needed by RTC1 which is used by the application timer
 // (When SoftDevice is enabled the LFCLK is always running and this is not needed).
@@ -28,7 +31,7 @@ static void my_timer_handler(void * p_context)
 }
 static void my_timer2_handler(void * p_context)
 {
-
+    app_data_report();
 }
 
 void hw_timer_init()
@@ -45,6 +48,6 @@ void hw_timer_start()
     app_timer_create(&my_timer, APP_TIMER_MODE_REPEATED, my_timer_handler);
     app_timer_start(my_timer, APP_TIMER_TICKS(1, APP_TIMER_PERSCALER), NULL);
 
-//    app_timer_create(&my_timer2, APP_TIMER_MODE_REPEATED, my_timer2_handler);
-//    app_timer_start(my_timer2, APP_TIMER_TICKS(1000, APP_TIMER_PERSCALER), NULL);
+    app_timer_create(&my_timer2, APP_TIMER_MODE_REPEATED, my_timer2_handler);
+    app_timer_start(my_timer2, APP_TIMER_TICKS(2000, APP_TIMER_PERSCALER), NULL);
 }

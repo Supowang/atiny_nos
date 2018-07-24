@@ -1,0 +1,231 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"platform_adapter.c"
+  12              		.section	.text.lwm2m_malloc,"ax",%progbits
+  13              		.align	1
+  14              		.global	lwm2m_malloc
+  15              		.syntax unified
+  16              		.code	16
+  17              		.thumb_func
+  18              		.fpu softvfp
+  20              	lwm2m_malloc:
+  21              		@ args = 0, pretend = 0, frame = 16
+  22              		@ frame_needed = 1, uses_anonymous_args = 0
+  23 0000 80B5     		push	{r7, lr}
+  24 0002 84B0     		sub	sp, sp, #16
+  25 0004 00AF     		add	r7, sp, #0
+  26 0006 7860     		str	r0, [r7, #4]
+  27 0008 0023     		movs	r3, #0
+  28 000a FB60     		str	r3, [r7, #12]
+  29 000c 7B68     		ldr	r3, [r7, #4]
+  30 000e 1800     		movs	r0, r3
+  31 0010 FFF7FEFF 		bl	atiny_malloc
+  32 0014 0300     		movs	r3, r0
+  33 0016 FB60     		str	r3, [r7, #12]
+  34 0018 FB68     		ldr	r3, [r7, #12]
+  35 001a 1800     		movs	r0, r3
+  36 001c BD46     		mov	sp, r7
+  37 001e 04B0     		add	sp, sp, #16
+  38              		@ sp needed
+  39 0020 80BD     		pop	{r7, pc}
+  41              		.section	.text.lwm2m_free,"ax",%progbits
+  42              		.align	1
+  43              		.global	lwm2m_free
+  44              		.syntax unified
+  45              		.code	16
+  46              		.thumb_func
+  47              		.fpu softvfp
+  49              	lwm2m_free:
+  50              		@ args = 0, pretend = 0, frame = 8
+  51              		@ frame_needed = 1, uses_anonymous_args = 0
+  52 0000 80B5     		push	{r7, lr}
+  53 0002 82B0     		sub	sp, sp, #8
+  54 0004 00AF     		add	r7, sp, #0
+  55 0006 7860     		str	r0, [r7, #4]
+  56 0008 7B68     		ldr	r3, [r7, #4]
+  57 000a 002B     		cmp	r3, #0
+  58 000c 03D0     		beq	.L5
+  59 000e 7B68     		ldr	r3, [r7, #4]
+  60 0010 1800     		movs	r0, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s 			page 2
+
+
+  61 0012 FFF7FEFF 		bl	atiny_free
+  62              	.L5:
+  63 0016 C046     		nop
+  64 0018 BD46     		mov	sp, r7
+  65 001a 02B0     		add	sp, sp, #8
+  66              		@ sp needed
+  67 001c 80BD     		pop	{r7, pc}
+  69              		.section	.text.lwm2m_strdup,"ax",%progbits
+  70              		.align	1
+  71              		.global	lwm2m_strdup
+  72              		.syntax unified
+  73              		.code	16
+  74              		.thumb_func
+  75              		.fpu softvfp
+  77              	lwm2m_strdup:
+  78              		@ args = 0, pretend = 0, frame = 16
+  79              		@ frame_needed = 1, uses_anonymous_args = 0
+  80 0000 80B5     		push	{r7, lr}
+  81 0002 84B0     		sub	sp, sp, #16
+  82 0004 00AF     		add	r7, sp, #0
+  83 0006 7860     		str	r0, [r7, #4]
+  84 0008 7B68     		ldr	r3, [r7, #4]
+  85 000a 1800     		movs	r0, r3
+  86 000c FFF7FEFF 		bl	strlen
+  87 0010 0300     		movs	r3, r0
+  88 0012 0133     		adds	r3, r3, #1
+  89 0014 FB60     		str	r3, [r7, #12]
+  90 0016 FB68     		ldr	r3, [r7, #12]
+  91 0018 1800     		movs	r0, r3
+  92 001a FFF7FEFF 		bl	lwm2m_malloc
+  93 001e 0300     		movs	r3, r0
+  94 0020 BB60     		str	r3, [r7, #8]
+  95 0022 BB68     		ldr	r3, [r7, #8]
+  96 0024 002B     		cmp	r3, #0
+  97 0026 01D1     		bne	.L7
+  98 0028 0023     		movs	r3, #0
+  99 002a 06E0     		b	.L8
+ 100              	.L7:
+ 101 002c FA68     		ldr	r2, [r7, #12]
+ 102 002e 7968     		ldr	r1, [r7, #4]
+ 103 0030 BB68     		ldr	r3, [r7, #8]
+ 104 0032 1800     		movs	r0, r3
+ 105 0034 FFF7FEFF 		bl	memcpy
+ 106 0038 0300     		movs	r3, r0
+ 107              	.L8:
+ 108 003a 1800     		movs	r0, r3
+ 109 003c BD46     		mov	sp, r7
+ 110 003e 04B0     		add	sp, sp, #16
+ 111              		@ sp needed
+ 112 0040 80BD     		pop	{r7, pc}
+ 114              		.section	.text.lwm2m_strncmp,"ax",%progbits
+ 115              		.align	1
+ 116              		.global	lwm2m_strncmp
+ 117              		.syntax unified
+ 118              		.code	16
+ 119              		.thumb_func
+ 120              		.fpu softvfp
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s 			page 3
+
+
+ 122              	lwm2m_strncmp:
+ 123              		@ args = 0, pretend = 0, frame = 16
+ 124              		@ frame_needed = 1, uses_anonymous_args = 0
+ 125 0000 80B5     		push	{r7, lr}
+ 126 0002 84B0     		sub	sp, sp, #16
+ 127 0004 00AF     		add	r7, sp, #0
+ 128 0006 F860     		str	r0, [r7, #12]
+ 129 0008 B960     		str	r1, [r7, #8]
+ 130 000a 7A60     		str	r2, [r7, #4]
+ 131 000c 7A68     		ldr	r2, [r7, #4]
+ 132 000e B968     		ldr	r1, [r7, #8]
+ 133 0010 FB68     		ldr	r3, [r7, #12]
+ 134 0012 1800     		movs	r0, r3
+ 135 0014 FFF7FEFF 		bl	strncmp
+ 136 0018 0300     		movs	r3, r0
+ 137 001a 1800     		movs	r0, r3
+ 138 001c BD46     		mov	sp, r7
+ 139 001e 04B0     		add	sp, sp, #16
+ 140              		@ sp needed
+ 141 0020 80BD     		pop	{r7, pc}
+ 143              		.global	__aeabi_uldivmod
+ 144              		.section	.text.lwm2m_gettime,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	lwm2m_gettime
+ 147              		.syntax unified
+ 148              		.code	16
+ 149              		.thumb_func
+ 150              		.fpu softvfp
+ 152              	lwm2m_gettime:
+ 153              		@ args = 0, pretend = 0, frame = 0
+ 154              		@ frame_needed = 1, uses_anonymous_args = 0
+ 155 0000 B0B5     		push	{r4, r5, r7, lr}
+ 156 0002 00AF     		add	r7, sp, #0
+ 157 0004 FFF7FEFF 		bl	atiny_gettime_ms
+ 158 0008 FA22     		movs	r2, #250
+ 159 000a 9200     		lsls	r2, r2, #2
+ 160 000c 0023     		movs	r3, #0
+ 161 000e FFF7FEFF 		bl	__aeabi_uldivmod
+ 162 0012 0200     		movs	r2, r0
+ 163 0014 0B00     		movs	r3, r1
+ 164 0016 1300     		movs	r3, r2
+ 165 0018 1C00     		movs	r4, r3
+ 166 001a 0023     		movs	r3, #0
+ 167 001c 1D00     		movs	r5, r3
+ 168 001e 2300     		movs	r3, r4
+ 169 0020 2C00     		movs	r4, r5
+ 170 0022 1800     		movs	r0, r3
+ 171 0024 2100     		movs	r1, r4
+ 172 0026 BD46     		mov	sp, r7
+ 173              		@ sp needed
+ 174 0028 B0BD     		pop	{r4, r5, r7, pc}
+ 176              		.section	.text.lwm2m_rand,"ax",%progbits
+ 177              		.align	1
+ 178              		.global	lwm2m_rand
+ 179              		.syntax unified
+ 180              		.code	16
+ 181              		.thumb_func
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s 			page 4
+
+
+ 182              		.fpu softvfp
+ 184              	lwm2m_rand:
+ 185              		@ args = 0, pretend = 0, frame = 8
+ 186              		@ frame_needed = 1, uses_anonymous_args = 0
+ 187 0000 80B5     		push	{r7, lr}
+ 188 0002 82B0     		sub	sp, sp, #8
+ 189 0004 00AF     		add	r7, sp, #0
+ 190 0006 7860     		str	r0, [r7, #4]
+ 191 0008 3960     		str	r1, [r7]
+ 192 000a 3A68     		ldr	r2, [r7]
+ 193 000c 7B68     		ldr	r3, [r7, #4]
+ 194 000e 1100     		movs	r1, r2
+ 195 0010 1800     		movs	r0, r3
+ 196 0012 FFF7FEFF 		bl	atiny_random
+ 197 0016 0300     		movs	r3, r0
+ 198 0018 1800     		movs	r0, r3
+ 199 001a BD46     		mov	sp, r7
+ 200 001c 02B0     		add	sp, sp, #8
+ 201              		@ sp needed
+ 202 001e 80BD     		pop	{r7, pc}
+ 204              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 platform_adapter.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:13     .text.lwm2m_malloc:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:20     .text.lwm2m_malloc:00000000 lwm2m_malloc
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:42     .text.lwm2m_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:49     .text.lwm2m_free:00000000 lwm2m_free
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:70     .text.lwm2m_strdup:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:77     .text.lwm2m_strdup:00000000 lwm2m_strdup
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:115    .text.lwm2m_strncmp:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:122    .text.lwm2m_strncmp:00000000 lwm2m_strncmp
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:145    .text.lwm2m_gettime:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:152    .text.lwm2m_gettime:00000000 lwm2m_gettime
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:177    .text.lwm2m_rand:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccLnjq3l.s:184    .text.lwm2m_rand:00000000 lwm2m_rand
+
+UNDEFINED SYMBOLS
+atiny_malloc
+atiny_free
+strlen
+memcpy
+strncmp
+__aeabi_uldivmod
+atiny_gettime_ms
+atiny_random

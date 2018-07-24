@@ -1,0 +1,362 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"list.c"
+  12              		.section	.text.lwm2m_list_add,"ax",%progbits
+  13              		.align	1
+  14              		.global	lwm2m_list_add
+  15              		.syntax unified
+  16              		.code	16
+  17              		.thumb_func
+  18              		.fpu softvfp
+  20              	lwm2m_list_add:
+  21              		@ args = 0, pretend = 0, frame = 16
+  22              		@ frame_needed = 1, uses_anonymous_args = 0
+  23 0000 80B5     		push	{r7, lr}
+  24 0002 84B0     		sub	sp, sp, #16
+  25 0004 00AF     		add	r7, sp, #0
+  26 0006 7860     		str	r0, [r7, #4]
+  27 0008 3960     		str	r1, [r7]
+  28 000a 7B68     		ldr	r3, [r7, #4]
+  29 000c 002B     		cmp	r3, #0
+  30 000e 01D1     		bne	.L2
+  31 0010 3B68     		ldr	r3, [r7]
+  32 0012 23E0     		b	.L3
+  33              	.L2:
+  34 0014 7B68     		ldr	r3, [r7, #4]
+  35 0016 9A88     		ldrh	r2, [r3, #4]
+  36 0018 3B68     		ldr	r3, [r7]
+  37 001a 9B88     		ldrh	r3, [r3, #4]
+  38 001c 9A42     		cmp	r2, r3
+  39 001e 04D9     		bls	.L4
+  40 0020 3B68     		ldr	r3, [r7]
+  41 0022 7A68     		ldr	r2, [r7, #4]
+  42 0024 1A60     		str	r2, [r3]
+  43 0026 3B68     		ldr	r3, [r7]
+  44 0028 18E0     		b	.L3
+  45              	.L4:
+  46 002a 7B68     		ldr	r3, [r7, #4]
+  47 002c FB60     		str	r3, [r7, #12]
+  48 002e 02E0     		b	.L5
+  49              	.L7:
+  50 0030 FB68     		ldr	r3, [r7, #12]
+  51 0032 1B68     		ldr	r3, [r3]
+  52 0034 FB60     		str	r3, [r7, #12]
+  53              	.L5:
+  54 0036 FB68     		ldr	r3, [r7, #12]
+  55 0038 1B68     		ldr	r3, [r3]
+  56 003a 002B     		cmp	r3, #0
+  57 003c 06D0     		beq	.L6
+  58 003e FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 2
+
+
+  59 0040 1B68     		ldr	r3, [r3]
+  60 0042 9A88     		ldrh	r2, [r3, #4]
+  61 0044 3B68     		ldr	r3, [r7]
+  62 0046 9B88     		ldrh	r3, [r3, #4]
+  63 0048 9A42     		cmp	r2, r3
+  64 004a F1D3     		bcc	.L7
+  65              	.L6:
+  66 004c FB68     		ldr	r3, [r7, #12]
+  67 004e 1A68     		ldr	r2, [r3]
+  68 0050 3B68     		ldr	r3, [r7]
+  69 0052 1A60     		str	r2, [r3]
+  70 0054 FB68     		ldr	r3, [r7, #12]
+  71 0056 3A68     		ldr	r2, [r7]
+  72 0058 1A60     		str	r2, [r3]
+  73 005a 7B68     		ldr	r3, [r7, #4]
+  74              	.L3:
+  75 005c 1800     		movs	r0, r3
+  76 005e BD46     		mov	sp, r7
+  77 0060 04B0     		add	sp, sp, #16
+  78              		@ sp needed
+  79 0062 80BD     		pop	{r7, pc}
+  81              		.section	.text.lwm2m_list_find,"ax",%progbits
+  82              		.align	1
+  83              		.global	lwm2m_list_find
+  84              		.syntax unified
+  85              		.code	16
+  86              		.thumb_func
+  87              		.fpu softvfp
+  89              	lwm2m_list_find:
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 1, uses_anonymous_args = 0
+  92 0000 80B5     		push	{r7, lr}
+  93 0002 82B0     		sub	sp, sp, #8
+  94 0004 00AF     		add	r7, sp, #0
+  95 0006 7860     		str	r0, [r7, #4]
+  96 0008 0A00     		movs	r2, r1
+  97 000a BB1C     		adds	r3, r7, #2
+  98 000c 1A80     		strh	r2, [r3]
+  99 000e 02E0     		b	.L9
+ 100              	.L11:
+ 101 0010 7B68     		ldr	r3, [r7, #4]
+ 102 0012 1B68     		ldr	r3, [r3]
+ 103 0014 7B60     		str	r3, [r7, #4]
+ 104              	.L9:
+ 105 0016 7B68     		ldr	r3, [r7, #4]
+ 106 0018 002B     		cmp	r3, #0
+ 107 001a 05D0     		beq	.L10
+ 108 001c 7B68     		ldr	r3, [r7, #4]
+ 109 001e 9B88     		ldrh	r3, [r3, #4]
+ 110 0020 BA1C     		adds	r2, r7, #2
+ 111 0022 1288     		ldrh	r2, [r2]
+ 112 0024 9A42     		cmp	r2, r3
+ 113 0026 F3D8     		bhi	.L11
+ 114              	.L10:
+ 115 0028 7B68     		ldr	r3, [r7, #4]
+ 116 002a 002B     		cmp	r3, #0
+ 117 002c 07D0     		beq	.L12
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 3
+
+
+ 118 002e 7B68     		ldr	r3, [r7, #4]
+ 119 0030 9B88     		ldrh	r3, [r3, #4]
+ 120 0032 BA1C     		adds	r2, r7, #2
+ 121 0034 1288     		ldrh	r2, [r2]
+ 122 0036 9A42     		cmp	r2, r3
+ 123 0038 01D1     		bne	.L12
+ 124 003a 7B68     		ldr	r3, [r7, #4]
+ 125 003c 00E0     		b	.L13
+ 126              	.L12:
+ 127 003e 0023     		movs	r3, #0
+ 128              	.L13:
+ 129 0040 1800     		movs	r0, r3
+ 130 0042 BD46     		mov	sp, r7
+ 131 0044 02B0     		add	sp, sp, #8
+ 132              		@ sp needed
+ 133 0046 80BD     		pop	{r7, pc}
+ 135              		.section	.text.lwm2m_list_remove,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	lwm2m_list_remove
+ 138              		.syntax unified
+ 139              		.code	16
+ 140              		.thumb_func
+ 141              		.fpu softvfp
+ 143              	lwm2m_list_remove:
+ 144              		@ args = 0, pretend = 0, frame = 24
+ 145              		@ frame_needed = 1, uses_anonymous_args = 0
+ 146 0000 80B5     		push	{r7, lr}
+ 147 0002 86B0     		sub	sp, sp, #24
+ 148 0004 00AF     		add	r7, sp, #0
+ 149 0006 F860     		str	r0, [r7, #12]
+ 150 0008 7A60     		str	r2, [r7, #4]
+ 151 000a 0A23     		movs	r3, #10
+ 152 000c FB18     		adds	r3, r7, r3
+ 153 000e 0A1C     		adds	r2, r1, #0
+ 154 0010 1A80     		strh	r2, [r3]
+ 155 0012 FB68     		ldr	r3, [r7, #12]
+ 156 0014 002B     		cmp	r3, #0
+ 157 0016 07D1     		bne	.L15
+ 158 0018 7B68     		ldr	r3, [r7, #4]
+ 159 001a 002B     		cmp	r3, #0
+ 160 001c 02D0     		beq	.L16
+ 161 001e 7B68     		ldr	r3, [r7, #4]
+ 162 0020 0022     		movs	r2, #0
+ 163 0022 1A60     		str	r2, [r3]
+ 164              	.L16:
+ 165 0024 0023     		movs	r3, #0
+ 166 0026 41E0     		b	.L17
+ 167              	.L15:
+ 168 0028 FB68     		ldr	r3, [r7, #12]
+ 169 002a 9B88     		ldrh	r3, [r3, #4]
+ 170 002c 0A22     		movs	r2, #10
+ 171 002e BA18     		adds	r2, r7, r2
+ 172 0030 1288     		ldrh	r2, [r2]
+ 173 0032 9A42     		cmp	r2, r3
+ 174 0034 08D1     		bne	.L18
+ 175 0036 7B68     		ldr	r3, [r7, #4]
+ 176 0038 002B     		cmp	r3, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 4
+
+
+ 177 003a 02D0     		beq	.L19
+ 178 003c 7B68     		ldr	r3, [r7, #4]
+ 179 003e FA68     		ldr	r2, [r7, #12]
+ 180 0040 1A60     		str	r2, [r3]
+ 181              	.L19:
+ 182 0042 FB68     		ldr	r3, [r7, #12]
+ 183 0044 1B68     		ldr	r3, [r3]
+ 184 0046 31E0     		b	.L17
+ 185              	.L18:
+ 186 0048 FB68     		ldr	r3, [r7, #12]
+ 187 004a 7B61     		str	r3, [r7, #20]
+ 188 004c 02E0     		b	.L20
+ 189              	.L22:
+ 190 004e 7B69     		ldr	r3, [r7, #20]
+ 191 0050 1B68     		ldr	r3, [r3]
+ 192 0052 7B61     		str	r3, [r7, #20]
+ 193              	.L20:
+ 194 0054 7B69     		ldr	r3, [r7, #20]
+ 195 0056 1B68     		ldr	r3, [r3]
+ 196 0058 002B     		cmp	r3, #0
+ 197 005a 07D0     		beq	.L21
+ 198 005c 7B69     		ldr	r3, [r7, #20]
+ 199 005e 1B68     		ldr	r3, [r3]
+ 200 0060 9B88     		ldrh	r3, [r3, #4]
+ 201 0062 0A22     		movs	r2, #10
+ 202 0064 BA18     		adds	r2, r7, r2
+ 203 0066 1288     		ldrh	r2, [r2]
+ 204 0068 9A42     		cmp	r2, r3
+ 205 006a F0D8     		bhi	.L22
+ 206              	.L21:
+ 207 006c 7B69     		ldr	r3, [r7, #20]
+ 208 006e 1B68     		ldr	r3, [r3]
+ 209 0070 002B     		cmp	r3, #0
+ 210 0072 14D0     		beq	.L23
+ 211 0074 7B69     		ldr	r3, [r7, #20]
+ 212 0076 1B68     		ldr	r3, [r3]
+ 213 0078 9B88     		ldrh	r3, [r3, #4]
+ 214 007a 0A22     		movs	r2, #10
+ 215 007c BA18     		adds	r2, r7, r2
+ 216 007e 1288     		ldrh	r2, [r2]
+ 217 0080 9A42     		cmp	r2, r3
+ 218 0082 0CD1     		bne	.L23
+ 219 0084 7B68     		ldr	r3, [r7, #4]
+ 220 0086 002B     		cmp	r3, #0
+ 221 0088 03D0     		beq	.L24
+ 222 008a 7B69     		ldr	r3, [r7, #20]
+ 223 008c 1A68     		ldr	r2, [r3]
+ 224 008e 7B68     		ldr	r3, [r7, #4]
+ 225 0090 1A60     		str	r2, [r3]
+ 226              	.L24:
+ 227 0092 7B69     		ldr	r3, [r7, #20]
+ 228 0094 1B68     		ldr	r3, [r3]
+ 229 0096 1A68     		ldr	r2, [r3]
+ 230 0098 7B69     		ldr	r3, [r7, #20]
+ 231 009a 1A60     		str	r2, [r3]
+ 232 009c 05E0     		b	.L25
+ 233              	.L23:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 5
+
+
+ 234 009e 7B68     		ldr	r3, [r7, #4]
+ 235 00a0 002B     		cmp	r3, #0
+ 236 00a2 02D0     		beq	.L25
+ 237 00a4 7B68     		ldr	r3, [r7, #4]
+ 238 00a6 0022     		movs	r2, #0
+ 239 00a8 1A60     		str	r2, [r3]
+ 240              	.L25:
+ 241 00aa FB68     		ldr	r3, [r7, #12]
+ 242              	.L17:
+ 243 00ac 1800     		movs	r0, r3
+ 244 00ae BD46     		mov	sp, r7
+ 245 00b0 06B0     		add	sp, sp, #24
+ 246              		@ sp needed
+ 247 00b2 80BD     		pop	{r7, pc}
+ 249              		.section	.text.lwm2m_list_newId,"ax",%progbits
+ 250              		.align	1
+ 251              		.global	lwm2m_list_newId
+ 252              		.syntax unified
+ 253              		.code	16
+ 254              		.thumb_func
+ 255              		.fpu softvfp
+ 257              	lwm2m_list_newId:
+ 258              		@ args = 0, pretend = 0, frame = 16
+ 259              		@ frame_needed = 1, uses_anonymous_args = 0
+ 260 0000 80B5     		push	{r7, lr}
+ 261 0002 84B0     		sub	sp, sp, #16
+ 262 0004 00AF     		add	r7, sp, #0
+ 263 0006 7860     		str	r0, [r7, #4]
+ 264 0008 0E23     		movs	r3, #14
+ 265 000a FB18     		adds	r3, r7, r3
+ 266 000c 0022     		movs	r2, #0
+ 267 000e 1A80     		strh	r2, [r3]
+ 268 0010 7B68     		ldr	r3, [r7, #4]
+ 269 0012 BB60     		str	r3, [r7, #8]
+ 270 0014 08E0     		b	.L27
+ 271              	.L29:
+ 272 0016 BB68     		ldr	r3, [r7, #8]
+ 273 0018 9A88     		ldrh	r2, [r3, #4]
+ 274 001a 0E23     		movs	r3, #14
+ 275 001c FB18     		adds	r3, r7, r3
+ 276 001e 0132     		adds	r2, r2, #1
+ 277 0020 1A80     		strh	r2, [r3]
+ 278 0022 BB68     		ldr	r3, [r7, #8]
+ 279 0024 1B68     		ldr	r3, [r3]
+ 280 0026 BB60     		str	r3, [r7, #8]
+ 281              	.L27:
+ 282 0028 BB68     		ldr	r3, [r7, #8]
+ 283 002a 002B     		cmp	r3, #0
+ 284 002c 06D0     		beq	.L28
+ 285 002e BB68     		ldr	r3, [r7, #8]
+ 286 0030 9B88     		ldrh	r3, [r3, #4]
+ 287 0032 0E22     		movs	r2, #14
+ 288 0034 BA18     		adds	r2, r7, r2
+ 289 0036 1288     		ldrh	r2, [r2]
+ 290 0038 9A42     		cmp	r2, r3
+ 291 003a ECD0     		beq	.L29
+ 292              	.L28:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 6
+
+
+ 293 003c 0E23     		movs	r3, #14
+ 294 003e FB18     		adds	r3, r7, r3
+ 295 0040 1B88     		ldrh	r3, [r3]
+ 296 0042 1800     		movs	r0, r3
+ 297 0044 BD46     		mov	sp, r7
+ 298 0046 04B0     		add	sp, sp, #16
+ 299              		@ sp needed
+ 300 0048 80BD     		pop	{r7, pc}
+ 302              		.section	.text.lwm2m_list_free,"ax",%progbits
+ 303              		.align	1
+ 304              		.global	lwm2m_list_free
+ 305              		.syntax unified
+ 306              		.code	16
+ 307              		.thumb_func
+ 308              		.fpu softvfp
+ 310              	lwm2m_list_free:
+ 311              		@ args = 0, pretend = 0, frame = 16
+ 312              		@ frame_needed = 1, uses_anonymous_args = 0
+ 313 0000 80B5     		push	{r7, lr}
+ 314 0002 84B0     		sub	sp, sp, #16
+ 315 0004 00AF     		add	r7, sp, #0
+ 316 0006 7860     		str	r0, [r7, #4]
+ 317 0008 7B68     		ldr	r3, [r7, #4]
+ 318 000a 002B     		cmp	r3, #0
+ 319 000c 0AD0     		beq	.L33
+ 320 000e 7B68     		ldr	r3, [r7, #4]
+ 321 0010 1B68     		ldr	r3, [r3]
+ 322 0012 FB60     		str	r3, [r7, #12]
+ 323 0014 7B68     		ldr	r3, [r7, #4]
+ 324 0016 1800     		movs	r0, r3
+ 325 0018 FFF7FEFF 		bl	lwm2m_free
+ 326 001c FB68     		ldr	r3, [r7, #12]
+ 327 001e 1800     		movs	r0, r3
+ 328 0020 FFF7FEFF 		bl	lwm2m_list_free
+ 329              	.L33:
+ 330 0024 C046     		nop
+ 331 0026 BD46     		mov	sp, r7
+ 332 0028 04B0     		add	sp, sp, #16
+ 333              		@ sp needed
+ 334 002a 80BD     		pop	{r7, pc}
+ 336              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 list.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:13     .text.lwm2m_list_add:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:20     .text.lwm2m_list_add:00000000 lwm2m_list_add
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:82     .text.lwm2m_list_find:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:89     .text.lwm2m_list_find:00000000 lwm2m_list_find
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:136    .text.lwm2m_list_remove:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:143    .text.lwm2m_list_remove:00000000 lwm2m_list_remove
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:250    .text.lwm2m_list_newId:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:257    .text.lwm2m_list_newId:00000000 lwm2m_list_newId
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:303    .text.lwm2m_list_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccFTmohn.s:310    .text.lwm2m_list_free:00000000 lwm2m_list_free
+
+UNDEFINED SYMBOLS
+lwm2m_free

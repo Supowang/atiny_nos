@@ -1,0 +1,722 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"connection.c"
+  12              		.section	.bss.g_connection_err_notify,"aw",%nobits
+  13              		.align	2
+  16              	g_connection_err_notify:
+  17 0000 00000000 		.space	4
+  18              		.section	.text.inc_connection_stat,"ax",%progbits
+  19              		.align	1
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  23              		.fpu softvfp
+  25              	inc_connection_stat:
+  26              		@ args = 0, pretend = 0, frame = 8
+  27              		@ frame_needed = 1, uses_anonymous_args = 0
+  28 0000 90B5     		push	{r4, r7, lr}
+  29 0002 83B0     		sub	sp, sp, #12
+  30 0004 00AF     		add	r7, sp, #0
+  31 0006 7860     		str	r0, [r7, #4]
+  32 0008 0A00     		movs	r2, r1
+  33 000a FB1C     		adds	r3, r7, #3
+  34 000c 1A70     		strb	r2, [r3]
+  35 000e FB1C     		adds	r3, r7, #3
+  36 0010 1B78     		ldrb	r3, [r3]
+  37 0012 7A68     		ldr	r2, [r7, #4]
+  38 0014 1900     		movs	r1, r3
+  39 0016 0C31     		adds	r1, r1, #12
+  40 0018 4900     		lsls	r1, r1, #1
+  41 001a 8A5A     		ldrh	r2, [r1, r2]
+  42 001c 0132     		adds	r2, r2, #1
+  43 001e 91B2     		uxth	r1, r2
+  44 0020 7A68     		ldr	r2, [r7, #4]
+  45 0022 0C33     		adds	r3, r3, #12
+  46 0024 5B00     		lsls	r3, r3, #1
+  47 0026 9952     		strh	r1, [r3, r2]
+  48 0028 FB1C     		adds	r3, r7, #3
+  49 002a 1A78     		ldrb	r2, [r3]
+  50 002c 7B68     		ldr	r3, [r7, #4]
+  51 002e 0C32     		adds	r2, r2, #12
+  52 0030 5200     		lsls	r2, r2, #1
+  53 0032 D25A     		ldrh	r2, [r2, r3]
+  54 0034 FB1C     		adds	r3, r7, #3
+  55 0036 1978     		ldrb	r1, [r3]
+  56 0038 104B     		ldr	r3, .L4
+  57 003a 4900     		lsls	r1, r1, #1
+  58 003c CB5A     		ldrh	r3, [r1, r3]
+  59 003e 9A42     		cmp	r2, r3
+  60 0040 17D3     		bcc	.L3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 2
+
+
+  61 0042 FB1C     		adds	r3, r7, #3
+  62 0044 1A78     		ldrb	r2, [r3]
+  63 0046 7B68     		ldr	r3, [r7, #4]
+  64 0048 0C32     		adds	r2, r2, #12
+  65 004a 5200     		lsls	r2, r2, #1
+  66 004c 0021     		movs	r1, #0
+  67 004e D152     		strh	r1, [r2, r3]
+  68 0050 0B4B     		ldr	r3, .L4+4
+  69 0052 1B68     		ldr	r3, [r3]
+  70 0054 002B     		cmp	r3, #0
+  71 0056 0CD0     		beq	.L3
+  72 0058 094B     		ldr	r3, .L4+4
+  73 005a 1C68     		ldr	r4, [r3]
+  74 005c 7B68     		ldr	r3, [r7, #4]
+  75 005e 5869     		ldr	r0, [r3, #20]
+  76 0060 7B68     		ldr	r3, [r7, #4]
+  77 0062 5B8A     		ldrh	r3, [r3, #18]
+  78 0064 5A1E     		subs	r2, r3, #1
+  79 0066 9341     		sbcs	r3, r3, r2
+  80 0068 DAB2     		uxtb	r2, r3
+  81 006a FB1C     		adds	r3, r7, #3
+  82 006c 1B78     		ldrb	r3, [r3]
+  83 006e 1900     		movs	r1, r3
+  84 0070 A047     		blx	r4
+  85              	.L3:
+  86 0072 C046     		nop
+  87 0074 BD46     		mov	sp, r7
+  88 0076 03B0     		add	sp, sp, #12
+  89              		@ sp needed
+  90 0078 90BD     		pop	{r4, r7, pc}
+  91              	.L5:
+  92 007a C046     		.align	2
+  93              	.L4:
+  94 007c 00000000 		.word	max_num.7463
+  95 0080 00000000 		.word	g_connection_err_notify
+  97              		.section	.rodata
+  98              		.align	2
+  99              	.LC2:
+ 100 0000 636F6170 		.ascii	"coaps://\000"
+ 100      733A2F2F 
+ 100      00
+ 101 0009 000000   		.align	2
+ 102              	.LC4:
+ 103 000c 35363834 		.ascii	"5684\000"
+ 103      00
+ 104 0011 000000   		.align	2
+ 105              	.LC6:
+ 106 0014 636F6170 		.ascii	"coap://\000"
+ 106      3A2F2F00 
+ 107              		.align	2
+ 108              	.LC8:
+ 109 001c 35363833 		.ascii	"5683\000"
+ 109      00
+ 110              		.section	.text.connection_create,"ax",%progbits
+ 111              		.align	1
+ 112              		.global	connection_create
+ 113              		.syntax unified
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 3
+
+
+ 114              		.code	16
+ 115              		.thumb_func
+ 116              		.fpu softvfp
+ 118              	connection_create:
+ 119              		@ args = 0, pretend = 0, frame = 40
+ 120              		@ frame_needed = 1, uses_anonymous_args = 0
+ 121 0000 80B5     		push	{r7, lr}
+ 122 0002 8AB0     		sub	sp, sp, #40
+ 123 0004 00AF     		add	r7, sp, #0
+ 124 0006 F860     		str	r0, [r7, #12]
+ 125 0008 B960     		str	r1, [r7, #8]
+ 126 000a 7A60     		str	r2, [r7, #4]
+ 127 000c 3B60     		str	r3, [r7]
+ 128 000e 0023     		movs	r3, #0
+ 129 0010 BB61     		str	r3, [r7, #24]
+ 130 0012 BB68     		ldr	r3, [r7, #8]
+ 131 0014 9B68     		ldr	r3, [r3, #8]
+ 132 0016 7A68     		ldr	r2, [r7, #4]
+ 133 0018 92B2     		uxth	r2, r2
+ 134 001a 1100     		movs	r1, r2
+ 135 001c 1800     		movs	r0, r3
+ 136 001e FFF7FEFF 		bl	lwm2m_list_find
+ 137 0022 0300     		movs	r3, r0
+ 138 0024 7B61     		str	r3, [r7, #20]
+ 139 0026 7B69     		ldr	r3, [r7, #20]
+ 140 0028 002B     		cmp	r3, #0
+ 141 002a 01D1     		bne	.L7
+ 142 002c 0023     		movs	r3, #0
+ 143 002e 7EE0     		b	.L8
+ 144              	.L7:
+ 145 0030 7B69     		ldr	r3, [r7, #20]
+ 146 0032 9B68     		ldr	r3, [r3, #8]
+ 147 0034 3B61     		str	r3, [r7, #16]
+ 148 0036 3B69     		ldr	r3, [r7, #16]
+ 149 0038 002B     		cmp	r3, #0
+ 150 003a 01D1     		bne	.L9
+ 151 003c 0023     		movs	r3, #0
+ 152 003e 76E0     		b	.L8
+ 153              	.L9:
+ 154 0040 3D49     		ldr	r1, .L19
+ 155 0042 3B69     		ldr	r3, [r7, #16]
+ 156 0044 0822     		movs	r2, #8
+ 157 0046 1800     		movs	r0, r3
+ 158 0048 FFF7FEFF 		bl	strncmp
+ 159 004c 031E     		subs	r3, r0, #0
+ 160 004e 05D1     		bne	.L10
+ 161 0050 3B69     		ldr	r3, [r7, #16]
+ 162 0052 0833     		adds	r3, r3, #8
+ 163 0054 7B62     		str	r3, [r7, #36]
+ 164 0056 394B     		ldr	r3, .L19+4
+ 165 0058 FB61     		str	r3, [r7, #28]
+ 166 005a 0FE0     		b	.L11
+ 167              	.L10:
+ 168 005c 3849     		ldr	r1, .L19+8
+ 169 005e 3B69     		ldr	r3, [r7, #16]
+ 170 0060 0722     		movs	r2, #7
+ 171 0062 1800     		movs	r0, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 4
+
+
+ 172 0064 FFF7FEFF 		bl	strncmp
+ 173 0068 031E     		subs	r3, r0, #0
+ 174 006a 05D1     		bne	.L12
+ 175 006c 3B69     		ldr	r3, [r7, #16]
+ 176 006e 0733     		adds	r3, r3, #7
+ 177 0070 7B62     		str	r3, [r7, #36]
+ 178 0072 344B     		ldr	r3, .L19+12
+ 179 0074 FB61     		str	r3, [r7, #28]
+ 180 0076 01E0     		b	.L11
+ 181              	.L12:
+ 182 0078 0023     		movs	r3, #0
+ 183 007a 58E0     		b	.L8
+ 184              	.L11:
+ 185 007c 7B6A     		ldr	r3, [r7, #36]
+ 186 007e 3A21     		movs	r1, #58
+ 187 0080 1800     		movs	r0, r3
+ 188 0082 FFF7FEFF 		bl	strrchr
+ 189 0086 0300     		movs	r3, r0
+ 190 0088 3B62     		str	r3, [r7, #32]
+ 191 008a 3B6A     		ldr	r3, [r7, #32]
+ 192 008c 002B     		cmp	r3, #0
+ 193 008e 02D1     		bne	.L13
+ 194 0090 FB69     		ldr	r3, [r7, #28]
+ 195 0092 3B62     		str	r3, [r7, #32]
+ 196 0094 18E0     		b	.L14
+ 197              	.L13:
+ 198 0096 7B6A     		ldr	r3, [r7, #36]
+ 199 0098 1B78     		ldrb	r3, [r3]
+ 200 009a 5B2B     		cmp	r3, #91
+ 201 009c 0ED1     		bne	.L15
+ 202 009e 7B6A     		ldr	r3, [r7, #36]
+ 203 00a0 0133     		adds	r3, r3, #1
+ 204 00a2 7B62     		str	r3, [r7, #36]
+ 205 00a4 3B6A     		ldr	r3, [r7, #32]
+ 206 00a6 013B     		subs	r3, r3, #1
+ 207 00a8 1B78     		ldrb	r3, [r3]
+ 208 00aa 5D2B     		cmp	r3, #93
+ 209 00ac 04D1     		bne	.L16
+ 210 00ae 3B6A     		ldr	r3, [r7, #32]
+ 211 00b0 013B     		subs	r3, r3, #1
+ 212 00b2 0022     		movs	r2, #0
+ 213 00b4 1A70     		strb	r2, [r3]
+ 214 00b6 01E0     		b	.L15
+ 215              	.L16:
+ 216 00b8 0023     		movs	r3, #0
+ 217 00ba 38E0     		b	.L8
+ 218              	.L15:
+ 219 00bc 3B6A     		ldr	r3, [r7, #32]
+ 220 00be 0022     		movs	r2, #0
+ 221 00c0 1A70     		strb	r2, [r3]
+ 222 00c2 3B6A     		ldr	r3, [r7, #32]
+ 223 00c4 0133     		adds	r3, r3, #1
+ 224 00c6 3B62     		str	r3, [r7, #32]
+ 225              	.L14:
+ 226 00c8 1C20     		movs	r0, #28
+ 227 00ca FFF7FEFF 		bl	lwm2m_malloc
+ 228 00ce 0300     		movs	r3, r0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 5
+
+
+ 229 00d0 BB61     		str	r3, [r7, #24]
+ 230 00d2 BB69     		ldr	r3, [r7, #24]
+ 231 00d4 002B     		cmp	r3, #0
+ 232 00d6 01D1     		bne	.L17
+ 233 00d8 0023     		movs	r3, #0
+ 234 00da 28E0     		b	.L8
+ 235              	.L17:
+ 236 00dc BB69     		ldr	r3, [r7, #24]
+ 237 00de 1C22     		movs	r2, #28
+ 238 00e0 0021     		movs	r1, #0
+ 239 00e2 1800     		movs	r0, r3
+ 240 00e4 FFF7FEFF 		bl	memset
+ 241 00e8 396A     		ldr	r1, [r7, #32]
+ 242 00ea 7B6A     		ldr	r3, [r7, #36]
+ 243 00ec 0122     		movs	r2, #1
+ 244 00ee 1800     		movs	r0, r3
+ 245 00f0 FFF7FEFF 		bl	atiny_net_connect
+ 246 00f4 0200     		movs	r2, r0
+ 247 00f6 BB69     		ldr	r3, [r7, #24]
+ 248 00f8 5A60     		str	r2, [r3, #4]
+ 249 00fa BB69     		ldr	r3, [r7, #24]
+ 250 00fc 5B68     		ldr	r3, [r3, #4]
+ 251 00fe 002B     		cmp	r3, #0
+ 252 0100 05D1     		bne	.L18
+ 253 0102 BB69     		ldr	r3, [r7, #24]
+ 254 0104 1800     		movs	r0, r3
+ 255 0106 FFF7FEFF 		bl	lwm2m_free
+ 256 010a 0023     		movs	r3, #0
+ 257 010c 0FE0     		b	.L8
+ 258              	.L18:
+ 259 010e BB69     		ldr	r3, [r7, #24]
+ 260 0110 0022     		movs	r2, #0
+ 261 0112 1A82     		strh	r2, [r3, #16]
+ 262 0114 BB69     		ldr	r3, [r7, #24]
+ 263 0116 FA68     		ldr	r2, [r7, #12]
+ 264 0118 1A60     		str	r2, [r3]
+ 265 011a BB69     		ldr	r3, [r7, #24]
+ 266 011c BA68     		ldr	r2, [r7, #8]
+ 267 011e 9A60     		str	r2, [r3, #8]
+ 268 0120 BB69     		ldr	r3, [r7, #24]
+ 269 0122 7A68     		ldr	r2, [r7, #4]
+ 270 0124 DA60     		str	r2, [r3, #12]
+ 271 0126 BB69     		ldr	r3, [r7, #24]
+ 272 0128 3A68     		ldr	r2, [r7]
+ 273 012a 5A61     		str	r2, [r3, #20]
+ 274 012c BB69     		ldr	r3, [r7, #24]
+ 275              	.L8:
+ 276 012e 1800     		movs	r0, r3
+ 277 0130 BD46     		mov	sp, r7
+ 278 0132 0AB0     		add	sp, sp, #40
+ 279              		@ sp needed
+ 280 0134 80BD     		pop	{r7, pc}
+ 281              	.L20:
+ 282 0136 C046     		.align	2
+ 283              	.L19:
+ 284 0138 00000000 		.word	.LC2
+ 285 013c 0C000000 		.word	.LC4
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 6
+
+
+ 286 0140 14000000 		.word	.LC6
+ 287 0144 1C000000 		.word	.LC8
+ 289              		.section	.text.connection_free,"ax",%progbits
+ 290              		.align	1
+ 291              		.global	connection_free
+ 292              		.syntax unified
+ 293              		.code	16
+ 294              		.thumb_func
+ 295              		.fpu softvfp
+ 297              	connection_free:
+ 298              		@ args = 0, pretend = 0, frame = 8
+ 299              		@ frame_needed = 1, uses_anonymous_args = 0
+ 300 0000 80B5     		push	{r7, lr}
+ 301 0002 82B0     		sub	sp, sp, #8
+ 302 0004 00AF     		add	r7, sp, #0
+ 303 0006 7860     		str	r0, [r7, #4]
+ 304 0008 7B68     		ldr	r3, [r7, #4]
+ 305 000a 002B     		cmp	r3, #0
+ 306 000c 06D0     		beq	.L24
+ 307 000e 7B68     		ldr	r3, [r7, #4]
+ 308 0010 5B68     		ldr	r3, [r3, #4]
+ 309 0012 1800     		movs	r0, r3
+ 310 0014 FFF7FEFF 		bl	atiny_net_close
+ 311 0018 C046     		nop
+ 312 001a 00E0     		b	.L21
+ 313              	.L24:
+ 314 001c C046     		nop
+ 315              	.L21:
+ 316 001e BD46     		mov	sp, r7
+ 317 0020 02B0     		add	sp, sp, #8
+ 318              		@ sp needed
+ 319 0022 80BD     		pop	{r7, pc}
+ 321              		.section	.text.lwm2m_connect_server,"ax",%progbits
+ 322              		.align	1
+ 323              		.global	lwm2m_connect_server
+ 324              		.syntax unified
+ 325              		.code	16
+ 326              		.thumb_func
+ 327              		.fpu softvfp
+ 329              	lwm2m_connect_server:
+ 330              		@ args = 0, pretend = 0, frame = 24
+ 331              		@ frame_needed = 1, uses_anonymous_args = 0
+ 332 0000 80B5     		push	{r7, lr}
+ 333 0002 86B0     		sub	sp, sp, #24
+ 334 0004 00AF     		add	r7, sp, #0
+ 335 0006 3960     		str	r1, [r7]
+ 336 0008 1100     		movs	r1, r2
+ 337 000a BB1D     		adds	r3, r7, #6
+ 338 000c 021C     		adds	r2, r0, #0
+ 339 000e 1A80     		strh	r2, [r3]
+ 340 0010 7B1D     		adds	r3, r7, #5
+ 341 0012 0A1C     		adds	r2, r1, #0
+ 342 0014 1A70     		strb	r2, [r3]
+ 343 0016 0023     		movs	r3, #0
+ 344 0018 7B61     		str	r3, [r7, #20]
+ 345 001a 3B68     		ldr	r3, [r7]
+ 346 001c 3B61     		str	r3, [r7, #16]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 7
+
+
+ 347 001e 3B69     		ldr	r3, [r7, #16]
+ 348 0020 1B68     		ldr	r3, [r3]
+ 349 0022 FB60     		str	r3, [r7, #12]
+ 350 0024 3B69     		ldr	r3, [r7, #16]
+ 351 0026 1B68     		ldr	r3, [r3]
+ 352 0028 9A68     		ldr	r2, [r3, #8]
+ 353 002a BB1D     		adds	r3, r7, #6
+ 354 002c 1B88     		ldrh	r3, [r3]
+ 355 002e 1900     		movs	r1, r3
+ 356 0030 1000     		movs	r0, r2
+ 357 0032 FFF7FEFF 		bl	lwm2m_list_find
+ 358 0036 0300     		movs	r3, r0
+ 359 0038 BB60     		str	r3, [r7, #8]
+ 360 003a BB68     		ldr	r3, [r7, #8]
+ 361 003c 002B     		cmp	r3, #0
+ 362 003e 01D1     		bne	.L26
+ 363 0040 0023     		movs	r3, #0
+ 364 0042 19E0     		b	.L27
+ 365              	.L26:
+ 366 0044 3B69     		ldr	r3, [r7, #16]
+ 367 0046 9868     		ldr	r0, [r3, #8]
+ 368 0048 BB68     		ldr	r3, [r7, #8]
+ 369 004a 9B88     		ldrh	r3, [r3, #4]
+ 370 004c 1A00     		movs	r2, r3
+ 371 004e 3B69     		ldr	r3, [r7, #16]
+ 372 0050 DB68     		ldr	r3, [r3, #12]
+ 373 0052 F968     		ldr	r1, [r7, #12]
+ 374 0054 FFF7FEFF 		bl	connection_create
+ 375 0058 0300     		movs	r3, r0
+ 376 005a 7B61     		str	r3, [r7, #20]
+ 377 005c 7B69     		ldr	r3, [r7, #20]
+ 378 005e 002B     		cmp	r3, #0
+ 379 0060 01D1     		bne	.L28
+ 380 0062 0023     		movs	r3, #0
+ 381 0064 08E0     		b	.L27
+ 382              	.L28:
+ 383 0066 7B1D     		adds	r3, r7, #5
+ 384 0068 1B78     		ldrb	r3, [r3]
+ 385 006a 9AB2     		uxth	r2, r3
+ 386 006c 7B69     		ldr	r3, [r7, #20]
+ 387 006e 5A82     		strh	r2, [r3, #18]
+ 388 0070 3B69     		ldr	r3, [r7, #16]
+ 389 0072 7A69     		ldr	r2, [r7, #20]
+ 390 0074 9A60     		str	r2, [r3, #8]
+ 391 0076 7B69     		ldr	r3, [r7, #20]
+ 392              	.L27:
+ 393 0078 1800     		movs	r0, r3
+ 394 007a BD46     		mov	sp, r7
+ 395 007c 06B0     		add	sp, sp, #24
+ 396              		@ sp needed
+ 397 007e 80BD     		pop	{r7, pc}
+ 399              		.section	.text.lwm2m_close_connection,"ax",%progbits
+ 400              		.align	1
+ 401              		.global	lwm2m_close_connection
+ 402              		.syntax unified
+ 403              		.code	16
+ 404              		.thumb_func
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 8
+
+
+ 405              		.fpu softvfp
+ 407              	lwm2m_close_connection:
+ 408              		@ args = 0, pretend = 0, frame = 24
+ 409              		@ frame_needed = 1, uses_anonymous_args = 0
+ 410 0000 80B5     		push	{r7, lr}
+ 411 0002 86B0     		sub	sp, sp, #24
+ 412 0004 00AF     		add	r7, sp, #0
+ 413 0006 7860     		str	r0, [r7, #4]
+ 414 0008 3960     		str	r1, [r7]
+ 415 000a 3B68     		ldr	r3, [r7]
+ 416 000c 3B61     		str	r3, [r7, #16]
+ 417 000e 7B68     		ldr	r3, [r7, #4]
+ 418 0010 FB60     		str	r3, [r7, #12]
+ 419 0012 3B69     		ldr	r3, [r7, #16]
+ 420 0014 9B68     		ldr	r3, [r3, #8]
+ 421 0016 FA68     		ldr	r2, [r7, #12]
+ 422 0018 9A42     		cmp	r2, r3
+ 423 001a 0CD1     		bne	.L30
+ 424 001c FB68     		ldr	r3, [r7, #12]
+ 425 001e 1A68     		ldr	r2, [r3]
+ 426 0020 3B69     		ldr	r3, [r7, #16]
+ 427 0022 9A60     		str	r2, [r3, #8]
+ 428 0024 FB68     		ldr	r3, [r7, #12]
+ 429 0026 1800     		movs	r0, r3
+ 430 0028 FFF7FEFF 		bl	connection_free
+ 431 002c FB68     		ldr	r3, [r7, #12]
+ 432 002e 1800     		movs	r0, r3
+ 433 0030 FFF7FEFF 		bl	lwm2m_free
+ 434 0034 1EE0     		b	.L36
+ 435              	.L30:
+ 436 0036 3B69     		ldr	r3, [r7, #16]
+ 437 0038 9B68     		ldr	r3, [r3, #8]
+ 438 003a 7B61     		str	r3, [r7, #20]
+ 439 003c 02E0     		b	.L32
+ 440              	.L34:
+ 441 003e 7B69     		ldr	r3, [r7, #20]
+ 442 0040 1B68     		ldr	r3, [r3]
+ 443 0042 7B61     		str	r3, [r7, #20]
+ 444              	.L32:
+ 445 0044 7B69     		ldr	r3, [r7, #20]
+ 446 0046 002B     		cmp	r3, #0
+ 447 0048 04D0     		beq	.L33
+ 448 004a 7B69     		ldr	r3, [r7, #20]
+ 449 004c 1B68     		ldr	r3, [r3]
+ 450 004e FA68     		ldr	r2, [r7, #12]
+ 451 0050 9A42     		cmp	r2, r3
+ 452 0052 F4D1     		bne	.L34
+ 453              	.L33:
+ 454 0054 7B69     		ldr	r3, [r7, #20]
+ 455 0056 002B     		cmp	r3, #0
+ 456 0058 0CD0     		beq	.L36
+ 457 005a FB68     		ldr	r3, [r7, #12]
+ 458 005c 1A68     		ldr	r2, [r3]
+ 459 005e 7B69     		ldr	r3, [r7, #20]
+ 460 0060 1A60     		str	r2, [r3]
+ 461 0062 FB68     		ldr	r3, [r7, #12]
+ 462 0064 1800     		movs	r0, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 9
+
+
+ 463 0066 FFF7FEFF 		bl	connection_free
+ 464 006a FB68     		ldr	r3, [r7, #12]
+ 465 006c 1800     		movs	r0, r3
+ 466 006e FFF7FEFF 		bl	lwm2m_free
+ 467 0072 C046     		nop
+ 468              	.L36:
+ 469 0074 C046     		nop
+ 470 0076 BD46     		mov	sp, r7
+ 471 0078 06B0     		add	sp, sp, #24
+ 472              		@ sp needed
+ 473 007a 80BD     		pop	{r7, pc}
+ 475              		.section	.text.lwm2m_buffer_recv,"ax",%progbits
+ 476              		.align	1
+ 477              		.global	lwm2m_buffer_recv
+ 478              		.syntax unified
+ 479              		.code	16
+ 480              		.thumb_func
+ 481              		.fpu softvfp
+ 483              	lwm2m_buffer_recv:
+ 484              		@ args = 0, pretend = 0, frame = 32
+ 485              		@ frame_needed = 1, uses_anonymous_args = 0
+ 486 0000 80B5     		push	{r7, lr}
+ 487 0002 88B0     		sub	sp, sp, #32
+ 488 0004 00AF     		add	r7, sp, #0
+ 489 0006 F860     		str	r0, [r7, #12]
+ 490 0008 B960     		str	r1, [r7, #8]
+ 491 000a 7A60     		str	r2, [r7, #4]
+ 492 000c 3B60     		str	r3, [r7]
+ 493 000e FB68     		ldr	r3, [r7, #12]
+ 494 0010 FB61     		str	r3, [r7, #28]
+ 495 0012 0123     		movs	r3, #1
+ 496 0014 5B42     		rsbs	r3, r3, #0
+ 497 0016 BB61     		str	r3, [r7, #24]
+ 498 0018 0223     		movs	r3, #2
+ 499 001a 5B42     		rsbs	r3, r3, #0
+ 500 001c 7B61     		str	r3, [r7, #20]
+ 501 001e 3A68     		ldr	r2, [r7]
+ 502 0020 1300     		movs	r3, r2
+ 503 0022 5B01     		lsls	r3, r3, #5
+ 504 0024 9B1A     		subs	r3, r3, r2
+ 505 0026 9B00     		lsls	r3, r3, #2
+ 506 0028 9B18     		adds	r3, r3, r2
+ 507 002a DB00     		lsls	r3, r3, #3
+ 508 002c 3B60     		str	r3, [r7]
+ 509 002e FB69     		ldr	r3, [r7, #28]
+ 510 0030 5868     		ldr	r0, [r3, #4]
+ 511 0032 3B68     		ldr	r3, [r7]
+ 512 0034 7A68     		ldr	r2, [r7, #4]
+ 513 0036 B968     		ldr	r1, [r7, #8]
+ 514 0038 FFF7FEFF 		bl	atiny_net_recv_timeout
+ 515 003c 0300     		movs	r3, r0
+ 516 003e BB61     		str	r3, [r7, #24]
+ 517 0040 BB69     		ldr	r3, [r7, #24]
+ 518 0042 002B     		cmp	r3, #0
+ 519 0044 09DA     		bge	.L38
+ 520 0046 BA69     		ldr	r2, [r7, #24]
+ 521 0048 7B69     		ldr	r3, [r7, #20]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 10
+
+
+ 522 004a 9A42     		cmp	r2, r3
+ 523 004c 05D0     		beq	.L38
+ 524 004e FB69     		ldr	r3, [r7, #28]
+ 525 0050 0121     		movs	r1, #1
+ 526 0052 1800     		movs	r0, r3
+ 527 0054 FFF7FEFF 		bl	inc_connection_stat
+ 528 0058 02E0     		b	.L39
+ 529              	.L38:
+ 530 005a FB69     		ldr	r3, [r7, #28]
+ 531 005c 0022     		movs	r2, #0
+ 532 005e 5A83     		strh	r2, [r3, #26]
+ 533              	.L39:
+ 534 0060 BB69     		ldr	r3, [r7, #24]
+ 535 0062 1800     		movs	r0, r3
+ 536 0064 BD46     		mov	sp, r7
+ 537 0066 08B0     		add	sp, sp, #32
+ 538              		@ sp needed
+ 539 0068 80BD     		pop	{r7, pc}
+ 541              		.section	.text.lwm2m_buffer_send,"ax",%progbits
+ 542              		.align	1
+ 543              		.global	lwm2m_buffer_send
+ 544              		.syntax unified
+ 545              		.code	16
+ 546              		.thumb_func
+ 547              		.fpu softvfp
+ 549              	lwm2m_buffer_send:
+ 550              		@ args = 0, pretend = 0, frame = 24
+ 551              		@ frame_needed = 1, uses_anonymous_args = 0
+ 552 0000 80B5     		push	{r7, lr}
+ 553 0002 86B0     		sub	sp, sp, #24
+ 554 0004 00AF     		add	r7, sp, #0
+ 555 0006 F860     		str	r0, [r7, #12]
+ 556 0008 B960     		str	r1, [r7, #8]
+ 557 000a 7A60     		str	r2, [r7, #4]
+ 558 000c 3B60     		str	r3, [r7]
+ 559 000e FB68     		ldr	r3, [r7, #12]
+ 560 0010 7B61     		str	r3, [r7, #20]
+ 561 0012 7B69     		ldr	r3, [r7, #20]
+ 562 0014 002B     		cmp	r3, #0
+ 563 0016 01D1     		bne	.L42
+ 564 0018 A023     		movs	r3, #160
+ 565 001a 16E0     		b	.L43
+ 566              	.L42:
+ 567 001c 7B69     		ldr	r3, [r7, #20]
+ 568 001e 5B68     		ldr	r3, [r3, #4]
+ 569 0020 7A68     		ldr	r2, [r7, #4]
+ 570 0022 B968     		ldr	r1, [r7, #8]
+ 571 0024 1800     		movs	r0, r3
+ 572 0026 FFF7FEFF 		bl	atiny_net_send
+ 573 002a 0300     		movs	r3, r0
+ 574 002c 3B61     		str	r3, [r7, #16]
+ 575 002e 3B69     		ldr	r3, [r7, #16]
+ 576 0030 002B     		cmp	r3, #0
+ 577 0032 04DB     		blt	.L44
+ 578 0034 7B69     		ldr	r3, [r7, #20]
+ 579 0036 0022     		movs	r2, #0
+ 580 0038 1A83     		strh	r2, [r3, #24]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 11
+
+
+ 581 003a 0023     		movs	r3, #0
+ 582 003c 05E0     		b	.L43
+ 583              	.L44:
+ 584 003e 7B69     		ldr	r3, [r7, #20]
+ 585 0040 0021     		movs	r1, #0
+ 586 0042 1800     		movs	r0, r3
+ 587 0044 FFF7FEFF 		bl	inc_connection_stat
+ 588 0048 A023     		movs	r3, #160
+ 589              	.L43:
+ 590 004a 1800     		movs	r0, r3
+ 591 004c BD46     		mov	sp, r7
+ 592 004e 06B0     		add	sp, sp, #24
+ 593              		@ sp needed
+ 594 0050 80BD     		pop	{r7, pc}
+ 596              		.section	.text.lwm2m_session_is_equal,"ax",%progbits
+ 597              		.align	1
+ 598              		.global	lwm2m_session_is_equal
+ 599              		.syntax unified
+ 600              		.code	16
+ 601              		.thumb_func
+ 602              		.fpu softvfp
+ 604              	lwm2m_session_is_equal:
+ 605              		@ args = 0, pretend = 0, frame = 16
+ 606              		@ frame_needed = 1, uses_anonymous_args = 0
+ 607 0000 80B5     		push	{r7, lr}
+ 608 0002 84B0     		sub	sp, sp, #16
+ 609 0004 00AF     		add	r7, sp, #0
+ 610 0006 F860     		str	r0, [r7, #12]
+ 611 0008 B960     		str	r1, [r7, #8]
+ 612 000a 7A60     		str	r2, [r7, #4]
+ 613 000c FA68     		ldr	r2, [r7, #12]
+ 614 000e BB68     		ldr	r3, [r7, #8]
+ 615 0010 D31A     		subs	r3, r2, r3
+ 616 0012 5A42     		rsbs	r2, r3, #0
+ 617 0014 5341     		adcs	r3, r3, r2
+ 618 0016 DBB2     		uxtb	r3, r3
+ 619 0018 1800     		movs	r0, r3
+ 620 001a BD46     		mov	sp, r7
+ 621 001c 04B0     		add	sp, sp, #16
+ 622              		@ sp needed
+ 623 001e 80BD     		pop	{r7, pc}
+ 625              		.section	.text.lwm2m_register_connection_err_notify,"ax",%progbits
+ 626              		.align	1
+ 627              		.global	lwm2m_register_connection_err_notify
+ 628              		.syntax unified
+ 629              		.code	16
+ 630              		.thumb_func
+ 631              		.fpu softvfp
+ 633              	lwm2m_register_connection_err_notify:
+ 634              		@ args = 0, pretend = 0, frame = 8
+ 635              		@ frame_needed = 1, uses_anonymous_args = 0
+ 636 0000 80B5     		push	{r7, lr}
+ 637 0002 82B0     		sub	sp, sp, #8
+ 638 0004 00AF     		add	r7, sp, #0
+ 639 0006 7860     		str	r0, [r7, #4]
+ 640 0008 034B     		ldr	r3, .L48
+ 641 000a 7A68     		ldr	r2, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 12
+
+
+ 642 000c 1A60     		str	r2, [r3]
+ 643 000e C046     		nop
+ 644 0010 BD46     		mov	sp, r7
+ 645 0012 02B0     		add	sp, sp, #8
+ 646              		@ sp needed
+ 647 0014 80BD     		pop	{r7, pc}
+ 648              	.L49:
+ 649 0016 C046     		.align	2
+ 650              	.L48:
+ 651 0018 00000000 		.word	g_connection_err_notify
+ 653              		.section	.rodata.max_num.7463,"a",%progbits
+ 654              		.align	2
+ 657              	max_num.7463:
+ 658 0000 0A00     		.short	10
+ 659 0002 0A00     		.short	10
+ 660              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 connection.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:13     .bss.g_connection_err_notify:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:16     .bss.g_connection_err_notify:00000000 g_connection_err_notify
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:19     .text.inc_connection_stat:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:25     .text.inc_connection_stat:00000000 inc_connection_stat
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:94     .text.inc_connection_stat:0000007c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:657    .rodata.max_num.7463:00000000 max_num.7463
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:98     .rodata:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:111    .text.connection_create:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:118    .text.connection_create:00000000 connection_create
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:284    .text.connection_create:00000138 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:290    .text.connection_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:297    .text.connection_free:00000000 connection_free
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:322    .text.lwm2m_connect_server:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:329    .text.lwm2m_connect_server:00000000 lwm2m_connect_server
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:400    .text.lwm2m_close_connection:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:407    .text.lwm2m_close_connection:00000000 lwm2m_close_connection
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:476    .text.lwm2m_buffer_recv:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:483    .text.lwm2m_buffer_recv:00000000 lwm2m_buffer_recv
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:542    .text.lwm2m_buffer_send:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:549    .text.lwm2m_buffer_send:00000000 lwm2m_buffer_send
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:597    .text.lwm2m_session_is_equal:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:604    .text.lwm2m_session_is_equal:00000000 lwm2m_session_is_equal
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:626    .text.lwm2m_register_connection_err_notify:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:633    .text.lwm2m_register_connection_err_notify:00000000 lwm2m_register_connection_err_notify
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:651    .text.lwm2m_register_connection_err_notify:00000018 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccdLnKQh.s:654    .rodata.max_num.7463:00000000 $d
+
+UNDEFINED SYMBOLS
+lwm2m_list_find
+strncmp
+strrchr
+lwm2m_malloc
+memset
+atiny_net_connect
+lwm2m_free
+atiny_net_close
+atiny_net_recv_timeout
+atiny_net_send

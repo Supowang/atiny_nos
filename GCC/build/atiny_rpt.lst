@@ -1,0 +1,1219 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"atiny_rpt.c"
+  12              		.section	.text.atiny_list_init,"ax",%progbits
+  13              		.align	1
+  14              		.syntax unified
+  15              		.code	16
+  16              		.thumb_func
+  17              		.fpu softvfp
+  19              	atiny_list_init:
+  20              		@ args = 0, pretend = 0, frame = 8
+  21              		@ frame_needed = 1, uses_anonymous_args = 0
+  22 0000 80B5     		push	{r7, lr}
+  23 0002 82B0     		sub	sp, sp, #8
+  24 0004 00AF     		add	r7, sp, #0
+  25 0006 7860     		str	r0, [r7, #4]
+  26 0008 7B68     		ldr	r3, [r7, #4]
+  27 000a 7A68     		ldr	r2, [r7, #4]
+  28 000c 5A60     		str	r2, [r3, #4]
+  29 000e 7B68     		ldr	r3, [r7, #4]
+  30 0010 7A68     		ldr	r2, [r7, #4]
+  31 0012 1A60     		str	r2, [r3]
+  32 0014 C046     		nop
+  33 0016 BD46     		mov	sp, r7
+  34 0018 02B0     		add	sp, sp, #8
+  35              		@ sp needed
+  36 001a 80BD     		pop	{r7, pc}
+  38              		.section	.text.atiny_list_add,"ax",%progbits
+  39              		.align	1
+  40              		.syntax unified
+  41              		.code	16
+  42              		.thumb_func
+  43              		.fpu softvfp
+  45              	atiny_list_add:
+  46              		@ args = 0, pretend = 0, frame = 8
+  47              		@ frame_needed = 1, uses_anonymous_args = 0
+  48 0000 80B5     		push	{r7, lr}
+  49 0002 82B0     		sub	sp, sp, #8
+  50 0004 00AF     		add	r7, sp, #0
+  51 0006 7860     		str	r0, [r7, #4]
+  52 0008 3960     		str	r1, [r7]
+  53 000a 7B68     		ldr	r3, [r7, #4]
+  54 000c 5A68     		ldr	r2, [r3, #4]
+  55 000e 3B68     		ldr	r3, [r7]
+  56 0010 5A60     		str	r2, [r3, #4]
+  57 0012 3B68     		ldr	r3, [r7]
+  58 0014 7A68     		ldr	r2, [r7, #4]
+  59 0016 1A60     		str	r2, [r3]
+  60 0018 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 2
+
+
+  61 001a 5B68     		ldr	r3, [r3, #4]
+  62 001c 3A68     		ldr	r2, [r7]
+  63 001e 1A60     		str	r2, [r3]
+  64 0020 7B68     		ldr	r3, [r7, #4]
+  65 0022 3A68     		ldr	r2, [r7]
+  66 0024 5A60     		str	r2, [r3, #4]
+  67 0026 C046     		nop
+  68 0028 BD46     		mov	sp, r7
+  69 002a 02B0     		add	sp, sp, #8
+  70              		@ sp needed
+  71 002c 80BD     		pop	{r7, pc}
+  73              		.section	.text.atiny_list_insert_tail,"ax",%progbits
+  74              		.align	1
+  75              		.syntax unified
+  76              		.code	16
+  77              		.thumb_func
+  78              		.fpu softvfp
+  80              	atiny_list_insert_tail:
+  81              		@ args = 0, pretend = 0, frame = 8
+  82              		@ frame_needed = 1, uses_anonymous_args = 0
+  83 0000 80B5     		push	{r7, lr}
+  84 0002 82B0     		sub	sp, sp, #8
+  85 0004 00AF     		add	r7, sp, #0
+  86 0006 7860     		str	r0, [r7, #4]
+  87 0008 3960     		str	r1, [r7]
+  88 000a 7B68     		ldr	r3, [r7, #4]
+  89 000c 1B68     		ldr	r3, [r3]
+  90 000e 3A68     		ldr	r2, [r7]
+  91 0010 1100     		movs	r1, r2
+  92 0012 1800     		movs	r0, r3
+  93 0014 FFF7FEFF 		bl	atiny_list_add
+  94 0018 C046     		nop
+  95 001a BD46     		mov	sp, r7
+  96 001c 02B0     		add	sp, sp, #8
+  97              		@ sp needed
+  98 001e 80BD     		pop	{r7, pc}
+ 100              		.section	.text.atiny_list_delete,"ax",%progbits
+ 101              		.align	1
+ 102              		.syntax unified
+ 103              		.code	16
+ 104              		.thumb_func
+ 105              		.fpu softvfp
+ 107              	atiny_list_delete:
+ 108              		@ args = 0, pretend = 0, frame = 8
+ 109              		@ frame_needed = 1, uses_anonymous_args = 0
+ 110 0000 80B5     		push	{r7, lr}
+ 111 0002 82B0     		sub	sp, sp, #8
+ 112 0004 00AF     		add	r7, sp, #0
+ 113 0006 7860     		str	r0, [r7, #4]
+ 114 0008 7B68     		ldr	r3, [r7, #4]
+ 115 000a 5B68     		ldr	r3, [r3, #4]
+ 116 000c 7A68     		ldr	r2, [r7, #4]
+ 117 000e 1268     		ldr	r2, [r2]
+ 118 0010 1A60     		str	r2, [r3]
+ 119 0012 7B68     		ldr	r3, [r7, #4]
+ 120 0014 1B68     		ldr	r3, [r3]
+ 121 0016 7A68     		ldr	r2, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 3
+
+
+ 122 0018 5268     		ldr	r2, [r2, #4]
+ 123 001a 5A60     		str	r2, [r3, #4]
+ 124 001c 7B68     		ldr	r3, [r7, #4]
+ 125 001e 0022     		movs	r2, #0
+ 126 0020 5A60     		str	r2, [r3, #4]
+ 127 0022 7B68     		ldr	r3, [r7, #4]
+ 128 0024 0022     		movs	r2, #0
+ 129 0026 1A60     		str	r2, [r3]
+ 130 0028 C046     		nop
+ 131 002a BD46     		mov	sp, r7
+ 132 002c 02B0     		add	sp, sp, #8
+ 133              		@ sp needed
+ 134 002e 80BD     		pop	{r7, pc}
+ 136              		.section	.text.atiny_list_empty,"ax",%progbits
+ 137              		.align	1
+ 138              		.syntax unified
+ 139              		.code	16
+ 140              		.thumb_func
+ 141              		.fpu softvfp
+ 143              	atiny_list_empty:
+ 144              		@ args = 0, pretend = 0, frame = 8
+ 145              		@ frame_needed = 1, uses_anonymous_args = 0
+ 146 0000 80B5     		push	{r7, lr}
+ 147 0002 82B0     		sub	sp, sp, #8
+ 148 0004 00AF     		add	r7, sp, #0
+ 149 0006 7860     		str	r0, [r7, #4]
+ 150 0008 7B68     		ldr	r3, [r7, #4]
+ 151 000a 5B68     		ldr	r3, [r3, #4]
+ 152 000c 7A68     		ldr	r2, [r7, #4]
+ 153 000e D31A     		subs	r3, r2, r3
+ 154 0010 5A42     		rsbs	r2, r3, #0
+ 155 0012 5341     		adcs	r3, r3, r2
+ 156 0014 DBB2     		uxtb	r3, r3
+ 157 0016 1800     		movs	r0, r3
+ 158 0018 BD46     		mov	sp, r7
+ 159 001a 02B0     		add	sp, sp, #8
+ 160              		@ sp needed
+ 161 001c 80BD     		pop	{r7, pc}
+ 163              		.section	.bss.g_atiny_rpt_table,"aw",%nobits
+ 164              		.align	2
+ 167              	g_atiny_rpt_table:
+ 168 0000 00000000 		.space	8
+ 168      00000000 
+ 169              		.section	.bss.g_mutex,"aw",%nobits
+ 170              		.align	2
+ 173              	g_mutex:
+ 174 0000 00000000 		.space	4
+ 175              		.section	.text.atiny_is_uri_equal,"ax",%progbits
+ 176              		.align	1
+ 177              		.syntax unified
+ 178              		.code	16
+ 179              		.thumb_func
+ 180              		.fpu softvfp
+ 182              	atiny_is_uri_equal:
+ 183              		@ args = 0, pretend = 0, frame = 8
+ 184              		@ frame_needed = 1, uses_anonymous_args = 0
+ 185 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 4
+
+
+ 186 0002 82B0     		sub	sp, sp, #8
+ 187 0004 00AF     		add	r7, sp, #0
+ 188 0006 7860     		str	r0, [r7, #4]
+ 189 0008 3960     		str	r1, [r7]
+ 190 000a 7B68     		ldr	r3, [r7, #4]
+ 191 000c 1B78     		ldrb	r3, [r3]
+ 192 000e 1A00     		movs	r2, r3
+ 193 0010 0123     		movs	r3, #1
+ 194 0012 1340     		ands	r3, r2
+ 195 0014 1BD0     		beq	.L8
+ 196 0016 3B68     		ldr	r3, [r7]
+ 197 0018 1B78     		ldrb	r3, [r3]
+ 198 001a 1A00     		movs	r2, r3
+ 199 001c 0123     		movs	r3, #1
+ 200 001e 1340     		ands	r3, r2
+ 201 0020 15D0     		beq	.L8
+ 202 0022 7B68     		ldr	r3, [r7, #4]
+ 203 0024 5A88     		ldrh	r2, [r3, #2]
+ 204 0026 3B68     		ldr	r3, [r7]
+ 205 0028 5B88     		ldrh	r3, [r3, #2]
+ 206 002a 9A42     		cmp	r2, r3
+ 207 002c 0DD1     		bne	.L9
+ 208 002e 7B68     		ldr	r3, [r7, #4]
+ 209 0030 9A88     		ldrh	r2, [r3, #4]
+ 210 0032 3B68     		ldr	r3, [r7]
+ 211 0034 9B88     		ldrh	r3, [r3, #4]
+ 212 0036 9A42     		cmp	r2, r3
+ 213 0038 07D1     		bne	.L9
+ 214 003a 7B68     		ldr	r3, [r7, #4]
+ 215 003c DA88     		ldrh	r2, [r3, #6]
+ 216 003e 3B68     		ldr	r3, [r7]
+ 217 0040 DB88     		ldrh	r3, [r3, #6]
+ 218 0042 9A42     		cmp	r2, r3
+ 219 0044 01D1     		bne	.L9
+ 220 0046 0123     		movs	r3, #1
+ 221 0048 10E0     		b	.L11
+ 222              	.L9:
+ 223 004a 0023     		movs	r3, #0
+ 224 004c 0EE0     		b	.L11
+ 225              	.L8:
+ 226 004e 7B68     		ldr	r3, [r7, #4]
+ 227 0050 5A88     		ldrh	r2, [r3, #2]
+ 228 0052 3B68     		ldr	r3, [r7]
+ 229 0054 5B88     		ldrh	r3, [r3, #2]
+ 230 0056 9A42     		cmp	r2, r3
+ 231 0058 07D1     		bne	.L12
+ 232 005a 7B68     		ldr	r3, [r7, #4]
+ 233 005c 9A88     		ldrh	r2, [r3, #4]
+ 234 005e 3B68     		ldr	r3, [r7]
+ 235 0060 9B88     		ldrh	r3, [r3, #4]
+ 236 0062 9A42     		cmp	r2, r3
+ 237 0064 01D1     		bne	.L12
+ 238 0066 0123     		movs	r3, #1
+ 239 0068 00E0     		b	.L11
+ 240              	.L12:
+ 241 006a 0023     		movs	r3, #0
+ 242              	.L11:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 5
+
+
+ 243 006c 1800     		movs	r0, r3
+ 244 006e BD46     		mov	sp, r7
+ 245 0070 02B0     		add	sp, sp, #8
+ 246              		@ sp needed
+ 247 0072 80BD     		pop	{r7, pc}
+ 249              		.section	.text.atiny_find_rpt_list,"ax",%progbits
+ 250              		.align	1
+ 251              		.syntax unified
+ 252              		.code	16
+ 253              		.thumb_func
+ 254              		.fpu softvfp
+ 256              	atiny_find_rpt_list:
+ 257              		@ args = 0, pretend = 0, frame = 24
+ 258              		@ frame_needed = 1, uses_anonymous_args = 0
+ 259 0000 80B5     		push	{r7, lr}
+ 260 0002 86B0     		sub	sp, sp, #24
+ 261 0004 00AF     		add	r7, sp, #0
+ 262 0006 7860     		str	r0, [r7, #4]
+ 263 0008 104B     		ldr	r3, .L19
+ 264 000a 5B68     		ldr	r3, [r3, #4]
+ 265 000c 7B61     		str	r3, [r7, #20]
+ 266 000e 7B69     		ldr	r3, [r7, #20]
+ 267 0010 5B68     		ldr	r3, [r3, #4]
+ 268 0012 3B61     		str	r3, [r7, #16]
+ 269 0014 11E0     		b	.L15
+ 270              	.L18:
+ 271 0016 7B69     		ldr	r3, [r7, #20]
+ 272 0018 FB60     		str	r3, [r7, #12]
+ 273 001a FB68     		ldr	r3, [r7, #12]
+ 274 001c 0833     		adds	r3, r3, #8
+ 275 001e 7A68     		ldr	r2, [r7, #4]
+ 276 0020 1100     		movs	r1, r2
+ 277 0022 1800     		movs	r0, r3
+ 278 0024 FFF7FEFF 		bl	atiny_is_uri_equal
+ 279 0028 031E     		subs	r3, r0, #0
+ 280 002a 01D0     		beq	.L16
+ 281 002c FB68     		ldr	r3, [r7, #12]
+ 282 002e 09E0     		b	.L17
+ 283              	.L16:
+ 284 0030 3B69     		ldr	r3, [r7, #16]
+ 285 0032 7B61     		str	r3, [r7, #20]
+ 286 0034 7B69     		ldr	r3, [r7, #20]
+ 287 0036 5B68     		ldr	r3, [r3, #4]
+ 288 0038 3B61     		str	r3, [r7, #16]
+ 289              	.L15:
+ 290 003a 7A69     		ldr	r2, [r7, #20]
+ 291 003c 034B     		ldr	r3, .L19
+ 292 003e 9A42     		cmp	r2, r3
+ 293 0040 E9D1     		bne	.L18
+ 294 0042 0023     		movs	r3, #0
+ 295              	.L17:
+ 296 0044 1800     		movs	r0, r3
+ 297 0046 BD46     		mov	sp, r7
+ 298 0048 06B0     		add	sp, sp, #24
+ 299              		@ sp needed
+ 300 004a 80BD     		pop	{r7, pc}
+ 301              	.L20:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 6
+
+
+ 302              		.align	2
+ 303              	.L19:
+ 304 004c 00000000 		.word	g_atiny_rpt_table
+ 306              		.section	.text.atiny_free_list,"ax",%progbits
+ 307              		.align	1
+ 308              		.syntax unified
+ 309              		.code	16
+ 310              		.thumb_func
+ 311              		.fpu softvfp
+ 313              	atiny_free_list:
+ 314              		@ args = 0, pretend = 0, frame = 24
+ 315              		@ frame_needed = 1, uses_anonymous_args = 0
+ 316 0000 80B5     		push	{r7, lr}
+ 317 0002 86B0     		sub	sp, sp, #24
+ 318 0004 00AF     		add	r7, sp, #0
+ 319 0006 F860     		str	r0, [r7, #12]
+ 320 0008 B960     		str	r1, [r7, #8]
+ 321 000a 7A60     		str	r2, [r7, #4]
+ 322 000c FB68     		ldr	r3, [r7, #12]
+ 323 000e 5B68     		ldr	r3, [r3, #4]
+ 324 0010 7B61     		str	r3, [r7, #20]
+ 325 0012 7B69     		ldr	r3, [r7, #20]
+ 326 0014 5B68     		ldr	r3, [r3, #4]
+ 327 0016 3B61     		str	r3, [r7, #16]
+ 328 0018 14E0     		b	.L22
+ 329              	.L24:
+ 330 001a 7B69     		ldr	r3, [r7, #20]
+ 331 001c 1800     		movs	r0, r3
+ 332 001e FFF7FEFF 		bl	atiny_list_delete
+ 333 0022 BB68     		ldr	r3, [r7, #8]
+ 334 0024 002B     		cmp	r3, #0
+ 335 0026 04D0     		beq	.L23
+ 336 0028 7968     		ldr	r1, [r7, #4]
+ 337 002a 7A69     		ldr	r2, [r7, #20]
+ 338 002c BB68     		ldr	r3, [r7, #8]
+ 339 002e 1000     		movs	r0, r2
+ 340 0030 9847     		blx	r3
+ 341              	.L23:
+ 342 0032 7B69     		ldr	r3, [r7, #20]
+ 343 0034 1800     		movs	r0, r3
+ 344 0036 FFF7FEFF 		bl	lwm2m_free
+ 345 003a 3B69     		ldr	r3, [r7, #16]
+ 346 003c 7B61     		str	r3, [r7, #20]
+ 347 003e 7B69     		ldr	r3, [r7, #20]
+ 348 0040 5B68     		ldr	r3, [r3, #4]
+ 349 0042 3B61     		str	r3, [r7, #16]
+ 350              	.L22:
+ 351 0044 7A69     		ldr	r2, [r7, #20]
+ 352 0046 FB68     		ldr	r3, [r7, #12]
+ 353 0048 9A42     		cmp	r2, r3
+ 354 004a E6D1     		bne	.L24
+ 355 004c C046     		nop
+ 356 004e BD46     		mov	sp, r7
+ 357 0050 06B0     		add	sp, sp, #24
+ 358              		@ sp needed
+ 359 0052 80BD     		pop	{r7, pc}
+ 361              		.section	.text.atiny_visit_list,"ax",%progbits
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 7
+
+
+ 362              		.align	1
+ 363              		.syntax unified
+ 364              		.code	16
+ 365              		.thumb_func
+ 366              		.fpu softvfp
+ 368              	atiny_visit_list:
+ 369              		@ args = 0, pretend = 0, frame = 24
+ 370              		@ frame_needed = 1, uses_anonymous_args = 0
+ 371 0000 80B5     		push	{r7, lr}
+ 372 0002 86B0     		sub	sp, sp, #24
+ 373 0004 00AF     		add	r7, sp, #0
+ 374 0006 F860     		str	r0, [r7, #12]
+ 375 0008 B960     		str	r1, [r7, #8]
+ 376 000a 7A60     		str	r2, [r7, #4]
+ 377 000c FB68     		ldr	r3, [r7, #12]
+ 378 000e 5B68     		ldr	r3, [r3, #4]
+ 379 0010 7B61     		str	r3, [r7, #20]
+ 380 0012 7B69     		ldr	r3, [r7, #20]
+ 381 0014 5B68     		ldr	r3, [r3, #4]
+ 382 0016 3B61     		str	r3, [r7, #16]
+ 383 0018 09E0     		b	.L26
+ 384              	.L27:
+ 385 001a 7968     		ldr	r1, [r7, #4]
+ 386 001c 7A69     		ldr	r2, [r7, #20]
+ 387 001e BB68     		ldr	r3, [r7, #8]
+ 388 0020 1000     		movs	r0, r2
+ 389 0022 9847     		blx	r3
+ 390 0024 3B69     		ldr	r3, [r7, #16]
+ 391 0026 7B61     		str	r3, [r7, #20]
+ 392 0028 7B69     		ldr	r3, [r7, #20]
+ 393 002a 5B68     		ldr	r3, [r3, #4]
+ 394 002c 3B61     		str	r3, [r7, #16]
+ 395              	.L26:
+ 396 002e 7A69     		ldr	r2, [r7, #20]
+ 397 0030 FB68     		ldr	r3, [r7, #12]
+ 398 0032 9A42     		cmp	r2, r3
+ 399 0034 F1D1     		bne	.L27
+ 400 0036 C046     		nop
+ 401 0038 BD46     		mov	sp, r7
+ 402 003a 06B0     		add	sp, sp, #24
+ 403              		@ sp needed
+ 404 003c 80BD     		pop	{r7, pc}
+ 406              		.section	.text.atiny_clear_rpt_list_node_data,"ax",%progbits
+ 407              		.align	1
+ 408              		.syntax unified
+ 409              		.code	16
+ 410              		.thumb_func
+ 411              		.fpu softvfp
+ 413              	atiny_clear_rpt_list_node_data:
+ 414              		@ args = 0, pretend = 0, frame = 16
+ 415              		@ frame_needed = 1, uses_anonymous_args = 0
+ 416 0000 90B5     		push	{r4, r7, lr}
+ 417 0002 85B0     		sub	sp, sp, #20
+ 418 0004 00AF     		add	r7, sp, #0
+ 419 0006 7860     		str	r0, [r7, #4]
+ 420 0008 3960     		str	r1, [r7]
+ 421 000a 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 8
+
+
+ 422 000c FB60     		str	r3, [r7, #12]
+ 423 000e FB68     		ldr	r3, [r7, #12]
+ 424 0010 9B69     		ldr	r3, [r3, #24]
+ 425 0012 002B     		cmp	r3, #0
+ 426 0014 09D0     		beq	.L29
+ 427 0016 FB68     		ldr	r3, [r7, #12]
+ 428 0018 9C69     		ldr	r4, [r3, #24]
+ 429 001a FB68     		ldr	r3, [r7, #12]
+ 430 001c 187A     		ldrb	r0, [r3, #8]
+ 431 001e FB68     		ldr	r3, [r7, #12]
+ 432 0020 DB68     		ldr	r3, [r3, #12]
+ 433 0022 3A68     		ldr	r2, [r7]
+ 434 0024 D2B2     		uxtb	r2, r2
+ 435 0026 1900     		movs	r1, r3
+ 436 0028 A047     		blx	r4
+ 437              	.L29:
+ 438 002a FB68     		ldr	r3, [r7, #12]
+ 439 002c 5B69     		ldr	r3, [r3, #20]
+ 440 002e 002B     		cmp	r3, #0
+ 441 0030 07D0     		beq	.L31
+ 442 0032 FB68     		ldr	r3, [r7, #12]
+ 443 0034 5B69     		ldr	r3, [r3, #20]
+ 444 0036 1800     		movs	r0, r3
+ 445 0038 FFF7FEFF 		bl	lwm2m_free
+ 446 003c FB68     		ldr	r3, [r7, #12]
+ 447 003e 0022     		movs	r2, #0
+ 448 0040 5A61     		str	r2, [r3, #20]
+ 449              	.L31:
+ 450 0042 C046     		nop
+ 451 0044 BD46     		mov	sp, r7
+ 452 0046 05B0     		add	sp, sp, #20
+ 453              		@ sp needed
+ 454 0048 90BD     		pop	{r4, r7, pc}
+ 456              		.section	.text.atiny_clear_rpt_list,"ax",%progbits
+ 457              		.align	1
+ 458              		.syntax unified
+ 459              		.code	16
+ 460              		.thumb_func
+ 461              		.fpu softvfp
+ 463              	atiny_clear_rpt_list:
+ 464              		@ args = 0, pretend = 0, frame = 16
+ 465              		@ frame_needed = 1, uses_anonymous_args = 0
+ 466 0000 80B5     		push	{r7, lr}
+ 467 0002 84B0     		sub	sp, sp, #16
+ 468 0004 00AF     		add	r7, sp, #0
+ 469 0006 7860     		str	r0, [r7, #4]
+ 470 0008 3960     		str	r1, [r7]
+ 471 000a 7B68     		ldr	r3, [r7, #4]
+ 472 000c FB60     		str	r3, [r7, #12]
+ 473 000e FB68     		ldr	r3, [r7, #12]
+ 474 0010 1033     		adds	r3, r3, #16
+ 475 0012 3A68     		ldr	r2, [r7]
+ 476 0014 0349     		ldr	r1, .L33
+ 477 0016 1800     		movs	r0, r3
+ 478 0018 FFF7FEFF 		bl	atiny_free_list
+ 479 001c C046     		nop
+ 480 001e BD46     		mov	sp, r7
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 9
+
+
+ 481 0020 04B0     		add	sp, sp, #16
+ 482              		@ sp needed
+ 483 0022 80BD     		pop	{r7, pc}
+ 484              	.L34:
+ 485              		.align	2
+ 486              	.L33:
+ 487 0024 00000000 		.word	atiny_clear_rpt_list_node_data
+ 489              		.section	.text.atiny_notify_stack_rpt_data_change,"ax",%progbits
+ 490              		.align	1
+ 491              		.syntax unified
+ 492              		.code	16
+ 493              		.thumb_func
+ 494              		.fpu softvfp
+ 496              	atiny_notify_stack_rpt_data_change:
+ 497              		@ args = 0, pretend = 0, frame = 16
+ 498              		@ frame_needed = 1, uses_anonymous_args = 0
+ 499 0000 80B5     		push	{r7, lr}
+ 500 0002 84B0     		sub	sp, sp, #16
+ 501 0004 00AF     		add	r7, sp, #0
+ 502 0006 7860     		str	r0, [r7, #4]
+ 503 0008 3960     		str	r1, [r7]
+ 504 000a 7B68     		ldr	r3, [r7, #4]
+ 505 000c FB60     		str	r3, [r7, #12]
+ 506 000e FB68     		ldr	r3, [r7, #12]
+ 507 0010 1033     		adds	r3, r3, #16
+ 508 0012 1800     		movs	r0, r3
+ 509 0014 FFF7FEFF 		bl	atiny_list_empty
+ 510 0018 031E     		subs	r3, r0, #0
+ 511 001a 07D1     		bne	.L37
+ 512 001c FB68     		ldr	r3, [r7, #12]
+ 513 001e 0833     		adds	r3, r3, #8
+ 514 0020 1A00     		movs	r2, r3
+ 515 0022 3B68     		ldr	r3, [r7]
+ 516 0024 1100     		movs	r1, r2
+ 517 0026 1800     		movs	r0, r3
+ 518 0028 FFF7FEFF 		bl	lwm2m_resource_value_changed
+ 519              	.L37:
+ 520 002c C046     		nop
+ 521 002e BD46     		mov	sp, r7
+ 522 0030 04B0     		add	sp, sp, #16
+ 523              		@ sp needed
+ 524 0032 80BD     		pop	{r7, pc}
+ 526              		.section	.text.atiny_init_rpt,"ax",%progbits
+ 527              		.align	1
+ 528              		.global	atiny_init_rpt
+ 529              		.syntax unified
+ 530              		.code	16
+ 531              		.thumb_func
+ 532              		.fpu softvfp
+ 534              	atiny_init_rpt:
+ 535              		@ args = 0, pretend = 0, frame = 0
+ 536              		@ frame_needed = 1, uses_anonymous_args = 0
+ 537 0000 80B5     		push	{r7, lr}
+ 538 0002 00AF     		add	r7, sp, #0
+ 539 0004 034B     		ldr	r3, .L40
+ 540 0006 1800     		movs	r0, r3
+ 541 0008 FFF7FEFF 		bl	atiny_list_init
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 10
+
+
+ 542 000c 0023     		movs	r3, #0
+ 543 000e 1800     		movs	r0, r3
+ 544 0010 BD46     		mov	sp, r7
+ 545              		@ sp needed
+ 546 0012 80BD     		pop	{r7, pc}
+ 547              	.L41:
+ 548              		.align	2
+ 549              	.L40:
+ 550 0014 00000000 		.word	g_atiny_rpt_table
+ 552              		.section	.text.atiny_add_rpt_uri,"ax",%progbits
+ 553              		.align	1
+ 554              		.global	atiny_add_rpt_uri
+ 555              		.syntax unified
+ 556              		.code	16
+ 557              		.thumb_func
+ 558              		.fpu softvfp
+ 560              	atiny_add_rpt_uri:
+ 561              		@ args = 0, pretend = 0, frame = 16
+ 562              		@ frame_needed = 1, uses_anonymous_args = 0
+ 563 0000 80B5     		push	{r7, lr}
+ 564 0002 84B0     		sub	sp, sp, #16
+ 565 0004 00AF     		add	r7, sp, #0
+ 566 0006 7860     		str	r0, [r7, #4]
+ 567 0008 3960     		str	r1, [r7]
+ 568 000a 0023     		movs	r3, #0
+ 569 000c FB60     		str	r3, [r7, #12]
+ 570 000e 0123     		movs	r3, #1
+ 571 0010 5B42     		rsbs	r3, r3, #0
+ 572 0012 BB60     		str	r3, [r7, #8]
+ 573 0014 7B68     		ldr	r3, [r7, #4]
+ 574 0016 002B     		cmp	r3, #0
+ 575 0018 02D1     		bne	.L43
+ 576 001a 0123     		movs	r3, #1
+ 577 001c 5B42     		rsbs	r3, r3, #0
+ 578 001e 48E0     		b	.L44
+ 579              	.L43:
+ 580 0020 3B68     		ldr	r3, [r7]
+ 581 0022 002B     		cmp	r3, #0
+ 582 0024 02D1     		bne	.L45
+ 583 0026 0123     		movs	r3, #1
+ 584 0028 5B42     		rsbs	r3, r3, #0
+ 585 002a 42E0     		b	.L44
+ 586              	.L45:
+ 587 002c 3B68     		ldr	r3, [r7]
+ 588 002e 0022     		movs	r2, #0
+ 589 0030 1A60     		str	r2, [r3]
+ 590 0032 224B     		ldr	r3, .L51
+ 591 0034 1B68     		ldr	r3, [r3]
+ 592 0036 1800     		movs	r0, r3
+ 593 0038 FFF7FEFF 		bl	atiny_mutex_lock
+ 594 003c 7B68     		ldr	r3, [r7, #4]
+ 595 003e 1800     		movs	r0, r3
+ 596 0040 FFF7FEFF 		bl	atiny_find_rpt_list
+ 597 0044 0300     		movs	r3, r0
+ 598 0046 FB60     		str	r3, [r7, #12]
+ 599 0048 FB68     		ldr	r3, [r7, #12]
+ 600 004a 002B     		cmp	r3, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 11
+
+
+ 601 004c 25D1     		bne	.L49
+ 602 004e 2020     		movs	r0, #32
+ 603 0050 FFF7FEFF 		bl	lwm2m_malloc
+ 604 0054 0300     		movs	r3, r0
+ 605 0056 FB60     		str	r3, [r7, #12]
+ 606 0058 FB68     		ldr	r3, [r7, #12]
+ 607 005a 002B     		cmp	r3, #0
+ 608 005c 1FD0     		beq	.L50
+ 609 005e FB68     		ldr	r3, [r7, #12]
+ 610 0060 2022     		movs	r2, #32
+ 611 0062 0021     		movs	r1, #0
+ 612 0064 1800     		movs	r0, r3
+ 613 0066 FFF7FEFF 		bl	memset
+ 614 006a FB68     		ldr	r3, [r7, #12]
+ 615 006c 1033     		adds	r3, r3, #16
+ 616 006e 1800     		movs	r0, r3
+ 617 0070 FFF7FEFF 		bl	atiny_list_init
+ 618 0074 FB68     		ldr	r3, [r7, #12]
+ 619 0076 0833     		adds	r3, r3, #8
+ 620 0078 7968     		ldr	r1, [r7, #4]
+ 621 007a 0822     		movs	r2, #8
+ 622 007c 1800     		movs	r0, r3
+ 623 007e FFF7FEFF 		bl	memcpy
+ 624 0082 FB68     		ldr	r3, [r7, #12]
+ 625 0084 0822     		movs	r2, #8
+ 626 0086 DA61     		str	r2, [r3, #28]
+ 627 0088 FA68     		ldr	r2, [r7, #12]
+ 628 008a 0D4B     		ldr	r3, .L51+4
+ 629 008c 1100     		movs	r1, r2
+ 630 008e 1800     		movs	r0, r3
+ 631 0090 FFF7FEFF 		bl	atiny_list_insert_tail
+ 632 0094 0023     		movs	r3, #0
+ 633 0096 BB60     		str	r3, [r7, #8]
+ 634 0098 02E0     		b	.L47
+ 635              	.L49:
+ 636 009a C046     		nop
+ 637 009c 00E0     		b	.L47
+ 638              	.L50:
+ 639 009e C046     		nop
+ 640              	.L47:
+ 641 00a0 064B     		ldr	r3, .L51
+ 642 00a2 1B68     		ldr	r3, [r3]
+ 643 00a4 1800     		movs	r0, r3
+ 644 00a6 FFF7FEFF 		bl	atiny_mutex_unlock
+ 645 00aa 3B68     		ldr	r3, [r7]
+ 646 00ac FA68     		ldr	r2, [r7, #12]
+ 647 00ae 1A60     		str	r2, [r3]
+ 648 00b0 BB68     		ldr	r3, [r7, #8]
+ 649              	.L44:
+ 650 00b2 1800     		movs	r0, r3
+ 651 00b4 BD46     		mov	sp, r7
+ 652 00b6 04B0     		add	sp, sp, #16
+ 653              		@ sp needed
+ 654 00b8 80BD     		pop	{r7, pc}
+ 655              	.L52:
+ 656 00ba C046     		.align	2
+ 657              	.L51:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 12
+
+
+ 658 00bc 00000000 		.word	g_mutex
+ 659 00c0 00000000 		.word	g_atiny_rpt_table
+ 661              		.section	.text.atiny_rm_rpt_uri,"ax",%progbits
+ 662              		.align	1
+ 663              		.global	atiny_rm_rpt_uri
+ 664              		.syntax unified
+ 665              		.code	16
+ 666              		.thumb_func
+ 667              		.fpu softvfp
+ 669              	atiny_rm_rpt_uri:
+ 670              		@ args = 0, pretend = 0, frame = 16
+ 671              		@ frame_needed = 1, uses_anonymous_args = 0
+ 672 0000 80B5     		push	{r7, lr}
+ 673 0002 84B0     		sub	sp, sp, #16
+ 674 0004 00AF     		add	r7, sp, #0
+ 675 0006 7860     		str	r0, [r7, #4]
+ 676 0008 0123     		movs	r3, #1
+ 677 000a 5B42     		rsbs	r3, r3, #0
+ 678 000c FB60     		str	r3, [r7, #12]
+ 679 000e 7B68     		ldr	r3, [r7, #4]
+ 680 0010 002B     		cmp	r3, #0
+ 681 0012 02D1     		bne	.L54
+ 682 0014 0123     		movs	r3, #1
+ 683 0016 5B42     		rsbs	r3, r3, #0
+ 684 0018 28E0     		b	.L55
+ 685              	.L54:
+ 686 001a 164B     		ldr	r3, .L59
+ 687 001c 1B68     		ldr	r3, [r3]
+ 688 001e 1800     		movs	r0, r3
+ 689 0020 FFF7FEFF 		bl	atiny_mutex_lock
+ 690 0024 0023     		movs	r3, #0
+ 691 0026 BB60     		str	r3, [r7, #8]
+ 692 0028 7B68     		ldr	r3, [r7, #4]
+ 693 002a 1800     		movs	r0, r3
+ 694 002c FFF7FEFF 		bl	atiny_find_rpt_list
+ 695 0030 0300     		movs	r3, r0
+ 696 0032 BB60     		str	r3, [r7, #8]
+ 697 0034 BB68     		ldr	r3, [r7, #8]
+ 698 0036 002B     		cmp	r3, #0
+ 699 0038 11D0     		beq	.L58
+ 700 003a BB68     		ldr	r3, [r7, #8]
+ 701 003c 1800     		movs	r0, r3
+ 702 003e FFF7FEFF 		bl	atiny_list_delete
+ 703 0042 BB68     		ldr	r3, [r7, #8]
+ 704 0044 1033     		adds	r3, r3, #16
+ 705 0046 0C49     		ldr	r1, .L59+4
+ 706 0048 0022     		movs	r2, #0
+ 707 004a 1800     		movs	r0, r3
+ 708 004c FFF7FEFF 		bl	atiny_free_list
+ 709 0050 BB68     		ldr	r3, [r7, #8]
+ 710 0052 1800     		movs	r0, r3
+ 711 0054 FFF7FEFF 		bl	lwm2m_free
+ 712 0058 0023     		movs	r3, #0
+ 713 005a FB60     		str	r3, [r7, #12]
+ 714 005c 00E0     		b	.L57
+ 715              	.L58:
+ 716 005e C046     		nop
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 13
+
+
+ 717              	.L57:
+ 718 0060 044B     		ldr	r3, .L59
+ 719 0062 1B68     		ldr	r3, [r3]
+ 720 0064 1800     		movs	r0, r3
+ 721 0066 FFF7FEFF 		bl	atiny_mutex_unlock
+ 722 006a FB68     		ldr	r3, [r7, #12]
+ 723              	.L55:
+ 724 006c 1800     		movs	r0, r3
+ 725 006e BD46     		mov	sp, r7
+ 726 0070 04B0     		add	sp, sp, #16
+ 727              		@ sp needed
+ 728 0072 80BD     		pop	{r7, pc}
+ 729              	.L60:
+ 730              		.align	2
+ 731              	.L59:
+ 732 0074 00000000 		.word	g_mutex
+ 733 0078 00000000 		.word	atiny_clear_rpt_list_node_data
+ 735              		.section	.text.atiny_dequeue_rpt_data,"ax",%progbits
+ 736              		.align	1
+ 737              		.global	atiny_dequeue_rpt_data
+ 738              		.syntax unified
+ 739              		.code	16
+ 740              		.thumb_func
+ 741              		.fpu softvfp
+ 743              	atiny_dequeue_rpt_data:
+ 744              		@ args = 0, pretend = 0, frame = 16
+ 745              		@ frame_needed = 1, uses_anonymous_args = 0
+ 746 0000 80B5     		push	{r7, lr}
+ 747 0002 84B0     		sub	sp, sp, #16
+ 748 0004 00AF     		add	r7, sp, #0
+ 749 0006 7860     		str	r0, [r7, #4]
+ 750 0008 3960     		str	r1, [r7]
+ 751 000a 0523     		movs	r3, #5
+ 752 000c 5B42     		rsbs	r3, r3, #0
+ 753 000e FB60     		str	r3, [r7, #12]
+ 754 0010 7B68     		ldr	r3, [r7, #4]
+ 755 0012 002B     		cmp	r3, #0
+ 756 0014 02D0     		beq	.L62
+ 757 0016 3B68     		ldr	r3, [r7]
+ 758 0018 002B     		cmp	r3, #0
+ 759 001a 02D1     		bne	.L63
+ 760              	.L62:
+ 761 001c 0123     		movs	r3, #1
+ 762 001e 5B42     		rsbs	r3, r3, #0
+ 763 0020 2DE0     		b	.L64
+ 764              	.L63:
+ 765 0022 194B     		ldr	r3, .L68
+ 766 0024 1B68     		ldr	r3, [r3]
+ 767 0026 1800     		movs	r0, r3
+ 768 0028 FFF7FEFF 		bl	atiny_mutex_lock
+ 769 002c 7B68     		ldr	r3, [r7, #4]
+ 770 002e 1033     		adds	r3, r3, #16
+ 771 0030 1800     		movs	r0, r3
+ 772 0032 FFF7FEFF 		bl	atiny_list_empty
+ 773 0036 031E     		subs	r3, r0, #0
+ 774 0038 1AD1     		bne	.L67
+ 775 003a 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 14
+
+
+ 776 003c 5B69     		ldr	r3, [r3, #20]
+ 777 003e BB60     		str	r3, [r7, #8]
+ 778 0040 BB68     		ldr	r3, [r7, #8]
+ 779 0042 1800     		movs	r0, r3
+ 780 0044 FFF7FEFF 		bl	atiny_list_delete
+ 781 0048 7B68     		ldr	r3, [r7, #4]
+ 782 004a 9B69     		ldr	r3, [r3, #24]
+ 783 004c 5A1E     		subs	r2, r3, #1
+ 784 004e 7B68     		ldr	r3, [r7, #4]
+ 785 0050 9A61     		str	r2, [r3, #24]
+ 786 0052 BB68     		ldr	r3, [r7, #8]
+ 787 0054 0833     		adds	r3, r3, #8
+ 788 0056 1900     		movs	r1, r3
+ 789 0058 3B68     		ldr	r3, [r7]
+ 790 005a 1422     		movs	r2, #20
+ 791 005c 1800     		movs	r0, r3
+ 792 005e FFF7FEFF 		bl	memcpy
+ 793 0062 BB68     		ldr	r3, [r7, #8]
+ 794 0064 1800     		movs	r0, r3
+ 795 0066 FFF7FEFF 		bl	lwm2m_free
+ 796 006a 0023     		movs	r3, #0
+ 797 006c FB60     		str	r3, [r7, #12]
+ 798 006e 00E0     		b	.L66
+ 799              	.L67:
+ 800 0070 C046     		nop
+ 801              	.L66:
+ 802 0072 054B     		ldr	r3, .L68
+ 803 0074 1B68     		ldr	r3, [r3]
+ 804 0076 1800     		movs	r0, r3
+ 805 0078 FFF7FEFF 		bl	atiny_mutex_unlock
+ 806 007c FB68     		ldr	r3, [r7, #12]
+ 807              	.L64:
+ 808 007e 1800     		movs	r0, r3
+ 809 0080 BD46     		mov	sp, r7
+ 810 0082 04B0     		add	sp, sp, #16
+ 811              		@ sp needed
+ 812 0084 80BD     		pop	{r7, pc}
+ 813              	.L69:
+ 814 0086 C046     		.align	2
+ 815              	.L68:
+ 816 0088 00000000 		.word	g_mutex
+ 818              		.section	.text.atiny_queue_rpt_data,"ax",%progbits
+ 819              		.align	1
+ 820              		.global	atiny_queue_rpt_data
+ 821              		.syntax unified
+ 822              		.code	16
+ 823              		.thumb_func
+ 824              		.fpu softvfp
+ 826              	atiny_queue_rpt_data:
+ 827              		@ args = 0, pretend = 0, frame = 24
+ 828              		@ frame_needed = 1, uses_anonymous_args = 0
+ 829 0000 80B5     		push	{r7, lr}
+ 830 0002 86B0     		sub	sp, sp, #24
+ 831 0004 00AF     		add	r7, sp, #0
+ 832 0006 7860     		str	r0, [r7, #4]
+ 833 0008 3960     		str	r1, [r7]
+ 834 000a 0423     		movs	r3, #4
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 15
+
+
+ 835 000c 5B42     		rsbs	r3, r3, #0
+ 836 000e 7B61     		str	r3, [r7, #20]
+ 837 0010 7B68     		ldr	r3, [r7, #4]
+ 838 0012 002B     		cmp	r3, #0
+ 839 0014 02D0     		beq	.L71
+ 840 0016 3B68     		ldr	r3, [r7]
+ 841 0018 002B     		cmp	r3, #0
+ 842 001a 02D1     		bne	.L72
+ 843              	.L71:
+ 844 001c 0123     		movs	r3, #1
+ 845 001e 5B42     		rsbs	r3, r3, #0
+ 846 0020 46E0     		b	.L73
+ 847              	.L72:
+ 848 0022 254B     		ldr	r3, .L79
+ 849 0024 1B68     		ldr	r3, [r3]
+ 850 0026 1800     		movs	r0, r3
+ 851 0028 FFF7FEFF 		bl	atiny_mutex_lock
+ 852 002c 7B68     		ldr	r3, [r7, #4]
+ 853 002e 1800     		movs	r0, r3
+ 854 0030 FFF7FEFF 		bl	atiny_find_rpt_list
+ 855 0034 0300     		movs	r3, r0
+ 856 0036 3B61     		str	r3, [r7, #16]
+ 857 0038 3B69     		ldr	r3, [r7, #16]
+ 858 003a 002B     		cmp	r3, #0
+ 859 003c 03D1     		bne	.L74
+ 860 003e 0523     		movs	r3, #5
+ 861 0040 5B42     		rsbs	r3, r3, #0
+ 862 0042 7B61     		str	r3, [r7, #20]
+ 863 0044 2EE0     		b	.L75
+ 864              	.L74:
+ 865 0046 3B69     		ldr	r3, [r7, #16]
+ 866 0048 9A69     		ldr	r2, [r3, #24]
+ 867 004a 3B69     		ldr	r3, [r7, #16]
+ 868 004c DB69     		ldr	r3, [r3, #28]
+ 869 004e 9A42     		cmp	r2, r3
+ 870 0050 03D3     		bcc	.L76
+ 871 0052 0623     		movs	r3, #6
+ 872 0054 5B42     		rsbs	r3, r3, #0
+ 873 0056 7B61     		str	r3, [r7, #20]
+ 874 0058 24E0     		b	.L75
+ 875              	.L76:
+ 876 005a 1C20     		movs	r0, #28
+ 877 005c FFF7FEFF 		bl	lwm2m_malloc
+ 878 0060 0300     		movs	r3, r0
+ 879 0062 FB60     		str	r3, [r7, #12]
+ 880 0064 FB68     		ldr	r3, [r7, #12]
+ 881 0066 002B     		cmp	r3, #0
+ 882 0068 1BD0     		beq	.L78
+ 883 006a FB68     		ldr	r3, [r7, #12]
+ 884 006c 0822     		movs	r2, #8
+ 885 006e 0021     		movs	r1, #0
+ 886 0070 1800     		movs	r0, r3
+ 887 0072 FFF7FEFF 		bl	memset
+ 888 0076 FB68     		ldr	r3, [r7, #12]
+ 889 0078 0833     		adds	r3, r3, #8
+ 890 007a 3968     		ldr	r1, [r7]
+ 891 007c 1422     		movs	r2, #20
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 16
+
+
+ 892 007e 1800     		movs	r0, r3
+ 893 0080 FFF7FEFF 		bl	memcpy
+ 894 0084 3B69     		ldr	r3, [r7, #16]
+ 895 0086 1033     		adds	r3, r3, #16
+ 896 0088 FA68     		ldr	r2, [r7, #12]
+ 897 008a 1100     		movs	r1, r2
+ 898 008c 1800     		movs	r0, r3
+ 899 008e FFF7FEFF 		bl	atiny_list_insert_tail
+ 900 0092 3B69     		ldr	r3, [r7, #16]
+ 901 0094 9B69     		ldr	r3, [r3, #24]
+ 902 0096 5A1C     		adds	r2, r3, #1
+ 903 0098 3B69     		ldr	r3, [r7, #16]
+ 904 009a 9A61     		str	r2, [r3, #24]
+ 905 009c 0023     		movs	r3, #0
+ 906 009e 7B61     		str	r3, [r7, #20]
+ 907 00a0 00E0     		b	.L75
+ 908              	.L78:
+ 909 00a2 C046     		nop
+ 910              	.L75:
+ 911 00a4 044B     		ldr	r3, .L79
+ 912 00a6 1B68     		ldr	r3, [r3]
+ 913 00a8 1800     		movs	r0, r3
+ 914 00aa FFF7FEFF 		bl	atiny_mutex_unlock
+ 915 00ae 7B69     		ldr	r3, [r7, #20]
+ 916              	.L73:
+ 917 00b0 1800     		movs	r0, r3
+ 918 00b2 BD46     		mov	sp, r7
+ 919 00b4 06B0     		add	sp, sp, #24
+ 920              		@ sp needed
+ 921 00b6 80BD     		pop	{r7, pc}
+ 922              	.L80:
+ 923              		.align	2
+ 924              	.L79:
+ 925 00b8 00000000 		.word	g_mutex
+ 927              		.section	.text.atiny_clear_rpt_data,"ax",%progbits
+ 928              		.align	1
+ 929              		.global	atiny_clear_rpt_data
+ 930              		.syntax unified
+ 931              		.code	16
+ 932              		.thumb_func
+ 933              		.fpu softvfp
+ 935              	atiny_clear_rpt_data:
+ 936              		@ args = 0, pretend = 0, frame = 16
+ 937              		@ frame_needed = 1, uses_anonymous_args = 0
+ 938 0000 80B5     		push	{r7, lr}
+ 939 0002 84B0     		sub	sp, sp, #16
+ 940 0004 00AF     		add	r7, sp, #0
+ 941 0006 7860     		str	r0, [r7, #4]
+ 942 0008 3960     		str	r1, [r7]
+ 943 000a 0523     		movs	r3, #5
+ 944 000c 5B42     		rsbs	r3, r3, #0
+ 945 000e FB60     		str	r3, [r7, #12]
+ 946 0010 7B68     		ldr	r3, [r7, #4]
+ 947 0012 002B     		cmp	r3, #0
+ 948 0014 02D1     		bne	.L82
+ 949 0016 0123     		movs	r3, #1
+ 950 0018 5B42     		rsbs	r3, r3, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 17
+
+
+ 951 001a 21E0     		b	.L83
+ 952              	.L82:
+ 953 001c 124B     		ldr	r3, .L87
+ 954 001e 1B68     		ldr	r3, [r3]
+ 955 0020 1800     		movs	r0, r3
+ 956 0022 FFF7FEFF 		bl	atiny_mutex_lock
+ 957 0026 7B68     		ldr	r3, [r7, #4]
+ 958 0028 1800     		movs	r0, r3
+ 959 002a FFF7FEFF 		bl	atiny_find_rpt_list
+ 960 002e 0300     		movs	r3, r0
+ 961 0030 BB60     		str	r3, [r7, #8]
+ 962 0032 BB68     		ldr	r3, [r7, #8]
+ 963 0034 002B     		cmp	r3, #0
+ 964 0036 0CD0     		beq	.L86
+ 965 0038 BB68     		ldr	r3, [r7, #8]
+ 966 003a 1033     		adds	r3, r3, #16
+ 967 003c 3A68     		ldr	r2, [r7]
+ 968 003e 0B49     		ldr	r1, .L87+4
+ 969 0040 1800     		movs	r0, r3
+ 970 0042 FFF7FEFF 		bl	atiny_free_list
+ 971 0046 BB68     		ldr	r3, [r7, #8]
+ 972 0048 0022     		movs	r2, #0
+ 973 004a 9A61     		str	r2, [r3, #24]
+ 974 004c 0023     		movs	r3, #0
+ 975 004e FB60     		str	r3, [r7, #12]
+ 976 0050 00E0     		b	.L85
+ 977              	.L86:
+ 978 0052 C046     		nop
+ 979              	.L85:
+ 980 0054 044B     		ldr	r3, .L87
+ 981 0056 1B68     		ldr	r3, [r3]
+ 982 0058 1800     		movs	r0, r3
+ 983 005a FFF7FEFF 		bl	atiny_mutex_unlock
+ 984 005e FB68     		ldr	r3, [r7, #12]
+ 985              	.L83:
+ 986 0060 1800     		movs	r0, r3
+ 987 0062 BD46     		mov	sp, r7
+ 988 0064 04B0     		add	sp, sp, #16
+ 989              		@ sp needed
+ 990 0066 80BD     		pop	{r7, pc}
+ 991              	.L88:
+ 992              		.align	2
+ 993              	.L87:
+ 994 0068 00000000 		.word	g_mutex
+ 995 006c 00000000 		.word	atiny_clear_rpt_list_node_data
+ 997              		.section	.text.atiny_step_rpt,"ax",%progbits
+ 998              		.align	1
+ 999              		.global	atiny_step_rpt
+ 1000              		.syntax unified
+ 1001              		.code	16
+ 1002              		.thumb_func
+ 1003              		.fpu softvfp
+ 1005              	atiny_step_rpt:
+ 1006              		@ args = 0, pretend = 0, frame = 8
+ 1007              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1008 0000 80B5     		push	{r7, lr}
+ 1009 0002 82B0     		sub	sp, sp, #8
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 18
+
+
+ 1010 0004 00AF     		add	r7, sp, #0
+ 1011 0006 7860     		str	r0, [r7, #4]
+ 1012 0008 0A4B     		ldr	r3, .L91
+ 1013 000a 1B68     		ldr	r3, [r3]
+ 1014 000c 1800     		movs	r0, r3
+ 1015 000e FFF7FEFF 		bl	atiny_mutex_lock
+ 1016 0012 7A68     		ldr	r2, [r7, #4]
+ 1017 0014 0849     		ldr	r1, .L91+4
+ 1018 0016 094B     		ldr	r3, .L91+8
+ 1019 0018 1800     		movs	r0, r3
+ 1020 001a FFF7FEFF 		bl	atiny_visit_list
+ 1021 001e 054B     		ldr	r3, .L91
+ 1022 0020 1B68     		ldr	r3, [r3]
+ 1023 0022 1800     		movs	r0, r3
+ 1024 0024 FFF7FEFF 		bl	atiny_mutex_unlock
+ 1025 0028 0023     		movs	r3, #0
+ 1026 002a 1800     		movs	r0, r3
+ 1027 002c BD46     		mov	sp, r7
+ 1028 002e 02B0     		add	sp, sp, #8
+ 1029              		@ sp needed
+ 1030 0030 80BD     		pop	{r7, pc}
+ 1031              	.L92:
+ 1032 0032 C046     		.align	2
+ 1033              	.L91:
+ 1034 0034 00000000 		.word	g_mutex
+ 1035 0038 00000000 		.word	atiny_notify_stack_rpt_data_change
+ 1036 003c 00000000 		.word	g_atiny_rpt_table
+ 1038              		.section	.text.atiny_destroy_rpt,"ax",%progbits
+ 1039              		.align	1
+ 1040              		.global	atiny_destroy_rpt
+ 1041              		.syntax unified
+ 1042              		.code	16
+ 1043              		.thumb_func
+ 1044              		.fpu softvfp
+ 1046              	atiny_destroy_rpt:
+ 1047              		@ args = 0, pretend = 0, frame = 0
+ 1048              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1049 0000 80B5     		push	{r7, lr}
+ 1050 0002 00AF     		add	r7, sp, #0
+ 1051 0004 0849     		ldr	r1, .L94
+ 1052 0006 094B     		ldr	r3, .L94+4
+ 1053 0008 0022     		movs	r2, #0
+ 1054 000a 1800     		movs	r0, r3
+ 1055 000c FFF7FEFF 		bl	atiny_free_list
+ 1056 0010 074B     		ldr	r3, .L94+8
+ 1057 0012 1B68     		ldr	r3, [r3]
+ 1058 0014 1800     		movs	r0, r3
+ 1059 0016 FFF7FEFF 		bl	atiny_mutex_destroy
+ 1060 001a 054B     		ldr	r3, .L94+8
+ 1061 001c 0022     		movs	r2, #0
+ 1062 001e 1A60     		str	r2, [r3]
+ 1063 0020 C046     		nop
+ 1064 0022 BD46     		mov	sp, r7
+ 1065              		@ sp needed
+ 1066 0024 80BD     		pop	{r7, pc}
+ 1067              	.L95:
+ 1068 0026 C046     		.align	2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 19
+
+
+ 1069              	.L94:
+ 1070 0028 00000000 		.word	atiny_clear_rpt_list
+ 1071 002c 00000000 		.word	g_atiny_rpt_table
+ 1072 0030 00000000 		.word	g_mutex
+ 1074              		.section	.text.atiny_set_max_rpt_cnt,"ax",%progbits
+ 1075              		.align	1
+ 1076              		.global	atiny_set_max_rpt_cnt
+ 1077              		.syntax unified
+ 1078              		.code	16
+ 1079              		.thumb_func
+ 1080              		.fpu softvfp
+ 1082              	atiny_set_max_rpt_cnt:
+ 1083              		@ args = 0, pretend = 0, frame = 16
+ 1084              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1085 0000 80B5     		push	{r7, lr}
+ 1086 0002 84B0     		sub	sp, sp, #16
+ 1087 0004 00AF     		add	r7, sp, #0
+ 1088 0006 7860     		str	r0, [r7, #4]
+ 1089 0008 3960     		str	r1, [r7]
+ 1090 000a 0523     		movs	r3, #5
+ 1091 000c 5B42     		rsbs	r3, r3, #0
+ 1092 000e FB60     		str	r3, [r7, #12]
+ 1093 0010 0F4B     		ldr	r3, .L101
+ 1094 0012 1B68     		ldr	r3, [r3]
+ 1095 0014 1800     		movs	r0, r3
+ 1096 0016 FFF7FEFF 		bl	atiny_mutex_lock
+ 1097 001a 7B68     		ldr	r3, [r7, #4]
+ 1098 001c 1800     		movs	r0, r3
+ 1099 001e FFF7FEFF 		bl	atiny_find_rpt_list
+ 1100 0022 0300     		movs	r3, r0
+ 1101 0024 BB60     		str	r3, [r7, #8]
+ 1102 0026 BB68     		ldr	r3, [r7, #8]
+ 1103 0028 002B     		cmp	r3, #0
+ 1104 002a 05D0     		beq	.L100
+ 1105 002c BB68     		ldr	r3, [r7, #8]
+ 1106 002e 3A68     		ldr	r2, [r7]
+ 1107 0030 DA61     		str	r2, [r3, #28]
+ 1108 0032 0023     		movs	r3, #0
+ 1109 0034 FB60     		str	r3, [r7, #12]
+ 1110 0036 00E0     		b	.L98
+ 1111              	.L100:
+ 1112 0038 C046     		nop
+ 1113              	.L98:
+ 1114 003a 054B     		ldr	r3, .L101
+ 1115 003c 1B68     		ldr	r3, [r3]
+ 1116 003e 1800     		movs	r0, r3
+ 1117 0040 FFF7FEFF 		bl	atiny_mutex_unlock
+ 1118 0044 FB68     		ldr	r3, [r7, #12]
+ 1119 0046 1800     		movs	r0, r3
+ 1120 0048 BD46     		mov	sp, r7
+ 1121 004a 04B0     		add	sp, sp, #16
+ 1122              		@ sp needed
+ 1123 004c 80BD     		pop	{r7, pc}
+ 1124              	.L102:
+ 1125 004e C046     		.align	2
+ 1126              	.L101:
+ 1127 0050 00000000 		.word	g_mutex
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 20
+
+
+ 1129              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 atiny_rpt.c
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:13     .text.atiny_list_init:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:19     .text.atiny_list_init:00000000 atiny_list_init
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:39     .text.atiny_list_add:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:45     .text.atiny_list_add:00000000 atiny_list_add
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:74     .text.atiny_list_insert_tail:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:80     .text.atiny_list_insert_tail:00000000 atiny_list_insert_tail
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:101    .text.atiny_list_delete:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:107    .text.atiny_list_delete:00000000 atiny_list_delete
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:137    .text.atiny_list_empty:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:143    .text.atiny_list_empty:00000000 atiny_list_empty
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:164    .bss.g_atiny_rpt_table:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:167    .bss.g_atiny_rpt_table:00000000 g_atiny_rpt_table
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:170    .bss.g_mutex:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:173    .bss.g_mutex:00000000 g_mutex
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:176    .text.atiny_is_uri_equal:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:182    .text.atiny_is_uri_equal:00000000 atiny_is_uri_equal
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:250    .text.atiny_find_rpt_list:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:256    .text.atiny_find_rpt_list:00000000 atiny_find_rpt_list
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:304    .text.atiny_find_rpt_list:0000004c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:307    .text.atiny_free_list:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:313    .text.atiny_free_list:00000000 atiny_free_list
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:362    .text.atiny_visit_list:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:368    .text.atiny_visit_list:00000000 atiny_visit_list
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:407    .text.atiny_clear_rpt_list_node_data:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:413    .text.atiny_clear_rpt_list_node_data:00000000 atiny_clear_rpt_list_node_data
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:457    .text.atiny_clear_rpt_list:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:463    .text.atiny_clear_rpt_list:00000000 atiny_clear_rpt_list
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:487    .text.atiny_clear_rpt_list:00000024 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:490    .text.atiny_notify_stack_rpt_data_change:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:496    .text.atiny_notify_stack_rpt_data_change:00000000 atiny_notify_stack_rpt_data_change
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:527    .text.atiny_init_rpt:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:534    .text.atiny_init_rpt:00000000 atiny_init_rpt
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:550    .text.atiny_init_rpt:00000014 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:553    .text.atiny_add_rpt_uri:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:560    .text.atiny_add_rpt_uri:00000000 atiny_add_rpt_uri
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:658    .text.atiny_add_rpt_uri:000000bc $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:662    .text.atiny_rm_rpt_uri:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:669    .text.atiny_rm_rpt_uri:00000000 atiny_rm_rpt_uri
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:732    .text.atiny_rm_rpt_uri:00000074 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:736    .text.atiny_dequeue_rpt_data:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:743    .text.atiny_dequeue_rpt_data:00000000 atiny_dequeue_rpt_data
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:816    .text.atiny_dequeue_rpt_data:00000088 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:819    .text.atiny_queue_rpt_data:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:826    .text.atiny_queue_rpt_data:00000000 atiny_queue_rpt_data
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:925    .text.atiny_queue_rpt_data:000000b8 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:928    .text.atiny_clear_rpt_data:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:935    .text.atiny_clear_rpt_data:00000000 atiny_clear_rpt_data
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:994    .text.atiny_clear_rpt_data:00000068 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:998    .text.atiny_step_rpt:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1005   .text.atiny_step_rpt:00000000 atiny_step_rpt
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1034   .text.atiny_step_rpt:00000034 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1039   .text.atiny_destroy_rpt:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1046   .text.atiny_destroy_rpt:00000000 atiny_destroy_rpt
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1070   .text.atiny_destroy_rpt:00000028 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1075   .text.atiny_set_max_rpt_cnt:00000000 $t
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s 			page 22
+
+
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1082   .text.atiny_set_max_rpt_cnt:00000000 atiny_set_max_rpt_cnt
+C:\Users\SONG_J~1\AppData\Local\Temp\cc1eTE5L.s:1127   .text.atiny_set_max_rpt_cnt:00000050 $d
+
+UNDEFINED SYMBOLS
+lwm2m_free
+lwm2m_resource_value_changed
+atiny_mutex_lock
+lwm2m_malloc
+memset
+memcpy
+atiny_mutex_unlock
+atiny_mutex_destroy

@@ -82,7 +82,7 @@
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o demo.bin ./Objects/nrf51822-sherlock.axf</UserProg1Name>
+            <UserProg1Name>C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o sherlock.bin ./Objects/nrf51822-sherlock.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
+              <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;..\components\toolchain\gcc;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -415,11 +415,6 @@
               <FileName>app_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\components\libraries\timer\app_timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_scheduler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\components\libraries\scheduler\app_scheduler.c</FilePath>
             </File>
             <File>
               <FileName>app_error.c</FileName>

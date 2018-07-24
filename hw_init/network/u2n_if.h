@@ -7,7 +7,7 @@
 #define U2N_RET_FAILED  -1
 
 typedef struct _u2n_if {
-    int32_t (*init)();
+    int32_t (*init)(void);
     int32_t (*connect)(const char* host, const char* port, int proto);
     int32_t (*send)(int32_t id , const uint8_t  *buf, uint32_t len);
 

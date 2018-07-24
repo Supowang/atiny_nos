@@ -1,0 +1,520 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"hw_uart.c"
+  12              		.global	uart_params
+  13              		.section	.rodata.uart_params,"a",%progbits
+  14              		.align	2
+  17              	uart_params:
+  18 0000 05       		.byte	5
+  19 0001 06       		.byte	6
+  20 0002 0C       		.byte	12
+  21 0003 07       		.byte	7
+  22 0004 00       		.byte	0
+  23 0005 00       		.byte	0
+  24 0006 0000     		.space	2
+  25 0008 00E0D701 		.word	30924800
+  26              		.section	.bss.uart_recv_buf,"aw",%nobits
+  27              		.align	2
+  30              	uart_recv_buf:
+  31 0000 00000000 		.space	512
+  31      00000000 
+  31      00000000 
+  31      00000000 
+  31      00000000 
+  32              		.section	.bss.uart_recv_idx,"aw",%nobits
+  33              		.align	2
+  36              	uart_recv_idx:
+  37 0000 00000000 		.space	4
+  38              		.section	.bss.uart_event_buf,"aw",%nobits
+  39              		.align	2
+  42              	uart_event_buf:
+  43 0000 00000000 		.space	512
+  43      00000000 
+  43      00000000 
+  43      00000000 
+  43      00000000 
+  44              		.section	.bss.uart_event_idx,"aw",%nobits
+  45              		.align	2
+  48              	uart_event_idx:
+  49 0000 00000000 		.space	4
+  50              		.section	.bss.resp_str,"aw",%nobits
+  51              		.align	2
+  54              	resp_str:
+  55 0000 00000000 		.space	4
+  56              		.section	.bss.tx_state,"aw",%nobits
+  59              	tx_state:
+  60 0000 00       		.space	1
+  61              		.section	.bss.event_list,"aw",%nobits
+  62              		.align	2
+  65              	event_list:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 2
+
+
+  66 0000 00000000 		.space	60
+  66      00000000 
+  66      00000000 
+  66      00000000 
+  66      00000000 
+  67              		.section	.bss.event_count,"aw",%nobits
+  70              	event_count:
+  71 0000 00       		.space	1
+  72              		.section	.bss.event_cb,"aw",%nobits
+  73              		.align	2
+  76              	event_cb:
+  77 0000 00000000 		.space	4
+  78              		.section	.text.net_event_register,"ax",%progbits
+  79              		.align	1
+  80              		.global	net_event_register
+  81              		.syntax unified
+  82              		.code	16
+  83              		.thumb_func
+  84              		.fpu softvfp
+  86              	net_event_register:
+  87              		@ args = 0, pretend = 0, frame = 8
+  88              		@ frame_needed = 1, uses_anonymous_args = 0
+  89 0000 80B5     		push	{r7, lr}
+  90 0002 82B0     		sub	sp, sp, #8
+  91 0004 00AF     		add	r7, sp, #0
+  92 0006 7860     		str	r0, [r7, #4]
+  93 0008 0D4B     		ldr	r3, .L5
+  94 000a 1B78     		ldrb	r3, [r3]
+  95 000c 042B     		cmp	r3, #4
+  96 000e 12D8     		bhi	.L4
+  97 0010 0B4B     		ldr	r3, .L5
+  98 0012 1B78     		ldrb	r3, [r3]
+  99 0014 5A1C     		adds	r2, r3, #1
+ 100 0016 D1B2     		uxtb	r1, r2
+ 101 0018 094A     		ldr	r2, .L5
+ 102 001a 1170     		strb	r1, [r2]
+ 103 001c 1A00     		movs	r2, r3
+ 104 001e 1300     		movs	r3, r2
+ 105 0020 5B00     		lsls	r3, r3, #1
+ 106 0022 9B18     		adds	r3, r3, r2
+ 107 0024 9B00     		lsls	r3, r3, #2
+ 108 0026 074A     		ldr	r2, .L5+4
+ 109 0028 9B18     		adds	r3, r3, r2
+ 110 002a 7968     		ldr	r1, [r7, #4]
+ 111 002c 0C22     		movs	r2, #12
+ 112 002e 1800     		movs	r0, r3
+ 113 0030 FFF7FEFF 		bl	memcpy
+ 114 0034 00E0     		b	.L1
+ 115              	.L4:
+ 116 0036 C046     		nop
+ 117              	.L1:
+ 118 0038 BD46     		mov	sp, r7
+ 119 003a 02B0     		add	sp, sp, #8
+ 120              		@ sp needed
+ 121 003c 80BD     		pop	{r7, pc}
+ 122              	.L6:
+ 123 003e C046     		.align	2
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 3
+
+
+ 124              	.L5:
+ 125 0040 00000000 		.word	event_count
+ 126 0044 00000000 		.word	event_list
+ 128              		.section	.text.uart_evt_hdl,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	uart_evt_hdl
+ 131              		.syntax unified
+ 132              		.code	16
+ 133              		.thumb_func
+ 134              		.fpu softvfp
+ 136              	uart_evt_hdl:
+ 137              		@ args = 0, pretend = 0, frame = 16
+ 138              		@ frame_needed = 1, uses_anonymous_args = 0
+ 139 0000 B0B5     		push	{r4, r5, r7, lr}
+ 140 0002 84B0     		sub	sp, sp, #16
+ 141 0004 00AF     		add	r7, sp, #0
+ 142 0006 7860     		str	r0, [r7, #4]
+ 143 0008 0023     		movs	r3, #0
+ 144 000a FB60     		str	r3, [r7, #12]
+ 145 000c 7B68     		ldr	r3, [r7, #4]
+ 146 000e 1B78     		ldrb	r3, [r3]
+ 147 0010 032B     		cmp	r3, #3
+ 148 0012 00D1     		bne	.LCB65
+ 149 0014 B5E0     		b	.L19	@long jump
+ 150              	.LCB65:
+ 151 0016 042B     		cmp	r3, #4
+ 152 0018 00D0     		beq	.L10
+ 153 001a B7E0     		b	.L13
+ 154              	.L10:
+ 155 001c 5D4B     		ldr	r3, .L22
+ 156 001e 1B68     		ldr	r3, [r3]
+ 157 0020 002B     		cmp	r3, #0
+ 158 0022 0CD0     		beq	.L11
+ 159 0024 5B4B     		ldr	r3, .L22
+ 160 0026 1B68     		ldr	r3, [r3]
+ 161 0028 7A68     		ldr	r2, [r7, #4]
+ 162 002a 1279     		ldrb	r2, [r2, #4]
+ 163 002c 1000     		movs	r0, r2
+ 164 002e 9847     		blx	r3
+ 165 0030 031E     		subs	r3, r0, #0
+ 166 0032 00D1     		bne	.LCB84
+ 167 0034 A7E0     		b	.L20	@long jump
+ 168              	.LCB84:
+ 169 0036 574B     		ldr	r3, .L22
+ 170 0038 0022     		movs	r2, #0
+ 171 003a 1A60     		str	r2, [r3]
+ 172 003c A3E0     		b	.L20
+ 173              	.L11:
+ 174 003e 564B     		ldr	r3, .L22+4
+ 175 0040 1B68     		ldr	r3, [r3]
+ 176 0042 591C     		adds	r1, r3, #1
+ 177 0044 544A     		ldr	r2, .L22+4
+ 178 0046 1160     		str	r1, [r2]
+ 179 0048 7A68     		ldr	r2, [r7, #4]
+ 180 004a 1179     		ldrb	r1, [r2, #4]
+ 181 004c 534A     		ldr	r2, .L22+8
+ 182 004e D154     		strb	r1, [r2, r3]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 4
+
+
+ 183 0050 0023     		movs	r3, #0
+ 184 0052 FB60     		str	r3, [r7, #12]
+ 185 0054 46E0     		b	.L14
+ 186              	.L17:
+ 187 0056 5249     		ldr	r1, .L22+12
+ 188 0058 FA68     		ldr	r2, [r7, #12]
+ 189 005a 1300     		movs	r3, r2
+ 190 005c 5B00     		lsls	r3, r3, #1
+ 191 005e 9B18     		adds	r3, r3, r2
+ 192 0060 9B00     		lsls	r3, r3, #2
+ 193 0062 5B58     		ldr	r3, [r3, r1]
+ 194 0064 1800     		movs	r0, r3
+ 195 0066 FFF7FEFF 		bl	strlen
+ 196 006a 0200     		movs	r2, r0
+ 197 006c 4A4B     		ldr	r3, .L22+4
+ 198 006e 1B68     		ldr	r3, [r3]
+ 199 0070 9A42     		cmp	r2, r3
+ 200 0072 34D8     		bhi	.L15
+ 201 0074 484B     		ldr	r3, .L22+4
+ 202 0076 1C68     		ldr	r4, [r3]
+ 203 0078 4949     		ldr	r1, .L22+12
+ 204 007a FA68     		ldr	r2, [r7, #12]
+ 205 007c 1300     		movs	r3, r2
+ 206 007e 5B00     		lsls	r3, r3, #1
+ 207 0080 9B18     		adds	r3, r3, r2
+ 208 0082 9B00     		lsls	r3, r3, #2
+ 209 0084 5B58     		ldr	r3, [r3, r1]
+ 210 0086 1800     		movs	r0, r3
+ 211 0088 FFF7FEFF 		bl	strlen
+ 212 008c 0300     		movs	r3, r0
+ 213 008e E21A     		subs	r2, r4, r3
+ 214 0090 424B     		ldr	r3, .L22+8
+ 215 0092 D418     		adds	r4, r2, r3
+ 216 0094 4249     		ldr	r1, .L22+12
+ 217 0096 FA68     		ldr	r2, [r7, #12]
+ 218 0098 1300     		movs	r3, r2
+ 219 009a 5B00     		lsls	r3, r3, #1
+ 220 009c 9B18     		adds	r3, r3, r2
+ 221 009e 9B00     		lsls	r3, r3, #2
+ 222 00a0 5D58     		ldr	r5, [r3, r1]
+ 223 00a2 3F49     		ldr	r1, .L22+12
+ 224 00a4 FA68     		ldr	r2, [r7, #12]
+ 225 00a6 1300     		movs	r3, r2
+ 226 00a8 5B00     		lsls	r3, r3, #1
+ 227 00aa 9B18     		adds	r3, r3, r2
+ 228 00ac 9B00     		lsls	r3, r3, #2
+ 229 00ae 5B58     		ldr	r3, [r3, r1]
+ 230 00b0 1800     		movs	r0, r3
+ 231 00b2 FFF7FEFF 		bl	strlen
+ 232 00b6 0300     		movs	r3, r0
+ 233 00b8 1A00     		movs	r2, r3
+ 234 00ba 2900     		movs	r1, r5
+ 235 00bc 2000     		movs	r0, r4
+ 236 00be FFF7FEFF 		bl	memcmp
+ 237 00c2 031E     		subs	r3, r0, #0
+ 238 00c4 0BD1     		bne	.L15
+ 239 00c6 3649     		ldr	r1, .L22+12
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 5
+
+
+ 240 00c8 FA68     		ldr	r2, [r7, #12]
+ 241 00ca 1300     		movs	r3, r2
+ 242 00cc 5B00     		lsls	r3, r3, #1
+ 243 00ce 9B18     		adds	r3, r3, r2
+ 244 00d0 9B00     		lsls	r3, r3, #2
+ 245 00d2 CB18     		adds	r3, r1, r3
+ 246 00d4 0833     		adds	r3, r3, #8
+ 247 00d6 1A68     		ldr	r2, [r3]
+ 248 00d8 2E4B     		ldr	r3, .L22
+ 249 00da 1A60     		str	r2, [r3]
+ 250 00dc 08E0     		b	.L16
+ 251              	.L15:
+ 252 00de FB68     		ldr	r3, [r7, #12]
+ 253 00e0 0133     		adds	r3, r3, #1
+ 254 00e2 FB60     		str	r3, [r7, #12]
+ 255              	.L14:
+ 256 00e4 2F4B     		ldr	r3, .L22+16
+ 257 00e6 1B78     		ldrb	r3, [r3]
+ 258 00e8 1A00     		movs	r2, r3
+ 259 00ea FB68     		ldr	r3, [r7, #12]
+ 260 00ec 9342     		cmp	r3, r2
+ 261 00ee B2DB     		blt	.L17
+ 262              	.L16:
+ 263 00f0 2D4B     		ldr	r3, .L22+20
+ 264 00f2 1B68     		ldr	r3, [r3]
+ 265 00f4 591C     		adds	r1, r3, #1
+ 266 00f6 2C4A     		ldr	r2, .L22+20
+ 267 00f8 1160     		str	r1, [r2]
+ 268 00fa 7A68     		ldr	r2, [r7, #4]
+ 269 00fc 1179     		ldrb	r1, [r2, #4]
+ 270 00fe 2B4A     		ldr	r2, .L22+24
+ 271 0100 D154     		strb	r1, [r2, r3]
+ 272 0102 2B4B     		ldr	r3, .L22+28
+ 273 0104 1B68     		ldr	r3, [r3]
+ 274 0106 002B     		cmp	r3, #0
+ 275 0108 3FD0     		beq	.L21
+ 276 010a 294B     		ldr	r3, .L22+28
+ 277 010c 1B68     		ldr	r3, [r3]
+ 278 010e 1800     		movs	r0, r3
+ 279 0110 FFF7FEFF 		bl	strlen
+ 280 0114 0200     		movs	r2, r0
+ 281 0116 244B     		ldr	r3, .L22+20
+ 282 0118 1B68     		ldr	r3, [r3]
+ 283 011a 9A42     		cmp	r2, r3
+ 284 011c 35D8     		bhi	.L21
+ 285 011e 224B     		ldr	r3, .L22+20
+ 286 0120 1C68     		ldr	r4, [r3]
+ 287 0122 234B     		ldr	r3, .L22+28
+ 288 0124 1B68     		ldr	r3, [r3]
+ 289 0126 1800     		movs	r0, r3
+ 290 0128 FFF7FEFF 		bl	strlen
+ 291 012c 0300     		movs	r3, r0
+ 292 012e E21A     		subs	r2, r4, r3
+ 293 0130 1E4B     		ldr	r3, .L22+24
+ 294 0132 D418     		adds	r4, r2, r3
+ 295 0134 1E4B     		ldr	r3, .L22+28
+ 296 0136 1D68     		ldr	r5, [r3]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 6
+
+
+ 297 0138 1D4B     		ldr	r3, .L22+28
+ 298 013a 1B68     		ldr	r3, [r3]
+ 299 013c 1800     		movs	r0, r3
+ 300 013e FFF7FEFF 		bl	strlen
+ 301 0142 0300     		movs	r3, r0
+ 302 0144 1A00     		movs	r2, r3
+ 303 0146 2900     		movs	r1, r5
+ 304 0148 2000     		movs	r0, r4
+ 305 014a FFF7FEFF 		bl	memcmp
+ 306 014e 031E     		subs	r3, r0, #0
+ 307 0150 1BD1     		bne	.L21
+ 308 0152 184B     		ldr	r3, .L22+32
+ 309 0154 0122     		movs	r2, #1
+ 310 0156 1A70     		strb	r2, [r3]
+ 311 0158 8023     		movs	r3, #128
+ 312 015a 9A00     		lsls	r2, r3, #2
+ 313 015c 134B     		ldr	r3, .L22+24
+ 314 015e 0021     		movs	r1, #0
+ 315 0160 1800     		movs	r0, r3
+ 316 0162 FFF7FEFF 		bl	memset
+ 317 0166 104B     		ldr	r3, .L22+20
+ 318 0168 0022     		movs	r2, #0
+ 319 016a 1A60     		str	r2, [r3]
+ 320 016c 8023     		movs	r3, #128
+ 321 016e 9A00     		lsls	r2, r3, #2
+ 322 0170 0A4B     		ldr	r3, .L22+8
+ 323 0172 0021     		movs	r1, #0
+ 324 0174 1800     		movs	r0, r3
+ 325 0176 FFF7FEFF 		bl	memset
+ 326 017a 074B     		ldr	r3, .L22+4
+ 327 017c 0022     		movs	r2, #0
+ 328 017e 1A60     		str	r2, [r3]
+ 329 0180 04E0     		b	.L13
+ 330              	.L19:
+ 331 0182 C046     		nop
+ 332 0184 02E0     		b	.L13
+ 333              	.L20:
+ 334 0186 C046     		nop
+ 335 0188 00E0     		b	.L13
+ 336              	.L21:
+ 337 018a C046     		nop
+ 338              	.L13:
+ 339 018c C046     		nop
+ 340 018e BD46     		mov	sp, r7
+ 341 0190 04B0     		add	sp, sp, #16
+ 342              		@ sp needed
+ 343 0192 B0BD     		pop	{r4, r5, r7, pc}
+ 344              	.L23:
+ 345              		.align	2
+ 346              	.L22:
+ 347 0194 00000000 		.word	event_cb
+ 348 0198 00000000 		.word	uart_event_idx
+ 349 019c 00000000 		.word	uart_event_buf
+ 350 01a0 00000000 		.word	event_list
+ 351 01a4 00000000 		.word	event_count
+ 352 01a8 00000000 		.word	uart_recv_idx
+ 353 01ac 00000000 		.word	uart_recv_buf
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 7
+
+
+ 354 01b0 00000000 		.word	resp_str
+ 355 01b4 00000000 		.word	tx_state
+ 357              		.section	.text.hw_uart_init,"ax",%progbits
+ 358              		.align	1
+ 359              		.global	hw_uart_init
+ 360              		.syntax unified
+ 361              		.code	16
+ 362              		.thumb_func
+ 363              		.fpu softvfp
+ 365              	hw_uart_init:
+ 366              		@ args = 0, pretend = 0, frame = 8
+ 367              		@ frame_needed = 1, uses_anonymous_args = 0
+ 368 0000 80B5     		push	{r7, lr}
+ 369 0002 82B0     		sub	sp, sp, #8
+ 370 0004 00AF     		add	r7, sp, #0
+ 371 0006 0023     		movs	r3, #0
+ 372 0008 7B60     		str	r3, [r7, #4]
+ 373 000a 064A     		ldr	r2, .L26
+ 374 000c 0648     		ldr	r0, .L26+4
+ 375 000e 0323     		movs	r3, #3
+ 376 0010 0021     		movs	r1, #0
+ 377 0012 FFF7FEFF 		bl	app_uart_init
+ 378 0016 0300     		movs	r3, r0
+ 379 0018 7B60     		str	r3, [r7, #4]
+ 380 001a 7B68     		ldr	r3, [r7, #4]
+ 381 001c 1800     		movs	r0, r3
+ 382 001e BD46     		mov	sp, r7
+ 383 0020 02B0     		add	sp, sp, #8
+ 384              		@ sp needed
+ 385 0022 80BD     		pop	{r7, pc}
+ 386              	.L27:
+ 387              		.align	2
+ 388              	.L26:
+ 389 0024 00000000 		.word	uart_evt_hdl
+ 390 0028 00000000 		.word	uart_params
+ 392              		.section	.text.hw_uart_send,"ax",%progbits
+ 393              		.align	1
+ 394              		.global	hw_uart_send
+ 395              		.syntax unified
+ 396              		.code	16
+ 397              		.thumb_func
+ 398              		.fpu softvfp
+ 400              	hw_uart_send:
+ 401              		@ args = 0, pretend = 0, frame = 24
+ 402              		@ frame_needed = 1, uses_anonymous_args = 0
+ 403 0000 80B5     		push	{r7, lr}
+ 404 0002 86B0     		sub	sp, sp, #24
+ 405 0004 00AF     		add	r7, sp, #0
+ 406 0006 F860     		str	r0, [r7, #12]
+ 407 0008 B960     		str	r1, [r7, #8]
+ 408 000a 7A60     		str	r2, [r7, #4]
+ 409 000c FA23     		movs	r3, #250
+ 410 000e DB00     		lsls	r3, r3, #3
+ 411 0010 7B61     		str	r3, [r7, #20]
+ 412 0012 0023     		movs	r3, #0
+ 413 0014 3B61     		str	r3, [r7, #16]
+ 414 0016 154B     		ldr	r3, .L34
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 8
+
+
+ 415 0018 7A68     		ldr	r2, [r7, #4]
+ 416 001a 1A60     		str	r2, [r3]
+ 417 001c 144B     		ldr	r3, .L34+4
+ 418 001e 0022     		movs	r2, #0
+ 419 0020 1A70     		strb	r2, [r3]
+ 420 0022 BA68     		ldr	r2, [r7, #8]
+ 421 0024 FB68     		ldr	r3, [r7, #12]
+ 422 0026 1100     		movs	r1, r2
+ 423 0028 1800     		movs	r0, r3
+ 424 002a FFF7FEFF 		bl	app_uart_buf_put
+ 425 002e 05E0     		b	.L29
+ 426              	.L31:
+ 427 0030 0520     		movs	r0, #5
+ 428 0032 FFF7FEFF 		bl	nrf_delay_ms
+ 429 0036 7B69     		ldr	r3, [r7, #20]
+ 430 0038 013B     		subs	r3, r3, #1
+ 431 003a 7B61     		str	r3, [r7, #20]
+ 432              	.L29:
+ 433 003c 7B68     		ldr	r3, [r7, #4]
+ 434 003e 002B     		cmp	r3, #0
+ 435 0040 06D0     		beq	.L30
+ 436 0042 0B4B     		ldr	r3, .L34+4
+ 437 0044 1B78     		ldrb	r3, [r3]
+ 438 0046 012B     		cmp	r3, #1
+ 439 0048 02D0     		beq	.L30
+ 440 004a 7B69     		ldr	r3, [r7, #20]
+ 441 004c 002B     		cmp	r3, #0
+ 442 004e EFD1     		bne	.L31
+ 443              	.L30:
+ 444 0050 064B     		ldr	r3, .L34
+ 445 0052 0022     		movs	r2, #0
+ 446 0054 1A60     		str	r2, [r3]
+ 447 0056 7B69     		ldr	r3, [r7, #20]
+ 448 0058 002B     		cmp	r3, #0
+ 449 005a 02D1     		bne	.L32
+ 450 005c 0123     		movs	r3, #1
+ 451 005e 5B42     		rsbs	r3, r3, #0
+ 452 0060 3B61     		str	r3, [r7, #16]
+ 453              	.L32:
+ 454 0062 3B69     		ldr	r3, [r7, #16]
+ 455 0064 1800     		movs	r0, r3
+ 456 0066 BD46     		mov	sp, r7
+ 457 0068 06B0     		add	sp, sp, #24
+ 458              		@ sp needed
+ 459 006a 80BD     		pop	{r7, pc}
+ 460              	.L35:
+ 461              		.align	2
+ 462              	.L34:
+ 463 006c 00000000 		.word	resp_str
+ 464 0070 00000000 		.word	tx_state
+ 466              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 hw_uart.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:17     .rodata.uart_params:00000000 uart_params
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:14     .rodata.uart_params:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:27     .bss.uart_recv_buf:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:30     .bss.uart_recv_buf:00000000 uart_recv_buf
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:33     .bss.uart_recv_idx:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:36     .bss.uart_recv_idx:00000000 uart_recv_idx
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:39     .bss.uart_event_buf:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:42     .bss.uart_event_buf:00000000 uart_event_buf
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:45     .bss.uart_event_idx:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:48     .bss.uart_event_idx:00000000 uart_event_idx
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:51     .bss.resp_str:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:54     .bss.resp_str:00000000 resp_str
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:59     .bss.tx_state:00000000 tx_state
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:60     .bss.tx_state:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:62     .bss.event_list:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:65     .bss.event_list:00000000 event_list
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:70     .bss.event_count:00000000 event_count
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:71     .bss.event_count:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:73     .bss.event_cb:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:76     .bss.event_cb:00000000 event_cb
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:79     .text.net_event_register:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:86     .text.net_event_register:00000000 net_event_register
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:125    .text.net_event_register:00000040 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:129    .text.uart_evt_hdl:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:136    .text.uart_evt_hdl:00000000 uart_evt_hdl
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:347    .text.uart_evt_hdl:00000194 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:358    .text.hw_uart_init:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:365    .text.hw_uart_init:00000000 hw_uart_init
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:389    .text.hw_uart_init:00000024 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:393    .text.hw_uart_send:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:400    .text.hw_uart_send:00000000 hw_uart_send
+C:\Users\SONG_J~1\AppData\Local\Temp\ccZSZv5T.s:463    .text.hw_uart_send:0000006c $d
+
+UNDEFINED SYMBOLS
+memcpy
+strlen
+memcmp
+memset
+app_uart_init
+app_uart_buf_put
+nrf_delay_ms

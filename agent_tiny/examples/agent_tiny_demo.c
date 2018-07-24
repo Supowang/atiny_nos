@@ -74,23 +74,23 @@ void app_data_report(void)
 {
     uint8_t buf[5] = {0,1,6,5,9};
     data_report_t report_data;
-    int ret;
     int cnt = 0;
+
     report_data.buf = buf;
     report_data.callback = ack_callback;
     report_data.cookie = 0;
     report_data.len = sizeof(buf);
     report_data.type = APP_DATA;
-    while(1)
+    do
     {
         report_data.cookie = cnt;
         cnt++;
-        ret = atiny_data_report(g_phandle, &report_data);
-        printf("report ret: %d\n",ret);
-        ret = atiny_data_change(g_phandle, DEVICE_MEMORY_FREE);
-        printf("data change ret: %d\n",ret);
-        (void)nrf_delay_ms(250*8);
-    }
+        atiny_data_report(g_phandle, &report_data);
+//        printf("report ret: %d\n",ret);
+        atiny_data_change(g_phandle, DEVICE_MEMORY_FREE);
+//        printf("data change ret: %d\n",ret);
+//        (void)nrf_delay_ms(250*8);
+    }while(0);
 }
 #if 0
 UINT32 creat_report_task()
@@ -133,7 +133,6 @@ void agent_tiny_fota_init(void)
 
 void agent_tiny_entry(void)
 {
-    uint32_t uwRet = 0;
     atiny_param_t* atiny_params;
     atiny_security_param_t  *iot_security_param = NULL;
     atiny_security_param_t  *bs_security_param = NULL;

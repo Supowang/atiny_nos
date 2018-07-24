@@ -1,0 +1,771 @@
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 6
+   9              		.eabi_attribute 34, 0
+  10              		.eabi_attribute 18, 4
+  11              		.file	"mem_manager.c"
+  12              		.section	.rodata.m_block_size,"a",%progbits
+  13              		.align	2
+  16              	m_block_size:
+  17 0000 00000000 		.word	0
+  18 0004 00000000 		.word	0
+  19 0008 80000000 		.word	128
+  20 000c C8000000 		.word	200
+  21 0010 00040000 		.word	1024
+  22 0014 00000000 		.word	0
+  23 0018 00000000 		.word	0
+  24              		.section	.rodata.m_block_start,"a",%progbits
+  25              		.align	2
+  28              	m_block_start:
+  29 0000 00000000 		.word	0
+  30 0004 00000000 		.word	0
+  31 0008 00000000 		.word	0
+  32 000c 20000000 		.word	32
+  33 0010 30000000 		.word	48
+  34 0014 00000000 		.word	0
+  35 0018 00000000 		.word	0
+  36              		.section	.rodata.m_block_end,"a",%progbits
+  37              		.align	2
+  40              	m_block_end:
+  41 0000 00000000 		.word	0
+  42 0004 00000000 		.word	0
+  43 0008 20000000 		.word	32
+  44 000c 30000000 		.word	48
+  45 0010 33000000 		.word	51
+  46 0014 00000000 		.word	0
+  47 0018 00000000 		.word	0
+  48              		.section	.rodata.m_block_mem_start,"a",%progbits
+  49              		.align	2
+  52              	m_block_mem_start:
+  53 0000 00000000 		.word	0
+  54 0004 00000000 		.word	0
+  55 0008 00000000 		.word	0
+  56 000c 00100000 		.word	4096
+  57 0010 801C0000 		.word	7296
+  58 0014 00000000 		.word	0
+  59 0018 00000000 		.word	0
+  60              		.section	.bss.m_memory,"aw",%nobits
+  61              		.align	2
+  64              	m_memory:
+  65 0000 00000000 		.space	10368
+  65      00000000 
+  65      00000000 
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 2
+
+
+  65      00000000 
+  65      00000000 
+  66              		.section	.bss.m_mem_pool,"aw",%nobits
+  67              		.align	2
+  70              	m_mem_pool:
+  71 0000 00000000 		.space	8
+  71      00000000 
+  72              		.section	.bss.m_module_initialized,"aw",%nobits
+  75              	m_module_initialized:
+  76 0000 00       		.space	1
+  77              		.section	.text.get_block_coordinates,"ax",%progbits
+  78              		.align	1
+  79              		.syntax unified
+  80              		.code	16
+  81              		.thumb_func
+  82              		.fpu softvfp
+  84              	get_block_coordinates:
+  85              		@ args = 0, pretend = 0, frame = 24
+  86              		@ frame_needed = 1, uses_anonymous_args = 0
+  87 0000 80B5     		push	{r7, lr}
+  88 0002 86B0     		sub	sp, sp, #24
+  89 0004 00AF     		add	r7, sp, #0
+  90 0006 F860     		str	r0, [r7, #12]
+  91 0008 B960     		str	r1, [r7, #8]
+  92 000a 7A60     		str	r2, [r7, #4]
+  93 000c FB68     		ldr	r3, [r7, #12]
+  94 000e 5B09     		lsrs	r3, r3, #5
+  95 0010 7B61     		str	r3, [r7, #20]
+  96 0012 7B69     		ldr	r3, [r7, #20]
+  97 0014 5B01     		lsls	r3, r3, #5
+  98 0016 FA68     		ldr	r2, [r7, #12]
+  99 0018 D31A     		subs	r3, r2, r3
+ 100 001a 3B61     		str	r3, [r7, #16]
+ 101 001c BB68     		ldr	r3, [r7, #8]
+ 102 001e 7A69     		ldr	r2, [r7, #20]
+ 103 0020 1A60     		str	r2, [r3]
+ 104 0022 7B68     		ldr	r3, [r7, #4]
+ 105 0024 3A69     		ldr	r2, [r7, #16]
+ 106 0026 1A60     		str	r2, [r3]
+ 107 0028 C046     		nop
+ 108 002a BD46     		mov	sp, r7
+ 109 002c 06B0     		add	sp, sp, #24
+ 110              		@ sp needed
+ 111 002e 80BD     		pop	{r7, pc}
+ 113              		.section	.text.block_init,"ax",%progbits
+ 114              		.align	1
+ 115              		.syntax unified
+ 116              		.code	16
+ 117              		.thumb_func
+ 118              		.fpu softvfp
+ 120              	block_init:
+ 121              		@ args = 0, pretend = 0, frame = 16
+ 122              		@ frame_needed = 1, uses_anonymous_args = 0
+ 123 0000 80B5     		push	{r7, lr}
+ 124 0002 84B0     		sub	sp, sp, #16
+ 125 0004 00AF     		add	r7, sp, #0
+ 126 0006 7860     		str	r0, [r7, #4]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 3
+
+
+ 127 0008 0823     		movs	r3, #8
+ 128 000a FA18     		adds	r2, r7, r3
+ 129 000c 0C23     		movs	r3, #12
+ 130 000e F918     		adds	r1, r7, r3
+ 131 0010 7B68     		ldr	r3, [r7, #4]
+ 132 0012 1800     		movs	r0, r3
+ 133 0014 FFF7FEFF 		bl	get_block_coordinates
+ 134 0018 FA68     		ldr	r2, [r7, #12]
+ 135 001a 084B     		ldr	r3, .L3
+ 136 001c 9200     		lsls	r2, r2, #2
+ 137 001e D158     		ldr	r1, [r2, r3]
+ 138 0020 BB68     		ldr	r3, [r7, #8]
+ 139 0022 0122     		movs	r2, #1
+ 140 0024 9A40     		lsls	r2, r2, r3
+ 141 0026 1300     		movs	r3, r2
+ 142 0028 FA68     		ldr	r2, [r7, #12]
+ 143 002a 1943     		orrs	r1, r3
+ 144 002c 034B     		ldr	r3, .L3
+ 145 002e 9200     		lsls	r2, r2, #2
+ 146 0030 D150     		str	r1, [r2, r3]
+ 147 0032 C046     		nop
+ 148 0034 BD46     		mov	sp, r7
+ 149 0036 04B0     		add	sp, sp, #16
+ 150              		@ sp needed
+ 151 0038 80BD     		pop	{r7, pc}
+ 152              	.L4:
+ 153 003a C046     		.align	2
+ 154              	.L3:
+ 155 003c 00000000 		.word	m_mem_pool
+ 157              		.section	.text.get_block_cat,"ax",%progbits
+ 158              		.align	1
+ 159              		.syntax unified
+ 160              		.code	16
+ 161              		.thumb_func
+ 162              		.fpu softvfp
+ 164              	get_block_cat:
+ 165              		@ args = 0, pretend = 0, frame = 16
+ 166              		@ frame_needed = 1, uses_anonymous_args = 0
+ 167 0000 80B5     		push	{r7, lr}
+ 168 0002 84B0     		sub	sp, sp, #16
+ 169 0004 00AF     		add	r7, sp, #0
+ 170 0006 7860     		str	r0, [r7, #4]
+ 171 0008 3960     		str	r1, [r7]
+ 172 000a 0023     		movs	r3, #0
+ 173 000c FB60     		str	r3, [r7, #12]
+ 174 000e 1FE0     		b	.L6
+ 175              	.L11:
+ 176 0010 7B68     		ldr	r3, [r7, #4]
+ 177 0012 002B     		cmp	r3, #0
+ 178 0014 10D0     		beq	.L7
+ 179 0016 124B     		ldr	r3, .L12
+ 180 0018 FA68     		ldr	r2, [r7, #12]
+ 181 001a 9200     		lsls	r2, r2, #2
+ 182 001c D358     		ldr	r3, [r2, r3]
+ 183 001e 7A68     		ldr	r2, [r7, #4]
+ 184 0020 9A42     		cmp	r2, r3
+ 185 0022 09D8     		bhi	.L7
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 4
+
+
+ 186 0024 0F4B     		ldr	r3, .L12+4
+ 187 0026 FA68     		ldr	r2, [r7, #12]
+ 188 0028 9200     		lsls	r2, r2, #2
+ 189 002a D258     		ldr	r2, [r2, r3]
+ 190 002c 0E4B     		ldr	r3, .L12+8
+ 191 002e F968     		ldr	r1, [r7, #12]
+ 192 0030 8900     		lsls	r1, r1, #2
+ 193 0032 CB58     		ldr	r3, [r1, r3]
+ 194 0034 9A42     		cmp	r2, r3
+ 195 0036 06D1     		bne	.L8
+ 196              	.L7:
+ 197 0038 0A4B     		ldr	r3, .L12+4
+ 198 003a FA68     		ldr	r2, [r7, #12]
+ 199 003c 9200     		lsls	r2, r2, #2
+ 200 003e D358     		ldr	r3, [r2, r3]
+ 201 0040 3A68     		ldr	r2, [r7]
+ 202 0042 9A42     		cmp	r2, r3
+ 203 0044 01D2     		bcs	.L9
+ 204              	.L8:
+ 205 0046 FB68     		ldr	r3, [r7, #12]
+ 206 0048 06E0     		b	.L10
+ 207              	.L9:
+ 208 004a FB68     		ldr	r3, [r7, #12]
+ 209 004c 0133     		adds	r3, r3, #1
+ 210 004e FB60     		str	r3, [r7, #12]
+ 211              	.L6:
+ 212 0050 FB68     		ldr	r3, [r7, #12]
+ 213 0052 062B     		cmp	r3, #6
+ 214 0054 DCD9     		bls	.L11
+ 215 0056 0023     		movs	r3, #0
+ 216              	.L10:
+ 217 0058 1800     		movs	r0, r3
+ 218 005a BD46     		mov	sp, r7
+ 219 005c 04B0     		add	sp, sp, #16
+ 220              		@ sp needed
+ 221 005e 80BD     		pop	{r7, pc}
+ 222              	.L13:
+ 223              		.align	2
+ 224              	.L12:
+ 225 0060 00000000 		.word	m_block_size
+ 226 0064 00000000 		.word	m_block_end
+ 227 0068 00000000 		.word	m_block_start
+ 229              		.section	.text.get_block_size,"ax",%progbits
+ 230              		.align	1
+ 231              		.syntax unified
+ 232              		.code	16
+ 233              		.thumb_func
+ 234              		.fpu softvfp
+ 236              	get_block_size:
+ 237              		@ args = 0, pretend = 0, frame = 16
+ 238              		@ frame_needed = 1, uses_anonymous_args = 0
+ 239 0000 80B5     		push	{r7, lr}
+ 240 0002 84B0     		sub	sp, sp, #16
+ 241 0004 00AF     		add	r7, sp, #0
+ 242 0006 7860     		str	r0, [r7, #4]
+ 243 0008 7B68     		ldr	r3, [r7, #4]
+ 244 000a 1900     		movs	r1, r3
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 5
+
+
+ 245 000c 0020     		movs	r0, #0
+ 246 000e FFF7FEFF 		bl	get_block_cat
+ 247 0012 0300     		movs	r3, r0
+ 248 0014 FB60     		str	r3, [r7, #12]
+ 249 0016 044B     		ldr	r3, .L16
+ 250 0018 FA68     		ldr	r2, [r7, #12]
+ 251 001a 9200     		lsls	r2, r2, #2
+ 252 001c D358     		ldr	r3, [r2, r3]
+ 253 001e 1800     		movs	r0, r3
+ 254 0020 BD46     		mov	sp, r7
+ 255 0022 04B0     		add	sp, sp, #16
+ 256              		@ sp needed
+ 257 0024 80BD     		pop	{r7, pc}
+ 258              	.L17:
+ 259 0026 C046     		.align	2
+ 260              	.L16:
+ 261 0028 00000000 		.word	m_block_size
+ 263              		.section	.text.is_block_free,"ax",%progbits
+ 264              		.align	1
+ 265              		.syntax unified
+ 266              		.code	16
+ 267              		.thumb_func
+ 268              		.fpu softvfp
+ 270              	is_block_free:
+ 271              		@ args = 0, pretend = 0, frame = 16
+ 272              		@ frame_needed = 1, uses_anonymous_args = 0
+ 273 0000 80B5     		push	{r7, lr}
+ 274 0002 84B0     		sub	sp, sp, #16
+ 275 0004 00AF     		add	r7, sp, #0
+ 276 0006 7860     		str	r0, [r7, #4]
+ 277 0008 0823     		movs	r3, #8
+ 278 000a FA18     		adds	r2, r7, r3
+ 279 000c 0C23     		movs	r3, #12
+ 280 000e F918     		adds	r1, r7, r3
+ 281 0010 7B68     		ldr	r3, [r7, #4]
+ 282 0012 1800     		movs	r0, r3
+ 283 0014 FFF7FEFF 		bl	get_block_coordinates
+ 284 0018 FA68     		ldr	r2, [r7, #12]
+ 285 001a 074B     		ldr	r3, .L20
+ 286 001c 9200     		lsls	r2, r2, #2
+ 287 001e D258     		ldr	r2, [r2, r3]
+ 288 0020 BB68     		ldr	r3, [r7, #8]
+ 289 0022 DA40     		lsrs	r2, r2, r3
+ 290 0024 1300     		movs	r3, r2
+ 291 0026 0122     		movs	r2, #1
+ 292 0028 1340     		ands	r3, r2
+ 293 002a 5A1E     		subs	r2, r3, #1
+ 294 002c 9341     		sbcs	r3, r3, r2
+ 295 002e DBB2     		uxtb	r3, r3
+ 296 0030 1800     		movs	r0, r3
+ 297 0032 BD46     		mov	sp, r7
+ 298 0034 04B0     		add	sp, sp, #16
+ 299              		@ sp needed
+ 300 0036 80BD     		pop	{r7, pc}
+ 301              	.L21:
+ 302              		.align	2
+ 303              	.L20:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 6
+
+
+ 304 0038 00000000 		.word	m_mem_pool
+ 306              		.section	.text.block_allocate,"ax",%progbits
+ 307              		.align	1
+ 308              		.syntax unified
+ 309              		.code	16
+ 310              		.thumb_func
+ 311              		.fpu softvfp
+ 313              	block_allocate:
+ 314              		@ args = 0, pretend = 0, frame = 16
+ 315              		@ frame_needed = 1, uses_anonymous_args = 0
+ 316 0000 80B5     		push	{r7, lr}
+ 317 0002 84B0     		sub	sp, sp, #16
+ 318 0004 00AF     		add	r7, sp, #0
+ 319 0006 7860     		str	r0, [r7, #4]
+ 320 0008 0823     		movs	r3, #8
+ 321 000a FA18     		adds	r2, r7, r3
+ 322 000c 0C23     		movs	r3, #12
+ 323 000e F918     		adds	r1, r7, r3
+ 324 0010 7B68     		ldr	r3, [r7, #4]
+ 325 0012 1800     		movs	r0, r3
+ 326 0014 FFF7FEFF 		bl	get_block_coordinates
+ 327 0018 FA68     		ldr	r2, [r7, #12]
+ 328 001a 084B     		ldr	r3, .L23
+ 329 001c 9200     		lsls	r2, r2, #2
+ 330 001e D358     		ldr	r3, [r2, r3]
+ 331 0020 BA68     		ldr	r2, [r7, #8]
+ 332 0022 0121     		movs	r1, #1
+ 333 0024 9140     		lsls	r1, r1, r2
+ 334 0026 0A00     		movs	r2, r1
+ 335 0028 D143     		mvns	r1, r2
+ 336 002a FA68     		ldr	r2, [r7, #12]
+ 337 002c 1940     		ands	r1, r3
+ 338 002e 034B     		ldr	r3, .L23
+ 339 0030 9200     		lsls	r2, r2, #2
+ 340 0032 D150     		str	r1, [r2, r3]
+ 341 0034 C046     		nop
+ 342 0036 BD46     		mov	sp, r7
+ 343 0038 04B0     		add	sp, sp, #16
+ 344              		@ sp needed
+ 345 003a 80BD     		pop	{r7, pc}
+ 346              	.L24:
+ 347              		.align	2
+ 348              	.L23:
+ 349 003c 00000000 		.word	m_mem_pool
+ 351              		.section	.text.nrf_mem_init,"ax",%progbits
+ 352              		.align	1
+ 353              		.global	nrf_mem_init
+ 354              		.syntax unified
+ 355              		.code	16
+ 356              		.thumb_func
+ 357              		.fpu softvfp
+ 359              	nrf_mem_init:
+ 360              		@ args = 0, pretend = 0, frame = 8
+ 361              		@ frame_needed = 1, uses_anonymous_args = 0
+ 362 0000 80B5     		push	{r7, lr}
+ 363 0002 82B0     		sub	sp, sp, #8
+ 364 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 7
+
+
+ 365 0006 0023     		movs	r3, #0
+ 366 0008 7B60     		str	r3, [r7, #4]
+ 367 000a 0023     		movs	r3, #0
+ 368 000c 7B60     		str	r3, [r7, #4]
+ 369 000e 06E0     		b	.L26
+ 370              	.L27:
+ 371 0010 7B68     		ldr	r3, [r7, #4]
+ 372 0012 1800     		movs	r0, r3
+ 373 0014 FFF7FEFF 		bl	block_init
+ 374 0018 7B68     		ldr	r3, [r7, #4]
+ 375 001a 0133     		adds	r3, r3, #1
+ 376 001c 7B60     		str	r3, [r7, #4]
+ 377              	.L26:
+ 378 001e 7B68     		ldr	r3, [r7, #4]
+ 379 0020 322B     		cmp	r3, #50
+ 380 0022 F5D9     		bls	.L27
+ 381 0024 034B     		ldr	r3, .L29
+ 382 0026 0122     		movs	r2, #1
+ 383 0028 1A70     		strb	r2, [r3]
+ 384 002a 0023     		movs	r3, #0
+ 385 002c 1800     		movs	r0, r3
+ 386 002e BD46     		mov	sp, r7
+ 387 0030 02B0     		add	sp, sp, #8
+ 388              		@ sp needed
+ 389 0032 80BD     		pop	{r7, pc}
+ 390              	.L30:
+ 391              		.align	2
+ 392              	.L29:
+ 393 0034 00000000 		.word	m_module_initialized
+ 395              		.section	.text.nrf_mem_reserve,"ax",%progbits
+ 396              		.align	1
+ 397              		.global	nrf_mem_reserve
+ 398              		.syntax unified
+ 399              		.code	16
+ 400              		.thumb_func
+ 401              		.fpu softvfp
+ 403              	nrf_mem_reserve:
+ 404              		@ args = 0, pretend = 0, frame = 32
+ 405              		@ frame_needed = 1, uses_anonymous_args = 0
+ 406 0000 80B5     		push	{r7, lr}
+ 407 0002 88B0     		sub	sp, sp, #32
+ 408 0004 00AF     		add	r7, sp, #0
+ 409 0006 7860     		str	r0, [r7, #4]
+ 410 0008 3960     		str	r1, [r7]
+ 411 000a 2F4B     		ldr	r3, .L43
+ 412 000c 1B78     		ldrb	r3, [r3]
+ 413 000e 0122     		movs	r2, #1
+ 414 0010 5340     		eors	r3, r2
+ 415 0012 DBB2     		uxtb	r3, r3
+ 416 0014 002B     		cmp	r3, #0
+ 417 0016 01D0     		beq	.L32
+ 418 0018 2C4B     		ldr	r3, .L43+4
+ 419 001a 50E0     		b	.L33
+ 420              	.L32:
+ 421 001c 7B68     		ldr	r3, [r7, #4]
+ 422 001e 002B     		cmp	r3, #0
+ 423 0020 01D1     		bne	.L34
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 8
+
+
+ 424 0022 2B4B     		ldr	r3, .L43+8
+ 425 0024 4BE0     		b	.L33
+ 426              	.L34:
+ 427 0026 3B68     		ldr	r3, [r7]
+ 428 0028 002B     		cmp	r3, #0
+ 429 002a 01D1     		bne	.L35
+ 430 002c 284B     		ldr	r3, .L43+8
+ 431 002e 46E0     		b	.L33
+ 432              	.L35:
+ 433 0030 3B68     		ldr	r3, [r7]
+ 434 0032 1B68     		ldr	r3, [r3]
+ 435 0034 3B61     		str	r3, [r7, #16]
+ 436 0036 3B69     		ldr	r3, [r7, #16]
+ 437 0038 002B     		cmp	r3, #0
+ 438 003a 04D0     		beq	.L36
+ 439 003c 3A69     		ldr	r2, [r7, #16]
+ 440 003e 8023     		movs	r3, #128
+ 441 0040 DB00     		lsls	r3, r3, #3
+ 442 0042 9A42     		cmp	r2, r3
+ 443 0044 01D9     		bls	.L37
+ 444              	.L36:
+ 445 0046 234B     		ldr	r3, .L43+12
+ 446 0048 39E0     		b	.L33
+ 447              	.L37:
+ 448 004a 3B69     		ldr	r3, [r7, #16]
+ 449 004c 3321     		movs	r1, #51
+ 450 004e 1800     		movs	r0, r3
+ 451 0050 FFF7FEFF 		bl	get_block_cat
+ 452 0054 0300     		movs	r3, r0
+ 453 0056 FB60     		str	r3, [r7, #12]
+ 454 0058 1F4B     		ldr	r3, .L43+16
+ 455 005a FA68     		ldr	r2, [r7, #12]
+ 456 005c 9200     		lsls	r2, r2, #2
+ 457 005e D358     		ldr	r3, [r2, r3]
+ 458 0060 FB61     		str	r3, [r7, #28]
+ 459 0062 1E4B     		ldr	r3, .L43+20
+ 460 0064 FA68     		ldr	r2, [r7, #12]
+ 461 0066 9200     		lsls	r2, r2, #2
+ 462 0068 D358     		ldr	r3, [r2, r3]
+ 463 006a BB61     		str	r3, [r7, #24]
+ 464 006c 1C4B     		ldr	r3, .L43+24
+ 465 006e 7B61     		str	r3, [r7, #20]
+ 466 0070 21E0     		b	.L38
+ 467              	.L41:
+ 468 0072 FB69     		ldr	r3, [r7, #28]
+ 469 0074 1800     		movs	r0, r3
+ 470 0076 FFF7FEFF 		bl	get_block_size
+ 471 007a 0300     		movs	r3, r0
+ 472 007c BB60     		str	r3, [r7, #8]
+ 473 007e FB69     		ldr	r3, [r7, #28]
+ 474 0080 1800     		movs	r0, r3
+ 475 0082 FFF7FEFF 		bl	is_block_free
+ 476 0086 031E     		subs	r3, r0, #0
+ 477 0088 0ED0     		beq	.L39
+ 478 008a 0023     		movs	r3, #0
+ 479 008c 7B61     		str	r3, [r7, #20]
+ 480 008e FB69     		ldr	r3, [r7, #28]
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 9
+
+
+ 481 0090 1800     		movs	r0, r3
+ 482 0092 FFF7FEFF 		bl	block_allocate
+ 483 0096 BA69     		ldr	r2, [r7, #24]
+ 484 0098 124B     		ldr	r3, .L43+28
+ 485 009a D218     		adds	r2, r2, r3
+ 486 009c 7B68     		ldr	r3, [r7, #4]
+ 487 009e 1A60     		str	r2, [r3]
+ 488 00a0 3B68     		ldr	r3, [r7]
+ 489 00a2 BA68     		ldr	r2, [r7, #8]
+ 490 00a4 1A60     		str	r2, [r3]
+ 491 00a6 09E0     		b	.L42
+ 492              	.L39:
+ 493 00a8 BA69     		ldr	r2, [r7, #24]
+ 494 00aa BB68     		ldr	r3, [r7, #8]
+ 495 00ac D318     		adds	r3, r2, r3
+ 496 00ae BB61     		str	r3, [r7, #24]
+ 497 00b0 FB69     		ldr	r3, [r7, #28]
+ 498 00b2 0133     		adds	r3, r3, #1
+ 499 00b4 FB61     		str	r3, [r7, #28]
+ 500              	.L38:
+ 501 00b6 FB69     		ldr	r3, [r7, #28]
+ 502 00b8 322B     		cmp	r3, #50
+ 503 00ba DAD9     		bls	.L41
+ 504              	.L42:
+ 505 00bc 7B69     		ldr	r3, [r7, #20]
+ 506              	.L33:
+ 507 00be 1800     		movs	r0, r3
+ 508 00c0 BD46     		mov	sp, r7
+ 509 00c2 08B0     		add	sp, sp, #32
+ 510              		@ sp needed
+ 511 00c4 80BD     		pop	{r7, pc}
+ 512              	.L44:
+ 513 00c6 C046     		.align	2
+ 514              	.L43:
+ 515 00c8 00000000 		.word	m_module_initialized
+ 516 00cc 08810000 		.word	33032
+ 517 00d0 0E810000 		.word	33038
+ 518 00d4 07810000 		.word	33031
+ 519 00d8 00000000 		.word	m_block_start
+ 520 00dc 00000000 		.word	m_block_mem_start
+ 521 00e0 04810000 		.word	33028
+ 522 00e4 00000000 		.word	m_memory
+ 524              		.section	.text.nrf_malloc,"ax",%progbits
+ 525              		.align	1
+ 526              		.global	nrf_malloc
+ 527              		.syntax unified
+ 528              		.code	16
+ 529              		.thumb_func
+ 530              		.fpu softvfp
+ 532              	nrf_malloc:
+ 533              		@ args = 0, pretend = 0, frame = 24
+ 534              		@ frame_needed = 1, uses_anonymous_args = 0
+ 535 0000 80B5     		push	{r7, lr}
+ 536 0002 86B0     		sub	sp, sp, #24
+ 537 0004 00AF     		add	r7, sp, #0
+ 538 0006 7860     		str	r0, [r7, #4]
+ 539 0008 0023     		movs	r3, #0
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 10
+
+
+ 540 000a 3B61     		str	r3, [r7, #16]
+ 541 000c 7B68     		ldr	r3, [r7, #4]
+ 542 000e FB60     		str	r3, [r7, #12]
+ 543 0010 0C23     		movs	r3, #12
+ 544 0012 FA18     		adds	r2, r7, r3
+ 545 0014 1023     		movs	r3, #16
+ 546 0016 FB18     		adds	r3, r7, r3
+ 547 0018 1100     		movs	r1, r2
+ 548 001a 1800     		movs	r0, r3
+ 549 001c FFF7FEFF 		bl	nrf_mem_reserve
+ 550 0020 0300     		movs	r3, r0
+ 551 0022 7B61     		str	r3, [r7, #20]
+ 552 0024 7B69     		ldr	r3, [r7, #20]
+ 553 0026 002B     		cmp	r3, #0
+ 554 0028 01D0     		beq	.L46
+ 555 002a 0023     		movs	r3, #0
+ 556 002c 3B61     		str	r3, [r7, #16]
+ 557              	.L46:
+ 558 002e 3B69     		ldr	r3, [r7, #16]
+ 559 0030 1800     		movs	r0, r3
+ 560 0032 BD46     		mov	sp, r7
+ 561 0034 06B0     		add	sp, sp, #24
+ 562              		@ sp needed
+ 563 0036 80BD     		pop	{r7, pc}
+ 565              		.section	.text.nrf_calloc,"ax",%progbits
+ 566              		.align	1
+ 567              		.global	nrf_calloc
+ 568              		.syntax unified
+ 569              		.code	16
+ 570              		.thumb_func
+ 571              		.fpu softvfp
+ 573              	nrf_calloc:
+ 574              		@ args = 0, pretend = 0, frame = 24
+ 575              		@ frame_needed = 1, uses_anonymous_args = 0
+ 576 0000 80B5     		push	{r7, lr}
+ 577 0002 86B0     		sub	sp, sp, #24
+ 578 0004 00AF     		add	r7, sp, #0
+ 579 0006 7860     		str	r0, [r7, #4]
+ 580 0008 3960     		str	r1, [r7]
+ 581 000a 0023     		movs	r3, #0
+ 582 000c 3B61     		str	r3, [r7, #16]
+ 583 000e 3B68     		ldr	r3, [r7]
+ 584 0010 7A68     		ldr	r2, [r7, #4]
+ 585 0012 5343     		muls	r3, r2
+ 586 0014 FB60     		str	r3, [r7, #12]
+ 587 0016 0C23     		movs	r3, #12
+ 588 0018 FA18     		adds	r2, r7, r3
+ 589 001a 1023     		movs	r3, #16
+ 590 001c FB18     		adds	r3, r7, r3
+ 591 001e 1100     		movs	r1, r2
+ 592 0020 1800     		movs	r0, r3
+ 593 0022 FFF7FEFF 		bl	nrf_mem_reserve
+ 594 0026 0300     		movs	r3, r0
+ 595 0028 7B61     		str	r3, [r7, #20]
+ 596 002a 7B69     		ldr	r3, [r7, #20]
+ 597 002c 002B     		cmp	r3, #0
+ 598 002e 06D1     		bne	.L49
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 11
+
+
+ 599 0030 3B69     		ldr	r3, [r7, #16]
+ 600 0032 FA68     		ldr	r2, [r7, #12]
+ 601 0034 0021     		movs	r1, #0
+ 602 0036 1800     		movs	r0, r3
+ 603 0038 FFF7FEFF 		bl	memset
+ 604 003c 01E0     		b	.L50
+ 605              	.L49:
+ 606 003e 0023     		movs	r3, #0
+ 607 0040 3B61     		str	r3, [r7, #16]
+ 608              	.L50:
+ 609 0042 3B69     		ldr	r3, [r7, #16]
+ 610 0044 1800     		movs	r0, r3
+ 611 0046 BD46     		mov	sp, r7
+ 612 0048 06B0     		add	sp, sp, #24
+ 613              		@ sp needed
+ 614 004a 80BD     		pop	{r7, pc}
+ 616              		.section	.text.nrf_free,"ax",%progbits
+ 617              		.align	1
+ 618              		.global	nrf_free
+ 619              		.syntax unified
+ 620              		.code	16
+ 621              		.thumb_func
+ 622              		.fpu softvfp
+ 624              	nrf_free:
+ 625              		@ args = 0, pretend = 0, frame = 16
+ 626              		@ frame_needed = 1, uses_anonymous_args = 0
+ 627 0000 80B5     		push	{r7, lr}
+ 628 0002 84B0     		sub	sp, sp, #16
+ 629 0004 00AF     		add	r7, sp, #0
+ 630 0006 7860     		str	r0, [r7, #4]
+ 631 0008 174B     		ldr	r3, .L62
+ 632 000a 1B78     		ldrb	r3, [r3]
+ 633 000c 0122     		movs	r2, #1
+ 634 000e 5340     		eors	r3, r2
+ 635 0010 DBB2     		uxtb	r3, r3
+ 636 0012 002B     		cmp	r3, #0
+ 637 0014 22D1     		bne	.L60
+ 638 0016 7B68     		ldr	r3, [r7, #4]
+ 639 0018 002B     		cmp	r3, #0
+ 640 001a 21D0     		beq	.L61
+ 641 001c 0023     		movs	r3, #0
+ 642 001e BB60     		str	r3, [r7, #8]
+ 643 0020 0023     		movs	r3, #0
+ 644 0022 FB60     		str	r3, [r7, #12]
+ 645 0024 15E0     		b	.L56
+ 646              	.L59:
+ 647 0026 BA68     		ldr	r2, [r7, #8]
+ 648 0028 104B     		ldr	r3, .L62+4
+ 649 002a D318     		adds	r3, r2, r3
+ 650 002c 7A68     		ldr	r2, [r7, #4]
+ 651 002e 9A42     		cmp	r2, r3
+ 652 0030 04D1     		bne	.L57
+ 653 0032 FB68     		ldr	r3, [r7, #12]
+ 654 0034 1800     		movs	r0, r3
+ 655 0036 FFF7FEFF 		bl	block_init
+ 656 003a 0DE0     		b	.L58
+ 657              	.L57:
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 12
+
+
+ 658 003c FB68     		ldr	r3, [r7, #12]
+ 659 003e 1800     		movs	r0, r3
+ 660 0040 FFF7FEFF 		bl	get_block_size
+ 661 0044 0200     		movs	r2, r0
+ 662 0046 BB68     		ldr	r3, [r7, #8]
+ 663 0048 9B18     		adds	r3, r3, r2
+ 664 004a BB60     		str	r3, [r7, #8]
+ 665 004c FB68     		ldr	r3, [r7, #12]
+ 666 004e 0133     		adds	r3, r3, #1
+ 667 0050 FB60     		str	r3, [r7, #12]
+ 668              	.L56:
+ 669 0052 FB68     		ldr	r3, [r7, #12]
+ 670 0054 322B     		cmp	r3, #50
+ 671 0056 E6D9     		bls	.L59
+ 672              	.L58:
+ 673 0058 C046     		nop
+ 674 005a 02E0     		b	.L52
+ 675              	.L60:
+ 676 005c C046     		nop
+ 677 005e 00E0     		b	.L52
+ 678              	.L61:
+ 679 0060 C046     		nop
+ 680              	.L52:
+ 681 0062 BD46     		mov	sp, r7
+ 682 0064 04B0     		add	sp, sp, #16
+ 683              		@ sp needed
+ 684 0066 80BD     		pop	{r7, pc}
+ 685              	.L63:
+ 686              		.align	2
+ 687              	.L62:
+ 688 0068 00000000 		.word	m_module_initialized
+ 689 006c 00000000 		.word	m_memory
+ 691              		.section	.text.nrf_realloc,"ax",%progbits
+ 692              		.align	1
+ 693              		.global	nrf_realloc
+ 694              		.syntax unified
+ 695              		.code	16
+ 696              		.thumb_func
+ 697              		.fpu softvfp
+ 699              	nrf_realloc:
+ 700              		@ args = 0, pretend = 0, frame = 8
+ 701              		@ frame_needed = 1, uses_anonymous_args = 0
+ 702 0000 80B5     		push	{r7, lr}
+ 703 0002 82B0     		sub	sp, sp, #8
+ 704 0004 00AF     		add	r7, sp, #0
+ 705 0006 7860     		str	r0, [r7, #4]
+ 706 0008 3960     		str	r1, [r7]
+ 707 000a 7B68     		ldr	r3, [r7, #4]
+ 708 000c 1800     		movs	r0, r3
+ 709 000e BD46     		mov	sp, r7
+ 710 0010 02B0     		add	sp, sp, #8
+ 711              		@ sp needed
+ 712 0012 80BD     		pop	{r7, pc}
+ 714              		.ident	"GCC: (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM
+ARM GAS  C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 mem_manager.c
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:13     .rodata.m_block_size:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:16     .rodata.m_block_size:00000000 m_block_size
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:25     .rodata.m_block_start:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:28     .rodata.m_block_start:00000000 m_block_start
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:37     .rodata.m_block_end:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:40     .rodata.m_block_end:00000000 m_block_end
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:49     .rodata.m_block_mem_start:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:52     .rodata.m_block_mem_start:00000000 m_block_mem_start
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:61     .bss.m_memory:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:64     .bss.m_memory:00000000 m_memory
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:67     .bss.m_mem_pool:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:70     .bss.m_mem_pool:00000000 m_mem_pool
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:75     .bss.m_module_initialized:00000000 m_module_initialized
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:76     .bss.m_module_initialized:00000000 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:78     .text.get_block_coordinates:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:84     .text.get_block_coordinates:00000000 get_block_coordinates
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:114    .text.block_init:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:120    .text.block_init:00000000 block_init
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:155    .text.block_init:0000003c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:158    .text.get_block_cat:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:164    .text.get_block_cat:00000000 get_block_cat
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:225    .text.get_block_cat:00000060 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:230    .text.get_block_size:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:236    .text.get_block_size:00000000 get_block_size
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:261    .text.get_block_size:00000028 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:264    .text.is_block_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:270    .text.is_block_free:00000000 is_block_free
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:304    .text.is_block_free:00000038 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:307    .text.block_allocate:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:313    .text.block_allocate:00000000 block_allocate
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:349    .text.block_allocate:0000003c $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:352    .text.nrf_mem_init:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:359    .text.nrf_mem_init:00000000 nrf_mem_init
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:393    .text.nrf_mem_init:00000034 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:396    .text.nrf_mem_reserve:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:403    .text.nrf_mem_reserve:00000000 nrf_mem_reserve
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:515    .text.nrf_mem_reserve:000000c8 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:525    .text.nrf_malloc:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:532    .text.nrf_malloc:00000000 nrf_malloc
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:566    .text.nrf_calloc:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:573    .text.nrf_calloc:00000000 nrf_calloc
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:617    .text.nrf_free:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:624    .text.nrf_free:00000000 nrf_free
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:688    .text.nrf_free:00000068 $d
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:692    .text.nrf_realloc:00000000 $t
+C:\Users\SONG_J~1\AppData\Local\Temp\ccgqj6r3.s:699    .text.nrf_realloc:00000000 nrf_realloc
+
+UNDEFINED SYMBOLS
+memset
