@@ -40,6 +40,7 @@
 #include "atiny_log.h"
 #include "atiny_rpt.h"
 #include "atiny_adapter.h"
+#include "hw_uart.h"
 #ifdef CONFIG_FEATURE_FOTA
 #include "atiny_fota_manager.h"
 #endif
@@ -603,10 +604,13 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         (void)atiny_step_rpt(handle->lwm2m_context);
         atiny_handle_reconnect(handle);
         (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
+        if(handle->lwm2m_context->state == STATE_READY){
+            LED_ON(0);
+        }
         reboot_check();
         (void)lwm2m_poll(handle, &timeout);
     }
-
+    LED_OFF(0);
     atiny_destroy(phandle);
 
     return ATINY_OK;
@@ -663,7 +667,7 @@ int atiny_data_report(void* phandle, data_report_t* report_data)
         return ATINY_MALLOC_FAILED;;
     }
     memcpy(data.buf, report_data->buf, report_data->len);
-
+    LED_OFF(1);
     ret = atiny_queue_rpt_data(&uri, &data);
 
     if (ATINY_OK != ret)
@@ -721,6 +725,7 @@ void observe_handle_ack(lwm2m_transaction_t* transacP, void* message)
     {
         ack_callback((atiny_report_type_e)(transacP->cfg.type), transacP->cfg.cookie, SENT_FAIL);
     }
+    LED_ON(1);
 }
 
 int atiny_reconnect(void* phandle)
