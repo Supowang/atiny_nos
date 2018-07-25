@@ -46,7 +46,8 @@
 #define IOT_PSK_VALUE_LENGTH    12
 #define BS_PSK_VALUE_LENGTH     12
 //char * g_endpoint_name = "44440003";
-char * g_endpoint_name = "11110001";
+//char * g_endpoint_name = "22222007"; // dianxin
+char * g_endpoint_name = "11110001"; // HuaWei OceanConnect
 #ifdef WITH_DTLS
 //char *g_endpoint_name_s = "11110006";
 //unsigned char g_psk_value[16] = {0xef,0xe8,0x18,0x45,0xa3,0x53,0xc1,0x3c,0x0c,0x89,0x92,0xb3,0x1d,0x6b,0x6a,0x96};
@@ -68,7 +69,7 @@ static atiny_param_t g_atiny_params;
 
 void ack_callback(atiny_report_type_e type, int cookie, data_send_status_e status)
 {
-    printf("type:%d cookie:%d status:%d\n", type,cookie, status);
+//    printf("type:%d cookie:%d status:%d\n", type,cookie, status);
 }
 
 void app_data_report(void)
@@ -150,8 +151,8 @@ void agent_tiny_entry(void)
     device_info->endpoint_name = g_endpoint_name;
 #endif
 //    device_info->manufacturer = "Agent_Tiny";
-//    device_info->manufacturer = "Lwm2mOta";
-    device_info->manufacturer = "NB150";
+//    device_info->manufacturer = "Lwm2mOta"; // dianxin
+    device_info->manufacturer = "NB150";    // HuaWei OceanConnect
 
     atiny_params = &g_atiny_params;
     atiny_params->server_params.binding = "UQ";

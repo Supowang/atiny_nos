@@ -13,10 +13,8 @@
 
 #include "internals.h"
 #include "atiny_socket.h"
-#if defined(WITH_AT_FRAMEWORK) && defined(USE_SIM900A)
+#if defined(WITH_AT_FRAMEWORK)
 #include "at_api_interface.h"
-#else
-#include "esp8266.h"
 #endif
 
 int main()

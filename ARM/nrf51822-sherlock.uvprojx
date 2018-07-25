@@ -335,7 +335,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_ESP8266</Define>
+              <Define>LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_SIM900A</Define>
               <Undefine></Undefine>
               <IncludePath>..\agent_tiny\comm\include;..\agent_tiny\examples;..\agent_tiny\lwm2m_client;..\agent_tiny\osadapter;..\components\toolchain;..\components\toolchain\arm;..\components\libraries\mailbox;..\components\libraries\mem_manager;..\components\libraries\scheduler;..\components\libraries\timer;..\components\libraries\uart;..\components\libraries\util;..\components\drivers_nrf\clock;..\components\drivers_nrf\common;..\components\drivers_nrf\config;..\components\drivers_nrf\delay;..\components\drivers_nrf\uart;..\hw_init;..\lwm2m\core;..\lwm2m\core\er-coap-13;..\components\toolchain\cmsis\include;..\components\drivers_nrf\hal;..\components\softdevice\s110\headers;..\components\libraries\trace;..\hw_init\network</IncludePath>
             </VariousControls>
