@@ -44,8 +44,8 @@
 #define AT_FAILED   -1
 #define AT_OK       0
 
-#define AT_DATAF_PREFIX      "\r\n+IPD"
-#define AT_DATAF_PREFIX_MULTI      "\r\n+RECEIVE"
+#define AT_DATAF_PREFIX         "\r\n+IPD"
+#define AT_DATAF_PREFIX_MULTI   "\r\n+RECEIVE"
 
 /* Typedefs -----------------------------------------------------------------*/
 
@@ -119,7 +119,7 @@ int32_t at_send_data(uint8_t *buf, uint32_t len, uint8_t *resp)
 int32_t sim900a_send_cmd(AT_CmdType e)
 {
     if (e >= AT_CMD_MAX)
-        return -1;
+        return AT_FAILED;
         
     return at_send_cmd((uint8_t *)sim900a_cmd[e].cmd, strlen((char*)sim900a_cmd[e].cmd), (uint8_t *)sim900a_cmd[e].resp);
 }
@@ -184,7 +184,7 @@ int32_t  sim900a_recv_timeout(int32_t id, int8_t * buf, uint32_t len, int32_t ti
     {
         if (hw_mb_get(&qbuf) == NRF_SUCCESS && qbuf.len > 0)
         {
-            rxlen = (rxlen < qbuf.len) ? rxlen : qbuf.len;
+            rxlen = (len < qbuf.len) ? len : qbuf.len;
             memcpy(buf, qbuf.addr, rxlen);
             atiny_free(qbuf.addr);
             break;

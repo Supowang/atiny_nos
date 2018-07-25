@@ -46,13 +46,6 @@ extern "C"{
 #include <stdio.h>
 #include <stdint.h>
 /* Defines ------------------------------------------------------------------*/
-#if 0
-#define WIFI_SSID   "iPhone"
-#define WIFI_PASSWD  "songjiannan"
-#else
-#define WIFI_SSID              "TP-LINK_80D8BE"
-#define WIFI_PASSWD            "87654321"
-#endif
 
 #define MAILBOX_Q_SIZE    3
 #define MAILBOX_ITEM_SIZE sizeof(mailbox_buf)

@@ -50,8 +50,10 @@
 #include "lwip/sockets.h"
 #include "lwip/netdb.h"
 #include "lwip/errno.h"
-#else
+#elif defined(WITH_AT_FRAMEWORK)
 #include "at_api_interface.h"
+#else
+// TODO
 #endif
 
 #define SOCKET_DEBUG
@@ -193,8 +195,6 @@ int atiny_net_recv(void* ctx, unsigned char* buf, size_t len)
     ret = at_api_recv(fd,buf,len);
 #else
     (void)fd; //clear unuse warning
-    ret = u2n_if_recv(fd, buf, len);
-
 #endif
 
 #if defined(WITH_LINUX) || defined(WITH_LWIP)
@@ -259,7 +259,6 @@ int atiny_net_recv_timeout(void* ctx, unsigned char* buf, size_t len,
     ret = at_api_recv_timeout(fd, buf, len, timeout);
 #else
     (void)fd; //clear unuse warning
-    ret = u2n_if_recv_timeout(fd, buf, len, timeout);
 #endif
     return ret;
 }
@@ -280,7 +279,6 @@ int atiny_net_send(void* ctx, const unsigned char* buf, size_t len)
 #elif defined(WITH_AT_FRAMEWORK)
     ret = at_api_send(fd, buf, len);
 #else
-     ret = u2n_if_send(fd, buf, len);
 #endif
 
 #if defined(WITH_LINUX) || defined(WITH_LWIP)
@@ -313,7 +311,6 @@ void atiny_net_close(void* ctx)
 #elif defined(WITH_AT_FRAMEWORK)
         at_api_close(fd);
 #else
-    u2n_if_close(fd);
 #endif
     }
 

@@ -33,6 +33,7 @@
  *---------------------------------------------------------------------------*/
 
 #include "agent_tiny_cmd_ioctl.h"
+#include "hw_uart.h"
 #include "agenttiny.h"
 #include "atiny_adapter.h"
 #ifdef CONFIG_FEATURE_FOTA
@@ -243,6 +244,12 @@ int atiny_get_link_utilization(int* utilization)
 int atiny_write_app_write(void* user_data, int len)
 {
     (void)atiny_printf("write num19 object success\r\n");
+    if(len > 0){
+        uint8_t led = *(uint8_t*)user_data;
+        if(led > 0){
+            LED_TOGGLE(2);
+        }            
+    }
     return ATINY_OK;
 }
 
