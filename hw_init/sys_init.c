@@ -40,9 +40,8 @@ void hw_init(void)
 
     nrf_mem_init();
 
-    hw_uart_init();
+    (void)hw_uart_init();
 
-//    hw_timer_start();
 }
 
 /**

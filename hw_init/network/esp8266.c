@@ -3,7 +3,7 @@
 #include "esp8266.h"
 #include "sys_init.h"
 #include "atiny_socket.h"
-
+#if defined(WITH_AT_FRAMEWORK) && defined(USE_ESP8266)
 APP_MAILBOX_DEF(esp8266_mb, ESP8266_MAILBOX_Q_SIZE, ESP8266_MAILBOX_ITEM_SIZE);
 
 CMD esp8266_cmd[] = {
@@ -110,7 +110,7 @@ int32_t esp8266_event_handler(uint8_t byte)
     return 0;
 }
 
-int esp8266_init()
+int32_t esp8266_init(void)
 {
     nrf_delay_ms(2000);
     net_event e = {
@@ -134,7 +134,7 @@ int esp8266_init()
     return 0;
 }
 
-int esp8266_connect(const char* host, const char* port, int proto)
+int32_t esp8266_connect(const int8_t* host, const int8_t* port, int32_t proto)
 {
     char cmd[64] = {0};
 
@@ -142,8 +142,8 @@ int esp8266_connect(const char* host, const char* port, int proto)
     return hw_uart_send((uint8_t *)cmd, strlen(cmd), (uint8_t *)esp8266_cmd[CMD_CONN].resp);
 }
 
-int32_t esp8266_recv_timeout(int32_t id, unsigned char* buf, size_t len,
-                           unsigned int timeout)
+int32_t esp8266_recv_timeout(int32_t id, int8_t * buf, uint32_t len,
+                           int32_t timeout)
 {
     mailbox_buf b = {0, NULL};
     timeout /= 5;
@@ -163,7 +163,7 @@ int32_t esp8266_recv_timeout(int32_t id, unsigned char* buf, size_t len,
     return b.len;
 }
 
-int32_t esp8266_recv(int32_t id, unsigned char* buf, size_t len)
+int32_t esp8266_recv(int32_t id, int8_t * buf, uint32_t len)
 {
     esp8266_recv_timeout(id, buf, len, 0xffffffff);
     return len; 
@@ -173,7 +173,7 @@ int32_t esp8266_send(int32_t id , const uint8_t  *buf, uint32_t len)
 {
     char cmd[64] = {0};
 
-    snprintf(cmd, 64, "%s=%u\r\n", esp8266_cmd[CMD_SEND].cmd, len);
+    snprintf(cmd, 64, "%s=%lu\r\n", esp8266_cmd[CMD_SEND].cmd, len);
          
     hw_uart_send((uint8_t *)cmd, strlen(cmd), (uint8_t *)">");
          
@@ -188,7 +188,7 @@ int32_t esp8266_close(int32_t id)
         return hw_uart_send((uint8_t *)cmd, strlen(cmd), (uint8_t *)esp8266_cmd[CMD_CLOSE].resp);
 }
 
-u2n_if u2n_if_op = {
+at_adaptor_api at_interface = {
     .init = esp8266_init,
     .connect = esp8266_connect,
     .send = esp8266_send,
@@ -197,3 +197,4 @@ u2n_if u2n_if_op = {
     .recv = esp8266_recv,    
     .close = esp8266_close,    
 };
+#endif

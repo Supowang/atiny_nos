@@ -25,10 +25,10 @@ int main()
 
     hw_init();
 
-#if defined(WITH_AT_FRAMEWORK) && defined(USE_SIM900A)
+#if defined(WITH_AT_FRAMEWORK) && (defined(USE_SIM900A) || defined(USE_ESP8266))
     at_api_register(&at_interface);
 #else
-    u2n_if_register(&u2n_if_op);
+
 #endif
 
     LED_ON(3);

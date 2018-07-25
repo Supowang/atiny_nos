@@ -90,10 +90,11 @@ void uart_evt_hdl(app_uart_evt_t * e)
     }
 }
 
-void hw_uart_init()
+int32_t hw_uart_init()
 {
     int ret = 0;
     APP_UART_INIT(&uart_params, uart_evt_hdl, APP_IRQ_PRIORITY_LOW, ret);
+    return ret;
 }
 
 #define RESP_TIMEOUT 10000

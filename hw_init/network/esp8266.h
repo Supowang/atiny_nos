@@ -2,7 +2,7 @@
 #define __ESP8266_H__
 
 #include <stdio.h>
-#include "u2n_if.h"
+#include "at_api_interface.h"
 
 #if 0
 #define WIFI_SSID   "iPhone"
