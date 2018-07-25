@@ -50,6 +50,8 @@
 #include "lwip/sockets.h"
 #include "lwip/netdb.h"
 #include "lwip/errno.h"
+#elif defined(WITH_AT_FRAMEWORK)
+#include "at_api_interface.h"
 #else
 #include "u2n_if.h"
 #endif
@@ -161,6 +163,21 @@ void* atiny_net_connect(const char* host, const char* port, int proto)
     else /* proto == ATINY_PROTO_TCP */
     {
         SOCKET_LOG("TCP connect to server(%s:%s) succeed", host, port);
+    }
+#elif defined(WITH_AT_FRAMEWORK)
+    ctx = atiny_malloc(sizeof(atiny_net_context));
+    if (NULL == ctx)
+    {
+        SOCKET_LOG("malloc failed for socket context");
+        return NULL;
+    }    
+
+    ctx->fd = at_api_connect(host, port, proto);
+    if (ctx->fd < 0)
+    {
+        SOCKET_LOG("unkown host(%s) or port(%s)", host, port);
+        atiny_free(ctx);
+        ctx = NULL;
     }
 #else
     ctx = atiny_malloc(sizeof(atiny_net_context));
@@ -312,7 +329,7 @@ void atiny_net_close(void* ctx)
 #elif defined(WITH_AT_FRAMEWORK)
         at_api_close(fd);
 #else
-    u2n_if_close(fd);
+        u2n_if_close(fd);
 #endif
     }
 

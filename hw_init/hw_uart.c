@@ -118,3 +118,18 @@ int32_t hw_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp)
     return ret;
 }
 
+/* define fputc */
+#if defined ( __CC_ARM ) || defined ( __ICCARM__ )  /* KEIL and IAR: printf will call fputc to print */
+int fputc(int ch, FILE *f)
+{
+    // TODO
+    return ch;
+}
+#elif defined ( __GNUC__ )  /* GCC: printf will call _write to print */
+__attribute__((used)) int _write(int fd, char *ptr, int len)
+{
+    // TODO
+    return len;
+}
+#endif
+

@@ -301,14 +301,14 @@ int atiny_init_objects(atiny_param_t* atiny_params, const atiny_device_info_t* d
         ATINY_LOG(LOG_FATAL, "lwm2m_init fail");
         return ATINY_MALLOC_FAILED;
     }
-        #ifndef AGENT_TINY_NOS
+#ifndef AGENT_TINY_NOS
     lwm2m_context->observe_mutex = atiny_mutex_create();
     if (NULL == lwm2m_context->observe_mutex)
     {
         ATINY_LOG(LOG_FATAL, "atiny_mutex_create fail");
         return ATINY_RESOURCE_NOT_ENOUGH;
     }
-        #endif
+#endif
     pdata->lwm2mH = lwm2m_context;
 
     handle->lwm2m_context = lwm2m_context;
