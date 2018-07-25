@@ -148,8 +148,8 @@ $(BUILD_DIR)/%.o:%.c $(BUILD_DIR)
 $(BUILD_DIR)/%.o:%.s $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 	
-$(BUILD_DIR)/$(TARGET).elf :$(OBJECTS) $(LD_SCRIPT)
-	$(CC) $(OBJECTS) $(CFLAGS) $(LD_SCRIPT) -o $@
+$(BUILD_DIR)/$(TARGET).elf :$(OBJECTS)
+	$(CC) $(OBJECTS) $(CFLAGS) -o $@
 	$(SIZE) $@
 	
 $(BUILD_DIR)/%.hex:$(BUILD_DIR)/%.elf $(BUILD_DIR)
