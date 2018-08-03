@@ -237,6 +237,9 @@ int atiny_init(atiny_param_t* atiny_params, void** phandle);
  */
 int atiny_bind(atiny_device_info_t* device_info, void* phandle);
 
+#ifdef AGENT_TINY_NOS
+void atiny_handler_loop(void * phandle);
+#endif
 /**
  *@ingroup agenttiny
  *@brief stop the device and release resources.

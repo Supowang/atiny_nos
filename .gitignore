@@ -4,8 +4,7 @@
 *.ini
 *.bin
 *.txt
-ARM/Listings/*
-ARM/Objects/*
-ARM/*.uvguix.*
-ARM/EventRecorderStub.scvd
-GCC/build/*
+*/Listings/*
+*/Objects/*
+*/*.uvguix.*
+*/EventRecorderStub.scvd

@@ -33,14 +33,14 @@
  *---------------------------------------------------------------------------*/
 
 #include "agent_tiny_demo.h"
-#include "nrf_delay.h"
+#include "drv_delay.h"
 #ifdef CONFIG_FEATURE_FOTA
 #include "fota_port.h"
 #endif
 
-#define DEFAULT_SERVER_IPV4 "139.159.140.34"/*Huawei */
+//#define DEFAULT_SERVER_IPV4 "139.159.140.34"/*Huawei */
 //#define DEFAULT_SERVER_IPV4 "180.101.147.115"/* dianxin */
-
+#define DEFAULT_SERVER_IPV4 "192.168.1.111"/* dianxin */
 #define LWM2M_LIFE_TIME     50000
 
 #define IOT_PSK_VALUE_LENGTH    12

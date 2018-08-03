@@ -33,9 +33,11 @@
  *---------------------------------------------------------------------------*/
 
 #include "atiny_adapter.h"
-#include "mem_manager.h"
-#include "hw_uart.h"
+#include "hal_uart.h"
 #include <stdarg.h>
+#ifdef AGENT_TINY_NOS
+#include "mem_manager.h"
+#endif
 
 #define ATINY_CNT_MAX_WAITTIME 0xFFFFFFFF
 #define LOG_BUF_SIZE (256)
@@ -58,12 +60,20 @@ uint64_t atiny_gettime_ms(void)
 
 void* atiny_malloc(size_t size)
 {
-    return nrf_malloc(size);
+    #ifdef NOS_MEM_MANAGER_EN
+    return mem_malloc(size);
+    #else
+    return malloc(size);
+    #endif
 }
 
 void atiny_free(void* ptr)
-{
-    (void)nrf_free(ptr);
+{ 
+    #ifdef NOS_MEM_MANAGER_EN
+    (void)mem_free(ptr);
+    #else
+    (void)free(ptr);
+    #endif
 }
 
 int atiny_snprintf(char* buf, unsigned int size, const char* format, ...)
@@ -76,6 +86,11 @@ int atiny_snprintf(char* buf, unsigned int size, const char* format, ...)
     va_end(args);
 
     return ret;
+}
+
+int atiny_delay_us(long us)
+{
+   return 0; 
 }
 
 int atiny_printf(const char* format, ...)

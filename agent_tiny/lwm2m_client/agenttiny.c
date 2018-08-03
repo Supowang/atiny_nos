@@ -40,7 +40,7 @@
 #include "atiny_log.h"
 #include "atiny_rpt.h"
 #include "atiny_adapter.h"
-#include "hw_uart.h"
+#include "hal_uart.h"
 #ifdef CONFIG_FEATURE_FOTA
 #include "atiny_fota_manager.h"
 #endif
@@ -71,9 +71,9 @@ typedef struct
     lwm2m_object_t*   obj_array[OBJ_MAX_NUM];
     int atiny_quit;
     int reconnect_flag;
-    #if 0
+    #ifndef AGENT_TINY_NOS
     void* quit_sem;
-  #endif
+    #endif
     int reboot_flag;
     uint8_t* recv_buffer;
 } handle_data_t;
@@ -597,6 +597,8 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         ATINY_LOG(LOG_FATAL, "memory not enough");
         return ATINY_MALLOC_FAILED;
     }
+    
+//    #ifndef AGENT_TINY_NOS
     while (!handle->atiny_quit)
     {
         timeout = BIND_TIMEOUT;
@@ -604,18 +606,30 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         (void)atiny_step_rpt(handle->lwm2m_context);
         atiny_handle_reconnect(handle);
         (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
-        if(handle->lwm2m_context->state == STATE_READY){
-            LED_ON(0);
-        }
         reboot_check();
         (void)lwm2m_poll(handle, &timeout);
     }
-    LED_OFF(0);
     atiny_destroy(phandle);
-
+//    #endif
     return ATINY_OK;
 }
 
+#ifdef AGENT_TINY_NOS
+void atiny_handler_loop(void * phandle)
+{
+    uint32_t timeout;
+    handle_data_t* handle = (handle_data_t*)phandle;
+
+    timeout = BIND_TIMEOUT;
+    if (STATE_REGISTERED == registration_getStatus(handle->lwm2m_context)) {
+        (void)atiny_step_rpt(handle->lwm2m_context);
+        atiny_handle_reconnect(handle);
+        (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
+        reboot_check();
+        (void)lwm2m_poll(handle, &timeout);
+    }
+}
+#endif
 void atiny_deinit(void* phandle)
 {
     handle_data_t* handle;
@@ -627,8 +641,11 @@ void atiny_deinit(void* phandle)
 
     handle = (handle_data_t*)phandle;
     handle->atiny_quit = 1;
-//    atiny_mutex_lock(handle->quit_sem);
-//    atiny_mutex_destroy(handle->quit_sem);
+    #ifndef AGENT_TINY_NOS
+    atiny_mutex_lock(handle->quit_sem);
+    atiny_mutex_destroy(handle->quit_sem);
+    #endif
+    
 }
 
 int atiny_data_report(void* phandle, data_report_t* report_data)
@@ -667,7 +684,6 @@ int atiny_data_report(void* phandle, data_report_t* report_data)
         return ATINY_MALLOC_FAILED;;
     }
     memcpy(data.buf, report_data->buf, report_data->len);
-    LED_OFF(1);
     ret = atiny_queue_rpt_data(&uri, &data);
 
     if (ATINY_OK != ret)
@@ -725,7 +741,6 @@ void observe_handle_ack(lwm2m_transaction_t* transacP, void* message)
     {
         ack_callback((atiny_report_type_e)(transacP->cfg.type), transacP->cfg.cookie, SENT_FAIL);
     }
-    LED_ON(1);
 }
 
 int atiny_reconnect(void* phandle)
