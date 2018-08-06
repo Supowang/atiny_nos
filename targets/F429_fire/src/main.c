@@ -18,6 +18,8 @@ extern void Usart_SendBuf( USART_TypeDef * pUSARTx, char *buf, int len);
 int main()
 {
     hal_init();
+    
+    LOGD("debug on");
 
 #if defined(WITH_AT_FRAMEWORK) && (defined(USE_SIM900A) || defined(USE_ESP8266))
     at_api_register(&at_interface);
@@ -26,5 +28,5 @@ int main()
 #endif
     hal_timer_start();
     agent_tiny_entry();
-    
+    while(1);
 }

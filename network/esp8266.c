@@ -125,7 +125,10 @@ int32_t esp8266_init(void)
     esp8266_send_cmd(CMD_RST);
 //    esp8266_send_cmd(CMD_ECHO_OFF);
     esp8266_choose_net_mode(STA);
-    while(0 != esp8266_joinap(WIFI_SSID, WIFI_PASSWD));
+    while(0 != esp8266_joinap(WIFI_SSID, WIFI_PASSWD))
+    {
+        LOGD("connecting wifi....");
+    };
     esp8266_set_mux_mode(0);   //signle
     
     return 0;
@@ -145,24 +148,26 @@ int32_t esp8266_recv_timeout(int32_t id, int8_t * buf, uint32_t len,
     queue_buf b = {0, NULL};
     timeout /= 5;
     
-    while(timeout == 0xffffffff || timeout > 0)
-    {
+    
+    do{
         if (hal_mb_get(&b) == 0 && b.len > 0)
         {
             memcpy(buf, b.addr, b.len);
             atiny_free(b.addr);
             break;
         }
-        drv_delay_ms(5);
-        if (timeout != 0xffffffff)
+        if (timeout != AT_WAIT_FOREVER && timeout > 0)
+        {
+            drv_delay_ms(5);
             timeout --;
-    }
+        }
+    }while(timeout == AT_WAIT_FOREVER || timeout > 0);
     return b.len;
 }
 
 int32_t esp8266_recv(int32_t id, int8_t * buf, uint32_t len)
 {
-    esp8266_recv_timeout(id, buf, len, 0xffffffff);
+    esp8266_recv_timeout(id, buf, len, AT_WAIT_FOREVER);
     return len; 
 }
 

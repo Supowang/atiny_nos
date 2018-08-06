@@ -42,13 +42,13 @@
 #include <stdio.h>
 #include "stdlib.h"
 #include "string.h"
-#include "hal_uart.h"
-#include "hal_timer.h"
-#include "hal_mailbox.h"
 #include "drv_delay.h"
 #include "mem_manager.h"
 #include "agent_tiny_demo.h"
 
+#include "hal_uart.h"
+#include "hal_timer.h"
+#include "hal_mailbox.h"
 
 #ifdef __cplusplus
  extern "C" {

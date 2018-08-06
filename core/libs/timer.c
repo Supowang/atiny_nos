@@ -109,7 +109,7 @@ int timer_stop(soft_timer_t * tmr)
   return 0;
 }
 
-int timer_init(soft_timer_t * tmr, int mode, int timeout_ms, callback cb)
+int timer_init(soft_timer_t * tmr, int mode, int timeout_ms, callback cb, void * arg)
 {
   if (NULL == tmr || NULL == cb || timeout_ms <= 0)
     return -1;
@@ -119,6 +119,7 @@ int timer_init(soft_timer_t * tmr, int mode, int timeout_ms, callback cb)
   tmr->cycle_ticks = TIMER_MS2TICK(timeout_ms);
   tmr->running = TIMER_STOPPED;
   tmr->cb = cb;
+  tmr->arg = arg;
   tmr->next = NULL;
 
   return 0;

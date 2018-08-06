@@ -39,11 +39,6 @@
 #include "atiny_adapter.h"
 
 /* Defines ------------------------------------------------------------------*/
-#define AT_WAIT_FOREVER     0xFFFFFFFF
-
-#define AT_FAILED   -1
-#define AT_OK       0
-
 #define AT_DATAF_PREFIX         "\r\n+IPD"
 #define AT_DATAF_PREFIX_MULTI   "\r\n+RECEIVE"
 
@@ -180,8 +175,8 @@ int32_t  sim900a_recv_timeout(int32_t id, int8_t * buf, uint32_t len, int32_t ti
     int32_t rxlen = 0;
     timeout /= 5;
     
-    while(timeout > 0)
-    {
+    
+    do {
         if (hw_mb_get(&qbuf) == 0 && qbuf.len > 0)
         {
             rxlen = (len < qbuf.len) ? len : qbuf.len;
@@ -189,10 +184,12 @@ int32_t  sim900a_recv_timeout(int32_t id, int8_t * buf, uint32_t len, int32_t ti
             atiny_free(qbuf.addr);
             break;
         }
-        drv_delay_ms(5);
-        if (timeout != AT_WAIT_FOREVER)
+        if (timeout != AT_WAIT_FOREVER || timeout > 0)
+        {
+            drv_delay_ms(5);
             timeout --;
-    }
+        }
+    }while(timeout > 0);
     return rxlen;
 }
 

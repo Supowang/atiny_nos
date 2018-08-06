@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_ESP8266</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\agent_tiny\comm\include;..\..\..\..\agent_tiny\examples;..\..\..\..\agent_tiny\lwm2m_client;..\..\..\..\agent_tiny\osadapter;..\..\..\..\core\inc;..\..\..\..\lwm2m\core;..\..\..\..\lwm2m\core\er-coap-13;..\..\..\..\network\inc;..\inc;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Include;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Include;..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\inc</IncludePath>
+              <IncludePath>..\..\..\..\agent_tiny\comm\include;..\..\..\..\agent_tiny\examples;..\..\..\..\agent_tiny\lwm2m_client;..\..\..\..\agent_tiny\osadapter;..\..\..\..\core\inc;..\..\..\..\lwm2m\core;..\..\..\..\lwm2m\core\er-coap-13;..\..\..\..\network\inc;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Include;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Include;..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\inc;..\..\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -644,7 +644,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\main.c</FilePath>
+              <FilePath>..\..\src\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -654,17 +654,22 @@
             <File>
               <FileName>drv_delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\driver\drv_delay.c</FilePath>
+              <FilePath>..\..\driver\drv_delay.c</FilePath>
             </File>
             <File>
               <FileName>drv_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\driver\drv_timer.c</FilePath>
+              <FilePath>..\..\driver\drv_timer.c</FilePath>
             </File>
             <File>
               <FileName>drv_uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\driver\drv_uart.c</FilePath>
+              <FilePath>..\..\driver\drv_uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>drv_debug_uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\driver\drv_debug_uart.c</FilePath>
             </File>
           </Files>
         </Group>

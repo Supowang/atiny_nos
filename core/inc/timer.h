@@ -27,7 +27,7 @@ typedef struct _timer {
 int timer_timeout_sched(void);
 int timer_start(soft_timer_t *tmr);
 int timer_stop(soft_timer_t *tmr);
-int timer_init(soft_timer_t * tmr, int mode, int timeout_ms, callback cb);
+int timer_init(soft_timer_t * tmr, int mode, int timeout_ms, callback cb, void * arg);
 
 #endif /* NOS_SOFTTIMER */
 #endif /* __TIMER_H__ */

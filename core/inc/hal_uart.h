@@ -2,6 +2,8 @@
 #define __HW_UART_H__
 
 #include "drv_uart.h"
+#include "drv_debug_uart.h"
+
 #if 0
 #define UART_DEBUG
 #else

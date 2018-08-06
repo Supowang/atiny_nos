@@ -38,7 +38,9 @@
 
 void hal_init(void)
 {
+    (void)hal_uart_init();
     
+
     sys_tick_init();
     
     #if (defined( AGENT_TINY_NOS) && defined (NOS_SOFTTIMER_EN)) 
@@ -48,7 +50,6 @@ void hal_init(void)
     #if (defined( AGENT_TINY_NOS) && defined (NOS_MEM_MANAGER_EN)) 
     mem_manager_init();
     #endif
-    (void)hal_uart_init();
 
 }
 

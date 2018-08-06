@@ -37,6 +37,11 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#define AT_WAIT_FOREVER     0xFFFFFFFF
+
+#define AT_FAILED   -1
+#define AT_OK       0
+
 typedef struct {
 	int32_t  (*init)(void);  /*初始化，初始化串口、IP网络等*/
 	int8_t (*get_localmac)(int8_t *mac);/*获取本地MAC*/

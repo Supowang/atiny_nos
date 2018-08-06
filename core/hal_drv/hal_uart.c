@@ -70,7 +70,10 @@ void uart_evt_hdl(unsigned char ch)
 int32_t hal_uart_init()
 {
     int ret = 0;
+    
+    Debug_USART_Config(); //debug uart init
     Net_USART_Config();  //usart drv init
+    
     register_recv_evt_hdl(uart_evt_hdl);
     return ret;
 }
@@ -93,6 +96,7 @@ int32_t hal_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp)
     if (0 == timeout_ms)
         ret = -1;
 
+    LOGD("ret = %d", ret);
     return ret;
 }
 
