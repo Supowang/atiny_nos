@@ -35,4 +35,8 @@
 //queue
 #define NOS_QUEUE_EN
 
+//debug config
+#define DEBUG_UART_ON
+
+
 #endif /* __CONFIG_H__ */

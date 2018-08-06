@@ -1,7 +1,7 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
-#include "config.h"
+#include "agent_core_config.h"
 #ifdef NOS_QUEUE_EN
 
 typedef struct _queue {

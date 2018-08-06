@@ -121,9 +121,9 @@ int32_t esp8266_init(void)
     hal_mailbox_init(&esp8266_q);
     recv_event_register(&e);
     
-//    esp8266_send_cmd(CMD_AT);
+    esp8266_send_cmd(CMD_AT);
     esp8266_send_cmd(CMD_RST);
-//    esp8266_send_cmd(CMD_ECHO_OFF);
+    esp8266_send_cmd(CMD_ECHO_OFF);
     esp8266_choose_net_mode(STA);
     while(0 != esp8266_joinap(WIFI_SSID, WIFI_PASSWD))
     {

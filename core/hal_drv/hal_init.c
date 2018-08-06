@@ -60,11 +60,11 @@ void atiny_usleep(unsigned long usec)
 {
  //   delayus((uint32_t)usec);
     int i = 10;
+    i *= usec;
     while(i--);
 }
 int atiny_random(void* output, size_t len)
 {
-    static long i = 0;
     return 0;//hal_rng_generate_buffer(output, len);
 }
 

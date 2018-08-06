@@ -1,7 +1,7 @@
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#include "config.h"
+#include "agent_core_config.h"
 #ifdef NOS_SOFTTIMER_EN
 
 #define TIMER_STOPPED  0

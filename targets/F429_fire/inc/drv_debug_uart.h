@@ -2,6 +2,9 @@
 #define __DRV_DEBUG_UART_H__
 
 #include "stm32f4xx.h"
+#include "agent_core_config.h"
+
+#ifdef DEBUG_UART_ON
 
 /*******************************************************/
 #define DEBUG_USART                             USART1
@@ -27,5 +30,8 @@
 #define LOGD(fmt, arg...) printf("[%s:%d]D:"fmt"\r\n", __func__, __LINE__, ##arg)
 
 void Debug_USART_Config(void);
+#else
+#define LOGD(fmt, arg...)
 
+#endif
 #endif

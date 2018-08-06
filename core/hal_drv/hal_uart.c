@@ -71,7 +71,9 @@ int32_t hal_uart_init()
 {
     int ret = 0;
     
+    #ifdef DEBUG_UART_ON
     Debug_USART_Config(); //debug uart init
+    #endif
     Net_USART_Config();  //usart drv init
     
     register_recv_evt_hdl(uart_evt_hdl);

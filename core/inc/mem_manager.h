@@ -1,7 +1,7 @@
 #ifndef __MEM_MANAGER_H__
 #define __MEM_MANAGER_H__
 
-#include "config.h"
+#include "agent_core_config.h"
 #ifdef NOS_MEM_MANAGER_EN
 #ifndef BLOCK0_COUNT
 #define BLOCK0_COUNT 0

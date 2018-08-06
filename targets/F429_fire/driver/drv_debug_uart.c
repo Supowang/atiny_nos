@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "drv_debug_uart.h"
 
+#ifdef DEBUG_UART_ON
+
 static void NVIC_Configuration(void)
 {
   NVIC_InitTypeDef NVIC_InitStructure;
@@ -82,4 +84,6 @@ __attribute__((used)) int _write(int fd, char *ptr, int len)
     return len;
 }
 #endif
+
+#endif /* debug_uart_on */
 

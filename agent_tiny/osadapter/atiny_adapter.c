@@ -96,7 +96,7 @@ int atiny_delay_us(long us)
 int atiny_printf(const char* format, ...)
 {
     int ret;
-#if 1
+#ifdef DEBUG_UART_ON
 
     char str_buf[LOG_BUF_SIZE] = {0};
     va_list list;
