@@ -14,8 +14,14 @@
 #define BLOCK2_COUNT 16
 #define BLOCK2_SIZE  128
 
-#define BLOCK3_COUNT 3
-#define BLOCK3_SIZE  1024
+#define BLOCK3_COUNT 8
+#define BLOCK3_SIZE  512
+
+#define BLOCK4_COUNT 2
+#define BLOCK4_SIZE  1024
+
+#define BLOCK5_COUNT 2
+#define BLOCK5_SIZE  0x2000
 #endif
 
 //timer

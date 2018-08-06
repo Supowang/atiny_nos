@@ -40,11 +40,13 @@
 #include "atiny_log.h"
 #include "atiny_rpt.h"
 #include "atiny_adapter.h"
-#include "hal_uart.h"
 #ifdef CONFIG_FEATURE_FOTA
 #include "atiny_fota_manager.h"
 #endif
 
+#ifdef AGENT_TINY_NOS
+#include "hal_timer.h"
+#endif
 #define SERVER_URI_MAX_LEN      (64)
 #define MAX_PACKET_SIZE         (1024)
 #define SERVER_ID               (123)
@@ -552,6 +554,8 @@ static void atiny_handle_reconnect(handle_data_t* handle)
         ATINY_LOG(LOG_INFO, "lwm2m reconnect");
     }
 }
+int atiny_handler_loop(void * phandle);
+static soft_timer_t t2;
 
 int atiny_bind(atiny_device_info_t* device_info, void* phandle)
 {
@@ -598,10 +602,10 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         return ATINY_MALLOC_FAILED;
     }
     
-//    #ifndef AGENT_TINY_NOS
+    #ifdef AGENT_TINY_NOS
     while (!handle->atiny_quit)
     {
-        timeout = BIND_TIMEOUT;
+        timeout = 1;
 
         (void)atiny_step_rpt(handle->lwm2m_context);
         atiny_handle_reconnect(handle);
@@ -610,24 +614,29 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         (void)lwm2m_poll(handle, &timeout);
     }
     atiny_destroy(phandle);
-//    #endif
+    
+    #else
+    timer_init(&t2, TIMER_MODE_REPEAT, 1000, atiny_handler_loop, phandle);
+    timer_start(&t2);
+    #endif
     return ATINY_OK;
 }
 
 #ifdef AGENT_TINY_NOS
-void atiny_handler_loop(void * phandle)
+int atiny_handler_loop(void * phandle)
 {
     uint32_t timeout;
     handle_data_t* handle = (handle_data_t*)phandle;
 
-    timeout = BIND_TIMEOUT;
-    if (STATE_REGISTERED == registration_getStatus(handle->lwm2m_context)) {
-        (void)atiny_step_rpt(handle->lwm2m_context);
-        atiny_handle_reconnect(handle);
-        (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
-        reboot_check();
-        (void)lwm2m_poll(handle, &timeout);
-    }
+    timeout = 1;
+    
+    (void)atiny_step_rpt(handle->lwm2m_context);
+    atiny_handle_reconnect(handle);
+    (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
+    reboot_check();
+    (void)lwm2m_poll(handle, &timeout);
+
+    return 0;
 }
 #endif
 void atiny_deinit(void* phandle)

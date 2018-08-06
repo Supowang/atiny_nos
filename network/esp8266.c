@@ -174,13 +174,15 @@ int32_t esp8266_recv(int32_t id, int8_t * buf, uint32_t len)
 int32_t esp8266_send(int32_t id , const uint8_t  *buf, uint32_t len)
 {
     char cmd[64] = {0};
-
+    int ret = -1;
     snprintf(cmd, 64, "%s=%lu\r\n", esp8266_cmd[CMD_SEND].cmd, len);
          
     hal_uart_send((uint8_t *)cmd, strlen(cmd), (uint8_t *)">");
          
-    hal_uart_send((uint8_t *)buf, len, (uint8_t *)esp8266_cmd[CMD_SEND].resp);
-    return 0;
+    ret = hal_uart_send((uint8_t *)buf, len, (uint8_t *)esp8266_cmd[CMD_SEND].resp);
+    if (ret == 0)
+        ret = len;
+    return ret;
 }
 
 int32_t esp8266_close(int32_t id)
