@@ -14,6 +14,7 @@
 #define BLOCK2_COUNT 16
 #define BLOCK2_SIZE  128
 
+#ifdef WITH_DTLS
 #define BLOCK3_COUNT 8
 #define BLOCK3_SIZE  512
 
@@ -22,8 +23,12 @@
 
 #define BLOCK5_COUNT 2
 #define BLOCK5_SIZE  0x2000
+#else
+#define BLOCK3_COUNT 3
+#define BLOCK3_SIZE  1024
 #endif
 
+#endif
 //timer
 #define NOS_SOFTTIMER_EN
 #ifdef NOS_SOFTTIMER_EN

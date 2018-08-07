@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_ESP8266,USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\agent_tiny\comm\include;..\..\..\..\agent_tiny\examples;..\..\..\..\agent_tiny\lwm2m_client;..\..\..\..\agent_tiny\osadapter;..\..\..\..\core\inc;..\..\..\..\lwm2m\core;..\..\..\..\lwm2m\core\er-coap-13;..\..\..\..\network\inc;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Include;..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Include;..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\inc;..\..\inc;..\..\..\..\security\mbedtls\mbedtls-2.6.0\include;..\..\..\..\security\mbedtls\mbedtls_port</IncludePath>
+              <IncludePath>..\..\..\..\agent_tiny\comm\include;..\..\..\..\agent_tiny\examples;..\..\..\..\agent_tiny\lwm2m_client;..\..\..\..\agent_tiny\osadapter;..\..\..\..\core\inc;..\..\..\..\lwm2m\core;..\..\..\..\lwm2m\core\er-coap-13;..\..\..\..\network\inc;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Include;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Include;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\inc;..\..\inc;..\..\..\..\security\mbedtls\mbedtls-2.6.0\include;..\..\..\..\security\mbedtls\mbedtls_port</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,37 +384,37 @@
             <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
             </File>
             <File>
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
+              <FilePath>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
           </Files>
         </Group>

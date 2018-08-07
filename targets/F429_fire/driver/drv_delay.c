@@ -2,8 +2,8 @@
 #include <string.h>
 #include "drv_delay.h"
 
-unsigned long long g_kerneltickscount = 0;
-unsigned long long timing_delay_tick = 0;
+volatile unsigned long g_kerneltickscount = 0;
+volatile unsigned long timing_delay_tick = 0;
 void sys_tick_init()
 {
 	/* SystemFrequency / 1000    1ms÷–∂œ“ª¥Œ

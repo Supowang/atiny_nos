@@ -38,8 +38,8 @@ typedef struct _net_event {
 }net_event;
     
 
-int hal_uart_init(void);
-int hal_uart_send(unsigned char * buf, unsigned int len, unsigned char * resp);
+int32_t hal_uart_init(void);
+int32_t hal_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp);
 void recv_event_register(net_event * e);
 void uart_evt_hdl(unsigned char ch);
 #endif /* __HW_UART_H__ */
