@@ -80,7 +80,7 @@ int timer_timeout_sched()
       }
     }
 
-    cur_tmr = cur_tmr->next;      
+    cur_tmr = cur_tmr->next;
   };
   return 0;
 }

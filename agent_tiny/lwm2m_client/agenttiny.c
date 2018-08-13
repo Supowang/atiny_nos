@@ -44,9 +44,6 @@
 #include "atiny_fota_manager.h"
 #endif
 
-#ifdef AGENT_TINY_NOS
-#include "hal_timer.h"
-#endif
 #define SERVER_URI_MAX_LEN      (64)
 #define MAX_PACKET_SIZE         (1024)
 #define SERVER_ID               (123)
@@ -554,8 +551,6 @@ static void atiny_handle_reconnect(handle_data_t* handle)
         ATINY_LOG(LOG_INFO, "lwm2m reconnect");
     }
 }
-int atiny_handler_loop(void * phandle);
-static soft_timer_t t2;
 
 int atiny_bind(atiny_device_info_t* device_info, void* phandle)
 {
@@ -602,10 +597,10 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         return ATINY_MALLOC_FAILED;
     }
     
-    #ifdef AGENT_TINY_NOS
+    #ifndef AGENT_TINY_NOS
     while (!handle->atiny_quit)
     {
-        timeout = 1;
+        timeout = BIND_TIMEOUT;
 
         (void)atiny_step_rpt(handle->lwm2m_context);
         atiny_handle_reconnect(handle);
@@ -614,10 +609,6 @@ int atiny_bind(atiny_device_info_t* device_info, void* phandle)
         (void)lwm2m_poll(handle, &timeout);
     }
     atiny_destroy(phandle);
-    
-    #else
-    timer_init(&t2, TIMER_MODE_REPEAT, 1000, atiny_handler_loop, phandle);
-    timer_start(&t2);
     #endif
     return ATINY_OK;
 }
@@ -628,14 +619,13 @@ int atiny_handler_loop(void * phandle)
     uint32_t timeout;
     handle_data_t* handle = (handle_data_t*)phandle;
 
-    timeout = 1;
+    timeout = BIND_TIMEOUT;
     
     (void)atiny_step_rpt(handle->lwm2m_context);
     atiny_handle_reconnect(handle);
     (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
     reboot_check();
     (void)lwm2m_poll(handle, &timeout);
-
     return 0;
 }
 #endif

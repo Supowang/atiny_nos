@@ -62,7 +62,6 @@ int32_t esp8266_event_handler(uint8_t byte)
     static char buf[1024] = {0};
     static int buf_count = 0;
     
-    
     switch (state)
     {
         case 0:  //byte = ','
@@ -92,7 +91,7 @@ int32_t esp8266_event_handler(uint8_t byte)
                     b.len = len;
                     b.addr = atiny_malloc(len);
                     memcpy(b.addr, buf, len);
-                    
+
                     hal_mb_put(&b);
                 }
             }

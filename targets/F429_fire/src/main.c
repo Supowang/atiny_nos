@@ -8,6 +8,7 @@
 #include "at_api_interface.h"
 #endif
 
+int agent_loop();
 
 int user_main()
 {
@@ -26,5 +27,11 @@ int main()
 #endif
     hal_timer_start();
     agent_tiny_entry();
-    while(1);
+    while(1)
+    {
+        agent_loop();
+        /********* USER CODE start *******************/
+
+        /********* USER CODE end *********************/
+    };
 }

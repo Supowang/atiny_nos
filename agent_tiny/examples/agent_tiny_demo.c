@@ -200,3 +200,9 @@ void agent_tiny_entry(void)
 #endif
     (void)atiny_bind(device_info, g_phandle);
 }
+#ifdef AGENT_TINY_NOS
+int agent_loop()
+{
+    atiny_handler_loop(g_phandle);
+}
+#endif
