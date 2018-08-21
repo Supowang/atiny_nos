@@ -382,10 +382,10 @@ static int lwm2m_poll(handle_data_t* phandle, uint32_t* timeout)
 
     dataP = (client_data_t*)(contextP->userData);
     connP = dataP->connList;
-
     while (connP != NULL)
     {
         numBytes = lwm2m_buffer_recv(connP, recv_buffer, MAX_PACKET_SIZE, *timeout);
+
         if (numBytes <= 0)
         {
             ATINY_LOG(LOG_INFO, "no packet arrived!");
@@ -397,7 +397,6 @@ static int lwm2m_poll(handle_data_t* phandle, uint32_t* timeout)
         }
         connP = connP->next;
     }
-
     return ATINY_OK;
 }
 
@@ -618,14 +617,22 @@ int atiny_handler_loop(void * phandle)
 {
     uint32_t timeout;
     handle_data_t* handle = (handle_data_t*)phandle;
-
-    timeout = BIND_TIMEOUT;
+    static uint64_t now = 0;
+    static uint64_t now_last = 0;
     
-    (void)atiny_step_rpt(handle->lwm2m_context);
-    atiny_handle_reconnect(handle);
-    (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
-    reboot_check();
-    (void)lwm2m_poll(handle, &timeout);
+    // doing loop pre BIND_TIMEOUT/2 sec.
+    now =  atiny_gettime_ms();
+    if (now < now_last || now - now_last > (BIND_TIMEOUT / 2) * 1000)
+    {
+        timeout = BIND_TIMEOUT;
+
+        (void)atiny_step_rpt(handle->lwm2m_context);
+        atiny_handle_reconnect(handle);
+        (void)lwm2m_step(handle->lwm2m_context, (time_t*)&timeout);
+        reboot_check();
+        (void)lwm2m_poll(handle, &timeout);
+        now_last = now;
+    }
     return 0;
 }
 #endif

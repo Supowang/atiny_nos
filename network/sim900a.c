@@ -177,9 +177,10 @@ int32_t  sim900a_recv_timeout(int32_t id, int8_t * buf, uint32_t len, int32_t ti
     
     
     do {
-        if (hw_mb_get(&qbuf) == 0 && qbuf.len > 0)
+        if (hal_mb_get(&qbuf) == 0 && qbuf.len > 0)
         {
             rxlen = (len < qbuf.len) ? len : qbuf.len;
+
             memcpy(buf, qbuf.addr, rxlen);
             atiny_free(qbuf.addr);
             break;
@@ -207,7 +208,8 @@ int32_t sim900a_send(int32_t id , const uint8_t* buf, uint32_t len)
 
     ret = at_send_cmd((uint8_t*)cmd, strlen(cmd), (uint8_t *)">");
     ret = at_send_data((uint8_t *)buf, len, (uint8_t*)sim900a_cmd[AT_CMD_SEND].resp);
-
+    if (ret == 0)
+        ret = len;
     return ret;
 }
 
@@ -275,7 +277,7 @@ int32_t sim900a_data_handler(uint8_t byte)
                     b.addr = atiny_malloc(len);
                     memcpy(b.addr, buf, len);
                     
-                    hw_mb_put(&b);
+                    hal_mb_put(&b);
                 }
             }
             break; 

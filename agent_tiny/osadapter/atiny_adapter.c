@@ -129,7 +129,7 @@ char *atiny_strdup(const char *ch)
     return copy;
 }
 
-#if 0
+#if (LOSCFG_BASE_IPC_SEM == 1)
 
 void* atiny_mutex_create(void)
 {

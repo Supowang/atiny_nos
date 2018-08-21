@@ -42,7 +42,7 @@ int queue_put_item(queue_t * q, void * item, int i_size)
   memcpy(q->pool + q->w_idx * q->item_size, item, i_size);
 
   q->w_idx ++;
-  if (q->w_idx >= q->item_size){
+  if (q->w_idx >= q->queue_size){
     q->w_idx = 0;
   } 
   return 0;
@@ -68,7 +68,7 @@ int queue_get_item(queue_t *q, void * item, int * i_size)
   memcpy(item, q->pool + q->item_size * q->r_idx, q->item_size);
 
   q->r_idx ++;
-  if (q->r_idx >= q->item_size)
+  if (q->r_idx >= q->queue_size)
     q->r_idx = 0;
 
   return 0;

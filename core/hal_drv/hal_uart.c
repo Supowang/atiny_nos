@@ -40,7 +40,6 @@ void uart_evt_hdl(unsigned char ch)
         if (event_cb(ch)) //when return not 0, mean that event data handler done!
             event_cb = NULL;
     }
- #if 1
     uart_event_buf[uart_event_idx++] = ch;
     for (list_idx = 0; list_idx < event_count; list_idx++)
     {
@@ -51,7 +50,6 @@ void uart_evt_hdl(unsigned char ch)
             break;
         }
     }
-    #endif
     uart_recv_buf[uart_recv_idx++] = ch;
     if (resp_str && uart_recv_idx >= strlen((char*)resp_str) &&
         0 == memcmp(uart_recv_buf + uart_recv_idx - strlen((char *)resp_str) , resp_str, strlen((char *) resp_str)))
@@ -98,7 +96,6 @@ int32_t hal_uart_send(uint8_t * buf, uint32_t len, uint8_t * resp)
     if (0 == timeout_ms)
         ret = -1;
 
-    LOGD("ret = %d", ret);
     return ret;
 }
 

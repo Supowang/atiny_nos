@@ -64,7 +64,7 @@ void  GENERAL_TIM_IRQHandler (void)
 	if ( TIM_GetITStatus( GENERAL_TIM, TIM_IT_Update) != RESET ) 
 	{	
         if (NULL != gf_sched_h)gf_sched_h();
-		TIM_ClearITPendingBit(GENERAL_TIM , TIM_IT_Update);  		 
+		TIM_ClearITPendingBit(GENERAL_TIM , TIM_IT_Update);
 	}
 }
 int register_timx_handler(timer_sched_handler h)

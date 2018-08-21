@@ -80,7 +80,7 @@ void debug_usart_SendBuf( USART_TypeDef * pUSARTx, char *buf, int len)
 
 __attribute__((used)) int _write(int fd, char *ptr, int len)
 {
-    (void)debug_usart_SendBuf(DEBUG_USART, (uint8_t *)ptr, len);
+    (void)debug_usart_SendBuf(DEBUG_USART, ptr, len);
     return len;
 }
 #endif

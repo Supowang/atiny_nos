@@ -335,7 +335,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_ESP8266,USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,LWM2M_LITTLE_ENDIAN,LWM2M_CLIENT_MODE,AGENT_TINY_NOS,WITH_AT_FRAMEWORK,USE_SIM900A,USE_MBED_TLS,MBEDTLS_CONFIG_FILE=&lt;los_mbedtls_config.h&gt;,WITH_DTLS</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\..\agent_tiny\comm\include;..\..\..\..\agent_tiny\examples;..\..\..\..\agent_tiny\lwm2m_client;..\..\..\..\agent_tiny\osadapter;..\..\..\..\core\inc;..\..\..\..\lwm2m\core;..\..\..\..\lwm2m\core\er-coap-13;..\..\..\..\network\inc;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Include;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Include;..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\STM32F4xx_StdPeriph_Driver\inc;..\..\inc;..\..\..\..\security\mbedtls\mbedtls-2.6.0\include;..\..\..\..\security\mbedtls\mbedtls_port</IncludePath>
             </VariousControls>

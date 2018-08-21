@@ -764,10 +764,8 @@ next_step:
         // do nothing
         break;
     }
-
     observe_step(contextP, tv_sec, timeoutP);
 #endif
-
     registration_step(contextP, tv_sec, timeoutP);
     transaction_step(contextP, tv_sec, timeoutP);
 

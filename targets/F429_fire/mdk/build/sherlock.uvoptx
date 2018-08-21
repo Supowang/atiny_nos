@@ -120,6 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>閣??趏\\</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -151,34 +152,82 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>93</LineNumber>
+          <LineNumber>229</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237632</Address>
+          <Address>134239504</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\..\..\..\network\esp8266.c</Filename>
+          <Filename>..\..\..\..\security\mbedtls\mbedtls_port\dtls_interface.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\sherlock\../../../../network/esp8266.c\93</Expression>
+          <Expression>\\sherlock\../../../../security/mbedtls/mbedtls_port/dtls_interface.c\229</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>92</LineNumber>
+          <LineNumber>206</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134218186</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\..\..\..\network\esp8266.c</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\..\driver\STM32F4xx_DSP_StdPeriph_Lib\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\sherlock\../../driver/STM32F4xx_DSP_StdPeriph_Lib/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f429_439xx.s\206</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>3365</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134279154</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\..\..\..\security\mbedtls\mbedtls-2.6.0\library\ssl_cli.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sherlock\../../../../security/mbedtls/mbedtls-2.6.0/library/ssl_cli.c\3365</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>2439</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134277792</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\..\..\..\security\mbedtls\mbedtls-2.6.0\library\ssl_tls.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sherlock\../../../../security/mbedtls/mbedtls-2.6.0/library/ssl_tls.c\2439</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>99</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134242812</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\..\..\..\core\hal_drv\hal_uart.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\sherlock\../../../../core/hal_drv/hal_uart.c\99</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -239,6 +288,10 @@
         <Entry>
           <Name>System Viewer\TIM2</Name>
           <WinId>35905</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\USART2</Name>
+          <WinId>35904</WinId>
         </Entry>
       </SystemViewers>
       <DebugDescription>
@@ -880,7 +933,7 @@
 
   <Group>
     <GroupName>drivers</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -980,7 +1033,7 @@
 
   <Group>
     <GroupName>mbedtls</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
